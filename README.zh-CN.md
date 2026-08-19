@@ -6,7 +6,7 @@
 
 ## 仓库结构
 
-- [`user-manual`](./user-manual/README.zh-CN.md) 说明如何选择和组合 CLI SDK package。
+- [`user-manual`](./user-manual/README.md) 是完整的 CLI SDK 接入手册。
 - [`examples`](./examples/README.zh-CN.md) 存放只使用已发布公共 API 的独立应用。
 
 ## 环境要求

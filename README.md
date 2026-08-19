@@ -6,7 +6,7 @@ This repository provides the public user manual and runnable examples for the Un
 
 ## Repository layout
 
-- [`user-manual`](./user-manual/README.md) explains how to select and compose CLI SDK packages.
+- [`user-manual`](./user-manual/README.md) is the complete CLI SDK integration guide.
 - [`examples`](./examples/README.md) contains independent applications built only with published public APIs.
 
 ## Requirements
