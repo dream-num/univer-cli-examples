@@ -4,11 +4,11 @@ English | [简体中文](./README.zh-CN.md)
 
 A TypeScript infrastructure SDK for quickly building Univer-aware CLI applications around your own business workflows.
 
-[Quick Start](#quick-start) · [Package Guide](#package-guide) · [SDK Boundaries](#sdk-boundaries) · [Application Examples](#application-examples)
+[Quick Start](#quick-start) · [Package Guide](#package-guide) · [Univer Pro File Exchange](#univer-pro-file-exchange) · [SDK Boundaries](#sdk-boundaries) · [Application Examples](#application-examples)
 
 The Univer CLI SDK packages Univer's headless content execution, collaboration, structured content
-inspection, Office conversion, screenshots, and local process management as independently installable
-capabilities. Common capabilities also provide ready-made Commander command presets.
+inspection, screenshots, and local process management as independently installable capabilities.
+Common capabilities also provide ready-made Commander command presets.
 
 Developers can compose only the packages they need and focus on business rules, product interaction,
 and external-system integration.
@@ -122,11 +122,10 @@ custom help.
 | Run one collaborative Unit | [`@univer-cli/univer-collaboration-runtime`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-collaboration-runtime) | — |
 | Reuse collaboration runtimes in workers | [`@univer-cli/univer-collaboration-runtime-pool`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-collaboration-runtime-pool) | — |
 
-### Conversion
+### Content compilation
 
 | Need | Capability package | Optional command preset |
 | --- | --- | --- |
-| Convert Office files and UnitData | [`@univerjs-pro/exchange-node`](https://www.npmjs.com/package/@univerjs-pro/exchange-node) | — |
 | Compile SVG to Slide Facade code | [`@univer-cli/svg-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade) | [`@univer-cli/svg-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade-command) |
 | Compile Typst bundles to Doc Facade code | [`@univer-cli/doc-typst-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade) | [`@univer-cli/doc-typst-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade-command) |
 
@@ -157,13 +156,22 @@ Choose the capability package that matches the application need first. Add the p
 row only when its default CLI interaction is useful. Each package README documents installation,
 public APIs, a minimal example, behavior limits, and runtime dependencies.
 
+## Univer Pro file exchange
+
+Office file import and export belong to the Univer Pro SDK, not the Univer CLI SDK. Node.js
+applications call `importFile()` and `exportToFile()` from
+[`@univerjs-pro/exchange-node`](https://www.npmjs.com/package/@univerjs-pro/exchange-node); its
+platform-native implementation is provided by `@univerjs-pro/exchange-node-binding`. The CLI SDK
+does not wrap or re-export these APIs.
+
 ## SDK boundaries
 
-A complete business CLI is usually assembled from three SDKs and the application:
+A complete business CLI is usually assembled from these SDK layers and the application:
 
 | Layer | Responsibility |
 | --- | --- |
-| Univer / Univer Pro SDK | Unit data models, Facade APIs, mutations, rendering, and content formats |
+| Univer SDK | Unit data models, Facade APIs, mutations, rendering, and content formats |
+| Univer Pro SDK | Pro capabilities, including Node.js Office file import and export |
 | Univer Collaboration SDK | Snapshots, changesets, revisions, OT, Worktrees, collaboration services, and persistence SPI |
 | Univer CLI SDK | Standard headless factory, reusable CLI capabilities, runtime pools, daemon, and Commander presets |
 | Business CLI application | Business rules, product interaction, and external integrations |

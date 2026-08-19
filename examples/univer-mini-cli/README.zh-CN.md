@@ -2,7 +2,8 @@
 
 [English](./README.md) | 简体中文
 
-一个面向 Agent 的最小本地 Office CLI example。它把 Univer CLI SDK 的核心 capability 组合为完整工作流：
+一个面向 Agent 的最小本地 Office CLI example。它把 Univer CLI SDK capability 与 Univer Pro 文件导入导出
+组合为完整工作流：
 
 ```text
 create / import -> inspect -> api find / show -> execute -> export
@@ -113,8 +114,8 @@ univer-mini export ./deck.unit.json ./deck.pptx
 ## 安全与边界
 
 `execute` 使用 JavaScript `Function` 执行输入，它不是安全沙箱，只能运行可信代码。Application 负责本地路径、文件格式、
-JSON presentation 和 runtime 生命周期；内容执行、inspection、API reference 与 Office 转换规则仍由对应 capability
-package 提供。
+JSON presentation 和 runtime 生命周期；内容执行、inspection 和 API reference 使用 Univer CLI SDK capability，
+Office 文件导入导出直接使用 Univer Pro 的 `@univerjs-pro/exchange-node` package。
 
 ## 下一步
 

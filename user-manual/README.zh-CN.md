@@ -4,10 +4,10 @@
 
 一套面向 TypeScript 开发者的 Univer CLI 基础设施，帮助开发者快速构建符合自身业务的 Univer CLI 应用。
 
-[快速开始](#快速开始) · [功能包一览](#功能包一览) · [SDK 边界](#sdk-边界) · [应用示例](#应用示例)
+[快速开始](#快速开始) · [功能包一览](#功能包一览) · [Univer Pro 文件导入导出](#univer-pro-文件导入导出) · [SDK 边界](#sdk-边界) · [应用示例](#应用示例)
 
 Univer CLI SDK 把 [Univer](https://github.com/dream-num/univer) 的 headless 内容执行、协同编辑、结构化内容读取、
-Office 文件转换、截图和本地进程管理整理成可单独安装的功能包，并为常用功能提供现成的 Commander 命令预设。
+截图和本地进程管理整理成可单独安装的功能包，并为常用功能提供现成的 Commander 命令预设。
 
 开发者可以按需组合这些功能，将精力放在业务逻辑、产品交互和外部系统集成上。
 
@@ -113,11 +113,10 @@ program.addCommand(createSomeCommand(dependencies));
 | 运行单个协同 Unit             | [`@univer-cli/univer-collaboration-runtime`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-collaboration-runtime)           | —                                                                                                                                    |
 | 在 worker 中复用协同 runtime  | [`@univer-cli/univer-collaboration-runtime-pool`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-collaboration-runtime-pool) | —                                                                                                                                    |
 
-### 转换
+### 内容编译
 
 | 业务需求                        | 基础功能包                                                                                                       | 可选命令预设包                                                                                                               |
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Office 文件与 UnitData 互转     | [`@univerjs-pro/exchange-node`](https://www.npmjs.com/package/@univerjs-pro/exchange-node)                       | —                                                                                                                            |
 | SVG 到 Slide Facade code        | [`@univer-cli/svg-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade)             | [`@univer-cli/svg-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade-command)         |
 | Typst bundle 到 Doc Facade code | [`@univer-cli/doc-typst-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade) | [`@univer-cli/doc-typst-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade-command) |
 
@@ -147,13 +146,21 @@ program.addCommand(createSomeCommand(dependencies));
 不知道该选择哪个 package 时，先按业务需求找到对应的基础功能包；如果希望快速获得默认 CLI 交互，再安装同一行的
 命令预设包。每个 package README 都包含安装方式、公共 API、最小示例、行为限制以及运行依赖。
 
+## Univer Pro 文件导入导出
+
+Office 文件导入导出属于 Univer Pro SDK，不属于 Univer CLI SDK。Node.js 应用直接调用
+[`@univerjs-pro/exchange-node`](https://www.npmjs.com/package/@univerjs-pro/exchange-node) 提供的
+`importFile()` 和 `exportToFile()`；平台原生实现由 `@univerjs-pro/exchange-node-binding` 提供。
+CLI SDK 不封装或重新导出这些 API。
+
 ## SDK 边界
 
-一个完整的业务 CLI 通常由三个 SDK 和业务应用共同组成：
+一个完整的业务 CLI 通常由以下 SDK 层与业务应用共同组成：
 
 | 层                       | 负责什么                                                                           |
 | ------------------------ | ---------------------------------------------------------------------------------- |
-| Univer / Univer Pro SDK  | Unit 数据模型、Facade API、mutation、render 与内容格式。                           |
+| Univer SDK               | Unit 数据模型、Facade API、mutation、render 与内容格式。                           |
+| Univer Pro SDK           | Pro 能力，包括 Node.js Office 文件导入导出。                                       |
 | Univer Collaboration SDK | Snapshot、changeset、revision、OT、Worktree、协同 Service 与持久化 SPI。           |
 | Univer CLI SDK           | 标准 headless factory、通用 CLI 功能、runtime pool、daemon 和 Commander 命令预设。 |
 | 业务 CLI 应用            | 业务逻辑、产品交互与外部系统集成。                                                 |

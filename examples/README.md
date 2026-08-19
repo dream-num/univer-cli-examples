@@ -2,9 +2,10 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-Each directory in this section is an independent, runnable application built from the published
-public APIs of the Univer CLI SDK. Examples own their application-specific targets, storage,
-presentation, and dependency assembly; reusable capabilities remain in the SDK packages.
+Each directory in this section is an independent, runnable application built from published APIs
+of the Univer CLI SDK and, where needed, the Univer / Univer Pro SDKs. Examples own their
+application-specific targets, storage, presentation, and dependency assembly; reusable CLI
+capabilities remain in the CLI SDK packages.
 
 | Example | What it demonstrates |
 | --- | --- |

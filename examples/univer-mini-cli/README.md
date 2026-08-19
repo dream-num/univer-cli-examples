@@ -2,8 +2,8 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-A minimal local Office CLI example for Agents. It composes core Univer CLI SDK capabilities into a
-complete workflow:
+A minimal local Office CLI example for Agents. It combines Univer CLI SDK capabilities with Univer
+Pro file exchange in a complete workflow:
 
 ```text
 create / import -> inspect -> api find / show -> execute -> export
@@ -120,8 +120,8 @@ pool, collaboration runtime, collaboration server, or remote Workspace.
 
 `execute` uses JavaScript `Function`; it is not a security sandbox and must run only trusted code.
 The application owns local paths, its file format, JSON presentation, and runtime lifecycle.
-Content execution, inspection, API reference, and Office conversion rules remain in their matching
-capability packages.
+Content execution, inspection, and API reference use Univer CLI SDK capabilities; Office import and
+export use the Univer Pro `@univerjs-pro/exchange-node` package directly.
 
 ## Next steps
 
