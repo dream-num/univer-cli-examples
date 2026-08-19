@@ -17,3 +17,16 @@ This repository provides the public user manual and runnable examples for the Un
 
 Every example will pin a mutually compatible release cohort and document its own runtime, license,
 and external-service requirements.
+
+## Quick start
+
+Install dependencies and run the API reference example:
+
+```bash
+pnpm install
+pnpm example:api-reference -- api find --unit sheet setValues
+pnpm example:api-reference -- api show FRange.setValues
+```
+
+The example searches the bundled Univer Facade API reference locally. It does not launch Univer,
+require a license, or access online documentation.

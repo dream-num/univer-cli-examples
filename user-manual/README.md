@@ -10,5 +10,10 @@ package only when the default Commander interaction is useful. The application r
 for its root `Command`, explicit `addCommand()` composition, product targets, storage, credentials,
 and external integrations.
 
-Detailed integration chapters will be added together with runnable examples and a published,
-verified release cohort.
+## Start here
+
+1. Follow the [Quick Start](./quick-start.md) to build and run the first CLI.
+2. Read the matching [example source](../examples/api-reference-cli/README.md).
+3. Add another capability only when the application has a concrete need for it.
+
+The repository currently pins release cohort `1.0.0-insiders.20260819-8595af2`.

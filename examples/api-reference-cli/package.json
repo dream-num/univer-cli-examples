@@ -1,0 +1,27 @@
+{
+  "name": "@univer-cli-example/api-reference-cli",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "univer-api": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "tsx src/index.ts",
+    "start:built": "node dist/index.js",
+    "test": "vitest run test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@univer-cli/api-reference": "1.0.0-insiders.20260819-8595af2",
+    "@univer-cli/api-reference-command": "1.0.0-insiders.20260819-8595af2",
+    "commander": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.20.0",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}

@@ -16,3 +16,16 @@
 - CLI SDK package 仍位于 Insiders 发布通道期间，需要能够访问 Univer Insiders registry
 
 每个示例都会锁定一组相互兼容的 release cohort，并单独说明所需 runtime、license 和外部服务。
+
+## 快速开始
+
+安装依赖并运行 API reference 示例：
+
+```bash
+pnpm install
+pnpm example:api-reference -- api find --unit sheet setValues
+pnpm example:api-reference -- api show FRange.setValues
+```
+
+这个示例在本地查询随 package 发布的 Univer Facade API reference，不会启动 Univer，也不需要
+license 或在线文档服务。
