@@ -3,8 +3,8 @@ import { createApiCommand } from "@univer-cli/api-reference-command";
 import { Command } from "commander";
 
 export function createProgram(): Command {
-  const program = new Command("univer-api")
-    .description("Search and inspect the Univer Facade API offline")
+  const program = new Command("univer-quick-start")
+    .description("Minimal Univer CLI SDK composition example")
     .showHelpAfterError()
     .exitOverride();
 

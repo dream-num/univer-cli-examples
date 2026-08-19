@@ -15,7 +15,7 @@ importers:
         specifier: ^7.0.2
         version: 7.0.2
 
-  examples/api-reference-cli:
+  examples/quick-start-cli:
     dependencies:
       '@univer-cli/api-reference':
         specifier: 1.0.0-insiders.20260819-8595af2

@@ -1,10 +1,10 @@
 {
-  "name": "@univer-cli-example/api-reference-cli",
+  "name": "@univer-cli-example/quick-start-cli",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "bin": {
-    "univer-api": "./dist/index.js"
+    "univer-quick-start": "./dist/index.js"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json",

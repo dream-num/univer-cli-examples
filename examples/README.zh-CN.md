@@ -8,7 +8,7 @@ package 提供。
 
 | 示例 | 内容 |
 | --- | --- |
-| [`api-reference-cli`](./api-reference-cli/README.zh-CN.md) | 将 capability 及其原生 Commander preset 组装为完整 CLI |
+| [`quick-start-cli`](./quick-start-cli/README.zh-CN.md) | 没有实际产品意义，只说明最小 capability 与 Commander preset 组装 |
 | [`univer-mini-cli`](./univer-mini-cli/README.zh-CN.md) | 创建、导入、检查、编辑和导出本地 Sheet、Doc 与 Slide Unit |
 
-建议从 `api-reference-cli` 理解最小接入，再用 `univer-mini-cli` 跑通完整本地 Office 工作流。
+`quick-start-cli` 只用于理解最小接入；需要实际工作流时，使用 `univer-mini-cli` 跑通本地 Office 闭环。

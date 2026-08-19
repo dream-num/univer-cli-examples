@@ -174,7 +174,7 @@ CLI infrastructure; the application owns business behavior and external integrat
 
 ## Application examples
 
-- [`api-reference-cli`](../examples/api-reference-cli/README.md): minimal Commander preset composition and offline Facade API lookup.
+- [`quick-start-cli`](../examples/quick-start-cli/README.md): minimal Commander preset composition with no practical product purpose.
 - [`univer-mini-cli`](../examples/univer-mini-cli/README.md): a complete local Office workflow covering creation, import, inspection, editing, and export.
 - [`univer-cli`](https://github.com/dream-num/univer-cli): a complete CLI for local `.univer` files.
 - [`univer-workspace/apps/cli`](https://github.com/dream-num/univer-workspace/tree/main/apps/cli): a complete CLI for remote Workspace targets.

@@ -8,7 +8,7 @@ const execFileAsync = promisify(execFile);
 const exampleRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const entrypoint = resolve(exampleRoot, "dist/index.js");
 
-describe("univer-api", () => {
+describe("univer-quick-start", () => {
   it("finds and shows a Facade symbol through the built CLI", async () => {
     const found = await run("api", "find", "--unit", "sheet", "setValues");
     expect(found).toContain("FRange.setValues");

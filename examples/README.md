@@ -8,8 +8,8 @@ presentation, and dependency assembly; reusable capabilities remain in the SDK p
 
 | Example | What it demonstrates |
 | --- | --- |
-| [`api-reference-cli`](./api-reference-cli/README.md) | Compose a capability and its native Commander preset into a complete CLI |
+| [`quick-start-cli`](./quick-start-cli/README.md) | Minimal composition illustration with no practical product purpose |
 | [`univer-mini-cli`](./univer-mini-cli/README.md) | Create, import, inspect, edit, and export local Sheet, Doc, and Slide Units |
 
-Start with `api-reference-cli` for the smallest integration. Continue with `univer-mini-cli` for a
-complete local Office workflow.
+Use `quick-start-cli` only to understand the smallest integration. Continue with `univer-mini-cli`
+for an example with an actual local Office workflow.

@@ -23,10 +23,10 @@
 
 ```bash
 pnpm install
-pnpm example:api-reference -- api find --unit sheet setValues
-pnpm example:api-reference -- api show FRange.setValues
+pnpm example:quick-start -- api find --unit sheet setValues
+pnpm example:quick-start -- api show FRange.setValues
 pnpm example:univer-mini --help
 ```
 
-这个示例在本地查询随 package 发布的 Univer Facade API reference，不会启动 Univer，也不需要
-license 或在线文档服务。
+`quick-start-cli` 没有实际产品意义。它选择 API reference 查询，只是为了用最少依赖说明一套完整的
+capability + Commander preset + application composition。它不会启动 Univer，也不需要 license 或在线文档服务。
