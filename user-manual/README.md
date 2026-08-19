@@ -1,37 +1,43 @@
 # Univer CLI SDK
 
-一套面向 TypeScript 开发者的 Univer CLI 基础设施，帮助开发者快速构建符合自身业务的 Univer CLI 应用。
+English | [简体中文](./README.zh-CN.md)
 
-[快速开始](#快速开始) · [功能包一览](#功能包一览) · [SDK 边界](#sdk-边界) · [应用示例](#应用示例)
+A TypeScript infrastructure SDK for quickly building Univer-aware CLI applications around your own business workflows.
 
-Univer CLI SDK 把 [Univer](https://github.com/dream-num/univer) 的 headless 内容执行、协同编辑、结构化内容读取、
-Office 文件转换、截图和本地进程管理整理成可单独安装的功能包，并为常用功能提供现成的 Commander 命令预设。
+[Quick Start](#quick-start) · [Package Guide](#package-guide) · [SDK Boundaries](#sdk-boundaries) · [Application Examples](#application-examples)
 
-开发者可以按需组合这些功能，将精力放在业务逻辑、产品交互和外部系统集成上。
+The Univer CLI SDK packages Univer's headless content execution, collaboration, structured content
+inspection, Office conversion, screenshots, and local process management as independently installable
+capabilities. Common capabilities also provide ready-made Commander command presets.
 
-这是一个 SDK，不是固定形态的产品 CLI，也不引入新的 CLI framework。业务应用仍然使用原生 Commander
-`addCommand()` 选择需要的命令，并保留对命令名称、参数、输出和错误处理的完整控制。
+Developers can compose only the packages they need and focus on business rules, product interaction,
+and external-system integration.
 
-## 它能帮助你做什么
+This is an SDK, not a fixed product CLI or a custom CLI framework. Applications continue to use
+native Commander `addCommand()` calls and retain full control over command names, arguments, output,
+and error handling.
 
-- **快速搭建业务 CLI**：复用通用的 Univer CLI 功能和运行基础设施。
-- **按需选择功能**：只安装需要的 package；命令预设不会创建或接管你的根 CLI。
-- **灵活设计交互**：既可以使用现成 Commander 命令，也可以基于结构化 TypeScript API 编写自己的业务命令。
-- **自主完成外部集成**：业务应用决定如何连接外部系统，SDK 不限制具体集成方式。
-- **复用稳定的 runtime**：headless、协同、渲染和进程运行基础设施由 SDK 统一维护。
+## What it helps you build
 
-## 快速开始
+- **Business CLIs quickly**: reuse common Univer CLI capabilities and runtime infrastructure.
+- **Only the capabilities you need**: command presets never create or take over the root program.
+- **Your preferred interaction**: use a ready-made Commander command or call structured TypeScript APIs directly.
+- **Application-owned integrations**: the application decides how to connect to external systems.
+- **Stable runtimes**: reuse maintained headless, collaboration, rendering, and process infrastructure.
 
-需要 Node.js 22.12 或更高版本。
+## Quick start
 
-> **发布状态：** 当前 packages 通过 Univer Insiders registry 发布。安装前需要为 `@univer-cli` scope
-> 配置对应 registry；具体版本以所使用的 release 通道为准。
+Node.js 22.12 or later is required.
+
+> **Release status:** Packages are currently published through the Univer Insiders registry. Configure
+> the registry for the `@univer-cli` scope before installation and select the version for your release channel.
 
 ```ini
 @univer-cli:registry=https://insider-npm-registry.univer.work/
 ```
 
-以给业务 CLI 加入离线 Univer Facade API 查询为例。只需要查询功能时，可以直接调用基础功能包：
+For example, add offline Univer Facade API lookup to a business CLI. When only the capability is
+needed, install and call the base package directly:
 
 ```bash
 pnpm add @univer-cli/api-reference
@@ -48,7 +54,8 @@ const matches = reference.find({
 });
 ```
 
-需要现成的终端交互时，再安装对应的命令预设包，并把它加入现有 Commander 应用：
+When the default terminal interaction is useful, also install the matching command preset and add
+it to the existing Commander application:
 
 ```bash
 pnpm add commander @univer-cli/api-reference @univer-cli/api-reference-command
@@ -70,100 +77,107 @@ program.addCommand(
 await program.parseAsync();
 ```
 
-构建应用后即可使用：
+After building the application:
 
 ```bash
-my-cli api find conditional formatting --unit sheet
+my-cli api find --unit sheet conditional formatting
 my-cli api show FRange.setValues
 ```
 
-如果默认命令不适合产品交互，可以跳过 `@univer-cli/api-reference-command`，直接使用
-`@univer-cli/api-reference` 的结构化查询 API，自行设计命令名称、参数与输出。其他功能也遵循相同模式。
+If the default interaction does not suit the product, omit
+`@univer-cli/api-reference-command`, call the structured `@univer-cli/api-reference` API directly,
+and design application-specific commands, arguments, and output. Other capabilities follow the same pattern.
 
-## 两种集成方式
+## Two integration styles
 
 ```text
-业务 CLI 应用
-├── 直接调用基础功能包 ───────────────> 结构化结果 ──> 自定义业务交互
-└── addCommand(命令预设) ──> 原生 Command ──> 基础功能包
+Business CLI application
+├── call a capability directly ─────────> structured result ──> custom interaction
+└── addCommand(command preset) ──> native Command ──> capability
 ```
 
-基础功能包包含完整的功能、规则和输入校验，接收结构化输入并返回结构化结果，不依赖 Commander 或终端。
-名称以 `-command` 结尾的命令预设包负责参数、选项、help、默认输出和退出行为，并返回原生 Commander
-`Command`。业务应用在组装入口中注入依赖并选择需要的命令：
+Capability packages contain the complete behavior, rules, and input validation. They accept
+structured input, return structured results, and do not depend on Commander or the terminal.
+Packages ending in `-command` own arguments, options, help, default presentation, and exit behavior,
+and return native Commander `Command` objects. The application injects dependencies and selects
+commands at its composition root:
 
 ```ts
 program.addCommand(createSomeCommand(dependencies));
 ```
 
-调用方仍然可以使用 Commander 的 `configureOutput()`、`exitOverride()`、hooks、aliases 和自定义 help。
+Callers can continue using Commander's `configureOutput()`, `exitOverride()`, hooks, aliases, and
+custom help.
 
-## 功能包一览
+## Package guide
 
-### Univer 内容与协同 runtime
+### Univer content and collaboration runtimes
 
-| 业务需求                      | 基础功能包                                                                                                                                         | 可选命令预设包                                                                                                                       |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| 创建标准 headless Univer      | [`@univer-cli/headless-univer`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/headless-univer)                                     | —                                                                                                                                    |
-| 离线查询 Univer Facade API    | [`@univer-cli/api-reference`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/api-reference)                                         | [`@univer-cli/api-reference-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/api-reference-command)           |
-| 准备并绑定 Facade execution   | [`@univer-cli/content-execution`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/content-execution)                                 | —                                                                                                                                    |
-| 读取 Sheet、Doc 或 Slide 内容 | [`@univer-cli/content-inspection`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/content-inspection)                               | [`@univer-cli/content-inspection-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/content-inspection-command) |
-| 运行单个协同 Unit             | [`@univer-cli/univer-collaboration-runtime`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-collaboration-runtime)           | —                                                                                                                                    |
-| 在 worker 中复用协同 runtime  | [`@univer-cli/univer-collaboration-runtime-pool`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-collaboration-runtime-pool) | —                                                                                                                                    |
+| Need | Capability package | Optional command preset |
+| --- | --- | --- |
+| Create a standard headless Univer | [`@univer-cli/headless-univer`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/headless-univer) | — |
+| Search the Univer Facade API offline | [`@univer-cli/api-reference`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/api-reference) | [`@univer-cli/api-reference-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/api-reference-command) |
+| Prepare and bind Facade execution | [`@univer-cli/content-execution`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/content-execution) | — |
+| Inspect Sheet, Doc, or Slide content | [`@univer-cli/content-inspection`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/content-inspection) | [`@univer-cli/content-inspection-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/content-inspection-command) |
+| Run one collaborative Unit | [`@univer-cli/univer-collaboration-runtime`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-collaboration-runtime) | — |
+| Reuse collaboration runtimes in workers | [`@univer-cli/univer-collaboration-runtime-pool`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-collaboration-runtime-pool) | — |
 
-### 转换
+### Conversion
 
-| 业务需求                        | 基础功能包                                                                                                       | 可选命令预设包                                                                                                               |
-| ------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Office 文件与 UnitData 互转     | [`@univer-cli/unit-exchange`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-exchange)       | —                                                                                                                            |
-| SVG 到 Slide Facade code        | [`@univer-cli/svg-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade)             | [`@univer-cli/svg-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade-command)         |
-| Typst bundle 到 Doc Facade code | [`@univer-cli/doc-typst-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade) | [`@univer-cli/doc-typst-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade-command) |
+| Need | Capability package | Optional command preset |
+| --- | --- | --- |
+| Convert Office files and UnitData | [`@univer-cli/unit-exchange`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-exchange) | — |
+| Compile SVG to Slide Facade code | [`@univer-cli/svg-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade) | [`@univer-cli/svg-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade-command) |
+| Compile Typst bundles to Doc Facade code | [`@univer-cli/doc-typst-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade) | [`@univer-cli/doc-typst-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade-command) |
 
-### 渲染与诊断
+### Rendering and diagnostics
 
-| 业务需求                      | 基础功能包                                                                                                                 | 可选命令预设包                                                                                                                    |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| Unit PNG 截图                 | [`@univer-cli/unit-screenshot`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-screenshot)             | [`@univer-cli/unit-screenshot-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-screenshot-command)   |
-| Slide layout lint             | [`@univer-cli/unit-layout-lint`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-layout-lint)           | [`@univer-cli/unit-layout-lint-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-layout-lint-command) |
-| 托管 Render Page 并驱动浏览器 | [`@univer-cli/univer-render-runtime`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-render-runtime) | —                                                                                                                                 |
-| 组装并构建 Render Page        | [`@univer-cli/univer-render-page`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-render-page)       | —                                                                                                                                 |
+| Need | Capability package | Optional command preset |
+| --- | --- | --- |
+| Capture Unit PNG screenshots | [`@univer-cli/unit-screenshot`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-screenshot) | [`@univer-cli/unit-screenshot-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-screenshot-command) |
+| Lint Slide layout | [`@univer-cli/unit-layout-lint`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-layout-lint) | [`@univer-cli/unit-layout-lint-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-layout-lint-command) |
+| Host a Render Page and drive a browser | [`@univer-cli/univer-render-runtime`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-render-runtime) | — |
+| Assemble and build a Render Page | [`@univer-cli/univer-render-page`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/univer-render-page) | — |
 
-### 进程与生命周期基础设施
+### Process and lifecycle infrastructure
 
-| 业务需求                              | 基础功能包                                                                                                                             | 可选命令预设包                                                                                                |
-| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| 按 key 独占、缓存和回收有状态对象     | [`@univer-cli/generic-keyed-instance-pool`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/generic-keyed-instance-pool) | —                                                                                                             |
-| 让多个 CLI 进程访问同一个本地常驻进程 | [`@univer-cli/daemon`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/daemon)                                           | [`@univer-cli/daemon-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/daemon-command) |
+| Need | Capability package | Optional command preset |
+| --- | --- | --- |
+| Exclusively lease, cache, and evict keyed stateful objects | [`@univer-cli/generic-keyed-instance-pool`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/generic-keyed-instance-pool) | — |
+| Share a local resident process across CLI invocations | [`@univer-cli/daemon`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/daemon) | [`@univer-cli/daemon-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/daemon-command) |
 
-### 应用辅助功能
+### Application support
 
-| 业务需求                   | 基础功能包                                                                                                       | 可选命令预设包                                                                                                                |
-| -------------------------- | ---------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| 声明、读取和持久化应用配置 | [`@univer-cli/config`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/config)                     | [`@univer-cli/config-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/config-command)                 |
-| 查询、缓存和导出视觉资源   | [`@univer-cli/resource-library`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/resource-library) | [`@univer-cli/resource-library-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/resource-library-command) |
+| Need | Capability package | Optional command preset |
+| --- | --- | --- |
+| Declare, read, and persist application configuration | [`@univer-cli/config`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/config) | [`@univer-cli/config-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/config-command) |
+| Query, cache, and export visual resources | [`@univer-cli/resource-library`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/resource-library) | [`@univer-cli/resource-library-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/resource-library-command) |
 
-不知道该选择哪个 package 时，先按业务需求找到对应的基础功能包；如果希望快速获得默认 CLI 交互，再安装同一行的
-命令预设包。每个 package README 都包含安装方式、公共 API、最小示例、行为限制以及运行依赖。
+Choose the capability package that matches the application need first. Add the preset in the same
+row only when its default CLI interaction is useful. Each package README documents installation,
+public APIs, a minimal example, behavior limits, and runtime dependencies.
 
-## SDK 边界
+## SDK boundaries
 
-一个完整的业务 CLI 通常由三个 SDK 和业务应用共同组成：
+A complete business CLI is usually assembled from three SDKs and the application:
 
-| 层                       | 负责什么                                                                           |
-| ------------------------ | ---------------------------------------------------------------------------------- |
-| Univer / Univer Pro SDK  | Unit 数据模型、Facade API、mutation、render 与内容格式。                           |
-| Univer Collaboration SDK | Snapshot、changeset、revision、OT、Worktree、协同 Service 与持久化 SPI。           |
-| Univer CLI SDK           | 标准 headless factory、通用 CLI 功能、runtime pool、daemon 和 Commander 命令预设。 |
-| 业务 CLI 应用            | 业务逻辑、产品交互与外部系统集成。                                                 |
+| Layer | Responsibility |
+| --- | --- |
+| Univer / Univer Pro SDK | Unit data models, Facade APIs, mutations, rendering, and content formats |
+| Univer Collaboration SDK | Snapshots, changesets, revisions, OT, Worktrees, collaboration services, and persistence SPI |
+| Univer CLI SDK | Standard headless factory, reusable CLI capabilities, runtime pools, daemon, and Commander presets |
+| Business CLI application | Business rules, product interaction, and external integrations |
 
-Univer CLI SDK 只通过另外两个 SDK 的公开 API 使用它们，不复制内容模型、协同协议或存储实现。通用 CLI
-基础设施由 SDK 提供；业务逻辑和外部集成由具体应用实现。
+The Univer CLI SDK consumes the other SDKs only through their public APIs. It does not duplicate
+their content models, collaboration protocols, or storage implementations. The SDK owns reusable
+CLI infrastructure; the application owns business behavior and external integration.
 
-## 应用示例
+## Application examples
 
-- [`api-reference-cli`](../examples/api-reference-cli/README.zh-CN.md)：最小 Commander preset 组装和离线 Facade API 查询。
-- [`univer-mini-cli`](../examples/univer-mini-cli/README.md)：创建、导入、检查、编辑和导出本地 Office Unit 的完整闭环。
-- [`univer-cli`](https://github.com/dream-num/univer-cli)：面向本地 `.univer` 文件的完整 CLI。
-- [`univer-workspace/apps/cli`](https://github.com/dream-num/univer-workspace/tree/main/apps/cli)：面向远程 Workspace 的完整 CLI。
+- [`api-reference-cli`](../examples/api-reference-cli/README.md): minimal Commander preset composition and offline Facade API lookup.
+- [`univer-mini-cli`](../examples/univer-mini-cli/README.md): a complete local Office workflow covering creation, import, inspection, editing, and export.
+- [`univer-cli`](https://github.com/dream-num/univer-cli): a complete CLI for local `.univer` files.
+- [`univer-workspace/apps/cli`](https://github.com/dream-num/univer-workspace/tree/main/apps/cli): a complete CLI for remote Workspace targets.
 
-可以根据自己的本地或远程使用场景，参考相应项目的结构和集成方式。
+Choose the local or remote application closest to your integration scenario and use its composition
+as the next reference.

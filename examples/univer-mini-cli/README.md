@@ -1,50 +1,57 @@
 # univer-mini-cli
 
-一个面向 Agent 的最小本地 Office CLI example。它把 Univer CLI SDK 的核心 capability 组合为完整工作流：
+English | [简体中文](./README.zh-CN.md)
+
+A minimal local Office CLI example for Agents. It composes core Univer CLI SDK capabilities into a
+complete workflow:
 
 ```text
 create / import -> inspect -> api find / show -> execute -> export
 ```
 
-它支持创建、导入、检查和编辑 Sheet、Doc 与 Slide，并分别导出 XLSX/CSV/TSV、DOCX 和 PPTX。所有业务结果默认输出
-JSON，失败使用非零退出码并向 stderr 写入 JSON error。
+It creates, imports, inspects, and edits Sheet, Doc, and Slide Units, and exports them as
+XLSX/CSV/TSV, DOCX, and PPTX. Successful commands write JSON to stdout; failures use a non-zero exit
+code and write a JSON error to stderr.
 
-## 示例定位
+## Scope
 
-这是一个刻意保持最小的教学 example，不是完整产品 CLI。它只保留 Agent 完成真实 Office 内容任务所需的最小闭环，
-使用本地 `*.unit.json` 持久化内容，并为每次需要内容 runtime 的命令创建独立 Univer instance。这样的设计便于阅读、
-复制和理解 package 组合方式，但不解决高频调用性能、并发编辑、历史版本、远程协同或视觉验收问题。
+This is an intentionally small teaching example, not a complete product CLI. It keeps only the
+minimum loop an Agent needs for real Office content work, stores content in local `*.unit.json`
+files, and creates a separate Univer instance for each command that needs a content runtime.
 
-## 运行要求
+That design makes the package composition easy to read and copy. It does not address high-frequency
+runtime performance, concurrent editing, revision history, remote collaboration, or visual review.
+
+## Requirements
 
 - Node.js `>=22.12.0`
 - pnpm
-- 与当前 Univer packages 兼容的 Univer / Univer Pro license
+- A Univer / Univer Pro license compatible with the pinned packages
 
-License 通过环境变量提供：
+Provide the license through an environment variable:
 
 ```bash
 export UNIVER_LICENSE="..."
 ```
 
-在仓库根目录构建后，通过 workspace script 运行：
+Build and run the example from the repository root:
 
 ```bash
 pnpm --filter @univer-cli-example/univer-mini-cli build
 pnpm --filter @univer-cli-example/univer-mini-cli start:built --help
 ```
 
-安装 package 的 bin link 后，也可以直接使用下面示例中的 `univer-mini`。
+After linking the package bin, the commands below can also be invoked directly as `univer-mini`.
 
-## 完整工作流
+## Complete workflow
 
-创建一个本地 Sheet Unit：
+Create a local Sheet Unit:
 
 ```bash
 univer-mini create sheet ./report.unit.json --name "Quarterly report"
 ```
 
-也可以从 Office 文件开始。输入类型由扩展名推断：
+You can also begin with an Office file. The input type is inferred from its extension:
 
 ```bash
 univer-mini import ./source.xlsx ./report.unit.json
@@ -52,7 +59,7 @@ univer-mini import ./proposal.docx ./proposal.unit.json
 univer-mini import ./deck.pptx ./deck.unit.json
 ```
 
-先检查结构化内容：
+Inspect the structured content before editing:
 
 ```bash
 univer-mini inspect ./report.unit.json workbook
@@ -62,28 +69,28 @@ univer-mini inspect ./proposal.unit.json document
 univer-mini inspect ./deck.unit.json presentation
 ```
 
-不确定 Facade API 时，离线查询当前 Univer SDK reference：
+Search the current Univer SDK reference offline when the Facade API is unclear:
 
 ```bash
 univer-mini api find "conditional formatting" --unit sheet
 univer-mini api show FRange.setValues
 ```
 
-执行 Facade JavaScript。Runtime 会提供与 Unit 类型对应的稳定 binding：Sheet 使用 `workbook`，Doc 使用
-`doc`，Slide 使用 `presentation`；三者都提供 `univerAPI` 和 `api`。
+Execute Facade JavaScript. The runtime supplies stable bindings for each Unit type: `workbook` for
+Sheet, `doc` for Doc, and `presentation` for Slide. All three also receive `univerAPI` and `api`.
 
 ```bash
 univer-mini execute ./report.unit.json \
   --code 'workbook.getActiveSheet().getRange("A1:B2").setValues([[1, 2], [3, 4]])'
 ```
 
-较长任务放入文件，避免 shell quoting：
+Put longer programs in a file to avoid shell quoting:
 
 ```bash
 univer-mini execute ./deck.unit.json --file ./scripts/build-deck.js
 ```
 
-只有 execution 完整成功后才会原子替换本地 Unit 文件。随后导出交付文件：
+The local Unit file is replaced atomically only after execution succeeds. Export the final artifact:
 
 ```bash
 univer-mini export ./report.unit.json ./report.xlsx
@@ -91,10 +98,10 @@ univer-mini export ./proposal.unit.json ./proposal.docx
 univer-mini export ./deck.unit.json ./deck.pptx
 ```
 
-## 本地 Unit 文件
+## Local Unit files
 
-`*.unit.json` 是这个 application 自己拥有的持久化格式，不是 Univer CLI SDK 的公共合同。它使用带版本的 envelope
-保存 Unit 类型与完整 UnitData：
+`*.unit.json` is an application-owned persistence format, not a Univer CLI SDK public contract. It
+uses a versioned envelope around the Unit type and complete UnitData:
 
 ```json
 {
@@ -105,23 +112,26 @@ univer-mini export ./deck.unit.json ./deck.pptx
 }
 ```
 
-每条内容命令都会为该文件创建短生命周期的 headless runtime，通过 Univer 的公开 `createUnit()` 加载数据，并在
-`finally` 中关闭。这个 example 不需要 daemon、worker pool、协同 runtime、协同 server 或远程 Workspace。
+Each content command creates a short-lived headless runtime, loads the data through Univer's public
+`createUnit()` API, and closes the runtime in `finally`. This example does not need a daemon, worker
+pool, collaboration runtime, collaboration server, or remote Workspace.
 
-## 安全与边界
+## Security and boundaries
 
-`execute` 使用 JavaScript `Function` 执行输入，它不是安全沙箱，只能运行可信代码。Application 负责本地路径、文件格式、
-JSON presentation 和 runtime 生命周期；内容执行、inspection、API reference 与 Office 转换规则仍由对应 capability
-package 提供。
+`execute` uses JavaScript `Function`; it is not a security sandbox and must run only trusted code.
+The application owns local paths, its file format, JSON presentation, and runtime lifecycle.
+Content execution, inspection, API reference, and Office conversion rules remain in their matching
+capability packages.
 
-## 下一步
+## Next steps
 
-1. **性能与生命周期**：结合 `@univer-cli/daemon` 和 keyed instance pool，在多个短生命周期 CLI 进程之间复用
-   headless Univer runtime，减少连续 `inspect`、`execute` 时的初始化开销，并补充 idle eviction、instance
-   invalidation 与 daemon shutdown。
-2. **版本控制与协同**：结合 Univer Collaboration SDK 和 `@univer-cli/univer-collaboration-runtime`，把当前本地
-   UnitData 文件升级为 Snapshot、changeset、revision、OT 与 Worktree 驱动的编辑流程，再按并发规模接入
-   `@univer-cli/univer-collaboration-runtime-pool`。
-3. **视觉验收与高级能力**：集成 `@univer-cli/unit-screenshot`、`@univer-cli/unit-layout-lint` 和 render runtime，
-   让 Agent 能截图、检查 Slide layout 并形成“编辑—渲染—检查—修正”循环；还可以继续组合 SVG/Typst compiler、
-   resource library 等高级内容能力。
+1. **Performance and lifecycle:** combine `@univer-cli/daemon` with the keyed instance pool to reuse
+   a headless Univer runtime across short-lived CLI processes, then add idle eviction, instance
+   invalidation, and daemon shutdown.
+2. **Versioning and collaboration:** combine the Univer Collaboration SDK with
+   `@univer-cli/univer-collaboration-runtime` to replace local UnitData files with Snapshot,
+   changeset, revision, OT, and Worktree workflows. Add
+   `@univer-cli/univer-collaboration-runtime-pool` when worker isolation and reuse are needed.
+3. **Visual review and advanced capabilities:** add `@univer-cli/unit-screenshot`,
+   `@univer-cli/unit-layout-lint`, and the render runtime for an edit-render-inspect-fix loop, then
+   add SVG/Typst compilation or the resource library as required.
