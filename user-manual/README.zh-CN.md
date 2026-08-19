@@ -151,7 +151,6 @@ program.addCommand(createSomeCommand(dependencies));
 Office 文件导入导出属于 Univer Pro SDK，不属于 Univer CLI SDK。Node.js 应用直接调用
 [`@univerjs-pro/exchange-node`](https://www.npmjs.com/package/@univerjs-pro/exchange-node) 提供的
 `importFile()` 和 `exportToFile()`；平台原生实现由 `@univerjs-pro/exchange-node-binding` 提供。
-CLI SDK 不封装或重新导出这些 API。
 
 ## SDK 边界
 

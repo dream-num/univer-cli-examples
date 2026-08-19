@@ -161,8 +161,7 @@ public APIs, a minimal example, behavior limits, and runtime dependencies.
 Office file import and export belong to the Univer Pro SDK, not the Univer CLI SDK. Node.js
 applications call `importFile()` and `exportToFile()` from
 [`@univerjs-pro/exchange-node`](https://www.npmjs.com/package/@univerjs-pro/exchange-node); its
-platform-native implementation is provided by `@univerjs-pro/exchange-node-binding`. The CLI SDK
-does not wrap or re-export these APIs.
+platform-native implementation is provided by `@univerjs-pro/exchange-node-binding`.
 
 ## SDK boundaries
 
