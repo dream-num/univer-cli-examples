@@ -20,8 +20,8 @@ From the repository root:
 
 ```bash
 pnpm install
-pnpm example:quick-start -- api find --unit sheet setValues
-pnpm example:quick-start -- api show FRange.setValues
+pnpm example:quick-start api find --unit sheet setValues
+pnpm example:quick-start api show FRange.setValues
 ```
 
 ## What to read

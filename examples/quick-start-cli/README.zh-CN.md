@@ -19,8 +19,8 @@ application root Command
 
 ```bash
 pnpm install
-pnpm example:quick-start -- api find --unit sheet setValues
-pnpm example:quick-start -- api show FRange.setValues
+pnpm example:quick-start api find --unit sheet setValues
+pnpm example:quick-start api show FRange.setValues
 ```
 
 ## 只需要读什么
