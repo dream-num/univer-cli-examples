@@ -1,4 +1,4 @@
-#!/usr/bin/env -S node --import=tsx
+#!/usr/bin/env node
 
 import { CommanderError } from "commander";
 import { errorCode, errorMessage } from "./errors.js";

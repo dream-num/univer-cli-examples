@@ -117,7 +117,7 @@ program.addCommand(createSomeCommand(dependencies));
 
 | 业务需求                        | 基础功能包                                                                                                       | 可选命令预设包                                                                                                               |
 | ------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| Office 文件与 UnitData 互转     | [`@univer-cli/unit-exchange`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-exchange)       | —                                                                                                                            |
+| Office 文件与 UnitData 互转     | [`@univerjs-pro/exchange-node`](https://www.npmjs.com/package/@univerjs-pro/exchange-node)                       | —                                                                                                                            |
 | SVG 到 Slide Facade code        | [`@univer-cli/svg-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade)             | [`@univer-cli/svg-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade-command)         |
 | Typst bundle 到 Doc Facade code | [`@univer-cli/doc-typst-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade) | [`@univer-cli/doc-typst-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade-command) |
 

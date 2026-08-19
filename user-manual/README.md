@@ -126,7 +126,7 @@ custom help.
 
 | Need | Capability package | Optional command preset |
 | --- | --- | --- |
-| Convert Office files and UnitData | [`@univer-cli/unit-exchange`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/unit-exchange) | — |
+| Convert Office files and UnitData | [`@univerjs-pro/exchange-node`](https://www.npmjs.com/package/@univerjs-pro/exchange-node) | — |
 | Compile SVG to Slide Facade code | [`@univer-cli/svg-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade) | [`@univer-cli/svg-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/svg-facade-command) |
 | Compile Typst bundles to Doc Facade code | [`@univer-cli/doc-typst-facade`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade) | [`@univer-cli/doc-typst-facade-command`](https://github.com/dream-num/univer-cli-sdk/tree/main/packages/doc-typst-facade-command) |
 

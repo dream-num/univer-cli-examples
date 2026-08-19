@@ -85,10 +85,27 @@ describe("univer-mini", () => {
     },
     30_000,
   );
+
+  it("does not implicitly select a worksheet for CSV export", async () => {
+    const directory = await mkdtemp(join(tmpdir(), "univer-mini-csv-"));
+    const unitFile = join(directory, "sheet.unit.json");
+
+    await run("create", "sheet", unitFile);
+    await expect(
+      execFileAsync(
+        process.execPath,
+        [entrypoint, "export", unitFile, join(directory, "sheet.csv")],
+        { env: { ...process.env, UNIVER_LICENSE: process.env.UNIVER_LICENSE ?? "" } },
+      ),
+    ).rejects.toMatchObject({
+      code: 1,
+      stderr: expect.stringContaining('"code": "conversion-failed"'),
+    });
+  });
 });
 
 async function run(...args: readonly string[]): Promise<unknown> {
-  const result = await execFileAsync(process.execPath, ["--import=tsx", entrypoint, ...args], {
+  const result = await execFileAsync(process.execPath, [entrypoint, ...args], {
     env: { ...process.env, UNIVER_LICENSE: process.env.UNIVER_LICENSE ?? "" },
     maxBuffer: 10 * 1024 * 1024,
   });
