@@ -26,6 +26,7 @@ Install dependencies and run the API reference example:
 pnpm install
 pnpm example:api-reference -- api find --unit sheet setValues
 pnpm example:api-reference -- api show FRange.setValues
+pnpm example:univer-mini --help
 ```
 
 The example searches the bundled Univer Facade API reference locally. It does not launch Univer,

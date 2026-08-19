@@ -1,0 +1,33 @@
+{
+  "name": "@univer-cli-example/univer-mini-cli",
+  "version": "0.0.0",
+  "private": true,
+  "bin": {
+    "univer-mini": "./dist/index.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "start": "tsx src/index.ts",
+    "start:built": "node --import=tsx dist/index.js",
+    "test": "vitest run test",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@univer-cli/api-reference": "1.0.0-insiders.20260819-8595af2",
+    "@univer-cli/content-execution": "1.0.0-insiders.20260819-8595af2",
+    "@univer-cli/content-inspection": "1.0.0-insiders.20260819-8595af2",
+    "@univer-cli/content-inspection-command": "1.0.0-insiders.20260819-8595af2",
+    "@univer-cli/headless-univer": "1.0.0-insiders.20260819-8595af2",
+    "@univer-cli/unit-exchange": "1.0.0-insiders.20260819-8595af2",
+    "@univerjs-pro/slides": "1.0.0-insiders.20260819-8595af2",
+    "@univerjs/core": "1.0.0-insiders.20260819-8595af2",
+    "commander": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "tsx": "4.19.4",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10"
+  }
+}

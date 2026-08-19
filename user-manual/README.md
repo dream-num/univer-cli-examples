@@ -162,6 +162,7 @@ Univer CLI SDK 只通过另外两个 SDK 的公开 API 使用它们，不复制�
 ## 应用示例
 
 - [`api-reference-cli`](../examples/api-reference-cli/README.zh-CN.md)：最小 Commander preset 组装和离线 Facade API 查询。
+- [`univer-mini-cli`](../examples/univer-mini-cli/README.md)：创建、导入、检查、编辑和导出本地 Office Unit 的完整闭环。
 - [`univer-cli`](https://github.com/dream-num/univer-cli)：面向本地 `.univer` 文件的完整 CLI。
 - [`univer-workspace/apps/cli`](https://github.com/dream-num/univer-workspace/tree/main/apps/cli)：面向远程 Workspace 的完整 CLI。
 

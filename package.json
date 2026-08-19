@@ -9,6 +9,7 @@
   "scripts": {
     "build": "pnpm -r --if-present build",
     "example:api-reference": "pnpm --filter @univer-cli-example/api-reference-cli build && pnpm --filter @univer-cli-example/api-reference-cli start:built",
+    "example:univer-mini": "pnpm --filter @univer-cli-example/univer-mini-cli build && pnpm --filter @univer-cli-example/univer-mini-cli start:built",
     "test": "pnpm -r --if-present test",
     "typecheck": "pnpm -r --if-present typecheck"
   },
