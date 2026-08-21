@@ -14,8 +14,8 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@univer-cli/api-reference": "1.0.0-insiders.20260819-8595af2",
-    "@univer-cli/api-reference-command": "1.0.0-insiders.20260819-8595af2",
+    "@univer-cli/api-reference": "1.0.0-insiders.20260821-c2f0ba5",
+    "@univer-cli/api-reference-command": "1.0.0-insiders.20260821-c2f0ba5",
     "commander": "^15.0.0"
   },
   "devDependencies": {

@@ -18,11 +18,11 @@ importers:
   examples/quick-start-cli:
     dependencies:
       '@univer-cli/api-reference':
-        specifier: 1.0.0-insiders.20260819-8595af2
-        version: 1.0.0-insiders.20260819-8595af2
+        specifier: 1.0.0-insiders.20260821-c2f0ba5
+        version: 1.0.0-insiders.20260821-c2f0ba5
       '@univer-cli/api-reference-command':
-        specifier: 1.0.0-insiders.20260819-8595af2
-        version: 1.0.0-insiders.20260819-8595af2(commander@15.0.0)
+        specifier: 1.0.0-insiders.20260821-c2f0ba5
+        version: 1.0.0-insiders.20260821-c2f0ba5(commander@15.0.0)
       commander:
         specifier: ^15.0.0
         version: 15.0.0
@@ -43,32 +43,32 @@ importers:
   examples/univer-mini-cli:
     dependencies:
       '@univer-cli/api-reference':
-        specifier: 1.0.0-insiders.20260819-8595af2
-        version: 1.0.0-insiders.20260819-8595af2
+        specifier: 1.0.0-insiders.20260821-c2f0ba5
+        version: 1.0.0-insiders.20260821-c2f0ba5
       '@univer-cli/content-execution':
-        specifier: 1.0.0-insiders.20260819-8595af2
-        version: 1.0.0-insiders.20260819-8595af2
+        specifier: 1.0.0-insiders.20260821-c2f0ba5
+        version: 1.0.0-insiders.20260821-c2f0ba5
       '@univer-cli/content-inspection':
-        specifier: 1.0.0-insiders.20260819-8595af2
-        version: 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+        specifier: 1.0.0-insiders.20260821-c2f0ba5
+        version: 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       '@univer-cli/content-inspection-command':
-        specifier: 1.0.0-insiders.20260819-8595af2
-        version: 1.0.0-insiders.20260819-8595af2(commander@15.0.0)(rxjs@7.8.2)
+        specifier: 1.0.0-insiders.20260821-c2f0ba5
+        version: 1.0.0-insiders.20260821-c2f0ba5(commander@15.0.0)(rxjs@7.8.2)
       '@univer-cli/headless-univer':
-        specifier: 1.0.0-insiders.20260819-8595af2
-        version: 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+        specifier: 1.0.0-insiders.20260821-c2f0ba5
+        version: 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       '@univerjs-pro/exchange-node':
-        specifier: 1.0.0-insiders.20260819-8595af2
-        version: 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+        specifier: 1.0.0-insiders.20260821-c2f0ba5
+        version: 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       '@univerjs-pro/exchange-node-binding':
         specifier: 0.1.0
         version: 0.1.0
       '@univerjs-pro/slides':
-        specifier: 1.0.0-insiders.20260819-8595af2
-        version: 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+        specifier: 1.0.0-insiders.20260821-c2f0ba5
+        version: 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       '@univerjs/core':
-        specifier: 1.0.0-insiders.20260819-8595af2
-        version: 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+        specifier: 1.0.0-insiders.20260821-c2f0ba5
+        version: 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       commander:
         specifier: ^15.0.0
         version: 15.0.0
@@ -692,331 +692,331 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@univer-cli/api-reference-command@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-n+VxH42Kld3EwFYCdj4APX2hZbT9jJwl3XWBQpzONJtWYseJBYCK3Uou4lTDkDNlk5xvxA52rUxaTgUEodcJtQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univer-cli/api-reference-command/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univer-cli/api-reference-command@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-KTeE4qkl8LtxlGL76z1l7dwfbBB4Px3vDi7ewSgddWnJRF1ZFn8/yuYGZpagnxQzos8OJN8X8/s1ViEXfbI3zQ==}
     peerDependencies:
       commander: ^15.0.0
 
-  '@univer-cli/api-reference@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-qqN/JPhSiZ1x38WoJt88aJvmABSePJ+7mVe6gdU7yQ7piNwyYyQNracGu9nNEhpDkcpad1m21sBoEiR/Wozwvw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univer-cli/api-reference/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univer-cli/api-reference@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-5r4Eb0dNdsQJw+A/7rDH5/fWzN8yU04vslw9NzHo4otKGeXR7/xaGOG/d0q+FB2eV/H9y4EeMpki6tccQGqMdw==}
 
-  '@univer-cli/content-execution@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-KtfKXE6lvZYMB2DwhBt4jBgf8Ju3/VrfQr1DkTZ9Xz657KEP5sMLZniNZv6Uund+9ZVKf7hK1OlXW9SPOMw4Ew==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univer-cli/content-execution/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univer-cli/content-execution@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-L+l28TlRoJ2TyidIX7j3Wu9+B2q14RwpG0sVrR15isQIpyHNV031vjO6CP+aXl3WIejecTVH9eeUymAFPEhCIQ==}
 
-  '@univer-cli/content-inspection-command@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-xztAx0sq8DMK3n6lcqn8yF82F9WYorczLT0pzo8rotYY5FfGedntkWOzrhZoPKWs0Glc0ctujXnsJt2gOCcZrA==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univer-cli/content-inspection-command/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univer-cli/content-inspection-command@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-fBuucxaIrAxsOTiHj9pAzz7QkEHNaSKSJ08GKKdwKk6hGFE4hV740qpQWfvKiJ+Hh7RQvWFk45jVXot0MJbXYw==}
     peerDependencies:
       commander: ^15.0.0
 
-  '@univer-cli/content-inspection@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-9V7WqzcGdvLvezq9l9QYkqvvjN80W2dJ+x9FX/99ICBw5HcF/YcDHuYCw0uUXMLsbn6+Hy8xeRicL+tROWymMw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univer-cli/content-inspection/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univer-cli/content-inspection@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-lzN9oRzAQSNCz0cG8pXCIjEs1zRcaSL7ukJRHa1R+NLsywRNpcAkoKiY8QcFEENnoIl2tqY6wFyZhGzHfRUODQ==}
 
-  '@univer-cli/headless-univer@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-dwIpDBH/tJtDrz4pjU5Tr/Z/qm7fY30f/ECwkLaGGPHmRB7khuLXIvPF+7JuhXmEVxmQV21ps9D9ovu0eglGMQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univer-cli/headless-univer/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univer-cli/headless-univer@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-xbSVZx1TNVs53JROw7AYW5qbaaTYJNUnDRT0P8dpIo4OFaVQSXYDIksV9f5smv3/UeGHQZkuJqW/QmpMUoev0A==}
 
-  '@univerjs-pro/bases@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-S3dqOMjDeW0wRPQfrbG70I3yoOelq5gJTs3V1MQrOsUV1sCWRRq6CJHxWI+FdeMnPdVpGKOdlu+gbSs5M100YQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/bases/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/bases@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-GT8Y7joGHOnRHUpqbAUQUwv408nv7/HU9cf0SEWdFHAjw5quhbttIw7Lhl90BAeB6x2tiDHYivHCZyqRy2QGZQ==}
 
-  '@univerjs-pro/boards-chart@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-sZi7sJb6E96Mv2sFcgeJn895CVUBasme5W/ZQQ7SzqkfUpvfn5oYXpZqvEdYVH+kTDJQeEiHDLD20sP7bSsAmA==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/boards-chart/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/boards-chart@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-8Elu/Cp9LntwY7DjzY3QzIGmb/G8Jx2wIDGyM33W/rQ/JsfPkjEa8cKlO8K/dH4fYZycybWvxOzgIzXVzR4izA==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/boards-mind@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-F97zG1Aa43i6ZXkU0xC8Fhw0OGFiXEghgYG2br4kEUCiHL0X+Rb9NwRaUFSnCT20v7wKkmJxYTub7Xo0EmPpbQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/boards-mind/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/boards-mind@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-hR8+xE2KH4Ia6+uu9oZ9D+MY/kzBK3hNqROhuVXUA107IuFe3MzHr4lZeESZEmBYo70PDrKJ6pnGrFIgOEHlpA==}
 
-  '@univerjs-pro/boards-table@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-RjfXhSWg9IxfE2/13wwWzaW7oE7/QBiusgrOzhcfTQR2NPlUAqL/V+tt3OFCaj+6IrribWqE40Qp7qHOqBhbwg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/boards-table/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/boards-table@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-uiPXlMO1l/xM1ayVtfmlQJwcpaV3R/paGYRhREuX97S0CoYFjw+gO13tFr0bxInl4uMqI6ic/YKJ5LP/Lij9TQ==}
 
-  '@univerjs-pro/boards@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-11On1V4i0iMW6uGY9D+esluXDnYIDv9rtphodC8GbMKQcer1/vwq8ohNnx/0W6Sr5Z+1ofw5VY4Vv3e5ByCrlg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/boards/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/boards@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-/l+1hdWSfSYY1A+SsImkzk2XkXeNuOLui3OGmeTn4rNIJaVPkBusECHPGVdMI78vPjM0QWqo1xyXVJ/2hwGI2A==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/collaboration@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-OjCHI3lVjpETRt0boYsPiUBoosJLzslgVNNFKvdX1hCzlV5G2MAfMb1l2FQrgWFWjzhz2nipllqozxex21KfGA==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/collaboration/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/collaboration@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-dhhk7sKhzNVvmItVMGz8YXXRwUvMRpCqUbjxv7ctvbzGpXomMzPSZOJkr3Fjb7HS4RbUPHfGK8xPziNeZr407g==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/docs-callout@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-lUU+rdUg/AI6hcknDSf5+zn+dxMbpEgCbLwdWOtvpIyBVY3QAHlCG0toKd1ccOyirf6BB1Wc5fYICG5e+ztH6A==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/docs-callout/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/docs-callout@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-8KhlDwyDA2Cc4CAM86w/MXpytUuo9UeC+RgUAw20Tj0ircLb+keapUENsCaUMYiUT4j3VKjAZTZzc3EoDAJ/xw==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/docs-chart@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-dyIanLyxDY2iNwhPTsSR4dSZ7PLhxZNWZkg27o7gEu4Rv8BAm8YhH/jEzRLGmGgRSGXVGT+vmnlMAEmixjFPbQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/docs-chart/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/docs-chart@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-NO1v0HPf/gpr+eqEEfLHYmAvjIEHvgMm0ab8ie3JCJ6mLeNklv5TsJX8vaC+qLTj4CuW+q51VMx+RZ9S7AjxlA==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/docs-code@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-FazQFaGGfBrniwwuMJhN1i5ovzlaLhxJ6WKa2zXXcmE58KAHUZ9lb5qSoisAE9lKUZAh/s8h7MrDrn6BbvZqvg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/docs-code/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/docs-code@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-XCA4rxv/sMWoA0yo7TtEqTTVP06f81/KXDZM3dk7RtRn8N12yHPaEoiZ2D/j5BYt04YVSrO7z+5eUSjJaQMmpg==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/docs-column@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-4we6bY6EbPd74LUezrKqMulecvNivXdZfcPay4YJVv/40qs3aPVV/1UUl6O6leaarBlh+LokezuGmRbeL8TO2A==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/docs-column/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/docs-column@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-ouNtm/wvqbKdDrs0lEUZvP5EnVLe7FsKKMrfClc83pVvS1h/vFs5QiAE6vcmCqUyu8ncYIT9V2FAfqwI7dH3Fg==}
 
-  '@univerjs-pro/docs-latex@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-6M5r55qMzw1/YDtzDzguwGzh1Y2RpQXJOCiz5/V9vZhNDyA+/7v94Ef5Tfh4Qz9/1L2a2rNdrzXf5quEZTXMig==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/docs-latex/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/docs-latex@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-Rj22VAomfN1rj8FCKcl1OrHbUM4oBoU7PET6OYSoXVXbpPO3EVy+5xA1Cb70ntgddhzPE3xluQPrAl6qz7XUMg==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/docs-list@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-N8irfrCE/3LpZK3binkAtWbxI1cWCqNuDFNxV5OkxDWlbCuR7B2y2UN4eLIvo9/g86W5Z59YW3PptgiDamHKfw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/docs-list/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/docs-list@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-ZqBMIE/4mAnoroZBv4Jy8cRzbXGgb9ae3YFw8DmElc5WeZ1N/z8WHyMqxBS5QOvQbxNnRvKjdwnutVIbubZ9fg==}
 
-  '@univerjs-pro/docs-quote@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-oLmnKTzE0jJEFQ+snabo742e4EGu7ZL/EdaxYaIIKIfOkiVJI0xs5mIVlZGxb89R/KRSNDJ/jJcLxqRe0dN0Ug==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/docs-quote/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/docs-quote@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-AHDjC3XvF30LgPH7GWHGCXrnjWqDEl1hkp291Mw1V7kR2dNrGWoeBK0k0KrwDZ0/CPTUkCcf3tUpjztKffsEiQ==}
 
-  '@univerjs-pro/docs-shape@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-nrgfP+b2jvTldn/sUGHtNBClOTaX8l+eDgMwi4FBaCZWKFs6ZnJVEHRcM6yRkCkOT9uwUhUmkO9sMtEfRMKadg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/docs-shape/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/docs-shape@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-1K0FWSy1SqBycJYEXzAjb7cLCOkKqfVku3ybMaXfG66PE4kGeQ7OOEq5iINfEWB4vaZ6+iLjTBv49XE8wy21Jg==}
 
-  '@univerjs-pro/docs-table@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-+YAOOd0NV+g1WQ0+LTEQ1p1DOpFr7TgAEWTLWlnCthK4tFl0j5KBNa1O+dLWf17fHkLtZtLWOpNxMMxzk55DmQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/docs-table/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/docs-table@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-0SAWeBnc55Xgb8ygDdgW3NtFlqrvVk3h2Nt77DJUrXfO0P4o535Y6glTZ1fpDzY8j6tFX2/Q+/OdMc0Z8y6ijQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/embed@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-6hIblvLy4VYDzbuJ1wGeMwh81GSvIs6/mA+rUs3CCRXDHS6sHYEdVUw8XNlbc/n6tdPJ/sUpYc+XVBs/olcoIQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/embed/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/embed@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-ebMYyVpBDarOef0T6Np1jJt2okf0p/i70CQ0su0mRKno6LUGYOCOfsDED1q2LL/yGnQTFtaj17wJStF1E7+nxw==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/engine-chart@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-Wo0c6QqwfA9HDnlXkl6dxmKCy4Q050NTAxJXBp2efc/s6YEMDNjYP+IA1Zn6hNGBY45am27xEKCUdpnYT7Nlxg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/engine-chart/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/engine-chart@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-6THMUlGFvFfoLbXsGLpxOpLH38og3n+wzMG7hz0eLa4XuB0tucJdPqsCDK90+tcFH9ETBEWCejw0Mf10AtlAiw==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/engine-formula-rust-binding-darwin-arm64@1.0.0-insiders.20260811-001a0e5':
-    resolution: {integrity: sha512-JIcavAxzfUmnLpK6oAeWZ34TXaR5kEzK2236P/R4Z7mJCCrlSOaHvvVjED26pb/iB1ls0YRpnHPKsADTzSZDZA==, tarball: https://registry.npmjs.org/@univerjs-pro/engine-formula-rust-binding-darwin-arm64/-/engine-formula-rust-binding-darwin-arm64-1.0.0-insiders.20260811-001a0e5.tgz}
+  '@univerjs-pro/engine-formula-rust-binding-darwin-arm64@1.0.0-insiders.20260819-8209aa8':
+    resolution: {integrity: sha512-VdR/QlBfvXPQ+0BcHYhtZhIAQgEssfSV0v76WvbJbJbUvYQ2y6XXBlfB6PBFr1qwvv8djF1EaCoy9A/FCYCp8A==, tarball: https://registry.npmjs.org/@univerjs-pro/engine-formula-rust-binding-darwin-arm64/-/engine-formula-rust-binding-darwin-arm64-1.0.0-insiders.20260819-8209aa8.tgz}
     cpu: [arm64]
     os: [darwin]
 
-  '@univerjs-pro/engine-formula-rust-binding-linux-arm64-gnu@1.0.0-insiders.20260811-001a0e5':
-    resolution: {integrity: sha512-3GnsBF2AuX8l+yddiqInn9IX8K+h98N+E0aiO79HAiFQVkZ+F80LAPJwA5/Ql/kTWDd8zzdc2kuxexBiWeDBNw==, tarball: https://registry.npmjs.org/@univerjs-pro/engine-formula-rust-binding-linux-arm64-gnu/-/engine-formula-rust-binding-linux-arm64-gnu-1.0.0-insiders.20260811-001a0e5.tgz}
+  '@univerjs-pro/engine-formula-rust-binding-linux-arm64-gnu@1.0.0-insiders.20260819-8209aa8':
+    resolution: {integrity: sha512-hfgkeHmoMUGql8qfTkUFTC447BBxubHUsRmOI1HHcXAjDDXsTufTrq2XJjmQRbgXjJ0IDHAH9zdJGoDDKNJwMA==, tarball: https://registry.npmjs.org/@univerjs-pro/engine-formula-rust-binding-linux-arm64-gnu/-/engine-formula-rust-binding-linux-arm64-gnu-1.0.0-insiders.20260819-8209aa8.tgz}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
-  '@univerjs-pro/engine-formula-rust-binding-linux-x64-gnu@1.0.0-insiders.20260811-001a0e5':
-    resolution: {integrity: sha512-ax1st/qNv4DR1AgJg/6Y0Y3C7/k7tJ831Na25J/DZOowei1tt5yNS9LK+W/QJH4YpYXH5hz2MVbK1E7LbcFk3g==, tarball: https://registry.npmjs.org/@univerjs-pro/engine-formula-rust-binding-linux-x64-gnu/-/engine-formula-rust-binding-linux-x64-gnu-1.0.0-insiders.20260811-001a0e5.tgz}
+  '@univerjs-pro/engine-formula-rust-binding-linux-x64-gnu@1.0.0-insiders.20260819-8209aa8':
+    resolution: {integrity: sha512-O4eg3s4JAxj22frK/or7SyIVnSLr7RD0WN+0Q2qb/Id5kcrkGRggN5NYDoq8o+x2cvn1ODC1a0xWRMRlyhNQ4A==, tarball: https://registry.npmjs.org/@univerjs-pro/engine-formula-rust-binding-linux-x64-gnu/-/engine-formula-rust-binding-linux-x64-gnu-1.0.0-insiders.20260819-8209aa8.tgz}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
-  '@univerjs-pro/engine-formula-rust-binding-win32-x64-msvc@1.0.0-insiders.20260811-001a0e5':
-    resolution: {integrity: sha512-XNGn9FxfjDm6if74rZtM+kBs1mGiC0lXeZbQCc1GtG3SeAoqFptBFGtJ/DYq0NVstj2zalurXBVJHhBc9niH2Q==, tarball: https://registry.npmjs.org/@univerjs-pro/engine-formula-rust-binding-win32-x64-msvc/-/engine-formula-rust-binding-win32-x64-msvc-1.0.0-insiders.20260811-001a0e5.tgz}
+  '@univerjs-pro/engine-formula-rust-binding-win32-x64-msvc@1.0.0-insiders.20260819-8209aa8':
+    resolution: {integrity: sha512-kvveICZOiFnvBmkKh769e6E912+q82kWC1bdxZL2GtSYUcROY1MKv4ZQ8bwed4WX9d4ei4hYdtPUDxzVjPyGjA==, tarball: https://registry.npmjs.org/@univerjs-pro/engine-formula-rust-binding-win32-x64-msvc/-/engine-formula-rust-binding-win32-x64-msvc-1.0.0-insiders.20260819-8209aa8.tgz}
     cpu: [x64]
     os: [win32]
 
-  '@univerjs-pro/engine-formula-rust-binding@1.0.0-insiders.20260811-001a0e5':
-    resolution: {integrity: sha512-R4kbmQTThpejph0FUM8zCXJ9tHh1beZhxNSDK+OsBZeLKsQqKAAEaBbCM5iCktKWK2T7fwKYDKlvMiMjzRQ2Rw==, tarball: https://registry.npmjs.org/@univerjs-pro/engine-formula-rust-binding/-/engine-formula-rust-binding-1.0.0-insiders.20260811-001a0e5.tgz}
+  '@univerjs-pro/engine-formula-rust-binding@1.0.0-insiders.20260819-8209aa8':
+    resolution: {integrity: sha512-ZYEgg21fgW0XvCjAZgyvzquZk1jZtKXnk5Aa7N0WgV73iLIhwOtfqhsnrG+J8RKh/ps9V2BXnDDHR/9x52W6UA==, tarball: https://registry.npmjs.org/@univerjs-pro/engine-formula-rust-binding/-/engine-formula-rust-binding-1.0.0-insiders.20260819-8209aa8.tgz}
 
-  '@univerjs-pro/engine-formula-rust@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-Q+dAYzRXtJ3DcvgypNqbRudrc6oD4zGF6jKLo1GucC4THyWk243jRuAFVEBhvRZO1aNXDntdWbM70zambOJn5w==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/engine-formula-rust/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/engine-formula-rust@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-DZroDmRXcY2XFholmoA00W5LrtDlBc9SATa42zWrAHc2r92HRKp4YvtOp4ZA3XR2uEe58naPD3Ugb+13pWwB/w==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/engine-formula@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-R7kNFaioyLtiwiLxTVEeB05aU821hji0UNub0TLXA9A7403LPmqZXhkGC3q2VhYygDESUjowtkYJoYBgL6Jczw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/engine-formula/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/engine-formula@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-dpHz3SBshz0MYDw1qeTwIIj5rFKRperS5g32rhoHedd7t1ObwjLzsLa3QhqTqMbJIgKxRUyz/NG1+C190km0Fw==}
 
-  '@univerjs-pro/engine-pivot@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-ET9EOUMLnbDv50mwuVEr56vLD0b4z7f3qyYgoeBJ8jRsEwHPotNLE4CuU/Qh0l575nXLqRe8OSzm4EVANeWwaQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/engine-pivot/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/engine-pivot@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-0FMDpSNnC1bKT01feKnYpznjxlHRJJ8ZNpsiTEYAbgyecCXJI3u/sI0NKsuQShc5NzdVc5z1fb2OdXaa7wf4Mg==}
 
-  '@univerjs-pro/engine-shape@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-7FTJ13RX2o4YpqvtDe1Xt7vN865XFjslxH79zXiMvRs1VQ16WUbJe+JeB8bJdNHJiQXgiDG1jrW7yjgdRf6gwQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/engine-shape/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/engine-shape@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-mJg8nfbJjgyXqkR8iwQQn6W3zhaiImwRPduakBgiyY1ELKKY51AUU7DoK+dHryWla92cvg4u6YA62UcmYnclmQ==}
 
   '@univerjs-pro/exchange-node-binding-darwin-arm64@0.1.0':
-    resolution: {integrity: sha512-QoNg/6PyhpwRmOdzmkZpb5EoM1Z/zNOCT3yyFzDyyKLObjD/Q1fvWRnicuhlB7Bi9HK4rKRAKWq3hn7DRY/LGg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/exchange-node-binding-darwin-arm64/versions/0.1.0/package.tgz}
+    resolution: {integrity: sha512-QoNg/6PyhpwRmOdzmkZpb5EoM1Z/zNOCT3yyFzDyyKLObjD/Q1fvWRnicuhlB7Bi9HK4rKRAKWq3hn7DRY/LGg==, tarball: https://registry.npmjs.org/@univerjs-pro/exchange-node-binding-darwin-arm64/-/exchange-node-binding-darwin-arm64-0.1.0.tgz}
     cpu: [arm64]
     os: [darwin]
 
   '@univerjs-pro/exchange-node-binding-linux-arm64-gnu@0.1.0':
-    resolution: {integrity: sha512-qcFw4sCb02pyPdvQfM4JTG7/EPHgnerKcu+VWO/O7pxXW8lIoFKC897Bwx6+xYThrjAtLl9ycyEWZaVCKQL4lA==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/exchange-node-binding-linux-arm64-gnu/versions/0.1.0/package.tgz}
+    resolution: {integrity: sha512-qcFw4sCb02pyPdvQfM4JTG7/EPHgnerKcu+VWO/O7pxXW8lIoFKC897Bwx6+xYThrjAtLl9ycyEWZaVCKQL4lA==, tarball: https://registry.npmjs.org/@univerjs-pro/exchange-node-binding-linux-arm64-gnu/-/exchange-node-binding-linux-arm64-gnu-0.1.0.tgz}
     cpu: [arm64]
     os: [linux]
     libc: [glibc]
 
   '@univerjs-pro/exchange-node-binding-linux-x64-gnu@0.1.0':
-    resolution: {integrity: sha512-qGDzRn67tqINU/zZ8luvDq2G1O2gYECZOzN42LtPotCDkFLEcYMweExe+vV4QaJ9tx8tBMQt/fnGTpfH/kzEgw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/exchange-node-binding-linux-x64-gnu/versions/0.1.0/package.tgz}
+    resolution: {integrity: sha512-qGDzRn67tqINU/zZ8luvDq2G1O2gYECZOzN42LtPotCDkFLEcYMweExe+vV4QaJ9tx8tBMQt/fnGTpfH/kzEgw==, tarball: https://registry.npmjs.org/@univerjs-pro/exchange-node-binding-linux-x64-gnu/-/exchange-node-binding-linux-x64-gnu-0.1.0.tgz}
     cpu: [x64]
     os: [linux]
     libc: [glibc]
 
   '@univerjs-pro/exchange-node-binding-win32-x64-msvc@0.1.0':
-    resolution: {integrity: sha512-eO79lZCXEtnFbArmXFKIMxUoKfiDtAhfClG+uZVmvqcg+blj7BD/Rn/WSmyB4CYciXdRcR4QAX0Si0DaMrxfgA==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/exchange-node-binding-win32-x64-msvc/versions/0.1.0/package.tgz}
+    resolution: {integrity: sha512-eO79lZCXEtnFbArmXFKIMxUoKfiDtAhfClG+uZVmvqcg+blj7BD/Rn/WSmyB4CYciXdRcR4QAX0Si0DaMrxfgA==, tarball: https://registry.npmjs.org/@univerjs-pro/exchange-node-binding-win32-x64-msvc/-/exchange-node-binding-win32-x64-msvc-0.1.0.tgz}
     cpu: [x64]
     os: [win32]
 
   '@univerjs-pro/exchange-node-binding@0.1.0':
     resolution: {integrity: sha512-opsPVyI2WFafWzvFSdRvy2Fz5leMS6edwqc4o8GYqzIRSu36DkpWaydvFRGcXLN+CxhB6EkpHDQaFIRextey8w==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/exchange-node-binding/versions/0.1.0/package.tgz}
 
-  '@univerjs-pro/exchange-node@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-tADRVxotmJXq1ed6/GjHn5xy+QTQIucs61Y3/ZUzRcih8eLHnuN8AXQEaQFsYgV1VTS++hSmHguXh74Mk7gC+Q==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/exchange-node/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/exchange-node@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-uJPpMjY68sRa1k92y8uHC1EfHKWqpCQTl56Q/dVcWEAOQVfNvXxvH4sF4WBzf1VR3zjRuIyWXIhXk8ukKZmeOQ==}
 
-  '@univerjs-pro/ink@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-3rXqPL5SASz+3fVIHIjr+0z2ji+pVJeoN4R5U4YbKmRbfVfnbwf1TldLOGdhIF8yCTEv7MInEhRXnBrnPIwkdw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/ink/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/ink@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-HpeLB3blRzij6lzu8wP77HComBsD4T6jBGl3SjqeDGcEUU+NAtrrJfG4hmNLXOYK11Twat55fn60LZo11RsDKA==}
 
-  '@univerjs-pro/license@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-oEqqZUZ4AQImCwwmnZsyDkHwOKDw84KwIhug6FnWnpBssZCNHPD88atoQvw9FfucQYOepZPCze+om2OUCg/tiw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/license/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/license@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-duQoi41QIuWLYnDuPGpZAGf76nebjlnm2LTXB/iRNntQyj4xnWUy5cQo7BT+ndVYrjHyqxJWk3++PBEwnyjugw==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/pdfs@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-gN/reSSmS5CiqgPjZfuL4fX6heONZTZ3G0LJvSLofkM1CFxTf6BRzTi+4Tl6Xh4aAN4vyA/8zJotXhKJ51bu3A==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/pdfs/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/pdfs@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-cmZJarMeQWMwLFBKbB5EfBpABP8+ACPaPihN6uUy0MHP6tKjOB/DhtpG71uQx/hG3ZY9gBmxtDV2NPywHU4Sew==}
 
-  '@univerjs-pro/range-preprocess@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-NvJzp8Wbnq7rACnr0UXRGYwcNXvZuatvLpVNpXoj8vXR9xE2sWTU3seCG2E7MQNFUHDmVFYhg0tNpoLboSm6oQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/range-preprocess/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/range-preprocess@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-58ppEhnxFbTfaQIExx3kkiJb/vT/EjAgKBdbRh4K0Xp6CxqIHjIwMNT9+ANPJ1590x9/XIzCDWBkEnpIE8ixXw==}
 
-  '@univerjs-pro/shape-editor@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-xKBqsQlazMYyn5kU56s3p9DK42q7TmRzETenZyst58Hb5D+ERGbJ3SMXjmq+IGssGxwIEy+ecoX9OyFG23RqFw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/shape-editor/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/shape-editor@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-Semz0GuEYiX+vumSe4wvFE016DmD3FLGs6vjhhC5+2vpW1qkMj42hg1bjKZW1YP6ftifu1CAMq33Xg3ztHeePA==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/sheets-chart@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-xbUi4XneZaV/Xw2ZPRCfSQeMzkxCzlzqXo+xcI5tjV55G4r8i72NF2T8GNJ1+DlGQLeUmiJ0TajKaF1SkVKG5Q==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/sheets-chart/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/sheets-chart@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-s9s36VTWtcn3iLN43dAwNkSCdRHagoRB/ch109vHw8F66+MqllrWlAzWL8wesyrOhzOKM1Js6QvMgxgBgQREOw==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/sheets-outline@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-bkxN3yVhe68x+oheYdv22pNemyHb6hdQRU7IE+LrH4byGiWy32+tBrGi2oQDFOZgLI7lY7XLUZfIpgCjbyJTyQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/sheets-outline/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/sheets-outline@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-NEDc0e8dE9LOtiWptlyJX5MrzmvZ0QgIKPJagEPPBlKBxHhACFhFjOuSYvPEEnj+oSACAIB5x+DB2wcyE358UQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/sheets-pivot@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-WnPtS0gr3JzZH1mgD8jNPg5xNLHCoouRw7txhmlsy3aFc0CR0E1Xcs1qz9B8Ch3jFu95Ow1XARJNumeldOM5+w==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/sheets-pivot/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/sheets-pivot@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-o9ZmA9iL63LQ7piCoL1MYty/72C6YCXToWfl/CkIIKCs2AUq3IgjFjO6bN7R1yiVJfXkqEMYs+EK2pK/iKoq/g==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/sheets-shape@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-iVLTgcLijTGFVGyiux8tfW2cKGouHBvqWaMxP5hxwkqrAzU/057p7wObfpvuwlpwj4PibXLR9Q0v1NMVMoEIfg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/sheets-shape/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/sheets-shape@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-MV49OVY6Cj8nBOTpDBhw3hzby7MpLk++uRu2E0RzYe2WgUgXkvHZ5lgjhroQDtt5kUcd/OJvfKH3pFvAlVswIA==}
 
-  '@univerjs-pro/sheets-sparkline@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-UaME2j2rnW/J9FEtouL6Alk2PAXx69BqOnxQmLRfXhOae/5RMETeAlZQ5NSn/RZAAuo16zKWuxdAoAAyzWYY5A==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/sheets-sparkline/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/sheets-sparkline@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-/z76eToSINCvT+4PaX7WXwjZZGNeqpH83NFWB+Po4v33IOrT8oILkZzBje8xVoE/OuJbMFZ8Ls8wtFK4JW2SpQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/slides-chart@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-JKhE+QGs0tu1pUfE4b/oo1y4dzHWSUHMoH5T8Vgw594jsk6om/Au3/vuSEzxLLfMuwq1Gu/nygHpaaSjQ7FHJw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/slides-chart/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/slides-chart@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-k8Iphz1cEK0UodLk9juBbtuyhm59nvk7dm2gO47IIMl17Wtyxbp/r0KY9AWxtAXxWoOZHobNNWqNCWm4TT6v+w==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs-pro/slides-table@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-Hy1OFPQ47iX85puVzDkWmzegjSxGsIDusWDZ4/de69HSbK0otrW0RQjj4QYZzMTIX2Va6HwoBW/5QXGqmH2QAQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/slides-table/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/slides-table@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-r+96r3tF4ysRdp3QmEAZfIQoquaKzfFcCWvnL0FOwIo7YFcrO/LliwvLLbLqHWLzlJn5b9LjMl/uSi7DtDnFiw==}
 
-  '@univerjs-pro/slides@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-k1y5eBSS47/X4ZG7x16Sv6HuNjwz3UF+GeuB/LWXMZjZLW1/CwlYN/wLcW/5XSHF59C2sVvdwa/FyAj2BYBbhQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs-pro/slides/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs-pro/slides@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-0KqWQRMXe8LMTzM5ReMoyAlH90kVPLE25aYbRIFZzW0zVu1+c+IZ8a7JsN2GkRtg5VJKkqLMBNtJvnOR8xMQcA==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/core@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-27wtPWqEYywMS3EE991rmfOhoMZ5ooN52qb4tYaEafc3t+j6WJ3kH3l7CtHfr/zAJ+HSAluDOS4mmBigsRRGUw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/core/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/core@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-2zG1AuRgwafikDEdc6ursSjrrllpMUTUHFrWm59j32O3aZBsX1L960Ri29ZVjiVSgXiPmU965Mif/sB6BTE1IQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/data-validation@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-It7Aqx3g4L3RBqTtTwyzfpj7fO6QdMRQdzLoW+r8an0QAxXCdq3yhM5oq6pu4FPwjwXkR1uoLdFXghO6+LuWjg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/data-validation/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/data-validation@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-CcdYdf/PYUWzN07dc9XKZABh5Vg/KDwNqeVj0H06zNMeFqjAtw1UA/GEVB8zFYOdF1DCQuTmhHPEU1Z8nOzH+A==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/docs-drawing@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-tKyt1GUggPxiog04sbO7x0hTBr27B6hGST58woyHOAA/Vo7I5ip/MBSP2xPjrim8ETdJBlcAvF+BF4F5fWXDTw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/docs-drawing/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/docs-drawing@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-029KYImUB87n1SkCZQqeu2+lIxJQFarlWLXWzGTYzL5D9InwQOZJioX0ZuTvQCF9nID3li6yXKcU8h70tGQpow==}
 
-  '@univerjs/docs-hyper-link@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-q5C1Bz3dJnlPQHHKDmMKdlht1k0TwFARgtqXLI5kuzIlcTqUvsiU4YctLwWSPJN34L2LwRPZiI7H+E8Lm7NBuA==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/docs-hyper-link/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/docs-hyper-link@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-9R2pnO9xZlGZOcfbxFtafAR7U0S58AzKQhHtvOI9nETO+OFYITwPYXdDWlRigwkgB/zzHM73BLcD2ClAkfmEkA==}
 
-  '@univerjs/docs@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-SpjIJR9CCLR7N0ZVI8wTNcBFuqIwz6xyexHc2ZFnvKsf1U61LQ0IAILgezzyheC3xh1YzqorGGWlLVsI9IJ4Fw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/docs/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/docs@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-Pp5tepK2GwG+nLLpu2sHTXK8mxtRW1UVSDORyEKHycYuUyTjv1w8TiY44Xvr1Shr9qkVQpFhtH6zOm2prZaTig==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/drawing@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-qbrVbV3NnvM9Z2N6lBFVFIhSNgSjJ2L6cXZtxGdwAZKTVv0iBsGOY2PSJnC6378OGoLUi8zduo8ccHTdxUMr1w==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/drawing/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/drawing@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-BdT/pL1ne5QoOabk3p4ufatr/xLoytgHceAiAKalEcdbdmln+ty4p/JkgdBnNwTHVo7MBX6/5A1BkfRu68X2vQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/engine-formula@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-RFOjLJ398HgRhM/MRGexK0nBMsv5y3i5t9mDzeXaepcYouYVggxUzkyGEntChkiZLoxdHHOfnqMeti3C5ZYEDg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/engine-formula/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/engine-formula@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-AygtWYD/xsD75m29wZeQbNqdAd+RWgYto3b6v3vOmXZdepP5mMHVhFi03q1IDN6eTyJlJvHGJkRmE6c3vxo3lw==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/engine-render@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-Q23BfsHYjcbLq+BZoCHO7bz7OJN0SEUK32AgXNAfvID4uLST5Wz3aoW3fjy8vnDqgVmwUmtQXu9suBqciHXG9w==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/engine-render/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/engine-render@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-GIT2dEwX/VCj+D+4lCSxuZJ694R6G8oR/J0aApUUuNW8DVi9hHlFEj+5Btz8jYd8C8pLD6c3xqQxpqoLTwjjEg==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/network@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-o1Ou9XWpFbIhn5j37eLDo9FFoXr7yrZ/rkMF0YfZfPVtwSRzvSH8fuU12/x2EKHGiK4kfwaBg+8mrC+k9dUlaw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/network/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/network@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-gw51x87mW/Z4H8vJl4NKHP0iwQOBp/iixwFUTD7Ty/nbu3Wq5O8de1x7epGug4DboD9Wk2nq8tOBN39DjEo86Q==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/protocol@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-PWR9K8qHA02Ww9hJz8DLNyDthIuWkqEmF0iktcsL+x16U+SPyePFnr57mOrVZwXALrIqAKPGwuE85wDnjbERBQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/protocol/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/protocol@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-QfZRNVufGmHNI5Q+BRBZ9xAtUn6nHB+ht6HblJJT2uFZ12wLF6oenBFUrVOoewI0u1TcGlg6mzaRFLbghm9wbA==}
 
-  '@univerjs/rpc@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-efCtAw7oNTkdDXqkILSsc/70RXpuH/xGP7Fx98j2umYyMoDqKVNmZfIV8JvSK6XL39DnftCG2KaoUpsEE8JzNQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/rpc/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/rpc@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-ymdgYmP5RvDz0QWtgh0kTHdW47jTDugankfVxfzvgWi0HNQ2l8kPn5C6rX+LsLF+WgadIqKICzz/5mhy3xb9bA==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/sheets-conditional-formatting@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-yyB5ZMmQRhEr3RR6kapC6EkD/3rLO8XheXYL8PzUAAIFp6qJgvXaxTEnmvhBhyId0oerNkGiyx8Rz7A0c+PsNQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-conditional-formatting/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-conditional-formatting@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-5DoiJnBCYzVseTZYr9Lyg/SiZmFTcIwvSxnwtaDq/LdUGeNlP4k9GJ/qApDLTIayHEGd3JjWaWATwrrBy9Esjw==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/sheets-data-validation@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-nC5dFUlqlEGqBwiH7fYwGlpG/w/OxE4b9bZLiPvI95kI1oeFdaVpNDC9JqIDl920hB5d8VWlzumtLRWSOQxYJA==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-data-validation/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-data-validation@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-KOSt/Mr+O5yGLUxCUVwGgobeLgI1V5iUJUwg+BG9Fo1X9twjmbkeB3gbt7pTL6kymyC0lzFoNqug0j/rtE6xUg==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/sheets-drawing@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-QE+RaD4iMyV8/9RwdEJgItM+x3WTIrIE3DHWOMW9q58hX32SauExYKJhnYz0RQvLoIbKH2nLOLhf86gYYoeNCw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-drawing/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-drawing@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-UdJryWnovw2Yh0HcCiJBuKkVmn6BEOozKNv2CQsvcJ47YS2omgO3p/8BzKEvLaVKXjiUtIT2UQjNEClYL0wWvQ==}
 
-  '@univerjs/sheets-filter@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-t7DTiLEREhOKUjiuWap0raoR726mfHe17iJM7VynTAGzKuhXOl0z6oEB2wjvvL57bZT1fZKjvd7ig80tHXpOmA==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-filter/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-filter@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-I8UrSnBtdVPKzN5ElYBaWuKMa9jk04aWgXbffI4PNBaImSwdNrBOwv/NFuQ9/QN5sk0IjuzFOzaUm4UHoR8Bdw==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/sheets-formula@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-eE8d49I0/5Ez842VdWBzSPLwJbJ+Z+IWovI72FZmzSPrlg/vpbrh65NKloZBadOyrM9sfgHp7ddvR0bV+bNOXA==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-formula/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-formula@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-QaDsRXxjcLBzBe6k95eK9IeJ1cGzV60+ygE5jTFPyfWjdptZLdLnsstsolRDlfB5Xngku1toMuonwOrnEkZJjQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/sheets-hyper-link@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-LUNdQ9N+IzY8Aj3VwcMPnwuv2j0IhHCmG2PLKeyMLFp0W/uhNjmHa21YsbZ/VTWC0WrK5CrBFW6e+A7EpY5pFg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-hyper-link/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-hyper-link@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-1oR/M6GzXhyVq/lYAerJWobVLMhj+/c8NbctXXESz4GcHHHmwjuJFUYAiqwOFEn/fDj4yWI6PsBTbpAZYMIdpQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/sheets-note@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-UC31IWvvKXrxPQCphDLJBGJn9i8NtxJLECni6dYcKVMoU3l/PunXq6BFWE4v7J88Te8SI5BzziNW57HJsFsgdw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-note/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-note@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-rFrLjfX4zUbBRUlXzvefu9Mm/nM7dGiNqzHNH4SfxPptQXhj2Y4h8jLURPDIhBCig5tCNPLhwOYqfOSfDPJfAw==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/sheets-numfmt@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-328tYFvSPugi0nGbs85NgVPzjESBu6jm4h20jaid4UvKMS52oau1wnzStEvyJkshyKFkY0W50Yq5Ng8n+l2AYw==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-numfmt/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-numfmt@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-FQsGfjgsVCeQpzGOYjLYwuwQmdeI+YJX7ZPbNuVX9GVVfQzwqrZYOTDi6/k/mPjvRzwp4W+meVOy5p7YiutdnQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/sheets-sort@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-laYZ+iv2bxfbA26oJBsld90wjjIKa05uiFFlu1JXkgg0p/fcawhmWTBk9IOWNVxrBOdhud3t4HL9m6E+r1gOtA==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-sort/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-sort@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-FbcolITJVZy7bIHyDLxrLu4RlTfkr1O74aV8S7nIkPTWo15I/ihJQ4D6x2gad0FPSAIndQgsSNGUVQMCpmd39g==}
 
-  '@univerjs/sheets-table@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-okwAonHtjN6KbUTc7S0oNlod2B9JBNVfhNcRI0GmJL9q36NjLPLwacsN1d86O7ammf3VI97Mcu22SGY38vNlDg==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-table/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-table@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-7J7vL0JT1nCFglFFNPHEhAMK+5Zl7g8eUzWGSdMX6KIV5+wDyXtwgAldOT6wVtUn/QU+78n81VGAwCBKuWU6SQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/sheets-thread-comment@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-85fFJmhOgh46F437ImfdYpMV1L3DCkAh72V3SasVwmGN+huddvQ+P0pHrO7gb598S3UCGtDnJpxZJmybDOCGCQ==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets-thread-comment/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets-thread-comment@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-2zZNIpaAVi8Xquqtyi2ZT7na0Hw0Psk8q1k664JA2qmWoUWf5KLDawyhIkDKjRzoPruxqm7yjjkXsMvrEF8yhQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/sheets@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-RgAWfXz2u+klXn21d/Eg9F3di41rFcH18SiTs9dv5JJjK8zILW4nN6HSk+jICy1wH70y5d1cDnp0vqNwWj5lag==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/sheets/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/sheets@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-DoTH2rHhuY6MUdLnAQCsazTDYm+TF9X4KTD2nLua7yTX5AOX4isCOoxq/SnD7EzXMd+TX3GEwUCU8WeYYkFoJQ==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
-  '@univerjs/themes@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-TYEdAUgniChLFKFPwpnGxhi097KQHjd+/lq8xaxmds715MlbSfYe+3JuCgYy88R5cqLn2pZ8Q/vhfdFit1M+9A==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/themes/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/themes@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-Dc2Qhs67rn3ROzui03zi8+DOB+X7eU3k0IqIL24q6/XpbCdbe23KgOCIurWpi15zS5gomZDPNlfFW+LUnN5URg==}
 
-  '@univerjs/thread-comment@1.0.0-insiders.20260819-8595af2':
-    resolution: {integrity: sha512-2nOXXybrhoY9ljCMka/sUs/qByN2+LQyodHb6x+08hQuAMJXKV8WuAIGFD5jjgAuYs7a/XthLw9HsXgaY4931g==, tarball: https://insider-npm.oss-cn-shenzhen.aliyuncs.com/insider-npm-registry/v1/packages/@univerjs/thread-comment/versions/1.0.0-insiders.20260819-8595af2/package.tgz}
+  '@univerjs/thread-comment@1.0.0-insiders.20260821-c2f0ba5':
+    resolution: {integrity: sha512-vW9OYg9CLjnQV+8xhRJvjqTWmf0f5+84gtlagtNnhawyE3M7WebhQAr5sIt3LawgB8Zm1Z90IVLbd3cDpNxHVw==}
     peerDependencies:
       rxjs: '>=7.0.0'
 
@@ -1812,330 +1812,330 @@ snapshots:
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
 
-  '@univer-cli/api-reference-command@1.0.0-insiders.20260819-8595af2(commander@15.0.0)':
+  '@univer-cli/api-reference-command@1.0.0-insiders.20260821-c2f0ba5(commander@15.0.0)':
     dependencies:
-      '@univer-cli/api-reference': 1.0.0-insiders.20260819-8595af2
+      '@univer-cli/api-reference': 1.0.0-insiders.20260821-c2f0ba5
       commander: 15.0.0
 
-  '@univer-cli/api-reference@1.0.0-insiders.20260819-8595af2': {}
+  '@univer-cli/api-reference@1.0.0-insiders.20260821-c2f0ba5': {}
 
-  '@univer-cli/content-execution@1.0.0-insiders.20260819-8595af2': {}
+  '@univer-cli/content-execution@1.0.0-insiders.20260821-c2f0ba5': {}
 
-  '@univer-cli/content-inspection-command@1.0.0-insiders.20260819-8595af2(commander@15.0.0)(rxjs@7.8.2)':
+  '@univer-cli/content-inspection-command@1.0.0-insiders.20260821-c2f0ba5(commander@15.0.0)(rxjs@7.8.2)':
     dependencies:
-      '@univer-cli/content-inspection': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univer-cli/content-inspection': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       commander: 15.0.0
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univer-cli/content-inspection@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univer-cli/content-inspection@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univer-cli/headless-univer@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univer-cli/headless-univer@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/bases': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/boards': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/boards-chart': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/boards-mind': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/boards-table': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/docs-callout': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/docs-chart': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/docs-code': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/docs-column': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/docs-latex': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/docs-list': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/docs-quote': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/docs-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/docs-table': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/embed': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-chart': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-formula-rust': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-pivot': 1.0.0-insiders.20260819-8595af2
-      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/ink': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/range-preprocess': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/shape-editor': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/sheets-chart': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/sheets-outline': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/sheets-pivot': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/sheets-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/sheets-sparkline': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/slides': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/slides-chart': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/slides-table': 1.0.0-insiders.20260819-8595af2
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/data-validation': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs-drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs-hyper-link': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/network': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-conditional-formatting': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-data-validation': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-filter': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-hyper-link': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-note': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-numfmt': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-sort': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-table': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-thread-comment': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/thread-comment': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/bases': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/boards': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/boards-chart': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/boards-mind': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/boards-table': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/docs-callout': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/docs-chart': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/docs-code': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/docs-column': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/docs-latex': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/docs-list': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/docs-quote': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/docs-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/docs-table': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/embed': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-chart': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-formula-rust': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-pivot': 1.0.0-insiders.20260821-c2f0ba5
+      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/ink': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/range-preprocess': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/shape-editor': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/sheets-chart': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/sheets-outline': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/sheets-pivot': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/sheets-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/sheets-sparkline': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/slides': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/slides-chart': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/slides-table': 1.0.0-insiders.20260821-c2f0ba5
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/data-validation': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs-drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs-hyper-link': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/network': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-conditional-formatting': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-data-validation': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-filter': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-hyper-link': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-note': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-numfmt': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-sort': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-table': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-thread-comment': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/thread-comment': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/bases@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/bases@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/rpc': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/rpc': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/boards-chart@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/boards-chart@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/boards': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-chart': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/boards': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-chart': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/boards-mind@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/boards-mind@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/boards': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/boards': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/boards-table@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/boards-table@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/boards': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/slides-table': 1.0.0-insiders.20260819-8595af2
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/boards': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/slides-table': 1.0.0-insiders.20260821-c2f0ba5
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/boards@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/boards@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/collaboration@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/collaboration@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/bases': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/boards': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/boards-mind': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/boards-table': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/pdfs': 1.0.0-insiders.20260819-8595af2
-      '@univerjs-pro/sheets-outline': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/slides': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/slides-chart': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/slides-table': 1.0.0-insiders.20260819-8595af2
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/data-validation': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/protocol': 1.0.0-insiders.20260819-8595af2
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-conditional-formatting': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-filter': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-hyper-link': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/thread-comment': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/bases': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/boards': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/boards-mind': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/boards-table': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/pdfs': 1.0.0-insiders.20260821-c2f0ba5
+      '@univerjs-pro/sheets-outline': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/slides': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/slides-chart': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/slides-table': 1.0.0-insiders.20260821-c2f0ba5
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/data-validation': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/protocol': 1.0.0-insiders.20260821-c2f0ba5
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-conditional-formatting': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-filter': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-hyper-link': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/thread-comment': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
       uuid: 14.0.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/docs-callout@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/docs-callout@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/docs-chart@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/docs-chart@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-chart': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs-drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-chart': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs-drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/docs-code@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/docs-code@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/docs-column@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/docs-column@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/docs-latex@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/docs-latex@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/docs-list@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/docs-list@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/docs-quote@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/docs-quote@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/docs-shape@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/docs-shape@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs-drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs-drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/docs-table@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/docs-table@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/embed@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/embed@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/bases': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/boards': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/slides': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/bases': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/boards': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/slides': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/engine-chart@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/engine-chart@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/embed': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/embed': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/engine-formula-rust-binding-darwin-arm64@1.0.0-insiders.20260811-001a0e5':
+  '@univerjs-pro/engine-formula-rust-binding-darwin-arm64@1.0.0-insiders.20260819-8209aa8':
     optional: true
 
-  '@univerjs-pro/engine-formula-rust-binding-linux-arm64-gnu@1.0.0-insiders.20260811-001a0e5':
+  '@univerjs-pro/engine-formula-rust-binding-linux-arm64-gnu@1.0.0-insiders.20260819-8209aa8':
     optional: true
 
-  '@univerjs-pro/engine-formula-rust-binding-linux-x64-gnu@1.0.0-insiders.20260811-001a0e5':
+  '@univerjs-pro/engine-formula-rust-binding-linux-x64-gnu@1.0.0-insiders.20260819-8209aa8':
     optional: true
 
-  '@univerjs-pro/engine-formula-rust-binding-win32-x64-msvc@1.0.0-insiders.20260811-001a0e5':
+  '@univerjs-pro/engine-formula-rust-binding-win32-x64-msvc@1.0.0-insiders.20260819-8209aa8':
     optional: true
 
-  '@univerjs-pro/engine-formula-rust-binding@1.0.0-insiders.20260811-001a0e5':
+  '@univerjs-pro/engine-formula-rust-binding@1.0.0-insiders.20260819-8209aa8':
     optionalDependencies:
-      '@univerjs-pro/engine-formula-rust-binding-darwin-arm64': 1.0.0-insiders.20260811-001a0e5
-      '@univerjs-pro/engine-formula-rust-binding-linux-arm64-gnu': 1.0.0-insiders.20260811-001a0e5
-      '@univerjs-pro/engine-formula-rust-binding-linux-x64-gnu': 1.0.0-insiders.20260811-001a0e5
-      '@univerjs-pro/engine-formula-rust-binding-win32-x64-msvc': 1.0.0-insiders.20260811-001a0e5
+      '@univerjs-pro/engine-formula-rust-binding-darwin-arm64': 1.0.0-insiders.20260819-8209aa8
+      '@univerjs-pro/engine-formula-rust-binding-linux-arm64-gnu': 1.0.0-insiders.20260819-8209aa8
+      '@univerjs-pro/engine-formula-rust-binding-linux-x64-gnu': 1.0.0-insiders.20260819-8209aa8
+      '@univerjs-pro/engine-formula-rust-binding-win32-x64-msvc': 1.0.0-insiders.20260819-8209aa8
 
-  '@univerjs-pro/engine-formula-rust@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/engine-formula-rust@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-formula-rust-binding': 1.0.0-insiders.20260811-001a0e5
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/protocol': 1.0.0-insiders.20260819-8595af2
+      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-formula-rust-binding': 1.0.0-insiders.20260819-8209aa8
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/protocol': 1.0.0-insiders.20260821-c2f0ba5
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/engine-formula@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/engine-formula@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/rpc': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/rpc': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/engine-pivot@1.0.0-insiders.20260819-8595af2': {}
+  '@univerjs-pro/engine-pivot@1.0.0-insiders.20260821-c2f0ba5': {}
 
-  '@univerjs-pro/engine-shape@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/engine-shape@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
@@ -2159,159 +2159,159 @@ snapshots:
       '@univerjs-pro/exchange-node-binding-linux-x64-gnu': 0.1.0
       '@univerjs-pro/exchange-node-binding-win32-x64-msvc': 0.1.0
 
-  '@univerjs-pro/exchange-node@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/exchange-node@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/collaboration': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/collaboration': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       '@univerjs-pro/exchange-node-binding': 0.1.0
-      '@univerjs-pro/slides': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/protocol': 1.0.0-insiders.20260819-8595af2
+      '@univerjs-pro/slides': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/protocol': 1.0.0-insiders.20260821-c2f0ba5
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/ink@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/ink@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/boards': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/boards': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/license@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/license@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
       '@noble/ed25519': 3.1.0
       '@noble/hashes': 2.2.0
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/pdfs@1.0.0-insiders.20260819-8595af2':
+  '@univerjs-pro/pdfs@1.0.0-insiders.20260821-c2f0ba5':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/range-preprocess@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/range-preprocess@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-filter': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-table': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-filter': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-table': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/shape-editor@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/shape-editor@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/sheets-chart@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/sheets-chart@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-chart': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-chart': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/sheets-outline@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/sheets-outline@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/sheets-pivot@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/sheets-pivot@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-pivot': 1.0.0-insiders.20260819-8595af2
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/rpc': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-filter': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-pivot': 1.0.0-insiders.20260821-c2f0ba5
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/rpc': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-filter': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/sheets-shape@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/sheets-shape@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs-pro/sheets-sparkline@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/sheets-sparkline@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/slides-chart@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/slides-chart@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-chart': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/slides': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-chart': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/slides': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/slides-table@1.0.0-insiders.20260819-8595af2':
+  '@univerjs-pro/slides-table@1.0.0-insiders.20260821-c2f0ba5':
     dependencies:
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/slides': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/slides': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs-pro/slides@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs-pro/slides@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs-pro/license': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs-pro/engine-shape': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs-pro/license': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/core@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/core@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/protocol': 1.0.0-insiders.20260819-8595af2
-      '@univerjs/themes': 1.0.0-insiders.20260819-8595af2
+      '@univerjs/protocol': 1.0.0-insiders.20260821-c2f0ba5
+      '@univerjs/themes': 1.0.0-insiders.20260821-c2f0ba5
       '@wendellhu/redi': 1.1.2
       async-lock: 1.4.1
       fast-diff: 1.3.0
@@ -2323,208 +2323,208 @@ snapshots:
     transitivePeerDependencies:
       - react
 
-  '@univerjs/data-validation@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/data-validation@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/docs-drawing@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/docs-drawing@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs/docs-hyper-link@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/docs-hyper-link@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs/docs@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/docs@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/drawing@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/drawing@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       ot-json1: 1.0.2
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/engine-formula@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/engine-formula@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
       '@flatten-js/interval-tree': 1.1.3
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/rpc': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/rpc': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       decimal.js: 10.6.0
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/engine-render@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/engine-render@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
       '@floating-ui/dom': 1.8.0
       '@floating-ui/utils': 0.2.12
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       franc-min: 6.2.0
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/network@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/network@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/protocol@1.0.0-insiders.20260819-8595af2':
+  '@univerjs/protocol@1.0.0-insiders.20260821-c2f0ba5':
     dependencies:
       '@grpc/grpc-js': 1.14.4
 
-  '@univerjs/rpc@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/rpc@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/sheets-conditional-formatting@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-conditional-formatting@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/sheets-data-validation@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-data-validation@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/data-validation': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/protocol': 1.0.0-insiders.20260819-8595af2
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/data-validation': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/protocol': 1.0.0-insiders.20260821-c2f0ba5
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/sheets-drawing@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-drawing@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/drawing': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/drawing': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs/sheets-filter@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-filter@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/rpc': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/rpc': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/sheets-formula@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-formula@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/rpc': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/rpc': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/sheets-hyper-link@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-hyper-link@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/docs': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/docs': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/sheets-note@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-note@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/sheets-numfmt@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-numfmt@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/sheets-sort@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-sort@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
     transitivePeerDependencies:
       - react
       - rxjs
 
-  '@univerjs/sheets-table@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-table@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/sheets-thread-comment@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets-thread-comment@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/sheets': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/thread-comment': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/sheets': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/thread-comment': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/sheets@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/sheets@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-formula': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/engine-render': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
-      '@univerjs/protocol': 1.0.0-insiders.20260819-8595af2
-      '@univerjs/rpc': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-formula': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/engine-render': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
+      '@univerjs/protocol': 1.0.0-insiders.20260821-c2f0ba5
+      '@univerjs/rpc': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
 
-  '@univerjs/themes@1.0.0-insiders.20260819-8595af2': {}
+  '@univerjs/themes@1.0.0-insiders.20260821-c2f0ba5': {}
 
-  '@univerjs/thread-comment@1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)':
+  '@univerjs/thread-comment@1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)':
     dependencies:
-      '@univerjs/core': 1.0.0-insiders.20260819-8595af2(rxjs@7.8.2)
+      '@univerjs/core': 1.0.0-insiders.20260821-c2f0ba5(rxjs@7.8.2)
       rxjs: 7.8.2
     transitivePeerDependencies:
       - react
