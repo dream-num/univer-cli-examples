@@ -20,7 +20,6 @@ Web ──┘
 After entering this example, run every command from the current directory:
 
 ```bash
-corepack enable
 pnpm install
 pnpm build
 pnpm server

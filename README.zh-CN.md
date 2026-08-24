@@ -16,7 +16,6 @@
 
 ```bash
 cd examples/01-content-operations
-corepack enable
 pnpm install
 pnpm build
 pnpm server
@@ -38,7 +37,6 @@ pnpm skill:install
 
 ```bash
 cd examples/02-visual-inspection
-corepack enable
 pnpm install
 pnpm build
 pnpm server

@@ -18,7 +18,6 @@ Web ──┘
 进入本 example 后，所有命令都在当前目录执行：
 
 ```bash
-corepack enable
 pnpm install
 pnpm build
 pnpm server

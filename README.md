@@ -17,7 +17,6 @@ so it can be copied and run independently.
 
 ```bash
 cd examples/01-content-operations
-corepack enable
 pnpm install
 pnpm build
 pnpm server
@@ -39,7 +38,6 @@ Use univer-content to create a sales spreadsheet with 10 sample records.
 
 ```bash
 cd examples/02-visual-inspection
-corepack enable
 pnpm install
 pnpm build
 pnpm server
