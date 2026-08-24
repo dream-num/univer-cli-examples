@@ -8,8 +8,9 @@ architecture live on the [Univer Office documentation site](https://office.unive
 | Example                                                               | Learn                                             | New concepts                            |
 | --------------------------------------------------------------------- | ------------------------------------------------- | --------------------------------------- |
 | [`01-content-operations`](./examples/01-content-operations/README.md) | Read, edit, and view Sheet, Doc, and Slide Units  | CLI, Server, Web, Collaboration Runtime |
-| [`02-visual-inspection`](./examples/02-visual-inspection/README.md)   | Visually inspect the three Unit types from 01     | Render Page, Screenshot, Layout Lint    |
-| [`03-worktree`](./examples/03-worktree/README.md)                     | Edit in a draft and hand it to a human for review | Worktree, Ready, Merge, Reopen          |
+| [`02-file-exchange`](./examples/02-file-exchange/README.md)           | Import and export Office files                    | Exchange, UnitData, native binding      |
+| [`03-visual-inspection`](./examples/03-visual-inspection/README.md)   | Visually inspect all three Unit types             | Render Page, Screenshot, Layout Lint    |
+| [`04-worktree`](./examples/04-worktree/README.md)                     | Edit in a draft and hand it to a human for review | Worktree, Ready, Merge, Reopen          |
 
 Read them in numbered order. Each directory has its own `package.json`, lockfile, and dependencies,
 so it can be copied and run independently.
@@ -36,29 +37,45 @@ Open the `01-content-operations` directory with an Agent and enter:
 Use univer-content to create a sales spreadsheet with 10 sample records.
 ```
 
-## 02 Visual Inspection
+## 02 File Exchange
 
 ```bash
-cd examples/02-visual-inspection
+cd examples/02-file-exchange
 pnpm install
 pnpm build
 pnpm link-cli
 pnpm start-server
 ```
 
-Use another terminal in the same `02-visual-inspection` directory:
+Use another terminal in the same `02-file-exchange` directory:
+
+```bash
+UNIT_ID=$(univer-example-cli create sheet --name "Exchange Demo")
+univer-example-cli export demo.xlsx --unit "$UNIT_ID"
+IMPORTED_ID=$(univer-example-cli import demo.xlsx)
+```
+
+## 03 Visual Inspection
+
+```bash
+cd examples/03-visual-inspection
+pnpm install
+pnpm build
+pnpm link-cli
+pnpm start-server
+```
+
+Use another terminal in the same `03-visual-inspection` directory:
 
 ```bash
 UNIT_ID=$(univer-example-cli create sheet --name "Visual Demo")
 univer-example-cli screenshot --unit "$UNIT_ID" --sheet Data --range A1:B2 --out output
 ```
 
-See each example README for its complete command sequence and verification steps.
-
-## 03 Worktree
+## 04 Worktree
 
 ```bash
-cd examples/03-worktree
+cd examples/04-worktree
 pnpm install
 pnpm build
 pnpm link-cli
@@ -73,5 +90,6 @@ WORKTREE_ID=$(univer-example-cli worktree create --unit "$UNIT_ID")
 univer-example-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
 
-These examples are minimal teaching assemblies, not production applications. Login,
-authorization, Daemon, and file exchange belong in later examples that need them.
+See each example README for its complete command sequence and verification steps. These are minimal
+teaching assemblies, not production applications; they do not add production authorization, upload
+tasks, Daemon, or similar product mechanisms.
