@@ -49,6 +49,28 @@ When finished, run `pnpm unlink-cli`.
 The `create`, `import`, `export`, `inspect`, `execute`, `open`, and `api` commands from 02 remain
 unchanged.
 
+## Use it with an Agent
+
+Keep the Server running and install the skill from another terminal:
+
+```bash
+pnpm skill:install
+```
+
+Open this directory with an image-capable Agent and enter:
+
+```text
+Use univer-content to create a sales spreadsheet with 10 sample records and visually verify it.
+```
+
+The Agent must read the generated PNG before reporting visual verification as complete. When
+finished, run:
+
+```bash
+pnpm skill:uninstall
+pnpm unlink-cli
+```
+
 ## What changed from 02
 
 Added files:

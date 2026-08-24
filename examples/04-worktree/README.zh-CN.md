@@ -38,9 +38,6 @@ univer-example-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
 
 univer-example-cli inspect range A1:B2 --worksheet index:1 \
   --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
-
-univer-example-cli screenshot --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --sheet Data --range A1:B2 --out output
 ```
 
 Agent 完成检查后将 Worktree 标记为 Ready，并打开 Web：
@@ -107,3 +104,4 @@ pnpm unlink-cli
 - `test/smoke.test.ts`：把继承的 smoke path 切换到 Worktree target。
 
 其余内容继承 03。本例不增加 runtime pool、worker 或 daemon。
+用户明确要求视觉检查时，仍可以使用继承的 screenshot 和 layout lint。

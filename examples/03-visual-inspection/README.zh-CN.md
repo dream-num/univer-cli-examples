@@ -47,6 +47,27 @@ univer-example-cli lint --unit "$SLIDE_ID" --pages 1
 
 02 中的 `create`、`import`、`export`、`inspect`、`execute`、`open` 和 `api` 命令保持不变。
 
+## 交给 Agent 使用
+
+保持 Server 运行，在另一个终端安装 skill：
+
+```bash
+pnpm skill:install
+```
+
+用支持图片输入的 Agent 打开当前目录，然后输入：
+
+```text
+使用 univer-content 帮我创建一个销售表格，包含 10 条示例数据，并完成视觉检查。
+```
+
+Agent 必须实际读取生成的 PNG，才能宣布视觉检查完成。体验结束后运行：
+
+```bash
+pnpm skill:uninstall
+pnpm unlink-cli
+```
+
 ## 相比 02 增加了什么
 
 新增文件：

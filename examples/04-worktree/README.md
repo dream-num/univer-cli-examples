@@ -39,9 +39,6 @@ univer-example-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
 
 univer-example-cli inspect range A1:B2 --worksheet index:1 \
   --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
-
-univer-example-cli screenshot --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --sheet Data --range A1:B2 --out output
 ```
 
 After the Agent checks the draft, mark it Ready and open the Web UI:
@@ -111,3 +108,4 @@ Changed files:
 - `test/smoke.test.ts` moves the inherited smoke path onto Worktree targets.
 
 Everything else is inherited from 03. This example does not add a runtime pool, worker, or daemon.
+Screenshot and layout lint remain available when the user explicitly requests visual verification.
