@@ -22,5 +22,7 @@ Use `univer-example-cli <command>`. The user starts the Server separately with
 6. Inspect the changed range, paragraph, or slide with `--json` and verify the requested content.
 7. Capture the result with `univer-example-cli screenshot --unit <unitId> --out output`. A Sheet
    range can add `--sheet <name> --range <range>`; selected Slide pages can add `--pages <pages>`.
-8. Inspect the PNG, then run `univer-example-cli open --no-launch` and return the Unit type, name,
+8. For a Slide, also run `univer-example-cli lint --unit <unitId>`. Treat findings as visual review
+   evidence and fix clear layout problems before capturing again.
+9. Inspect the PNG, then run `univer-example-cli open --no-launch` and return the Unit type, name,
    `unitId`, revision, screenshot path, and URL. Open the browser only when the user asks.

@@ -5,10 +5,11 @@ English | [简体中文](./README.zh-CN.md)
 This repository contains runnable teaching examples for the Univer CLI SDK. Concepts and
 architecture live on the [Univer Office documentation site](https://office.univer.ai/cli/overview).
 
-| Example                                                               | Learn                                            | New concepts                            |
-| --------------------------------------------------------------------- | ------------------------------------------------ | --------------------------------------- |
-| [`01-content-operations`](./examples/01-content-operations/README.md) | Read, edit, and view Sheet, Doc, and Slide Units | CLI, Server, Web, Collaboration Runtime |
-| [`02-visual-inspection`](./examples/02-visual-inspection/README.md)   | Capture the three Unit types from 01             | Render Page, Render Runtime             |
+| Example                                                               | Learn                                             | New concepts                            |
+| --------------------------------------------------------------------- | ------------------------------------------------- | --------------------------------------- |
+| [`01-content-operations`](./examples/01-content-operations/README.md) | Read, edit, and view Sheet, Doc, and Slide Units  | CLI, Server, Web, Collaboration Runtime |
+| [`02-visual-inspection`](./examples/02-visual-inspection/README.md)   | Visually inspect the three Unit types from 01     | Render Page, Screenshot, Layout Lint    |
+| [`03-worktree`](./examples/03-worktree/README.md)                     | Edit in a draft and hand it to a human for review | Worktree, Ready, Merge, Reopen          |
 
 Read them in numbered order. Each directory has its own `package.json`, lockfile, and dependencies,
 so it can be copied and run independently.
@@ -54,5 +55,23 @@ univer-example-cli screenshot --unit "$UNIT_ID" --sheet Data --range A1:B2 --out
 
 See each example README for its complete command sequence and verification steps.
 
+## 03 Worktree
+
+```bash
+cd examples/03-worktree
+pnpm install
+pnpm build
+pnpm link-cli
+pnpm start-server
+```
+
+Use another terminal in the same directory:
+
+```bash
+UNIT_ID=$(univer-example-cli create sheet --name "Worktree Demo")
+WORKTREE_ID=$(univer-example-cli worktree create --unit "$UNIT_ID")
+univer-example-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
+```
+
 These examples are minimal teaching assemblies, not production applications. Login,
-authorization, Worktree, Daemon, and file exchange belong in later examples that need them.
+authorization, Daemon, and file exchange belong in later examples that need them.

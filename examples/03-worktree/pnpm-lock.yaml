@@ -65,6 +65,18 @@ importers:
       '@univerjs-pro/collaboration-transport-node':
         specifier: 1.0.0-insiders.20260822-0c0c0dd
         version: 1.0.0-insiders.20260822-0c0c0dd
+      '@univerjs-pro/collaboration-worktree-client':
+        specifier: 1.0.0-insiders.20260822-0c0c0dd
+        version: 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)(rxjs@7.8.2)
+      '@univerjs-pro/collaboration-worktree-database-sqlite':
+        specifier: 1.0.0-insiders.20260822-0c0c0dd
+        version: 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
+      '@univerjs-pro/collaboration-worktree-endpoint':
+        specifier: 1.0.0-insiders.20260822-0c0c0dd
+        version: 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
+      '@univerjs-pro/collaboration-worktree-service':
+        specifier: 1.0.0-insiders.20260822-0c0c0dd
+        version: 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
       '@univerjs-pro/license':
         specifier: 1.0.0-insiders.20260822-0c0c0dd
         version: 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)(rxjs@7.8.2)
@@ -250,6 +262,10 @@ packages:
   '@noble/hashes@2.2.0':
     resolution: {integrity: sha512-IYqDGiTXab6FniAgnSdZwgWbomxpy9FtYvLKs7wCUs2a8RkITG+DFGO1DM9cr+E3/RgADRpFjrKVaJ1z6sjtEg==}
     engines: {node: '>= 20.19.0'}
+
+  '@oxc-project/runtime@0.139.0':
+    resolution: {integrity: sha512-WnuGdceWtRdqD7f3alOIDXN6bnGuGtFjtQf/dHjzgn2im7eKaYRJTEl2T1kFEWPhBWCDk+UDYgsTLUE5L6jc0w==}
+    engines: {node: ^20.19.0 || >=22.12.0}
 
   '@oxc-project/runtime@0.142.0':
     resolution: {integrity: sha512-Dv3jRrcXFdvUBUEljUu9kusrEo9G0iiqZFZNg3yCg+mkET4DD4S2Ow6Q6shFWDJwPidSa980d6YVXBlErUGADw==}
@@ -1254,6 +1270,19 @@ packages:
 
   '@univerjs-pro/collaboration-transport-node@1.0.0-insiders.20260822-0c0c0dd':
     resolution: {integrity: sha512-ujPtG6lZJcuZILtFkRVCkBvmNoEsekWtKFKu6J/j6X71D+t7bdhps0qTY8teu9phpbtY6jNejO4mZIKtXoQCAw==}
+
+  '@univerjs-pro/collaboration-worktree-client@1.0.0-insiders.20260822-0c0c0dd':
+    resolution: {integrity: sha512-zj9U2u5A0/tlUj++B9aIKUBK//B57Wy29HYZsB+IfdnvAt4rUyCmDKESk+PqlFbEeD/ilDs78e22qIC8iqhMZQ==}
+
+  '@univerjs-pro/collaboration-worktree-database-sqlite@1.0.0-insiders.20260822-0c0c0dd':
+    resolution: {integrity: sha512-0fFD9gnUwOdGuaPheGSskAiWhEJKFZjulku+5JKahgkim/btNYog4+Rn8UlTwkde9z/8+/JOw+4+b0BWbTC/xQ==}
+    engines: {node: '>=22'}
+
+  '@univerjs-pro/collaboration-worktree-endpoint@1.0.0-insiders.20260822-0c0c0dd':
+    resolution: {integrity: sha512-6R+YrcWwJKaxgSFSKrvWP377NBZo7wSDjlqaR5NMrWOtYQD9OCJolwQl3A/z/sl6xzw+RSEOr+j1WOkTOXCplA==}
+
+  '@univerjs-pro/collaboration-worktree-service@1.0.0-insiders.20260822-0c0c0dd':
+    resolution: {integrity: sha512-ZG1kseZjsZ/bvmGJ4qeIeKMm2LANSQ3/tZCX/6Q+oqdAJDwXjc2E+U+avj4WACnwrORAKpZ0u8ZSgFlqaOt1ag==}
 
   '@univerjs-pro/collaboration@1.0.0-insiders.20260822-0c0c0dd':
     resolution: {integrity: sha512-bbdyCsRPGCa8W8xDpGwyFQLFRH0OquZEWzQRevW4uRR1rW22lGoWA0CDOJmjYoahQgKrilADQBAYdiyN/6Y1kA==}
@@ -2863,6 +2892,8 @@ snapshots:
 
   '@noble/hashes@2.2.0': {}
 
+  '@oxc-project/runtime@0.139.0': {}
+
   '@oxc-project/runtime@0.142.0': {}
 
   '@oxc-project/types@0.146.0': {}
@@ -3988,6 +4019,48 @@ snapshots:
     transitivePeerDependencies:
       - bufferutil
       - utf-8-validate
+
+  '@univerjs-pro/collaboration-worktree-client@1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)(rxjs@7.8.2)':
+    dependencies:
+      '@oxc-project/runtime': 0.139.0
+      '@univerjs-pro/collaboration': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)(rxjs@7.8.2)
+      '@univerjs-pro/collaboration-client': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)(rxjs@7.8.2)
+      '@univerjs-pro/collaboration-service': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
+      '@univerjs-pro/collaboration-worktree-service': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
+      '@univerjs/core': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)(rxjs@7.8.2)
+      '@univerjs/network': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)(rxjs@7.8.2)
+      '@univerjs/protocol': 1.0.0-insiders.20260822-0c0c0dd
+    transitivePeerDependencies:
+      - react
+      - rxjs
+
+  '@univerjs-pro/collaboration-worktree-database-sqlite@1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)':
+    dependencies:
+      '@univerjs-pro/collaboration-service': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
+      '@univerjs-pro/collaboration-worktree-service': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
+      '@univerjs/protocol': 1.0.0-insiders.20260822-0c0c0dd
+      libsql: 0.5.29
+    transitivePeerDependencies:
+      - react
+
+  '@univerjs-pro/collaboration-worktree-endpoint@1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)':
+    dependencies:
+      '@univerjs-pro/collaboration-endpoint': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
+      '@univerjs-pro/collaboration-service': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
+      '@univerjs-pro/collaboration-transport-node': 1.0.0-insiders.20260822-0c0c0dd
+      '@univerjs-pro/collaboration-worktree-service': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
+      '@univerjs/protocol': 1.0.0-insiders.20260822-0c0c0dd
+    transitivePeerDependencies:
+      - bufferutil
+      - react
+      - utf-8-validate
+
+  '@univerjs-pro/collaboration-worktree-service@1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)':
+    dependencies:
+      '@univerjs-pro/collaboration-service': 1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)
+      '@univerjs/protocol': 1.0.0-insiders.20260822-0c0c0dd
+    transitivePeerDependencies:
+      - react
 
   '@univerjs-pro/collaboration@1.0.0-insiders.20260822-0c0c0dd(react@19.2.8)(rxjs@7.8.2)':
     dependencies:

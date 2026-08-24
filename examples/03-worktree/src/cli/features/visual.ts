@@ -15,35 +15,39 @@ import {
 } from "@univer-cli/univer-render-runtime";
 import type { ISlideData } from "@univerjs-pro/slides";
 import type { IDocumentData, IWorkbookData } from "@univerjs/core";
-import type { Command } from "commander";
+import { Option, type Command } from "commander";
 import { fromInstanceType } from "../../shared/unit.js";
 import { DEFAULT_SERVER_URL } from "../../shared/urls.js";
 import { loadRuntime } from "./unit-content.js";
 
 export function screenshotCommand(): Command {
-  return createUnitScreenshotCommand({
+  let command: Command;
+  command = createUnitScreenshotCommand({
     screenshot: lazyScreenshot(),
     loadUnit: async ({ unitId }) => {
       if (unitId === undefined) throw new Error("Specify --unit");
-      return await loadRenderUnit(unitId);
+      return await loadRenderUnit(unitId, selectedWorktree(command));
     },
     writeImages,
   });
+  return addReadTarget(command);
 }
 
 export function lintCommand(): Command {
-  return createUnitLayoutLintCommand({
+  let command: Command;
+  command = createUnitLayoutLintCommand({
     lint: lazyLayoutLint(),
     loadUnit: async ({ unitId }) => {
-      const unit = await loadRenderUnit(unitId);
+      const unit = await loadRenderUnit(unitId, selectedWorktree(command));
       if (unit.unitType !== "slide") throw new Error("Layout lint requires a Slide Unit");
       return unit;
     },
   });
+  return addReadTarget(command);
 }
 
-async function loadRenderUnit(unitId: string): Promise<UniverRenderUnit> {
-  const contentRuntime = await loadRuntime(DEFAULT_SERVER_URL, unitId);
+async function loadRenderUnit(unitId: string, worktreeID?: string): Promise<UniverRenderUnit> {
+  const contentRuntime = await loadRuntime(DEFAULT_SERVER_URL, unitId, worktreeID);
   try {
     const unitData = (await contentRuntime.exportUnitData()) as
       | IWorkbookData
@@ -53,6 +57,20 @@ async function loadRenderUnit(unitId: string): Promise<UniverRenderUnit> {
   } finally {
     await contentRuntime.close();
   }
+}
+
+function addReadTarget(command: Command): Command {
+  return command
+    .addOption(new Option("--trunk", "read from trunk").conflicts("worktree"))
+    .addOption(new Option("--worktree <id>", "read from a Worktree").conflicts("trunk"));
+}
+
+function selectedWorktree(command: Command): string | undefined {
+  const options = command.opts<{ readonly trunk?: boolean; readonly worktree?: string }>();
+  if (options.trunk !== true && options.worktree === undefined) {
+    throw new Error("Specify --trunk or --worktree <id>");
+  }
+  return options.worktree;
 }
 
 function renderUnit(

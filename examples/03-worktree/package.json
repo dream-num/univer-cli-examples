@@ -1,5 +1,5 @@
 {
-  "name": "@univer-cli-example/visual-inspection",
+  "name": "@univer-cli-example/worktree",
   "version": "0.0.0",
   "private": true,
   "bin": {
@@ -18,7 +18,7 @@
     "start-server": "node dist/server/main.js",
     "test": "pnpm build && vitest run --root . test",
     "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit",
-    "unlink-cli": "pnpm remove --global @univer-cli-example/visual-inspection"
+    "unlink-cli": "pnpm remove --global @univer-cli-example/worktree"
   },
   "dependencies": {
     "@univer-cli/api-reference": "1.0.0-insiders.20260822-0c0c0dd",
@@ -40,6 +40,10 @@
     "@univerjs-pro/collaboration-endpoint": "1.0.0-insiders.20260822-0c0c0dd",
     "@univerjs-pro/collaboration-service": "1.0.0-insiders.20260822-0c0c0dd",
     "@univerjs-pro/collaboration-transport-node": "1.0.0-insiders.20260822-0c0c0dd",
+    "@univerjs-pro/collaboration-worktree-client": "1.0.0-insiders.20260822-0c0c0dd",
+    "@univerjs-pro/collaboration-worktree-database-sqlite": "1.0.0-insiders.20260822-0c0c0dd",
+    "@univerjs-pro/collaboration-worktree-endpoint": "1.0.0-insiders.20260822-0c0c0dd",
+    "@univerjs-pro/collaboration-worktree-service": "1.0.0-insiders.20260822-0c0c0dd",
     "@univerjs-pro/license": "1.0.0-insiders.20260822-0c0c0dd",
     "@univerjs-pro/slides": "1.0.0-insiders.20260822-0c0c0dd",
     "@univerjs-pro/slides-ui": "1.0.0-insiders.20260822-0c0c0dd",
