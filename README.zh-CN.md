@@ -1,32 +1,57 @@
-# Univer CLI SDK Examples
+# Univer CLI Examples
 
 [English](./README.md) | 简体中文
 
-本仓库提供 Univer CLI SDK 的公开用户手册和可运行示例。
+这个仓库只存放可运行的 Univer CLI SDK 教学 examples。概念和架构说明统一在
+[Univer Office 文档站](https://office.univer.ai/zh-CN/cli/overview)维护。
 
-## 仓库结构
+| Example                                                                     | 学习目标                           | 新增概念                                |
+| --------------------------------------------------------------------------- | ---------------------------------- | --------------------------------------- |
+| [`01-content-operations`](./examples/01-content-operations/README.zh-CN.md) | 读取、修改并查看 Sheet、Doc、Slide | CLI、Server、Web、Collaboration Runtime |
+| [`02-visual-inspection`](./examples/02-visual-inspection/README.zh-CN.md)   | 为 01 的三种 Unit 生成截图         | Render Page、Render Runtime             |
 
-- [`user-manual`](./user-manual/README.zh-CN.md) 是完整的 CLI SDK 接入手册。
-- [`examples`](./examples/README.zh-CN.md) 存放只使用已发布公共 API 的独立应用。
+请按编号阅读。每个目录都有自己的 `package.json`、lockfile 和依赖，可以独立复制和运行。
 
-## 环境要求
-
-- Node.js 22.12 及以上版本
-- pnpm 10
-- CLI SDK package 仍位于 Insiders 发布通道期间，需要能够访问 Univer Insiders registry
-
-每个示例都会锁定一组相互兼容的 release cohort，并单独说明所需 runtime、license 和外部服务。
-
-## 快速开始
-
-安装依赖并运行 API reference 示例：
+## 01 Content Operations
 
 ```bash
+cd examples/01-content-operations
+corepack enable
 pnpm install
-pnpm example:quick-start api find --unit sheet setValues
-pnpm example:quick-start api show FRange.setValues
-pnpm example:univer-mini --help
+pnpm build
+pnpm server
 ```
 
-`quick-start-cli` 没有实际产品意义。它选择 API reference 查询，只是为了用最少依赖说明一套完整的
-capability + Commander preset + application composition。它不会启动 Univer，也不需要 license 或在线文档服务。
+Server 启动后，在同一个目录的另一个终端安装 skill：
+
+```bash
+pnpm skill:install
+```
+
+用 Agent 打开 `01-content-operations` 目录，然后输入：
+
+```text
+使用 univer-content 帮我创建一个销售表格，包含 10 条示例数据。
+```
+
+## 02 Visual Inspection
+
+```bash
+cd examples/02-visual-inspection
+corepack enable
+pnpm install
+pnpm build
+pnpm server
+```
+
+另开终端，仍在 `02-visual-inspection` 目录：
+
+```bash
+pnpm start create sheet --name "Visual Demo"
+pnpm start screenshot --unit <unit-id> --sheet Data --range A1:B2 --out output
+```
+
+完整命令和验证方式见各 example 的 README。
+
+这些 examples 是最小教学装配，不是生产应用。登录、权限、Worktree、Daemon 和文件交换会在各自需要它们的后续
+example 中出现。
