@@ -18,7 +18,8 @@
 cd examples/01-content-operations
 pnpm install
 pnpm build
-pnpm server
+pnpm link-cli
+pnpm start-server
 ```
 
 Server 启动后，在同一个目录的另一个终端安装 skill：
@@ -39,14 +40,15 @@ pnpm skill:install
 cd examples/02-visual-inspection
 pnpm install
 pnpm build
-pnpm server
+pnpm link-cli
+pnpm start-server
 ```
 
 另开终端，仍在 `02-visual-inspection` 目录：
 
 ```bash
-pnpm start create sheet --name "Visual Demo"
-pnpm start screenshot --unit <unit-id> --sheet Data --range A1:B2 --out output
+UNIT_ID=$(univer-example-cli create sheet --name "Visual Demo")
+univer-example-cli screenshot --unit "$UNIT_ID" --sheet Data --range A1:B2 --out output
 ```
 
 完整命令和验证方式见各 example 的 README。

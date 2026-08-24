@@ -19,7 +19,8 @@ so it can be copied and run independently.
 cd examples/01-content-operations
 pnpm install
 pnpm build
-pnpm server
+pnpm link-cli
+pnpm start-server
 ```
 
 After the Server starts, install the skill from another terminal in the same directory:
@@ -40,14 +41,15 @@ Use univer-content to create a sales spreadsheet with 10 sample records.
 cd examples/02-visual-inspection
 pnpm install
 pnpm build
-pnpm server
+pnpm link-cli
+pnpm start-server
 ```
 
 Use another terminal in the same `02-visual-inspection` directory:
 
 ```bash
-pnpm start create sheet --name "Visual Demo"
-pnpm start screenshot --unit <unit-id> --sheet Data --range A1:B2 --out output
+UNIT_ID=$(univer-example-cli create sheet --name "Visual Demo")
+univer-example-cli screenshot --unit "$UNIT_ID" --sheet Data --range A1:B2 --out output
 ```
 
 See each example README for its complete command sequence and verification steps.

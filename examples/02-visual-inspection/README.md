@@ -18,22 +18,28 @@ After entering this example, run every command from the current directory:
 ```bash
 pnpm install
 pnpm build
-pnpm server
+pnpm link-cli
+pnpm start-server
 ```
 
 Use another terminal in the same directory to create and capture a Unit:
 
 ```bash
-pnpm start create sheet --name "Visual Demo"
-pnpm start screenshot --unit <unit-id> --sheet Data --range A1:B2 --out output
+SHEET_ID=$(univer-example-cli create sheet --name "Visual Demo")
+univer-example-cli screenshot --unit "$SHEET_ID" --sheet Data --range A1:B2 --out output
 ```
 
 For a Doc, omit the Sheet selectors. For a Slide, optionally select pages:
 
 ```bash
-pnpm start screenshot --unit <doc-id> --out output
-pnpm start screenshot --unit <slide-id> --pages 1 --out output
+DOC_ID=$(univer-example-cli create doc --name "Visual Doc")
+univer-example-cli screenshot --unit "$DOC_ID" --out output
+
+SLIDE_ID=$(univer-example-cli create slide --name "Visual Slide")
+univer-example-cli screenshot --unit "$SLIDE_ID" --pages 1 --out output
 ```
+
+When finished, run `pnpm unlink-cli`.
 
 The `create`, `inspect`, `execute`, `open`, and `api` commands from 01 remain unchanged.
 

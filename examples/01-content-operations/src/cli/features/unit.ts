@@ -23,7 +23,8 @@ export function createUnitCommand(): Command {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ name: options.name, type }),
       });
-      process.stdout.write(`${JSON.stringify(await response.json(), undefined, 2)}\n`);
+      const { unitId } = (await response.json()) as { readonly unitId: string };
+      process.stdout.write(`${unitId}\n`);
     });
   return command;
 }

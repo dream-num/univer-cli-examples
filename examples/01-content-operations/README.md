@@ -22,25 +22,27 @@ After entering this example, run every command from the current directory:
 ```bash
 pnpm install
 pnpm build
-pnpm server
+pnpm link-cli
+pnpm start-server
 ```
 
-Use another terminal in the same directory:
+Use another terminal in the same directory. `create` prints the new short Unit ID, so the remaining
+commands can capture and reuse it directly:
 
 ```bash
-pnpm start create sheet --name "Demo"
+UNIT_ID=$(univer-example-cli create sheet --name "Demo")
 
-pnpm start inspect range A1:B2 --worksheet index:1 \
-  --unit <unit-id> --json
+univer-example-cli inspect range A1:B2 --worksheet index:1 \
+  --unit "$UNIT_ID" --json
 
-pnpm start execute --unit <unit-id> \
+univer-example-cli execute --unit "$UNIT_ID" \
   --code 'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]])'
 
-pnpm start open --unit <unit-id>
+univer-example-cli open --unit "$UNIT_ID"
 
-# An Agent queries the Facade API before generating execution code
-pnpm start api find setValues --unit sheet
-pnpm start api show FRange.setValues
+# Simulate an Agent querying the Facade API before generating execution code
+univer-example-cli api find setValues --unit sheet
+univer-example-cli api show FRange.setValues
 ```
 
 ## Use it with an Agent
@@ -63,6 +65,7 @@ finished, run:
 
 ```bash
 pnpm skill:uninstall
+pnpm unlink-cli
 ```
 
 ## Source order

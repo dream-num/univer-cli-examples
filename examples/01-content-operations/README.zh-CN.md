@@ -20,25 +20,26 @@ Web ──┘
 ```bash
 pnpm install
 pnpm build
-pnpm server
+pnpm link-cli
+pnpm start-server
 ```
 
-另开终端，仍在当前目录操作：
+另开终端，仍在当前目录操作。`create` 会输出新建 Unit 的短 ID，后续命令可以直接保存并复用：
 
 ```bash
-pnpm start create sheet --name "Demo"
+UNIT_ID=$(univer-example-cli create sheet --name "Demo")
 
-pnpm start inspect range A1:B2 --worksheet index:1 \
-  --unit <unit-id> --json
+univer-example-cli inspect range A1:B2 --worksheet index:1 \
+  --unit "$UNIT_ID" --json
 
-pnpm start execute --unit <unit-id> \
+univer-example-cli execute --unit "$UNIT_ID" \
   --code 'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]])'
 
-pnpm start open --unit <unit-id>
+univer-example-cli open --unit "$UNIT_ID"
 
-# Agent 在生成执行代码前查询 Facade API
-pnpm start api find setValues --unit sheet
-pnpm start api show FRange.setValues
+# 模拟 Agent 在生成执行代码前查询 Facade API
+univer-example-cli api find setValues --unit sheet
+univer-example-cli api show FRange.setValues
 ```
 
 ## 交给 Agent 使用
@@ -60,6 +61,7 @@ Agent 会创建、填充、提交和校验 Unit，并返回 Web 地址。Skill �
 
 ```bash
 pnpm skill:uninstall
+pnpm unlink-cli
 ```
 
 ## 源码顺序

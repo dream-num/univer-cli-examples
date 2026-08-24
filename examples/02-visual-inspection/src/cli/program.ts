@@ -5,7 +5,7 @@ import { createUnitCommand, openUnitCommand } from "./features/unit.js";
 import { screenshotCommand } from "./features/visual.js";
 
 export function createProgram(): Command {
-  const program = new Command("visual-inspection").description(
+  const program = new Command("univer-example-cli").description(
     "Create, edit, view, and capture collaborative Univer content",
   );
   program.addCommand(createUnitCommand());

@@ -15,10 +15,7 @@ afterEach(async () => await server?.close());
 
 it("keeps 01 and adds screenshots for Sheet, Doc, and Slide", async () => {
   server = await startServer(":memory:");
-  const created = JSON.parse(await run("create", "sheet", "--name", "Demo Sheet")) as {
-    readonly unitId: string;
-  };
-  const sheetId = created.unitId;
+  const sheetId = (await run("create", "sheet", "--name", "Demo Sheet")).trim();
 
   const before = await run(
     "inspect",
@@ -52,46 +49,42 @@ it("keeps 01 and adds screenshots for Sheet, Doc, and Slide", async () => {
   ) as Record<string, unknown>;
   expect(execution).toMatchObject({ commit: "confirmed", revision: 2, value: "done" });
 
-  const document = JSON.parse(await run("create", "doc", "--name", "Demo Doc")) as {
-    readonly unitId: string;
-  };
+  const documentId = (await run("create", "doc", "--name", "Demo Doc")).trim();
   expect(
-    JSON.parse(await run("inspect", "document", "--unit", document.unitId, "--json")),
+    JSON.parse(await run("inspect", "document", "--unit", documentId, "--json")),
   ).toMatchObject({ kind: "document", title: "Demo Doc" });
   expect(
     JSON.parse(
       await run(
         "execute",
         "--unit",
-        document.unitId,
+        documentId,
         "--code",
         'await api.executeCommand("doc.mutation.rename-doc", { unitId: doc.getId(), name: "Updated Doc" }); return doc.getName();',
       ),
     ),
   ).toMatchObject({ commit: "confirmed", revision: 2, value: "Updated Doc" });
   expect(
-    JSON.parse(await run("inspect", "document", "--unit", document.unitId, "--json")),
+    JSON.parse(await run("inspect", "document", "--unit", documentId, "--json")),
   ).toMatchObject({ title: "Updated Doc" });
 
-  const presentation = JSON.parse(await run("create", "slide", "--name", "Demo Slide")) as {
-    readonly unitId: string;
-  };
+  const presentationId = (await run("create", "slide", "--name", "Demo Slide")).trim();
   expect(
-    JSON.parse(await run("inspect", "presentation", "--unit", presentation.unitId, "--json")),
+    JSON.parse(await run("inspect", "presentation", "--unit", presentationId, "--json")),
   ).toMatchObject({ kind: "presentation", name: "Demo Slide" });
   expect(
     JSON.parse(
       await run(
         "execute",
         "--unit",
-        presentation.unitId,
+        presentationId,
         "--code",
         'presentation.setName("Updated Slide"); return presentation.getName();',
       ),
     ),
   ).toMatchObject({ commit: "confirmed", revision: 2, value: "Updated Slide" });
 
-  for (const unitId of [sheetId, document.unitId, presentation.unitId]) {
+  for (const unitId of [sheetId, documentId, presentationId]) {
     const url = await run("open", "--unit", unitId, "--no-launch");
     const page = await (await fetch(url.trim())).text();
     expect(page).toContain('id="sidebar"');
@@ -99,8 +92,8 @@ it("keeps 01 and adds screenshots for Sheet, Doc, and Slide", async () => {
   }
   expect(await (await fetch(`${server.origin}/api/units`)).json()).toMatchObject([
     { name: "Demo Sheet", unitId: sheetId, unitType: "sheet" },
-    { name: "Demo Doc", unitId: document.unitId, unitType: "doc" },
-    { name: "Demo Slide", unitId: presentation.unitId, unitType: "slide" },
+    { name: "Demo Doc", unitId: documentId, unitType: "doc" },
+    { name: "Demo Slide", unitId: presentationId, unitType: "slide" },
   ]);
   expect(await run("api", "find", "setValues", "--unit", "sheet")).toContain("FRange.setValues");
   expect(await run("api", "show", "FRange.setValues")).toContain("setValues");
@@ -108,8 +101,8 @@ it("keeps 01 and adds screenshots for Sheet, Doc, and Slide", async () => {
   const output = resolve(root, "dist/test-output");
   const captures = [
     [sheetId, "--sheet", "Data", "--range", "A1:B2"],
-    [document.unitId],
-    [presentation.unitId, "--pages", "1"],
+    [documentId],
+    [presentationId, "--pages", "1"],
   ] as const;
   for (const [unitId, ...options] of captures) {
     const screenshot = JSON.parse(

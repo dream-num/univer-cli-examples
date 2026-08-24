@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "bin": {
-    "content-operations": "./dist/cli/main.js"
+    "univer-example-cli": "./dist/cli/main.js"
   },
   "type": "module",
   "scripts": {
@@ -11,13 +11,14 @@
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
+    "link-cli": "pnpm link --global",
     "lint": "oxlint .",
     "skill:install": "node scripts/skill.mjs install",
     "skill:uninstall": "node scripts/skill.mjs uninstall",
-    "server": "node dist/server/main.js",
-    "start": "node dist/cli/main.js",
+    "start-server": "node dist/server/main.js",
     "test": "pnpm build && vitest run --root . test",
-    "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit"
+    "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit",
+    "unlink-cli": "pnpm remove --global @univer-cli-example/content-operations"
   },
   "dependencies": {
     "@univer-cli/api-reference": "1.0.0-insiders.20260822-0c0c0dd",

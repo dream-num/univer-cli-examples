@@ -16,22 +16,28 @@
 ```bash
 pnpm install
 pnpm build
-pnpm server
+pnpm link-cli
+pnpm start-server
 ```
 
 另开终端，仍在当前目录创建 Unit，然后使用返回的 `unitId` 截图：
 
 ```bash
-pnpm start create sheet --name "Visual Demo"
-pnpm start screenshot --unit <unit-id> --sheet Data --range A1:B2 --out output
+SHEET_ID=$(univer-example-cli create sheet --name "Visual Demo")
+univer-example-cli screenshot --unit "$SHEET_ID" --sheet Data --range A1:B2 --out output
 ```
 
 Doc 不传 Sheet selector；Slide 可以选择页码：
 
 ```bash
-pnpm start screenshot --unit <doc-id> --out output
-pnpm start screenshot --unit <slide-id> --pages 1 --out output
+DOC_ID=$(univer-example-cli create doc --name "Visual Doc")
+univer-example-cli screenshot --unit "$DOC_ID" --out output
+
+SLIDE_ID=$(univer-example-cli create slide --name "Visual Slide")
+univer-example-cli screenshot --unit "$SLIDE_ID" --pages 1 --out output
 ```
+
+体验结束后运行 `pnpm unlink-cli`。
 
 01 中的 `create`、`inspect`、`execute`、`open` 和 `api` 命令保持不变。
 

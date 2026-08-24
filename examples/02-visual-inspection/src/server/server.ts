@@ -46,7 +46,7 @@ export async function startServer(
 
   const app = express();
   app.post("/api/units", express.json(), async (request, response) => {
-    const unitId = randomUUID();
+    const unitId = randomUUID().slice(0, 8);
     const unitType = parseUnitType(request.body.type);
     const name = String(request.body.name ?? `Untitled ${unitTypeLabel(unitType)}`);
     const result = await service.createUnitFromData(createUnitInput(unitType, unitId, name), {
