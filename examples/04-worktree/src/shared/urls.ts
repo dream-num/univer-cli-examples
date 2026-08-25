@@ -21,6 +21,10 @@ export function createUnitUrl(serverUrl: string): string {
   return new URL("/api/units", serverUrl).toString();
 }
 
+export function worktreesUrl(serverUrl: string): string {
+  return new URL("/api/worktrees", serverUrl).toString();
+}
+
 export function unitUrl(serverUrl: string, unitId: string): string {
   return new URL(`/api/units/${encodeURIComponent(unitId)}`, serverUrl).toString();
 }

@@ -42,14 +42,22 @@ import { UniverUIPlugin } from "@univerjs/ui";
 import "@univerjs/ui/lib/index.css";
 import UniverUIEnUS from "@univerjs/ui/locale/en-US";
 import { parseUnitType, unitTypeLabel, type UnitSummary, type UnitType } from "../shared/unit.js";
-import { createUnitUrl, viewerUrl } from "../shared/urls.js";
+import { createUnitUrl, viewerUrl, worktreesUrl } from "../shared/urls.js";
 import "./styles.css";
 
 const search = new URL(location.href).searchParams;
 const unitId = search.get("unit");
 const worktreeID = search.get("worktree");
-const units = (await (await fetch(createUnitUrl(location.origin))).json()) as UnitSummary[];
-renderUnits(units, unitId);
+const [units, worktrees] = await Promise.all([
+  fetch(createUnitUrl(location.origin)).then(
+    async (response) => (await response.json()) as UnitSummary[],
+  ),
+  fetch(worktreesUrl(location.origin)).then(
+    async (response) => (await response.json()) as WorktreeData[],
+  ),
+]);
+renderUnits(units, worktreeID === null ? unitId : null);
+renderWorktrees(worktrees, units, unitId, worktreeID);
 installCreateButton();
 
 if (unitId !== null) {
@@ -75,6 +83,58 @@ function renderUnits(units: readonly UnitSummary[], activeUnitId: string | null)
     name.className = "unit-name";
     name.textContent = unit.name;
     button.append(type, name);
+    list.append(button);
+  }
+}
+
+function renderWorktrees(
+  worktrees: readonly WorktreeData[],
+  units: readonly UnitSummary[],
+  activeUnitId: string | null,
+  activeWorktreeID: string | null,
+): void {
+  const list = document.querySelector("#worktree-list")!;
+  if (worktrees.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "sidebar-empty";
+    empty.textContent = "No worktrees yet";
+    list.append(empty);
+    return;
+  }
+
+  for (const worktree of worktrees) {
+    const targetUnitID =
+      worktree.units.find((unit) => unit.unitID === activeUnitId)?.unitID ??
+      worktree.units[0]?.unitID;
+    const targetUnit = units.find((unit) => unit.unitId === targetUnitID);
+    const button = document.createElement("button");
+    button.className = `worktree-link${worktree.worktreeID === activeWorktreeID ? " active" : ""}`;
+    button.type = "button";
+    button.disabled = targetUnitID === undefined;
+    button.addEventListener("click", () => {
+      if (targetUnitID !== undefined) {
+        location.assign(viewerUrl(location.origin, targetUnitID, worktree.worktreeID));
+      }
+    });
+
+    const icon = document.createElement("span");
+    icon.className = "worktree-icon";
+    icon.ariaHidden = "true";
+    icon.textContent = "WT";
+    const copy = document.createElement("span");
+    copy.className = "worktree-copy";
+    const name = document.createElement("span");
+    name.className = "worktree-name";
+    name.textContent = targetUnit?.name ?? targetUnitID ?? "Empty worktree";
+    const id = document.createElement("span");
+    id.className = "worktree-id";
+    id.textContent = worktree.worktreeID;
+    copy.append(name, id);
+    const status = document.createElement("span");
+    status.className = "worktree-status";
+    status.dataset.status = worktree.status;
+    status.textContent = worktree.status;
+    button.append(icon, copy, status);
     list.append(button);
   }
 }
@@ -106,7 +166,7 @@ async function mountEditor(
   const endpoint = `${location.origin}/universer-api`;
   let worktree: WorktreeData | undefined;
   if (worktreeID === null) {
-    app.inert = true;
+    app.inert = false;
   } else {
     worktree = await new WorktreeClient({ origin: location.origin }).getWorktree(worktreeID);
     if (!worktree.units.some((unit) => unit.unitID === unitId)) {
@@ -176,7 +236,7 @@ async function mountEditor(
   }
   document.querySelector("#status")!.textContent =
     worktree === undefined
-      ? `${unitType} · ${unitId} · trunk · read-only`
+      ? `${unitType} · ${unitId} · trunk · editable`
       : `${unitType} · ${unitId} · worktree ${worktree.worktreeID} · ${worktree.status}`;
 }
 
@@ -184,18 +244,29 @@ function renderReviewActions(worktree: WorktreeData): void {
   const actions = document.querySelector("#review-actions")!;
   const client = new WorktreeClient({ origin: location.origin });
   if (worktree.status === "draft") {
-    actions.append(actionButton("Ready", () => client.markReady(worktree.worktreeID)));
+    actions.append(
+      actionButton("Discard", "discard", () => client.discardWorktree(worktree.worktreeID)),
+      actionButton("Ready", "default", () => client.markReady(worktree.worktreeID)),
+    );
   }
   if (worktree.status === "ready") {
     actions.append(
-      actionButton("Reopen", () => client.reopenWorktree(worktree.worktreeID)),
-      actionButton("Merge", () => client.mergeWorktree(worktree.worktreeID)),
+      actionButton("Discard", "discard", () => client.discardWorktree(worktree.worktreeID)),
+      actionButton("Reopen", "default", () => client.reopenWorktree(worktree.worktreeID)),
+      actionButton("Merge", "merge", () => client.mergeWorktree(worktree.worktreeID)),
     );
   }
 }
 
-function actionButton(label: string, action: () => Promise<WorktreeData>): HTMLButtonElement {
+type ReviewActionTone = "default" | "merge" | "discard";
+
+function actionButton(
+  label: string,
+  tone: ReviewActionTone,
+  action: () => Promise<WorktreeData>,
+): HTMLButtonElement {
   const button = document.createElement("button");
+  button.className = `review-action review-action-${tone}`;
   button.type = "button";
   button.textContent = label;
   button.addEventListener("click", async () => {

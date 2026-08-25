@@ -135,6 +135,13 @@ it("keeps 02 and edits Sheet, Doc, and Slide through Worktrees", async () => {
     { name: "Demo Doc", unitId: documentId, unitType: "doc" },
     { name: "Demo Slide", unitId: presentationId, unitType: "slide" },
   ]);
+  expect(await (await fetch(`${server.origin}/api/worktrees`)).json()).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({ worktreeID: sheetWorktree, status: "draft" }),
+      expect.objectContaining({ worktreeID: documentWorktree, status: "draft" }),
+      expect.objectContaining({ worktreeID: presentationWorktree, status: "draft" }),
+    ]),
+  );
   expect(await run("api", "find", "setValues", "--unit", "sheet")).toContain("FRange.setValues");
   expect(await run("api", "show", "FRange.setValues")).toContain("setValues");
 

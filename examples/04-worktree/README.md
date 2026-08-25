@@ -3,11 +3,11 @@
 English | [简体中文](./README.zh-CN.md)
 
 This example keeps file exchange and visual inspection from 03, then adds Worktree.
-An Agent edits an isolated draft, marks it Ready, and hands it to a human for Merge or Reopen in the
-Web UI.
+An Agent edits an isolated draft, marks it Ready, and hands it to a human for Merge, Reopen, or
+Discard in the Web UI.
 
 ```text
-Trunk (read-only) → Worktree draft (editable) → Ready → Web review → Merge / Reopen
+Trunk (editable in Web) → Worktree draft (editable) → Ready → Web review → Merge / Reopen / Discard
 ```
 
 ## Run
@@ -28,7 +28,7 @@ UNIT_ID=$(univer-example-cli create sheet --name "Worktree Demo")
 WORKTREE_ID=$(univer-example-cli worktree create --unit "$UNIT_ID")
 ```
 
-Reads can target trunk or Worktree. Edits must target a Worktree:
+CLI reads can target trunk or Worktree. CLI content execution edits a Worktree:
 
 ```bash
 univer-example-cli inspect workbook --unit "$UNIT_ID" --trunk
@@ -48,8 +48,8 @@ univer-example-cli worktree ready "$WORKTREE_ID"
 univer-example-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
 
-The Web UI allows editing in draft, then offers Reopen and Merge in Ready. After Merge, open the
-read-only trunk:
+The Web UI allows direct trunk editing. A Worktree remains editable only in draft; Ready offers
+Discard, Reopen, and Merge. After Merge, open the trunk:
 
 ```bash
 univer-example-cli open --unit "$UNIT_ID" --trunk
@@ -63,10 +63,10 @@ univer-example-cli export review.xlsx --unit "$UNIT_ID" --worktree "$WORKTREE_ID
 
 ## Example policy
 
-This example treats trunk as read-only and requires all content edits to use a Worktree. The CLI and
-Web application express this policy; it is not a restriction imposed by the Collaboration SDK or CLI
-SDK. Production applications should enforce their own trunk write policy with Server middleware and
-ACLs.
+The CLI keeps Agent content execution on a Worktree, while the Web UI intentionally permits direct
+trunk editing. This policy belongs to the application; it is not imposed by the Collaboration SDK or
+CLI SDK. Production applications should enforce their own trunk write policy with Server middleware
+and ACLs.
 
 ## Use it with an Agent
 
@@ -102,7 +102,7 @@ Changed files:
 - `src/cli/features/unit.ts`, `file.ts`, and `visual.ts` let open, export, screenshot, and lint read
   trunk or Worktree.
 - `src/shared/urls.ts` lets a Web URL target trunk or Worktree.
-- `src/web/` makes trunk read-only, keeps draft editable, and adds Ready, Reopen, and Merge.
+- `src/web/` keeps trunk and draft editable, and adds Ready, Discard, Reopen, and Merge.
 - `package.json` adds the Worktree Client, Service, Endpoint, and SQLite Adapter.
 - `skills/univer-content/SKILL.md` moves the Agent edit and verification flow into a Worktree.
 - `test/smoke.test.ts` moves the inherited smoke path onto Worktree targets.

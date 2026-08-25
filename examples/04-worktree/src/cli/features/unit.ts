@@ -35,7 +35,7 @@ export function openUnitCommand(): Command {
   const command = new Command("open")
     .description("Open the Unit in the Web editor")
     .requiredOption("--unit <id>", "Unit id")
-    .addOption(new Option("--trunk", "open the read-only trunk").conflicts("worktree"))
+    .addOption(new Option("--trunk", "open the trunk").conflicts("worktree"))
     .addOption(new Option("--worktree <id>", "open a Worktree draft").conflicts("trunk"))
     .option("--no-launch", "print the URL without opening a browser")
     .action(async (options: OpenOptions) => {

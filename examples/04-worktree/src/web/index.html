@@ -8,16 +8,26 @@
   <body>
     <div id="shell">
       <aside id="sidebar">
-        <h1>Files</h1>
-        <form id="create-form">
-          <select id="create-type" aria-label="File type">
-            <option value="sheet">Sheet</option>
-            <option value="doc">Doc</option>
-            <option value="slide">Slide</option>
-          </select>
-          <button type="submit">+ New</button>
-        </form>
-        <nav id="unit-list" aria-label="Files"></nav>
+        <header class="sidebar-brand">
+          <span class="brand-mark" aria-hidden="true">U</span>
+          <span>Univer CLI</span>
+        </header>
+        <section class="sidebar-section">
+          <h2>Files</h2>
+          <form id="create-form">
+            <select id="create-type" aria-label="File type">
+              <option value="sheet">Sheet</option>
+              <option value="doc">Doc</option>
+              <option value="slide">Slide</option>
+            </select>
+            <button type="submit">New</button>
+          </form>
+          <nav id="unit-list" aria-label="Files"></nav>
+        </section>
+        <section class="sidebar-section worktree-section">
+          <h2>Worktrees</h2>
+          <nav id="worktree-list" aria-label="Worktrees"></nav>
+        </section>
       </aside>
       <main id="workspace">
         <div id="toolbar">

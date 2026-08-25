@@ -22,6 +22,7 @@ import { LocaleType, type IDocumentData, type IWorkbookData } from "@univerjs/co
 import { parseUnitType, unitTypeLabel, type UnitType } from "../shared/unit.js";
 import { UniverType } from "@univerjs/protocol";
 import { UnitStore } from "./unit-store.js";
+import { WorktreeStore } from "./worktree-store.js";
 
 const DEMO_USER_ID = "worktree-user";
 
@@ -30,11 +31,15 @@ export interface DemoServer {
   close(): Promise<void>;
 }
 
-export async function startServer(databaseFile = ".data/worktree.sqlite"): Promise<DemoServer> {
+export async function startServer(
+  databaseFile = ".data/worktree.sqlite",
+  port = 3010,
+): Promise<DemoServer> {
   await mkdir(dirname(databaseFile), { recursive: true });
   const database = new SQLiteDatabaseAdapter({ filename: databaseFile });
   const worktreeDatabase = new SQLiteWorktreeDatabaseAdapter({ filename: databaseFile });
   const units = new UnitStore(databaseFile);
+  const worktrees = new WorktreeStore(databaseFile);
   const service = new UniverCollabService({ dbAdapter: database });
   const worktreeService = new UniverCollabWorktreeService({
     trunk: { service, dbAdapter: database },
@@ -44,6 +49,16 @@ export async function startServer(databaseFile = ".data/worktree.sqlite"): Promi
   const endpoint = new UniverCollabEndpoint(service, { ticketStore });
   const worktreeEndpoint = new UniverCollabWorktreeEndpoint(worktreeService, { ticketStore });
   const transport = createNodeTransport();
+
+  for (const event of [
+    "worktreeCreated",
+    "worktreeUnitAdded",
+    "worktreeUnitCreated",
+    "worktreeStatusChanged",
+    "worktreeUnitMergeResultRecorded",
+  ] as const) {
+    worktreeService.on(event, ({ worktree }) => worktrees.upsert(worktree));
+  }
 
   transport.use(async (context, next) => {
     context.userID = DEMO_USER_ID;
@@ -85,6 +100,9 @@ export async function startServer(databaseFile = ".data/worktree.sqlite"): Promi
     }
     response.json(unit);
   });
+  app.get("/api/worktrees", (_request, response) => {
+    response.json(worktrees.list());
+  });
   app.use("/universer-api", (request, response) => {
     request.url = request.originalUrl;
     transport.handleRequest(request, response);
@@ -96,7 +114,7 @@ export async function startServer(databaseFile = ".data/worktree.sqlite"): Promi
 
   const server = createServer(app);
   server.on("upgrade", (request, socket, head) => transport.handleUpgrade(request, socket, head));
-  await listen(server, 3010);
+  await listen(server, port);
   const address = server.address();
   if (address === null || typeof address === "string") throw new Error("Server did not start");
 
@@ -112,6 +130,7 @@ export async function startServer(databaseFile = ".data/worktree.sqlite"): Promi
       await database.dispose();
       await ticketStore.dispose();
       units.close();
+      worktrees.close();
     },
   };
 }
