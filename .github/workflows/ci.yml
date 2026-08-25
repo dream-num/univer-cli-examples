@@ -21,7 +21,9 @@ jobs:
       matrix:
         example:
           - examples/01-content-operations
-          - examples/02-visual-inspection
+          - examples/02-file-exchange
+          - examples/03-visual-inspection
+          - examples/04-worktree
 
     steps:
       - name: Checkout
