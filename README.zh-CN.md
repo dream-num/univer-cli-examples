@@ -11,6 +11,7 @@
 | [`02-file-exchange`](./examples/02-file-exchange/README.zh-CN.md)           | 导入和导出 Office 文件             | Exchange、UnitData、原生 binding        |
 | [`03-visual-inspection`](./examples/03-visual-inspection/README.zh-CN.md)   | 视觉检查前三种 Unit                | Render Page、Screenshot、Layout Lint    |
 | [`04-worktree`](./examples/04-worktree/README.zh-CN.md)                     | 在 draft 编辑并交给人审阅          | Worktree、Ready、Merge、Reopen、Discard |
+| [`06-resource-backed-slide`](./examples/06-resource-backed-slide/README.zh-CN.md) | 用 SVG 与资源构建一页可审阅 Slide | Resource Library、SVG compiler            |
 
 请按编号阅读。每个目录都有自己的 `package.json`、lockfile 和依赖，可以独立复制和运行。
 
