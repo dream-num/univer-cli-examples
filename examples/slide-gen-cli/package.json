@@ -1,9 +1,9 @@
 {
-  "name": "@univer-cli-example/resource-backed-slide",
+  "name": "@univer-cli-example/slide-gen-cli",
   "version": "0.0.0",
   "private": true,
   "bin": {
-    "univer-example-cli": "./dist/cli/main.js"
+    "slide-gen-cli": "./dist/cli/main.js"
   },
   "type": "module",
   "scripts": {
@@ -18,7 +18,7 @@
     "start-server": "node dist/server/main.js",
     "test": "pnpm build && vitest run --root . test",
     "typecheck": "tsc -p tsconfig.node.json --noEmit && tsc -p tsconfig.web.json --noEmit",
-    "unlink-cli": "pnpm remove --global @univer-cli-example/resource-backed-slide"
+    "unlink-cli": "pnpm remove --global @univer-cli-example/slide-gen-cli"
   },
   "dependencies": {
     "@univer-cli/api-reference": "1.0.0-beta.2",
@@ -62,8 +62,6 @@
     "@univerjs/drawing-ui": "1.0.0-beta.2",
     "@univerjs/engine-render": "1.0.0-beta.2",
     "@univerjs/network": "1.0.0-beta.2",
-    "@univerjs/preset-docs-core": "1.0.0-beta.2",
-    "@univerjs/preset-sheets-core": "1.0.0-beta.2",
     "@univerjs/presets": "1.0.0-beta.2",
     "@univerjs/protocol": "1.0.0-beta.2",
     "@univerjs/ui": "1.0.0-beta.2",

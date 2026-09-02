@@ -1,4 +1,4 @@
-# 06 Resource-backed Slide
+# Slide Gen CLI
 
 [English](./README.md) | 简体中文
 
@@ -10,7 +10,8 @@
 stable handle → 导出 SVG 资源 → page.svg → compile-svg → execute → Review Evidence
 ```
 
-本例保留 `04-worktree` 的全部 commands；本文只讲新增的单页 authoring 路径。
+本 application 只支持 Slide，并保留 API reference、resources、SVG compile、execute、
+inspection、layout lint、screenshot、Worktree review、Web 查看与 PPTX export。
 
 ## 运行
 
@@ -28,12 +29,13 @@ pnpm start-server
 ```bash
 mkdir -p authoring/resources .generated output
 
-univer-example-cli resources find rocket \
+slide-gen-cli resources find rocket \
   --registry example-tabler-outline --json
-univer-example-cli resources export example-tabler-outline/rocket \
+slide-gen-cli api find appendShape --unit slide
+slide-gen-cli resources export example-tabler-outline/rocket \
   --out authoring/resources --json
 
-univer-example-cli compile-svg authoring/page.svg --page 1 \
+slide-gen-cli compile-svg authoring/page.svg --page 1 \
   --out .generated/page.js --estimate-text-size --json
 ```
 
@@ -44,21 +46,21 @@ univer-example-cli compile-svg authoring/page.svg --page 1 \
 创建 Slide Worktree，再执行生成的 replace program：
 
 ```bash
-UNIT_ID=$(univer-example-cli create slide --name "产品发布状态")
-WORKTREE_ID=$(univer-example-cli worktree create --unit "$UNIT_ID")
+UNIT_ID=$(slide-gen-cli create --name "产品发布状态")
+WORKTREE_ID=$(slide-gen-cli worktree create --unit "$UNIT_ID")
 
-univer-example-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
+slide-gen-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
   --file .generated/page.js
 ```
 
 只有 execution 返回 `commit: "confirmed"` 时才继续。交付前收集全部 Review Evidence：
 
 ```bash
-univer-example-cli inspect slide index:1 \
+slide-gen-cli inspect slide index:1 \
   --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
-univer-example-cli lint --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
+slide-gen-cli lint --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
   --pages 1 --json
-univer-example-cli screenshot --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
+slide-gen-cli screenshot --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
   --pages 1 --out output --json
 ```
 
@@ -68,9 +70,13 @@ layout findings 必须为零。打开 PNG，检查对齐、层级、对比度、
 证据通过后：
 
 ```bash
-univer-example-cli worktree ready "$WORKTREE_ID"
-univer-example-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --no-launch
+slide-gen-cli worktree ready "$WORKTREE_ID"
+slide-gen-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --no-launch
+slide-gen-cli export product-release.pptx --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
+
+Review URL 仅在本 application 的内置 Server 运行期间有效。需要持久文件时从同一
+Worktree 导出 PPTX；使用 `--trunk` 可导出 trunk revision。
 
 ## 交给 Agent 使用
 
@@ -100,4 +106,5 @@ pnpm unlink-cli
 - `skills/univer-slide-authoring/SKILL.md` 约束 Agent 遵循 resource-backed SVG workflow。
 - `test/program.test.ts` 和 `test/smoke.test.ts` 使用 fixed manifest/fake downloader，自动验证不依赖远程资源 host。
 
-本例只覆盖一页 Slide，不增加多页 deck、chart、table、template、PPTX export 或手写 Facade drawing code。
+本 Change 保留现有单页 authoring baseline，不增加多页 deck、Native Enhancement、chart、
+table、template 或手写 Facade drawing code。

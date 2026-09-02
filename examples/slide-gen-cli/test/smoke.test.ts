@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
+import { WorktreeClient } from "@univerjs-pro/collaboration-worktree-client";
 import { afterEach, expect, it } from "vitest";
 import { startServer, type DemoServer } from "../src/server/server.js";
 import { createFixtureResourceLibrary } from "./resource-fixture.js";
@@ -22,151 +23,65 @@ afterEach(async () => {
   temporaryRoot = undefined;
 });
 
-it("keeps 02 and edits Sheet, Doc, and Slide through Worktrees", async () => {
-  server = await startServer(":memory:");
-  const sheetId = (await run("create", "sheet", "--name", "Demo Sheet")).trim();
-  const sheetWorktree = (await run("worktree", "create", "--unit", sheetId)).trim();
+it("exposes a Slide-only CLI and exports trunk and Worktree revisions as PPTX", async () => {
+  const topLevelHelp = await run("--help");
+  expect(topLevelHelp).toContain("slide-gen-cli");
+  expect(topLevelHelp).not.toContain("import ");
 
-  const before = await run(
-    "inspect",
-    "range",
-    "A1:B2",
-    "--worksheet",
-    "index:1",
-    "--unit",
-    sheetId,
-    "--trunk",
-    "--json",
-  );
-  expect(JSON.parse(before)).toMatchObject({
-    ranges: [
-      {
-        displayValues: [
-          ["Name", "Value"],
-          ["Initial", "1"],
-        ],
-      },
-    ],
+  const createHelp = await run("create", "--help");
+  expect(createHelp).toContain("Create a collaborative Slide");
+  expect(createHelp).not.toContain("<type>");
+  await expect(runResult("import", "deck.pptx")).rejects.toMatchObject({
+    stderr: expect.stringContaining("unknown command 'import'"),
   });
 
-  const execution = JSON.parse(
-    await run(
-      "execute",
-      "--unit",
-      sheetId,
-      "--worktree",
-      sheetWorktree,
-      "--code",
-      'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]]); return "done";',
-    ),
-  ) as Record<string, unknown>;
-  expect(execution).toMatchObject({ commit: "confirmed", revision: 2, value: "done" });
-
-  const documentId = (await run("create", "doc", "--name", "Demo Doc")).trim();
-  const documentWorktree = (await run("worktree", "create", "--unit", documentId)).trim();
-  expect(
-    JSON.parse(
-      await run(
-        "inspect",
-        "document",
-        "--unit",
-        documentId,
-        "--worktree",
-        documentWorktree,
-        "--json",
-      ),
-    ),
-  ).toMatchObject({ kind: "document", title: "Demo Doc" });
-  expect(
-    JSON.parse(
-      await run(
-        "execute",
-        "--unit",
-        documentId,
-        "--worktree",
-        documentWorktree,
-        "--code",
-        'await api.executeCommand("doc.mutation.rename-doc", { unitId: doc.getId(), name: "Updated Doc" }); return doc.getName();',
-      ),
-    ),
-  ).toMatchObject({ commit: "confirmed", revision: 2, value: "Updated Doc" });
-  expect(
-    JSON.parse(
-      await run(
-        "inspect",
-        "document",
-        "--unit",
-        documentId,
-        "--worktree",
-        documentWorktree,
-        "--json",
-      ),
-    ),
-  ).toMatchObject({ title: "Updated Doc" });
-
-  const presentationId = (await run("create", "slide", "--name", "Demo Slide")).trim();
-  const presentationWorktree = (await run("worktree", "create", "--unit", presentationId)).trim();
-  expect(
-    JSON.parse(
-      await run(
-        "inspect",
-        "presentation",
-        "--unit",
-        presentationId,
-        "--worktree",
-        presentationWorktree,
-        "--json",
-      ),
-    ),
-  ).toMatchObject({ kind: "presentation", name: "Demo Slide" });
-  expect(
-    JSON.parse(
-      await run(
-        "execute",
-        "--unit",
-        presentationId,
-        "--worktree",
-        presentationWorktree,
-        "--code",
-        'presentation.setName("Updated Slide"); return presentation.getName();',
-      ),
-    ),
-  ).toMatchObject({ commit: "confirmed", revision: 2, value: "Updated Slide" });
-
-  for (const unitId of [sheetId, documentId, presentationId]) {
-    const url = await run("open", "--unit", unitId, "--trunk", "--no-launch");
-    const page = await (await fetch(url.trim())).text();
-    expect(page).toContain('id="sidebar"');
-    expect(page).toContain('id="app"');
-  }
-  expect(await (await fetch(`${server.origin}/api/units`)).json()).toMatchObject([
-    { name: "Demo Sheet", unitId: sheetId, unitType: "sheet" },
-    { name: "Demo Doc", unitId: documentId, unitType: "doc" },
-    { name: "Demo Slide", unitId: presentationId, unitType: "slide" },
-  ]);
-  expect(await (await fetch(`${server.origin}/api/worktrees`)).json()).toEqual(
-    expect.arrayContaining([
-      expect.objectContaining({ worktreeID: sheetWorktree, status: "draft" }),
-      expect.objectContaining({ worktreeID: documentWorktree, status: "draft" }),
-      expect.objectContaining({ worktreeID: presentationWorktree, status: "draft" }),
-    ]),
+  server = await startServer(":memory:");
+  temporaryRoot = await mkdtemp(join(tmpdir(), "slide-gen-export-"));
+  const unitId = (await run("create", "--name", "Export Slide")).trim();
+  const worktreeId = (await run("worktree", "create", "--unit", unitId)).trim();
+  await run(
+    "execute",
+    "--unit",
+    unitId,
+    "--worktree",
+    worktreeId,
+    "--code",
+    'presentation.setName("Worktree Slide"); return presentation.getName();',
   );
-  expect(await run("api", "find", "setValues", "--unit", "sheet")).toContain("FRange.setValues");
-  expect(await run("api", "show", "FRange.setValues")).toContain("setValues");
 
-  const output = resolve(root, "dist/test-output");
-  const captures = [
-    [sheetId, "--worktree", sheetWorktree, "--sheet", "Data", "--range", "A1:B2"],
-    [documentId, "--worktree", documentWorktree],
-    [presentationId, "--worktree", presentationWorktree, "--pages", "1"],
-  ] as const;
-  for (const [unitId, ...options] of captures) {
-    const screenshot = JSON.parse(
-      await run("screenshot", "--unit", unitId, ...options, "--out", output, "--json"),
-    ) as { readonly outputs: readonly { readonly location: string }[] };
-    const bytes = await readFile(screenshot.outputs[0]!.location);
-    expect(bytes.subarray(1, 4).toString()).toBe("PNG");
+  const invalid = join(temporaryRoot, "deck.docx");
+  await expect(runResult("export", invalid, "--unit", unitId, "--trunk")).rejects.toMatchObject({
+    stderr: expect.stringContaining("Slide export file must end in .pptx"),
+  });
+
+  const trunk = join(temporaryRoot, "trunk.pptx");
+  const worktree = join(temporaryRoot, "worktree.pptx");
+  await run("export", trunk, "--unit", unitId, "--trunk");
+  await run("export", worktree, "--unit", unitId, "--worktree", worktreeId);
+  for (const file of [trunk, worktree]) {
+    const bytes = await readFile(file);
+    expect(bytes.subarray(0, 2).toString()).toBe("PK");
+    expect(bytes.length).toBeGreaterThan(1_000);
   }
+
+  expect(
+    JSON.parse(await run("inspect", "presentation", "--unit", unitId, "--trunk", "--json")),
+  ).toMatchObject({ name: "Export Slide" });
+  expect(
+    JSON.parse(
+      await run("inspect", "presentation", "--unit", unitId, "--worktree", worktreeId, "--json"),
+    ),
+  ).toMatchObject({ name: "Worktree Slide" });
+  expect(await readFile(trunk)).not.toEqual(await readFile(worktree));
+
+  const client = new WorktreeClient({ origin: server.origin });
+  expect(JSON.parse(await run("worktree", "ready", worktreeId))).toMatchObject({ status: "ready" });
+  expect(await client.reopenWorktree(worktreeId)).toMatchObject({ status: "draft" });
+  await client.markReady(worktreeId);
+  expect(await client.mergeWorktree(worktreeId)).toMatchObject({ status: "merged" });
+
+  const discardedId = (await run("worktree", "create", "--unit", unitId)).trim();
+  expect(await client.discardWorktree(discardedId)).toMatchObject({ status: "discarded" });
 }, 180_000);
 
 it("authors the resource-backed Baseline Slide and collects Review Evidence", async () => {
@@ -217,7 +132,7 @@ it("authors the resource-backed Baseline Slide and collects Review Evidence", as
   });
   expect(compiled.lints).toHaveLength(1);
 
-  const unitId = (await run("create", "slide", "--name", "产品发布状态")).trim();
+  const unitId = (await run("create", "--name", "产品发布状态")).trim();
   const worktreeId = (await run("worktree", "create", "--unit", unitId)).trim();
   const unchanged = JSON.parse(
     await run(

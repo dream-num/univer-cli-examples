@@ -11,10 +11,14 @@ architecture live on the [Univer Office documentation site](https://office.unive
 | [`02-file-exchange`](./examples/02-file-exchange/README.md)           | Import and export Office files                    | Exchange, UnitData, native binding      |
 | [`03-visual-inspection`](./examples/03-visual-inspection/README.md)   | Visually inspect all three Unit types             | Render Page, Screenshot, Layout Lint    |
 | [`04-worktree`](./examples/04-worktree/README.md)                     | Edit in a draft and hand it to a human for review | Worktree, Ready, Merge, Reopen, Discard |
-| [`06-resource-backed-slide`](./examples/06-resource-backed-slide/README.md) | Build one reviewed Slide page from SVG and assets | Resource Library, SVG compiler           |
 
 Read them in numbered order. Each directory has its own `package.json`, lockfile, and dependencies,
 so it can be copied and run independently.
+
+## Agent application
+
+[`slide-gen-cli`](./examples/slide-gen-cli/README.md) generates, reviews, exports, and displays a
+resource-backed Slide with an Agent.
 
 ## 01 Content Operations
 

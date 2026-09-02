@@ -9,7 +9,7 @@ export async function runInProcess(
   let output = "";
   const program = createProgram({ openResourceLibrary });
   configureOutput(program);
-  await program.parseAsync(["node", "univer-example-cli", ...args]);
+  await program.parseAsync(["node", "slide-gen-cli", ...args]);
   return output;
 
   function configureOutput(command: Command): void {

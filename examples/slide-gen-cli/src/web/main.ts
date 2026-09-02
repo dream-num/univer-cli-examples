@@ -31,17 +31,11 @@ import "@univerjs/drawing-ui/lib/index.css";
 import UniverDrawingUIEnUS from "@univerjs/drawing-ui/locale/en-US";
 import { UniverRenderEnginePlugin } from "@univerjs/engine-render";
 import { UniverNetworkPlugin } from "@univerjs/network";
-import { UniverDocsCorePreset } from "@univerjs/preset-docs-core";
-import "@univerjs/preset-docs-core/lib/index.css";
-import UniverPresetDocsCoreEnUS from "@univerjs/preset-docs-core/locales/en-US";
-import { UniverSheetsCorePreset } from "@univerjs/preset-sheets-core";
-import "@univerjs/preset-sheets-core/lib/index.css";
-import UniverPresetSheetsCoreEnUS from "@univerjs/preset-sheets-core/locales/en-US";
 import { createUniver, defaultTheme, mergeLocales, type IPreset } from "@univerjs/presets";
 import { UniverUIPlugin } from "@univerjs/ui";
 import "@univerjs/ui/lib/index.css";
 import UniverUIEnUS from "@univerjs/ui/locale/en-US";
-import { parseUnitType, unitTypeLabel, type UnitSummary, type UnitType } from "../shared/unit.js";
+import { parseUnitType, unitTypeLabel, type UnitSummary } from "../shared/unit.js";
 import { createUnitUrl, viewerUrl, worktreesUrl } from "../shared/urls.js";
 import "./styles.css";
 
@@ -63,7 +57,8 @@ installCreateButton();
 if (unitId !== null) {
   const unit = units.find((item) => item.unitId === unitId);
   if (unit === undefined) throw new Error(`Unknown Unit ${unitId}`);
-  await mountEditor(unitId, parseUnitType(unit.unitType), worktreeID);
+  parseUnitType(unit.unitType);
+  await mountEditor(unitId, worktreeID);
 }
 
 function renderUnits(units: readonly UnitSummary[], activeUnitId: string | null): void {
@@ -78,7 +73,7 @@ function renderUnits(units: readonly UnitSummary[], activeUnitId: string | null)
 
     const type = document.createElement("span");
     type.className = "unit-type";
-    type.textContent = unitTypeLabel(unit.unitType);
+    type.textContent = unitTypeLabel();
     const name = document.createElement("span");
     name.className = "unit-name";
     name.textContent = unit.name;
@@ -142,22 +137,17 @@ function renderWorktrees(
 function installCreateButton(): void {
   document.querySelector("#create-form")!.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const type = parseUnitType(document.querySelector<HTMLSelectElement>("#create-type")!.value);
     const response = await fetch(createUnitUrl(location.origin), {
       method: "POST",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify({ type }),
+      body: JSON.stringify({}),
     });
     const unit = (await response.json()) as UnitSummary;
     location.assign(viewerUrl(location.origin, unit.unitId));
   });
 }
 
-async function mountEditor(
-  unitId: string,
-  unitType: UnitType,
-  worktreeID: string | null,
-): Promise<void> {
+async function mountEditor(unitId: string, worktreeID: string | null): Promise<void> {
   document.querySelector<HTMLElement>("#empty")!.style.display = "none";
   const app = document.querySelector<HTMLElement>("#app")!;
   app.style.display = "block";
@@ -190,8 +180,6 @@ async function mountEditor(
     locale: LocaleType.EN_US,
     locales: {
       [LocaleType.EN_US]: mergeLocales(
-        UniverPresetSheetsCoreEnUS,
-        UniverPresetDocsCoreEnUS,
         UniverDesignEnUS,
         UniverUIEnUS,
         UniverDocsUIEnUS,
@@ -208,7 +196,7 @@ async function mountEditor(
       {
         plugins: [[UniverLicensePlugin, { license: import.meta.env.UNIVER_LICENSE || undefined }]],
       },
-      editorPreset(unitType),
+      editorPreset(),
     ],
     plugins: [
       UniverCollaborationPlugin,
@@ -224,20 +212,11 @@ async function mountEditor(
     ],
   });
 
-  switch (unitType) {
-    case "sheet":
-      await univerAPI.getCollaboration().loadSheetAsync(unitId);
-      break;
-    case "doc":
-      await univerAPI.getCollaboration().loadDocAsync(unitId);
-      break;
-    case "slide":
-      await univerAPI.getCollaboration().loadSlideAsync(unitId);
-  }
+  await univerAPI.getCollaboration().loadSlideAsync(unitId);
   document.querySelector("#status")!.textContent =
     worktree === undefined
-      ? `${unitType} · ${unitId} · trunk · editable`
-      : `${unitType} · ${unitId} · worktree ${worktree.worktreeID} · ${worktree.status}`;
+      ? `slide · ${unitId} · trunk · editable`
+      : `slide · ${unitId} · worktree ${worktree.worktreeID} · ${worktree.status}`;
 }
 
 function renderReviewActions(worktree: WorktreeData): void {
@@ -277,24 +256,17 @@ function actionButton(
   return button;
 }
 
-function editorPreset(unitType: UnitType): IPreset {
-  switch (unitType) {
-    case "sheet":
-      return UniverSheetsCorePreset({ container: "app" });
-    case "doc":
-      return UniverDocsCorePreset({ container: "app" });
-    case "slide":
-      return {
-        plugins: [
-          UniverNetworkPlugin,
-          UniverRenderEnginePlugin,
-          [UniverUIPlugin, { container: "app" }],
-          UniverDocsPlugin,
-          UniverDocsUIPlugin,
-          [UniverDrawingPlugin, { override: [[IImageIoService, null]] }],
-          UniverSlidesPlugin,
-          UniverSlidesUIPlugin,
-        ],
-      };
-  }
+function editorPreset(): IPreset {
+  return {
+    plugins: [
+      UniverNetworkPlugin,
+      UniverRenderEnginePlugin,
+      [UniverUIPlugin, { container: "app" }],
+      UniverDocsPlugin,
+      UniverDocsUIPlugin,
+      [UniverDrawingPlugin, { override: [[IImageIoService, null]] }],
+      UniverSlidesPlugin,
+      UniverSlidesUIPlugin,
+    ],
+  };
 }

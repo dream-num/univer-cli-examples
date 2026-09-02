@@ -1,4 +1,4 @@
-# 06 Resource-backed Slide
+# Slide Gen CLI
 
 English | [简体中文](./README.zh-CN.md)
 
@@ -10,8 +10,8 @@ runtime commits the result for structured and visual review.
 stable handle → exported SVG asset → page.svg → compile-svg → execute → Review Evidence
 ```
 
-The example retains every command from `04-worktree`; this guide follows only the new one-page
-authoring path.
+The application is Slide-only. It retains API reference, resources, SVG compilation, execution,
+inspection, layout lint, screenshots, Worktree review, Web viewing, and PPTX export.
 
 ## Run
 
@@ -30,12 +30,13 @@ the committed Baseline Slide:
 ```bash
 mkdir -p authoring/resources .generated output
 
-univer-example-cli resources find rocket \
+slide-gen-cli resources find rocket \
   --registry example-tabler-outline --json
-univer-example-cli resources export example-tabler-outline/rocket \
+slide-gen-cli api find appendShape --unit slide
+slide-gen-cli resources export example-tabler-outline/rocket \
   --out authoring/resources --json
 
-univer-example-cli compile-svg authoring/page.svg --page 1 \
+slide-gen-cli compile-svg authoring/page.svg --page 1 \
   --out .generated/page.js --estimate-text-size --json
 ```
 
@@ -46,10 +47,10 @@ and only the expected text-estimation lint. A missing exported asset stops compi
 Create a Slide Worktree and apply the generated replacement:
 
 ```bash
-UNIT_ID=$(univer-example-cli create slide --name "Product release status")
-WORKTREE_ID=$(univer-example-cli worktree create --unit "$UNIT_ID")
+UNIT_ID=$(slide-gen-cli create --name "Product release status")
+WORKTREE_ID=$(slide-gen-cli worktree create --unit "$UNIT_ID")
 
-univer-example-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
+slide-gen-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
   --file .generated/page.js
 ```
 
@@ -57,11 +58,11 @@ Continue only when execution reports `commit: "confirmed"`. Collect all Review E
 handoff:
 
 ```bash
-univer-example-cli inspect slide index:1 \
+slide-gen-cli inspect slide index:1 \
   --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
-univer-example-cli lint --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
+slide-gen-cli lint --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
   --pages 1 --json
-univer-example-cli screenshot --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
+slide-gen-cli screenshot --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
   --pages 1 --out output --json
 ```
 
@@ -72,9 +73,13 @@ do not use `--add` for corrections.
 When the evidence passes:
 
 ```bash
-univer-example-cli worktree ready "$WORKTREE_ID"
-univer-example-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --no-launch
+slide-gen-cli worktree ready "$WORKTREE_ID"
+slide-gen-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --no-launch
+slide-gen-cli export product-release.pptx --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
+
+The Review URL works only while this application's built-in Server is running. Export from the
+same Worktree when you need a durable PPTX handoff; use `--trunk` to export the trunk revision.
 
 ## Use it with an Agent
 
@@ -105,5 +110,5 @@ pnpm unlink-cli
 - `test/program.test.ts` and `test/smoke.test.ts` use a fixed manifest and fake downloader, so
   automated verification does not require the remote asset host.
 
-This example covers one Slide page. It does not add multi-page decks, charts, tables, templates,
-PPTX export, or handwritten Facade drawing code.
+This Change keeps the existing one-page authoring baseline. It does not add multi-page decks,
+Native Enhancements, charts, tables, templates, or handwritten Facade drawing code.

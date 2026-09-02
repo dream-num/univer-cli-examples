@@ -9,7 +9,7 @@ import { createRequire } from "node:module";
 import { resolve } from "node:path";
 import { Command } from "commander";
 import { apiCommand } from "./features/api.js";
-import { exportFileCommand, importFileCommand } from "./features/file.js";
+import { exportFileCommand } from "./features/file.js";
 import { executeCommand, inspectCommand } from "./features/unit-content.js";
 import { createUnitCommand, openUnitCommand } from "./features/unit.js";
 import { lintCommand, screenshotCommand } from "./features/visual.js";
@@ -20,11 +20,10 @@ export interface ProgramOptions {
 }
 
 export function createProgram(options: ProgramOptions = {}): Command {
-  const program = new Command("univer-example-cli").description(
+  const program = new Command("slide-gen-cli").description(
     "Author resource-backed Univer Slides through an isolated Worktree",
   );
   program.addCommand(createUnitCommand());
-  program.addCommand(importFileCommand());
   program.addCommand(exportFileCommand());
   program.addCommand(worktreeCommand());
   program.addCommand(inspectCommand());

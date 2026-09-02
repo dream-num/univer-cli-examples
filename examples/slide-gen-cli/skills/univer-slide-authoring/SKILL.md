@@ -1,12 +1,12 @@
 ---
 name: univer-slide-authoring
-description: Create or redesign one reviewable Univer Slide page from SVG and Resource Library assets in the 06-resource-backed-slide example.
+description: Create or redesign one reviewable Univer Slide page from SVG and Resource Library assets in Slide Gen CLI.
 ---
 
 # Author one Univer Slide page
 
-Use `univer-example-cli <command>`. The user starts the Server separately with
-`pnpm start-server` from the current `06-resource-backed-slide` directory.
+Use `slide-gen-cli <command>`. The user starts the Server separately with
+`pnpm start-server` from the current `slide-gen-cli` directory.
 
 Keep the editable source in `authoring/page.svg`, exported assets in
 `authoring/resources/`, generated code in `.generated/`, and screenshots in `output/`.
@@ -15,7 +15,8 @@ Keep the editable source in `authoring/page.svg`, exported assets in
 
 1. Fix the page's exact copy, one core message, 960 × 540 layout, colors, font roles, and required
    asset meanings before drawing. This example produces one page only.
-2. Create a Slide Unit and Worktree. Retain both IDs for every later command.
+2. Create a Slide with `slide-gen-cli create --name <name>`, then create a Worktree. Retain both IDs
+   for every later command. Use `api find|show --unit slide` when you need Facade reference.
 3. Create `authoring/resources/`, `.generated/`, and `output/`. Find assets by meaning with
    `resources find`, then export canonical handles with
    `resources export ... --out authoring/resources`. Keep one registry/style baseline. Reference
@@ -29,7 +30,7 @@ Keep the editable source in `authoring/page.svg`, exported assets in
 5. Compile page 1 with:
 
    ```bash
-   univer-example-cli compile-svg authoring/page.svg --page 1 \
+   slide-gen-cli compile-svg authoring/page.svg --page 1 \
      --out .generated/page.js --estimate-text-size --json
    ```
 
@@ -37,7 +38,7 @@ Keep the editable source in `authoring/page.svg`, exported assets in
    lint is expected, while any other surviving lint needs an explicit reason.
 
 6. Apply the generated program once with
-   `univer-example-cli execute --unit <unitId> --worktree <worktreeId> --file .generated/page.js`.
+   `slide-gen-cli execute --unit <unitId> --worktree <worktreeId> --file .generated/page.js`.
    Continue only when the result reports `commit: "confirmed"`; otherwise return the result and
    stop.
 7. Inspect `slide index:1`, run layout lint for page 1, capture its screenshot, and read the PNG.
@@ -47,9 +48,11 @@ Keep the editable source in `authoring/page.svg`, exported assets in
 8. Fix `authoring/page.svg`, then compile and execute the replacement again. Never use `--add` for
    rework because it leaves broken elements under the replacements. Repeat inspection, lint, and
    screenshot review until warnings are zero and every lint is fixed or justified.
-9. Mark the Worktree Ready and print its review URL with `open --no-launch`. Return the Unit ID,
-   Worktree ID, revision, SVG and exported-asset paths, accepted lints, screenshot path, and review
-   URL. Open the browser only when the user asks.
+9. Mark the Worktree Ready and print its review URL with `open --no-launch`. The URL works only
+   while Slide Gen CLI's built-in Server is running. If the user requests a file, export the same
+   Worktree with `export <file.pptx> --unit <unitId> --worktree <worktreeId>`. Return the Unit ID,
+   Worktree ID, revision, SVG and exported-asset paths, accepted lints, screenshot path, review URL,
+   and optional PPTX path. Open the browser only when the user asks.
 
 Do not hand-write Facade drawing code, add pages, charts or tables, build a template system, or
 replace final screenshot review with the SVG browser preview.

@@ -14,7 +14,6 @@ import {
   type UniverRenderUnit,
 } from "@univer-cli/univer-render-runtime";
 import type { ISlideData } from "@univerjs-pro/slides";
-import type { IDocumentData, IWorkbookData } from "@univerjs/core";
 import { Option, type Command } from "commander";
 import { fromInstanceType } from "../../shared/unit.js";
 import { DEFAULT_SERVER_URL } from "../../shared/urls.js";
@@ -49,11 +48,8 @@ export function lintCommand(): Command {
 async function loadRenderUnit(unitId: string, worktreeID?: string): Promise<UniverRenderUnit> {
   const contentRuntime = await loadRuntime(DEFAULT_SERVER_URL, unitId, worktreeID);
   try {
-    const unitData = (await contentRuntime.exportUnitData()) as
-      | IWorkbookData
-      | IDocumentData
-      | ISlideData;
-    return renderUnit(fromInstanceType(contentRuntime.unitType), unitData);
+    fromInstanceType(contentRuntime.unitType);
+    return { unitType: "slide", unitData: (await contentRuntime.exportUnitData()) as ISlideData };
   } finally {
     await contentRuntime.close();
   }
@@ -71,20 +67,6 @@ function selectedWorktree(command: Command): string | undefined {
     throw new Error("Specify --trunk or --worktree <id>");
   }
   return options.worktree;
-}
-
-function renderUnit(
-  unitType: "sheet" | "doc" | "slide",
-  unitData: IWorkbookData | IDocumentData | ISlideData,
-): UniverRenderUnit {
-  switch (unitType) {
-    case "sheet":
-      return { unitType, unitData: unitData as IWorkbookData };
-    case "doc":
-      return { unitType, unitData: unitData as IDocumentData };
-    case "slide":
-      return { unitType, unitData: unitData as ISlideData };
-  }
 }
 
 function lazyScreenshot(): UnitScreenshot {

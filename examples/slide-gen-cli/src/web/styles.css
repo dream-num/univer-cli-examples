@@ -12,8 +12,7 @@ body,
     sans-serif;
 }
 
-button,
-select {
+button {
   font: inherit;
 }
 
@@ -72,7 +71,6 @@ select {
   margin-bottom: 10px;
 }
 
-#create-type,
 #create-form button {
   height: 34px;
   border: 1px solid #dedee3;
@@ -81,13 +79,8 @@ select {
   color: #27272a;
 }
 
-#create-type {
-  min-width: 0;
-  flex: 1;
-  padding: 0 9px;
-}
-
 #create-form button {
+  flex: 1;
   padding: 0 11px;
   background: #27272a;
   color: white;

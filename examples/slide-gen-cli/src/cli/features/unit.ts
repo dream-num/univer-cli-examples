@@ -1,6 +1,5 @@
-import { Argument, Command, Option } from "commander";
+import { Command, Option } from "commander";
 import launch from "open";
-import { UNIT_TYPES, type UnitType } from "../../shared/unit.js";
 import { createUnitUrl, DEFAULT_SERVER_URL, viewerUrl } from "../../shared/urls.js";
 
 interface CreateOptions {
@@ -16,14 +15,13 @@ interface OpenOptions {
 
 export function createUnitCommand(): Command {
   const command = new Command("create")
-    .description("Create a collaborative Unit")
-    .addArgument(new Argument("<type>", "Unit type").choices(UNIT_TYPES))
-    .option("--name <name>", "Unit name", "Untitled")
-    .action(async (type: UnitType, options: CreateOptions) => {
+    .description("Create a collaborative Slide")
+    .option("--name <name>", "Slide name", "Untitled Slide")
+    .action(async (options: CreateOptions) => {
       const response = await fetch(createUnitUrl(DEFAULT_SERVER_URL), {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ name: options.name, type }),
+        body: JSON.stringify({ name: options.name }),
       });
       const { unitId } = (await response.json()) as { readonly unitId: string };
       process.stdout.write(`${unitId}\n`);

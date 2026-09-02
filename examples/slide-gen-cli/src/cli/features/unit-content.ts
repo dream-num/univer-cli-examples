@@ -91,7 +91,8 @@ export async function loadRuntime(
       license: process.env["UNIVER_LICENSE"] ?? "",
     }),
   });
-  const runtime = await factory.load(unitId, toInstanceType(parseUnitType(unitType)));
+  parseUnitType(unitType);
+  const runtime = await factory.load(unitId, toInstanceType());
   await runtime.pull();
   return runtime;
 }

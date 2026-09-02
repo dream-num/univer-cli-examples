@@ -9,17 +9,14 @@ import {
   MemorySessionTicketStore,
   UniverCollabEndpoint,
 } from "@univerjs-pro/collaboration-endpoint";
-import {
-  UniverCollabService,
-  type CreateUnitFromDataInput,
-} from "@univerjs-pro/collaboration-service";
+import { UniverCollabService } from "@univerjs-pro/collaboration-service";
 import { createNodeTransport } from "@univerjs-pro/collaboration-transport-node";
 import { SQLiteWorktreeDatabaseAdapter } from "@univerjs-pro/collaboration-worktree-database-sqlite";
 import { UniverCollabWorktreeEndpoint } from "@univerjs-pro/collaboration-worktree-endpoint";
 import { UniverCollabWorktreeService } from "@univerjs-pro/collaboration-worktree-service";
 import { getSlidesEmptySnapshot } from "@univerjs-pro/slides";
-import { LocaleType, type IDocumentData, type IWorkbookData } from "@univerjs/core";
-import { parseUnitType, unitTypeLabel, type UnitType } from "../shared/unit.js";
+import { LocaleType } from "@univerjs/core";
+import { UNIT_TYPE } from "../shared/unit.js";
 import { UniverType } from "@univerjs/protocol";
 import { UnitStore } from "./unit-store.js";
 import { WorktreeStore } from "./worktree-store.js";
@@ -78,14 +75,15 @@ export async function startServer(
   const app = express();
   app.post("/api/units", express.json(), async (request, response) => {
     const unitId = String(request.body.unitId ?? randomUUID().slice(0, 8));
-    const unitType = parseUnitType(request.body.type);
-    const name = String(request.body.name ?? `Untitled ${unitTypeLabel(unitType)}`);
-    const input =
-      request.body.data === undefined
-        ? createUnitInput(unitType, unitId, name)
-        : importedUnitInput(unitType, request.body.data);
-    const result = await service.createUnitFromData(input, { userID: DEMO_USER_ID });
-    const unit = { name, unitId, unitType };
+    const name = String(request.body.name ?? "Untitled Slide");
+    const result = await service.createUnitFromData(
+      {
+        type: UniverType.UNIVER_SLIDE,
+        data: { ...getSlidesEmptySnapshot(unitId, LocaleType.EN_US, name), rev: 1 },
+      },
+      { userID: DEMO_USER_ID },
+    );
+    const unit = { name, unitId, unitType: UNIT_TYPE };
     units.add(unit);
     response.status(201).json({ ...unit, revision: result.headRevision });
   });
@@ -132,79 +130,6 @@ export async function startServer(
       units.close();
       worktrees.close();
     },
-  };
-}
-
-function importedUnitInput(unitType: UnitType, data: unknown): CreateUnitFromDataInput {
-  switch (unitType) {
-    case "sheet":
-      return { type: UniverType.UNIVER_SHEET, data: data as IWorkbookData };
-    case "doc":
-      return { type: UniverType.UNIVER_DOC, data: data as IDocumentData };
-    case "slide":
-      return {
-        type: UniverType.UNIVER_SLIDE,
-        data: data as ReturnType<typeof getSlidesEmptySnapshot>,
-      };
-  }
-}
-
-function createUnitInput(
-  unitType: UnitType,
-  unitId: string,
-  name: string,
-): CreateUnitFromDataInput {
-  switch (unitType) {
-    case "sheet":
-      return { type: UniverType.UNIVER_SHEET, data: createWorkbook(unitId, name) };
-    case "doc":
-      return { type: UniverType.UNIVER_DOC, data: createDocument(unitId, name) };
-    case "slide":
-      return {
-        type: UniverType.UNIVER_SLIDE,
-        data: { ...getSlidesEmptySnapshot(unitId, LocaleType.EN_US, name), rev: 1 },
-      };
-  }
-}
-
-function createWorkbook(unitId: string, name: string): IWorkbookData {
-  return {
-    id: unitId,
-    rev: 1,
-    name,
-    appVersion: "0.25.0",
-    locale: LocaleType.EN_US,
-    sheetOrder: ["sheet-1"],
-    sheets: {
-      "sheet-1": {
-        id: "sheet-1",
-        name: "Data",
-        rowCount: 100,
-        columnCount: 20,
-        cellData: {
-          0: { 0: { v: "Name" }, 1: { v: "Value" } },
-          1: { 0: { v: "Initial" }, 1: { v: 1 } },
-        },
-      },
-    },
-    styles: {},
-    resources: [],
-  };
-}
-
-function createDocument(unitId: string, name: string): IDocumentData {
-  return {
-    id: unitId,
-    rev: 1,
-    title: name,
-    body: {
-      dataStream: "Start writing\r\n",
-      paragraphs: [{ paragraphId: "paragraph-1", startIndex: 13 }],
-      sectionBreaks: [{ sectionId: "section-1", startIndex: 14 }],
-      textRuns: [],
-    },
-    documentStyle: {},
-    resources: [],
   };
 }
 
