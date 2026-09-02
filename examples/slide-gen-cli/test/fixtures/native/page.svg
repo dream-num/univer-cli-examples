@@ -4,6 +4,6 @@
   <image x="858" y="32" width="48" height="48" href="image.svg" xlink:href="image.svg" data-univer-embed="image" />
   <rect x="54" y="112" width="520" height="330" rx="16" fill="#171F34" stroke="#2C3856" />
   <text x="74" y="142" fill="#82E8EC" font-family="Arial" font-size="12">EDITABLE CHART</text>
-  <rect x="600" y="112" width="306" height="330" rx="16" fill="#171F34" stroke="#2C3856" />
-  <text x="620" y="142" fill="#B4AAFF" font-family="Arial" font-size="12">EDITABLE TABLE</text>
+  <rect x="580" y="112" width="370" height="330" rx="16" fill="#171F34" stroke="#2C3856" />
+  <text x="600" y="142" fill="#B4AAFF" font-family="Arial" font-size="12">EDITABLE TABLE</text>
 </svg>

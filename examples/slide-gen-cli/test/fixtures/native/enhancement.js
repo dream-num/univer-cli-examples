@@ -23,7 +23,7 @@ const table = slide.insertTable(
       ["QA", "Lin"],
       ["Ready", "Mina"],
     ])
-    .setAbsolutePosition(620, 160)
+    .setAbsolutePosition(590, 160)
     .setSize(266, 250)
     .build(),
 );

@@ -52,7 +52,20 @@ it("replays native chart and table after full-page replacement", async () => {
     value: { charts: 1, tables: 1 },
   });
   expect(await nativeCounts(unitId, worktreeId)).toEqual({ charts: 1, tables: 1 });
-  expect(await inspectionCounts(unitId, worktreeId)).toMatchObject({ charts: 1, tables: 1 });
+  const inspection = await inspectSlide(unitId, worktreeId);
+  expect(inspection.elementCounts).toMatchObject({ charts: 1, tables: 1 });
+  const table = inspection.elements.find((element) => element.type === "table");
+  const tablePanel = inspection.elements.find(
+    (element) =>
+      element.type === "shape" && element.transform.left === 580 && element.transform.width === 370,
+  );
+  expect(table).toMatchObject({ transform: { left: 590, top: 160, width: 360, height: 250 } });
+  expect(tablePanel).toBeDefined();
+  expect(table!.transform.left).toBeGreaterThanOrEqual(tablePanel!.transform.left);
+  expect(table!.transform.left + table!.transform.width).toBeLessThanOrEqual(
+    tablePanel!.transform.left + tablePanel!.transform.width,
+  );
+  expect(table!.transform.left + table!.transform.width).toBeLessThanOrEqual(960);
 
   expect(await execute(unitId, worktreeId, program)).toMatchObject({ commit: "confirmed" });
   expect(await nativeCounts(unitId, worktreeId)).toEqual({ charts: 0, tables: 0 });
@@ -182,7 +195,22 @@ async function runResult(...args: readonly string[]) {
 }
 
 async function inspectionCounts(unitId: string, worktreeId: string) {
+  return (await inspectSlide(unitId, worktreeId)).elementCounts;
+}
+
+async function inspectSlide(unitId: string, worktreeId: string) {
   return JSON.parse(
     await run("inspect", "slide", "index:1", "--unit", unitId, "--worktree", worktreeId, "--json"),
-  ).slides[0].elementCounts;
+  ).slides[0] as {
+    readonly elementCounts: Record<string, number>;
+    readonly elements: readonly {
+      readonly type: string;
+      readonly transform: {
+        readonly left: number;
+        readonly top: number;
+        readonly width: number;
+        readonly height: number;
+      };
+    }[];
+  };
 }

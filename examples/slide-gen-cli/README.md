@@ -57,7 +57,7 @@ blank pages. The workflow sets no maximum page count.
 Save structured inspection, layout diagnostics, and a screenshot for every page:
 
 ```bash
-slide-gen-cli inspect slide presentation \
+slide-gen-cli inspect presentation \
   --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
 slide-gen-cli inspect slide index:1 \
   --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json

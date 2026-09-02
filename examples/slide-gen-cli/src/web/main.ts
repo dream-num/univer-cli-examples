@@ -163,14 +163,11 @@ async function mountEditor(unitId: string, worktreeID: string | null): Promise<v
 
   const endpoint = `${location.origin}/universer-api`;
   let worktree: WorktreeData | undefined;
-  if (worktreeID === null) {
-    app.inert = false;
-  } else {
+  if (worktreeID !== null) {
     worktree = await new WorktreeClient({ origin: location.origin }).getWorktree(worktreeID);
     if (!worktree.units.some((unit) => unit.unitID === unitId)) {
       throw new Error(`Worktree ${worktreeID} does not contain Unit ${unitId}`);
     }
-    app.inert = worktree.status !== "draft";
     renderReviewActions(worktree);
   }
 
@@ -223,10 +220,40 @@ async function mountEditor(unitId: string, worktreeID: string | null): Promise<v
   });
 
   await univerAPI.getCollaboration().loadSlideAsync(unitId);
+  lockEditorMutation(app, worktree !== undefined && worktree.status !== "draft");
   document.querySelector("#status")!.textContent =
     worktree === undefined
       ? `slide · ${unitId} · trunk · editable`
       : `slide · ${unitId} · worktree ${worktree.worktreeID} · ${worktree.status}`;
+}
+
+function lockEditorMutation(app: HTMLElement, locked: boolean): void {
+  if (locked && app.querySelector('[data-u-comp="workbench-skeleton-shimmer"]')) {
+    const observer = new MutationObserver(() => {
+      if (!app.querySelector('[data-u-comp="workbench-skeleton-shimmer"]')) {
+        observer.disconnect();
+        lockEditorMutation(app, true);
+      }
+    });
+    observer.observe(app, { childList: true, subtree: true });
+    return;
+  }
+
+  const thumbnailSelector = '[data-u-comp="slide-thumbnail-item"]';
+  const setLocked = (element: Element | null): void => {
+    if (element instanceof HTMLElement) element.inert = locked;
+  };
+
+  setLocked(app.querySelector('[data-u-comp="headerbar"]'));
+  const leftSidebar = app.querySelector('[data-u-comp="left-sidebar"]');
+  const slideRail = leftSidebar?.firstElementChild;
+  for (const child of slideRail?.children ?? []) {
+    if (!child.querySelector(thumbnailSelector)) setLocked(child);
+  }
+  for (const child of leftSidebar?.parentElement?.children ?? []) {
+    if (!child.contains(leftSidebar)) setLocked(child);
+  }
+  app.dataset.editorLocked = String(locked);
 }
 
 function renderReviewActions(worktree: WorktreeData): void {

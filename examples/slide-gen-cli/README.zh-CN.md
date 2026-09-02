@@ -56,7 +56,7 @@ slide-gen-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
 为每一页保存 structured inspection、layout diagnostics 和 screenshot：
 
 ```bash
-slide-gen-cli inspect slide presentation \
+slide-gen-cli inspect presentation \
   --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
 slide-gen-cli inspect slide index:1 \
   --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json

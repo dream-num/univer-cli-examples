@@ -15,6 +15,13 @@ afterEach(async () => {
   temporaryRoot = undefined;
 });
 
+it("keeps slide navigation outside the review mutation lock", async () => {
+  const source = await readFile(join(root, "src/web/main.ts"), "utf8");
+  expect(source).not.toMatch(/\bapp\.inert\s*=/);
+  expect(source).toContain("lockEditorMutation(app");
+  expect(source).toContain("slide-thumbnail-item");
+});
+
 it("finds and exports the canonical resource through an injected library", async () => {
   temporaryRoot = await mkdtemp(join(tmpdir(), "univer-resource-test-"));
   const downloads: string[] = [];
