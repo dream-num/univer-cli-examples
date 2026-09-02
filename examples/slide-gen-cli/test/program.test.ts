@@ -20,6 +20,10 @@ it("keeps slide navigation outside the review mutation lock", async () => {
   expect(source).not.toMatch(/\bapp\.inert\s*=/);
   expect(source).toContain("lockEditorMutation(app");
   expect(source).toContain("slide-thumbnail-item");
+  const animationFrameGuard = source.indexOf("await ensureAnimationFramesProgress()");
+  expect(animationFrameGuard).toBeGreaterThan(-1);
+  expect(animationFrameGuard).toBeLessThan(source.indexOf("createUniver({"));
+  expect(source).toContain("window.requestAnimationFrame = (callback)");
 });
 
 it("finds and exports the canonical resource through an injected library", async () => {

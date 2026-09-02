@@ -180,6 +180,7 @@ async function mountEditor(unitId: string, worktreeID: string | null): Promise<v
           wsSessionTicketUrl: `${endpoint}/user/session-ticket`,
         }
       : createWorktreeCollaborationConfig({ origin: location.origin, worktreeID });
+  await ensureAnimationFramesProgress();
   const { univerAPI } = createUniver({
     collaboration: true,
     locale: LocaleType.EN_US,
@@ -225,6 +226,21 @@ async function mountEditor(unitId: string, worktreeID: string | null): Promise<v
     worktree === undefined
       ? `slide · ${unitId} · trunk · editable`
       : `slide · ${unitId} · worktree ${worktree.worktreeID} · ${worktree.status}`;
+}
+
+async function ensureAnimationFramesProgress(): Promise<void> {
+  const nativeRequest = window.requestAnimationFrame.bind(window);
+  const progressed = await Promise.race([
+    new Promise<true>((resolve) => nativeRequest(() => resolve(true))),
+    new Promise<false>((resolve) => window.setTimeout(() => resolve(false), 100)),
+  ]);
+  if (progressed) return;
+
+  // Univer releases its initial workbench skeleton after two animation frames.
+  // Keep rendering usable in browsers that expose requestAnimationFrame but do not advance it.
+  window.requestAnimationFrame = (callback) =>
+    window.setTimeout(() => callback(performance.now()), 16);
+  window.cancelAnimationFrame = (handle) => window.clearTimeout(handle);
 }
 
 function lockEditorMutation(app: HTMLElement, locked: boolean): void {
