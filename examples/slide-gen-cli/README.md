@@ -86,7 +86,10 @@ slide-gen-cli export product-release.pptx --unit "$UNIT_ID" --worktree "$WORKTRE
 ```
 
 The review URL is scoped to this Server and works while it is running. PPTX export is optional;
-export the same Worktree revision that the reviewer accepted.
+export the same Worktree revision that the reviewer accepted. Before handing off a PPTX with native
+charts or tables, inspect exporter diagnostics and verify that its OOXML preserves chart
+category/value data, includes the embedded workbook, and contains the native table in slide XML;
+do not return only the file path.
 
 ## Use it with an Agent
 

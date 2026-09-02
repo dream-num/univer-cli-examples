@@ -85,7 +85,9 @@ slide-gen-cli export product-release.pptx --unit "$UNIT_ID" --worktree "$WORKTRE
 ```
 
 Review URL 仅属于当前 Server，并且只在 Server 运行时可用。PPTX export 是按需操作；应从
-审阅者验收的同一个 Worktree revision 导出。
+审阅者验收的同一个 Worktree revision 导出。交付含 native chart/table 的 PPTX 前，必须检查
+exporter diagnostics，并确认 OOXML 保留 chart category/value data、包含 embedded workbook，
+且 slide XML 中包含 native table；不能只返回文件路径。
 
 ## 交给 Agent 使用
 

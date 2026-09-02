@@ -58,8 +58,11 @@ native programs in `authoring/enhancements/`. Generated code in `.generated/` an
    elements under the replacements.
 10. Mark the Worktree Ready and print its Server-scoped review URL with `open --no-launch`. If the
     user requests a file, export the same Worktree revision with
-    `export <file.pptx> --unit <unitId> --worktree <worktreeId>`. Return the Unit ID, Worktree ID,
-    revision, authoring paths, evidence paths, accepted lints, review URL, and optional PPTX path.
+    `export <file.pptx> --unit <unitId> --worktree <worktreeId>`. For a PPTX with native charts or
+    tables, inspect exporter diagnostics and verify that the OOXML preserves chart category/value
+    data, includes the embedded workbook, and contains the native table in slide XML. Return the
+    Unit ID, Worktree ID, revision, authoring paths, evidence paths, accepted lints, review URL, and
+    optional PPTX path; do not hand off only the file path.
 
 Do not add Sheet or Doc authoring, Office import, a template system, or handwritten Facade drawing
 code for ordinary elements. The Server owns review URLs; the workflow does not publish them.

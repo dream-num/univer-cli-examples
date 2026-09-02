@@ -26,6 +26,21 @@ it("keeps slide navigation outside the review mutation lock", async () => {
   expect(source).toContain("window.requestAnimationFrame = (callback)");
 });
 
+it("requires native PPTX acceptance evidence before handoff", async () => {
+  const guides = await Promise.all(
+    ["skills/univer-slide-authoring/SKILL.md", "README.md", "README.zh-CN.md"].map((path) =>
+      readFile(join(root, path), "utf8"),
+    ),
+  );
+  for (const guide of guides) {
+    expect(guide).toMatch(/exporter diagnostics/);
+    expect(guide).toMatch(/OOXML[\s\S]{0,40}chart\s+category\/value\s+data/);
+    expect(guide).toMatch(/embedded workbook/);
+    expect(guide).toMatch(/native table[\s\S]{0,40}slide XML|slide XML[\s\S]{0,40}native table/);
+    expect(guide).toMatch(/do not .*only the file path|不能只返回文件路径/);
+  }
+});
+
 it("finds and exports the canonical resource through an injected library", async () => {
   temporaryRoot = await mkdtemp(join(tmpdir(), "univer-resource-test-"));
   const downloads: string[] = [];
