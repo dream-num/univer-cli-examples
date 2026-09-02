@@ -17,6 +17,14 @@ import { UniverLicensePlugin } from "@univerjs-pro/license";
 import { UniverSlidesPlugin } from "@univerjs-pro/slides";
 import "@univerjs-pro/slides/facade";
 import UniverSlidesEnUS from "@univerjs-pro/slides/locale/en-US";
+import { UniverSlidesChartPlugin } from "@univerjs-pro/slides-chart";
+import { UniverSlidesChartUIPlugin } from "@univerjs-pro/slides-chart-ui";
+import "@univerjs-pro/slides-chart-ui/lib/index.css";
+import UniverSlidesChartUIEnUS from "@univerjs-pro/slides-chart-ui/locale/en-US";
+import { UniverSlidesTablePlugin } from "@univerjs-pro/slides-table";
+import { UniverSlidesTableUIPlugin } from "@univerjs-pro/slides-table-ui";
+import "@univerjs-pro/slides-table-ui/lib/index.css";
+import UniverSlidesTableUIEnUS from "@univerjs-pro/slides-table-ui/locale/en-US";
 import { UniverSlidesUIPlugin } from "@univerjs-pro/slides-ui";
 import "@univerjs-pro/slides-ui/lib/index.css";
 import UniverSlidesUIEnUS from "@univerjs-pro/slides-ui/locale/en-US";
@@ -186,6 +194,8 @@ async function mountEditor(unitId: string, worktreeID: string | null): Promise<v
         UniverDrawingUIEnUS,
         UniverSlidesEnUS,
         UniverSlidesUIEnUS,
+        UniverSlidesChartUIEnUS,
+        UniverSlidesTableUIEnUS,
         CollaborationClientEnUS,
         CollaborationClientUIEnUS,
       ),
@@ -267,6 +277,10 @@ function editorPreset(): IPreset {
       [UniverDrawingPlugin, { override: [[IImageIoService, null]] }],
       UniverSlidesPlugin,
       UniverSlidesUIPlugin,
+      UniverSlidesChartPlugin,
+      UniverSlidesChartUIPlugin,
+      UniverSlidesTablePlugin,
+      UniverSlidesTableUIPlugin,
     ],
   };
 }

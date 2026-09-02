@@ -1,4 +1,4 @@
-import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -17,7 +17,8 @@ afterEach(async () => {
 
 it("finds and exports the canonical resource through an injected library", async () => {
   temporaryRoot = await mkdtemp(join(tmpdir(), "univer-resource-test-"));
-  const library = createFixtureResourceLibrary(temporaryRoot);
+  const downloads: string[] = [];
+  const library = createFixtureResourceLibrary(temporaryRoot, (url) => downloads.push(url));
   const openResourceLibrary = () => library;
 
   const found = await runInProcess(openResourceLibrary, ["resources", "find", "rocket", "--json"]);
@@ -26,7 +27,8 @@ it("finds and exports the canonical resource through an injected library", async
     resources: [{ handle: "example-tabler-outline/rocket" }],
   });
 
-  const destination = join(temporaryRoot, "resources");
+  const authoring = join(temporaryRoot, "authoring");
+  const destination = join(authoring, "resources");
   const exported = await runInProcess(openResourceLibrary, [
     "resources",
     "export",
@@ -42,10 +44,12 @@ it("finds and exports the canonical resource through an injected library", async
   expect(await readFile(join(destination, "example-tabler-outline--rocket.svg"), "utf8")).toBe(
     ROCKET_SVG,
   );
+  expect(downloads).toEqual(["https://example.test/rocket.svg"]);
 
-  const source = join(temporaryRoot, "page.svg");
+  const source = join(authoring, "pages/page-01-status.svg");
   const generated = join(temporaryRoot, "page.js");
-  await writeFile(source, await readFile(join(root, "authoring/page.svg"), "utf8"));
+  await mkdir(dirname(source), { recursive: true });
+  await writeFile(source, await readFile(join(root, "authoring/pages/page-01-status.svg"), "utf8"));
   const compiled = JSON.parse(
     await runInProcess(openResourceLibrary, [
       "compile-svg",

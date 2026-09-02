@@ -1,4 +1,7 @@
-export const DEFAULT_SERVER_URL = "http://127.0.0.1:3010";
+export const DEFAULT_SERVER_URL =
+  typeof process === "undefined"
+    ? "http://127.0.0.1:3010"
+    : (process.env["SLIDE_GEN_SERVER_URL"] ?? "http://127.0.0.1:3010");
 
 export function collaborationUrls(serverUrl: string): {
   readonly collabSubmitChangesetUrl: string;

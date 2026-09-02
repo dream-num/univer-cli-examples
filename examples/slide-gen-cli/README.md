@@ -2,18 +2,16 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-This example turns an ordinary SVG into one reviewable Univer Slide page. Resource Library exports
-a stable visual asset, the SVG compiler produces disposable Facade JavaScript, and the Worktree
-runtime commits the result for structured and visual review.
+This Slide-only example turns a Presentation Brief into a reviewable Univer deck. The committed
+Authoring Source contains a deck spec, consecutive SVG pages, stable-handle resources, and optional
+programs for editable native charts and tables. Generated Facade JavaScript remains disposable.
 
 ```text
-stable handle → exported SVG asset → page.svg → compile-svg → execute → Review Evidence
+Presentation Brief → deck spec → SVG pages → compile/execute → evidence → Ready review
+                                      ↘ optional native enhancement replay
 ```
 
-The application is Slide-only. It retains API reference, resources, SVG compilation, execution,
-inspection, layout lint, screenshots, Worktree review, Web viewing, and PPTX export.
-
-## Run
+## Run the Baseline Deck
 
 Run from this directory:
 
@@ -24,51 +22,60 @@ pnpm link-cli
 pnpm start-server
 ```
 
-Keep the Server running. In another terminal, prepare the canonical rocket resource and compile
-the committed Baseline Slide:
+Keep the Server running. In another terminal, compile the two committed 960 × 540 pages:
 
 ```bash
-mkdir -p authoring/resources .generated output
+mkdir -p .generated output
 
-slide-gen-cli resources find rocket \
-  --registry example-tabler-outline --json
-slide-gen-cli api find appendShape --unit slide
-slide-gen-cli resources export example-tabler-outline/rocket \
-  --out authoring/resources --json
-
-slide-gen-cli compile-svg authoring/page.svg --page 1 \
-  --out .generated/page.js --estimate-text-size --json
+slide-gen-cli compile-svg authoring/pages/page-01-status.svg --page 1 \
+  --out .generated/page-01.js --estimate-text-size --json
+slide-gen-cli compile-svg authoring/pages/page-02-handoff.svg --page 2 \
+  --out .generated/page-02.js --estimate-text-size --json
 ```
 
-The compile result must report a `960 × 540` viewport, page `1`, `builtin-estimate`, no warnings,
-and only the expected text-estimation lint. A missing exported asset stops compilation and names
-`resources/example-tabler-outline--rocket.svg`.
+Page 1 uses the committed canonical rocket export; page 2 shows that a page does not need a
+resource reference. Stop on compiler warnings and review each reported lint.
 
-Create a Slide Worktree and apply the generated replacement:
+Create one Slide Worktree and execute pages consecutively:
 
 ```bash
-UNIT_ID=$(slide-gen-cli create --name "Product release status")
+UNIT_ID=$(slide-gen-cli create --name "Product release deck")
 WORKTREE_ID=$(slide-gen-cli worktree create --unit "$UNIT_ID")
 
 slide-gen-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --file .generated/page.js
+  --file .generated/page-01.js
+slide-gen-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
+  --file .generated/page-02.js
 ```
 
-Continue only when execution reports `commit: "confirmed"`. Collect all Review Evidence before
-handoff:
+Each execution must report `commit: "confirmed"`. Recompiling an existing page number replaces
+that page; `pageCount + 1` appends the next page; skipping a page number fails instead of creating
+blank pages. The workflow sets no maximum page count.
+
+## Review and deliver
+
+Save structured inspection, layout diagnostics, and a screenshot for every page:
 
 ```bash
+slide-gen-cli inspect slide presentation \
+  --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
 slide-gen-cli inspect slide index:1 \
   --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
+slide-gen-cli inspect slide index:2 \
+  --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
 slide-gen-cli lint --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --pages 1 --json
+  --pages 1,2 --json
 slide-gen-cli screenshot --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --pages 1 --out output --json
+  --pages 1,2 --out output --json
 ```
 
-Require zero layout findings, then open the PNG and check alignment, hierarchy, contrast, resource
-rendering, and content completeness. Fix `authoring/page.svg` and repeat replace compile/execute;
-do not use `--add` for corrections.
+Require zero unexplained layout findings. Read every PNG, then review narrative continuity, fonts,
+colors, resource style, page size, and native-element placement across the deck. Fix a page by
+compiling and executing its page number again; do not use `--add` for corrections.
+
+If a page needs an editable native chart or table, run its saved enhancement program only after
+the last SVG replacement. Charts must set explicit category and value field mappings. Replay the
+enhancement after any later replacement of that page.
 
 When the evidence passes:
 
@@ -78,12 +85,10 @@ slide-gen-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --no-launch
 slide-gen-cli export product-release.pptx --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
 
-The Review URL works only while this application's built-in Server is running. Export from the
-same Worktree when you need a durable PPTX handoff; use `--trunk` to export the trunk revision.
+The review URL is scoped to this Server and works while it is running. PPTX export is optional;
+export the same Worktree revision that the reviewer accepted.
 
 ## Use it with an Agent
-
-Install the dedicated skill while the Server remains running:
 
 ```bash
 pnpm skill:install
@@ -92,7 +97,7 @@ pnpm skill:install
 Open this directory with an Agent and enter:
 
 ```text
-Use univer-slide-authoring to redesign the single release-status Slide and hand me the reviewed Worktree.
+Use univer-slide-authoring to turn my Presentation Brief into a reviewed Slide Worktree.
 ```
 
 When finished:
@@ -104,11 +109,12 @@ pnpm unlink-cli
 
 ## Files and boundaries
 
-- `authoring/page.svg` is the committed Authoring Source.
-- `authoring/resources/`, `.generated/`, `.data/`, `output/`, and `dist/` are disposable and ignored.
-- `skills/univer-slide-authoring/SKILL.md` keeps Agents on the resource-backed SVG workflow.
-- `test/program.test.ts` and `test/smoke.test.ts` use a fixed manifest and fake downloader, so
-  automated verification does not require the remote asset host.
+- `authoring/deck.md` is the committed Presentation Brief and deck spec.
+- `authoring/pages/page-NN-*.svg` and `authoring/resources/` are committed Authoring Source.
+- `authoring/enhancements/` holds optional replayable native chart/table programs.
+- `.generated/`, `.data/`, `output/`, and `dist/` are disposable and ignored.
+- `test/program.test.ts`, `test/smoke.test.ts`, and `test/native.test.ts` use fixed inputs and local
+  assets, so automated verification does not contact the remote asset host.
 
-This Change keeps the existing one-page authoring baseline. It does not add multi-page decks,
-Native Enhancements, charts, tables, templates, or handwritten Facade drawing code.
+The application excludes Sheet and Doc authoring, Office import, templates, hosted publishing, and
+handwritten Facade drawing code for ordinary elements.

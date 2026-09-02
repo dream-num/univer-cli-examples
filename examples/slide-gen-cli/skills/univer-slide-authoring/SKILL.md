@@ -1,58 +1,65 @@
 ---
 name: univer-slide-authoring
-description: Create or redesign one reviewable Univer Slide page from SVG and Resource Library assets in Slide Gen CLI.
+description: Turn a Presentation Brief into a reviewable Univer Slide deck with SVG pages, optional editable native charts and tables, and per-page evidence.
 ---
 
-# Author one Univer Slide page
+# Author a Univer Slide deck
 
 Use `slide-gen-cli <command>`. The user starts the Server separately with
 `pnpm start-server` from the current `slide-gen-cli` directory.
 
-Keep the editable source in `authoring/page.svg`, exported assets in
-`authoring/resources/`, generated code in `.generated/`, and screenshots in `output/`.
+Keep the Presentation Brief and deck spec in `authoring/deck.md`, editable pages in
+`authoring/pages/page-NN-*.svg`, stable-handle exports in `authoring/resources/`, and optional
+native programs in `authoring/enhancements/`. Generated code in `.generated/` and review files in
+`output/` are disposable.
 
 ## Workflow
 
-1. Fix the page's exact copy, one core message, 960 × 540 layout, colors, font roles, and required
-   asset meanings before drawing. This example produces one page only.
+1. Write the deck spec before drawing: audience, decision, narrative, page sequence, exact copy,
+   960 × 540 layout, colors, font roles, and asset meanings. The page number uses two digits for
+   sorting; the deck has no fixed maximum page count.
 2. Create a Slide with `slide-gen-cli create --name <name>`, then create a Worktree. Retain both IDs
    for every later command. Use `api find|show --unit slide` when you need Facade reference.
-3. Create `authoring/resources/`, `.generated/`, and `output/`. Find assets by meaning with
-   `resources find`, then export canonical handles with
-   `resources export ... --out authoring/resources`. Keep one registry/style baseline. Reference
-   the exported file by its `<registryId>--<resourceId>.svg` name; do not copy its path data,
-   substitute Unicode glyphs, or invent placeholder icons.
-4. Author the complete page as ordinary SVG. Use inline styles and document order for stacking.
-   Every `<image>` needs width and height. Use positioned elements instead of repeated spaces;
-   multiline text uses `<tspan>` with scalar `x` and absolute `y` or non-zero `dy`. Use fractional
-   object-bounding-box gradient coordinates. Avoid filters, masks, translucent gradients, and
-   radial gradients on non-square shapes.
-5. Compile page 1 with:
+3. Find resources by meaning with `resources find`, then export canonical handles with
+   `resources export ... --out authoring/resources`. At least one page in the deck must reference a
+   stable-handle resource; other pages may omit resources. Reference an export by its
+   `<registryId>--<resourceId>.svg` name. Do not copy path data, substitute Unicode glyphs, or invent
+   placeholder icons.
+4. Author ordinary shape, text, and image content as SVG. Use inline styles and document order for
+   stacking. Every `<image>` needs width and height. Use positioned elements instead of repeated
+   spaces; multiline text uses `<tspan>` with scalar `x` and absolute `y` or non-zero `dy`. Use
+   fractional object-bounding-box gradient coordinates. Avoid filters, masks, translucent
+   gradients, and radial gradients on non-square shapes.
+5. Generate pages consecutively from 1 through N. Compile each source with:
 
    ```bash
-   slide-gen-cli compile-svg authoring/page.svg --page 1 \
-     --out .generated/page.js --estimate-text-size --json
+   slide-gen-cli compile-svg authoring/pages/page-01-title.svg --page 1 \
+     --out .generated/page-01.js --estimate-text-size --json
    ```
 
-   Stop on every compiler error or warning. Review every lint; the deterministic text-estimation
-   lint is expected, while any other surviving lint needs an explicit reason.
+   Stop on compiler errors or warnings. Review every lint; the deterministic text-estimation lint
+   is expected, while any other surviving lint needs an explicit reason.
 
-6. Apply the generated program once with
-   `slide-gen-cli execute --unit <unitId> --worktree <worktreeId> --file .generated/page.js`.
-   Continue only when the result reports `commit: "confirmed"`; otherwise return the result and
-   stop.
-7. Inspect `slide index:1`, run layout lint for page 1, capture its screenshot, and read the PNG.
-   Check clipping, text overflow or wrapping, text overlap, alignment, sibling icon sizing,
-   contrast, missing content, and stacking. Treat each lint as a defect until its evidence shows an
-   intentional overlap.
-8. Fix `authoring/page.svg`, then compile and execute the replacement again. Never use `--add` for
-   rework because it leaves broken elements under the replacements. Repeat inspection, lint, and
-   screenshot review until warnings are zero and every lint is fixed or justified.
-9. Mark the Worktree Ready and print its review URL with `open --no-launch`. The URL works only
-   while Slide Gen CLI's built-in Server is running. If the user requests a file, export the same
-   Worktree with `export <file.pptx> --unit <unitId> --worktree <worktreeId>`. Return the Unit ID,
-   Worktree ID, revision, SVG and exported-asset paths, accepted lints, screenshot path, review URL,
-   and optional PPTX path. Open the browser only when the user asks.
+6. Execute each generated program against the same Unit and Worktree. Page 1 through N builds the
+   initial deck. Executing an existing page number replaces that page; executing `pageCount + 1`
+   appends; skipping a number is an error. Continue only when every result reports
+   `commit: "confirmed"`.
+7. If the deck needs editable native charts or tables, keep them in a separate saved enhancement
+   program. Give each chart explicit category and value field mappings. Run enhancements only after
+   the final SVG replacement for their page, and replay them whenever a later replacement removes
+   those native elements. SVG charts and tables need no enhancement.
+8. For every page, save compiler diagnostics and structured inspection, run layout lint, capture a
+   PNG, and read it. Require zero unexplained layout findings. Check clipping, overflow, wrapping,
+   overlap, alignment, contrast, missing content, and stacking. Then review the whole deck for
+   narrative continuity, font and color consistency, resource style, page size, and native-element
+   placement.
+9. Fix the SVG source and repeat replacement, enhancement replay, inspection, lint, and screenshot
+   review until the evidence passes. Do not use `--add` for corrections because it leaves broken
+   elements under the replacements.
+10. Mark the Worktree Ready and print its Server-scoped review URL with `open --no-launch`. If the
+    user requests a file, export the same Worktree revision with
+    `export <file.pptx> --unit <unitId> --worktree <worktreeId>`. Return the Unit ID, Worktree ID,
+    revision, authoring paths, evidence paths, accepted lints, review URL, and optional PPTX path.
 
-Do not hand-write Facade drawing code, add pages, charts or tables, build a template system, or
-replace final screenshot review with the SVG browser preview.
+Do not add Sheet or Doc authoring, Office import, a template system, or handwritten Facade drawing
+code for ordinary elements. The Server owns review URLs; the workflow does not publish them.

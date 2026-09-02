@@ -2,18 +2,16 @@
 
 [English](./README.md) | 简体中文
 
-本例把普通 SVG 编译成一页可审阅的 Univer Slide。Resource Library 用 stable handle
-导出视觉资源，SVG compiler 生成一次性 Facade JavaScript，Worktree runtime 提交结果，
-再用结构化与视觉证据验收。
+本例只支持 Slide，把 Presentation Brief 转成可审阅的 Univer deck。仓库提交的 Authoring
+Source 包含 deck spec、连续 SVG pages、stable-handle resources，以及可选的 editable native
+chart/table programs；生成的 Facade JavaScript 仍是一次性产物。
 
 ```text
-stable handle → 导出 SVG 资源 → page.svg → compile-svg → execute → Review Evidence
+Presentation Brief → deck spec → SVG pages → compile/execute → evidence → Ready review
+                                      ↘ 可选 Native Enhancement replay
 ```
 
-本 application 只支持 Slide，并保留 API reference、resources、SVG compile、execute、
-inspection、layout lint、screenshot、Worktree review、Web 查看与 PPTX export。
-
-## 运行
+## 运行 Baseline Deck
 
 在当前目录执行：
 
@@ -24,48 +22,59 @@ pnpm link-cli
 pnpm start-server
 ```
 
-保持 Server 运行。另开终端，准备固定 rocket 资源并编译仓库中的 Baseline Slide：
+保持 Server 运行。另开终端，编译仓库提交的两个 960 × 540 pages：
 
 ```bash
-mkdir -p authoring/resources .generated output
+mkdir -p .generated output
 
-slide-gen-cli resources find rocket \
-  --registry example-tabler-outline --json
-slide-gen-cli api find appendShape --unit slide
-slide-gen-cli resources export example-tabler-outline/rocket \
-  --out authoring/resources --json
-
-slide-gen-cli compile-svg authoring/page.svg --page 1 \
-  --out .generated/page.js --estimate-text-size --json
+slide-gen-cli compile-svg authoring/pages/page-01-status.svg --page 1 \
+  --out .generated/page-01.js --estimate-text-size --json
+slide-gen-cli compile-svg authoring/pages/page-02-handoff.svg --page 2 \
+  --out .generated/page-02.js --estimate-text-size --json
 ```
 
-编译结果必须报告 `960 × 540` viewport、page `1`、`builtin-estimate`、零 warnings，且
-只有预期的文字估算 lint。未导出资源时，编译必须停止并指出
-`resources/example-tabler-outline--rocket.svg`。
+Page 1 使用仓库提交的 canonical rocket export；page 2 证明并非每一页都需要引用资源。
+出现 compiler warning 时停止，并检查每一条 lint。
 
-创建 Slide Worktree，再执行生成的 replace program：
+创建一个 Slide Worktree，按连续页码执行：
 
 ```bash
-UNIT_ID=$(slide-gen-cli create --name "产品发布状态")
+UNIT_ID=$(slide-gen-cli create --name "产品发布 deck")
 WORKTREE_ID=$(slide-gen-cli worktree create --unit "$UNIT_ID")
 
 slide-gen-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --file .generated/page.js
+  --file .generated/page-01.js
+slide-gen-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
+  --file .generated/page-02.js
 ```
 
-只有 execution 返回 `commit: "confirmed"` 时才继续。交付前收集全部 Review Evidence：
+每次 execution 都必须报告 `commit: "confirmed"`。重新执行已有页码会 replace 该页；
+`pageCount + 1` 会 append 下一页；跳过页码会失败且不会生成空白页。workflow 不设最大页数。
+
+## 审阅与交付
+
+为每一页保存 structured inspection、layout diagnostics 和 screenshot：
 
 ```bash
+slide-gen-cli inspect slide presentation \
+  --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
 slide-gen-cli inspect slide index:1 \
   --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
+slide-gen-cli inspect slide index:2 \
+  --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
 slide-gen-cli lint --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --pages 1 --json
+  --pages 1,2 --json
 slide-gen-cli screenshot --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --pages 1 --out output --json
+  --pages 1,2 --out output --json
 ```
 
-layout findings 必须为零。打开 PNG，检查对齐、层级、对比度、资源渲染和内容完整性。
-有问题时修改 `authoring/page.svg`，然后重复 replace compile/execute；修正时不使用 `--add`。
+要求 layout findings 为零，或为每条保留明确证据。打开每张 PNG，再检查整个 deck 的叙事、
+字体、颜色、资源风格、page size 和 native-element placement。修正时重新编译并执行对应
+页码；不要用 `--add` 叠加修改。
+
+如果某页需要 editable native chart/table，在该页最后一次 SVG replacement 后执行已保存的
+enhancement program。Chart 必须显式设置 category field 和 value fields mapping。以后再次
+replace 该页时，需重放 enhancement。
 
 证据通过后：
 
@@ -75,12 +84,10 @@ slide-gen-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --no-launch
 slide-gen-cli export product-release.pptx --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
 
-Review URL 仅在本 application 的内置 Server 运行期间有效。需要持久文件时从同一
-Worktree 导出 PPTX；使用 `--trunk` 可导出 trunk revision。
+Review URL 仅属于当前 Server，并且只在 Server 运行时可用。PPTX export 是按需操作；应从
+审阅者验收的同一个 Worktree revision 导出。
 
 ## 交给 Agent 使用
-
-保持 Server 运行，安装专用 skill：
 
 ```bash
 pnpm skill:install
@@ -89,7 +96,7 @@ pnpm skill:install
 用 Agent 打开当前目录，然后输入：
 
 ```text
-使用 univer-slide-authoring 重新设计这张单页发布状态 Slide，完成检查后把 Worktree 交给我审阅。
+使用 univer-slide-authoring 把我的 Presentation Brief 制作成已审阅的 Slide Worktree。
 ```
 
 体验结束后：
@@ -101,10 +108,12 @@ pnpm unlink-cli
 
 ## 文件与边界
 
-- `authoring/page.svg` 是仓库提交的 Authoring Source。
-- `authoring/resources/`、`.generated/`、`.data/`、`output/` 和 `dist/` 都是可丢弃且被忽略的运行产物。
-- `skills/univer-slide-authoring/SKILL.md` 约束 Agent 遵循 resource-backed SVG workflow。
-- `test/program.test.ts` 和 `test/smoke.test.ts` 使用 fixed manifest/fake downloader，自动验证不依赖远程资源 host。
+- `authoring/deck.md` 是提交到仓库的 Presentation Brief 和 deck spec。
+- `authoring/pages/page-NN-*.svg` 与 `authoring/resources/` 是提交到仓库的 Authoring Source。
+- `authoring/enhancements/` 保存可选、可重放的 native chart/table programs。
+- `.generated/`、`.data/`、`output/` 和 `dist/` 是可丢弃且被忽略的产物。
+- `test/program.test.ts`、`test/smoke.test.ts` 与 `test/native.test.ts` 使用固定输入和本地
+  assets，因此自动验证不会访问远程 asset host。
 
-本 Change 保留现有单页 authoring baseline，不增加多页 deck、Native Enhancement、chart、
-table、template 或手写 Facade drawing code。
+本 application 不提供 Sheet/Doc authoring、Office import、template、hosted publishing，
+普通元素也不使用手写 Facade drawing code。

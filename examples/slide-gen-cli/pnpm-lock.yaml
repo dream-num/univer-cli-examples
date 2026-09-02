@@ -104,6 +104,18 @@ importers:
       '@univerjs-pro/slides':
         specifier: 1.0.0-beta.2
         version: 1.0.0-beta.2(react@19.2.8)(rxjs@7.8.2)
+      '@univerjs-pro/slides-chart':
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2(react@19.2.8)(rxjs@7.8.2)
+      '@univerjs-pro/slides-chart-ui':
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rxjs@7.8.2)
+      '@univerjs-pro/slides-table':
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2(react@19.2.8)
+      '@univerjs-pro/slides-table-ui':
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)
       '@univerjs-pro/slides-ui':
         specifier: 1.0.0-beta.2
         version: 1.0.0-beta.2(react-dom@19.2.8(react@19.2.8))(react@19.2.8)(rxjs@7.8.2)
@@ -168,6 +180,9 @@ importers:
       '@types/node':
         specifier: ^24.10.0
         version: 24.13.3
+      fflate:
+        specifier: 0.8.3
+        version: 0.8.3
       oxfmt:
         specifier: 0.64.0
         version: 0.64.0

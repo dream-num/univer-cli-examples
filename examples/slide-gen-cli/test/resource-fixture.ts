@@ -40,11 +40,19 @@ const manifest = {
   ],
 };
 
-export function createFixtureResourceLibrary(root: string): ResourceLibrary {
+export function createFixtureResourceLibrary(
+  root: string,
+  onDownload?: (url: string) => void,
+): ResourceLibrary {
   return createResourceLibrary({
     manifest,
     cache: new FilesystemResourceCache(join(root, "cache")),
-    downloader: { download: async () => ROCKET_SVG },
+    downloader: {
+      download: async (url) => {
+        onDownload?.(url);
+        return ROCKET_SVG;
+      },
+    },
     output: new FilesystemResourceOutput(),
   });
 }

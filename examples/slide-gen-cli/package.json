@@ -53,6 +53,10 @@
     "@univerjs-pro/exchange-node-binding": "0.1.0",
     "@univerjs-pro/license": "1.0.0-beta.2",
     "@univerjs-pro/slides": "1.0.0-beta.2",
+    "@univerjs-pro/slides-chart": "1.0.0-beta.2",
+    "@univerjs-pro/slides-chart-ui": "1.0.0-beta.2",
+    "@univerjs-pro/slides-table": "1.0.0-beta.2",
+    "@univerjs-pro/slides-table-ui": "1.0.0-beta.2",
     "@univerjs-pro/slides-ui": "1.0.0-beta.2",
     "@univerjs/core": "1.0.0-beta.2",
     "@univerjs/design": "1.0.0-beta.2",
@@ -76,6 +80,7 @@
   "devDependencies": {
     "@types/express": "^5.0.0",
     "@types/node": "^24.10.0",
+    "fflate": "0.8.3",
     "oxfmt": "0.64.0",
     "oxlint": "1.79.0",
     "typescript": "^7.0.2",
