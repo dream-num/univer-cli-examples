@@ -13,15 +13,15 @@ afterEach(async () => {
   await Promise.all(temporaryDirectories.splice(0).map((path) => rm(path, { recursive: true })));
 });
 
-it("builds the sample and fails closed on invalid Typst", async () => {
-  const temporaryDirectory = await mkdtemp(join(tmpdir(), "typst-doc-authoring-"));
+it("builds an arbitrary bundle and fails closed on invalid Typst", async () => {
+  const temporaryDirectory = await mkdtemp(join(tmpdir(), "doc-gen-"));
   temporaryDirectories.push(temporaryDirectory);
   const output = join(temporaryDirectory, "output");
   const callerFile = join(output, "keep.txt");
   await mkdir(output);
   await writeFile(callerFile, "caller-owned\n", "utf8");
 
-  const success = run(join(root, "paper"), output);
+  const success = run(join(root, "test/fixtures/valid/typst.json"), output);
   expect(success.status).toBe(0);
   expect(success.stderr).toBe("");
   const result = JSON.parse(success.stdout) as {

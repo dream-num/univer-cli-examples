@@ -1,9 +1,9 @@
 {
-  "name": "@univer-cli-example/typst-doc-authoring",
+  "name": "@univer-cli-example/doc-gen",
   "version": "0.0.0",
   "private": true,
   "bin": {
-    "univer-example-cli": "./dist/cli/main.js"
+    "doc-gen": "./dist/cli/main.js"
   },
   "type": "module",
   "scripts": {
@@ -17,7 +17,7 @@
     "skill:uninstall": "node scripts/skill.mjs uninstall",
     "test": "pnpm build && vitest run --root . test",
     "typecheck": "tsc -p tsconfig.json --noEmit",
-    "unlink-cli": "pnpm remove --global @univer-cli-example/typst-doc-authoring"
+    "unlink-cli": "pnpm remove --global @univer-cli-example/doc-gen"
   },
   "dependencies": {
     "@univer-cli/doc-typst-facade": "1.0.0-beta.2",

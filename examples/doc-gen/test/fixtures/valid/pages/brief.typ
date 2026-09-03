@@ -40,7 +40,7 @@
 
 #section-title[下一步]
 
-#text(weight: "bold", fill: green)[01] 编辑 `paper/` 中的源稿  ·  #text(weight: "bold", fill: green)[02] 运行一次完整命令  ·  #text(weight: "bold", fill: green)[03] 阅读两类 PNG 后交付
+#text(weight: "bold", fill: green)[01] 创建独立 bundle 源稿  ·  #text(weight: "bold", fill: green)[02] 运行一次完整命令  ·  #text(weight: "bold", fill: green)[03] 阅读两类 PNG 后交付
 
 #v(6pt)
 #text(size: 8.5pt, fill: muted)[同一份源稿，同一条命令，两层证据。]

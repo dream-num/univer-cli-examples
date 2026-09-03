@@ -4,14 +4,14 @@ import { fileURLToPath } from "node:url";
 
 const action = process.argv[2];
 const root = fileURLToPath(new URL("..", import.meta.url));
-const source = resolve(root, "skills/univer-content");
-const link = resolve(root, ".agents/skills/univer-content");
+const source = resolve(root, "skills/doc-gen");
+const link = resolve(root, ".agents/skills/doc-gen");
 const target = relative(dirname(link), source);
 
 if (action === "install") {
   await mkdir(dirname(link), { recursive: true });
   await createLink();
-  process.stdout.write("Installed univer-content for Agents opened in this directory.\n");
+  process.stdout.write("Installed doc-gen for Agents opened in this directory.\n");
 } else if (action === "uninstall") {
   await removeLink();
   await removeEmptyDirectory(dirname(link));

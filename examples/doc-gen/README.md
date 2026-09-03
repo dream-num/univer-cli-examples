@@ -1,26 +1,73 @@
-# Typst Doc authoring
+# Doc Gen
 
-[简体中文](./README.zh-CN.md)
+English | [简体中文](./README.zh-CN.md)
 
-This example turns a tracked Typst Source Bundle into an editable local Univer Doc. One command compiles the source, materializes the generated Facade program in headless Univer, saves Doc UnitData, and renders both source-side and Univer-side PNG evidence.
+This agent-oriented example creates editable local Univer Docs from Typst. For each request, the
+agent creates or revises a task-specific Typst Source Bundle, compiles it, materializes the generated
+Facade program in headless Univer, saves Doc UnitData, and reviews source-side and Univer-side PNGs.
 
-## Run it
+## Set up the example
 
 Requires Node.js 22.12 or later and pnpm 10.32.1.
 
 ```bash
 pnpm install --frozen-lockfile
 pnpm build
-node dist/cli/main.js compile-typst paper --out output --json
+pnpm link-cli
+pnpm skill:install
 ```
 
-Edit only these authored files before rebuilding:
+Open this directory with an Agent and ask it to use `doc-gen`, for example:
 
-- `paper/typst.json`: title, Local Doc Identity (`targetUnitId`), prelude, and ordered pages.
-- `paper/prelude.typ`: page geometry, typography, spacing, colors, header, and footer.
-- `paper/pages/brief.typ`: the brief's content and layout.
+```text
+Use doc-gen to create a two-page customer research brief. Keep the source under
+authoring/customer-research and generated artifacts under output/customer-research.
+```
+
+The Agent creates the source instead of editing a bundled document. If you already have a bundle,
+give its directory or `typst.json` path in the request.
+
+## Typst Source Bundle
+
+The path is caller-selected. A typical bundle looks like:
+
+```text
+authoring/customer-research/
+├── typst.json
+├── prelude.typ
+├── pages/
+│   ├── 01.typ
+│   └── 02.typ
+└── assets/
+    └── diagram.svg
+```
+
+`typst.json` declares the Local Doc Identity and ordered page sources:
+
+```json
+{
+  "schemaVersion": 1,
+  "targetUnitId": "customer-research",
+  "title": "Customer research brief",
+  "prelude": ["prelude.typ"],
+  "pages": [
+    { "id": "page-01", "source": "pages/01.typ" },
+    { "id": "page-02", "source": "pages/02.typ" }
+  ]
+}
+```
+
+`schemaVersion`, `targetUnitId`, and `pages` are required. `title`, `prelude`, explicit page IDs,
+and local `assets/` are optional. All referenced paths must stay inside the bundle. The authored
+bundle remains source; generated JavaScript, JSON, and PNG files do not.
 
 `targetUnitId` connects this bundle to its Materialized Doc inside the local build. It is not a Workspace identity or remote Unit ID.
+
+Build any bundle directory or manifest path with a separate output directory:
+
+```bash
+doc-gen compile-typst <bundle-or-manifest> --out <output-directory> --json
+```
 
 ## Generated Artifacts
 
@@ -46,7 +93,8 @@ Read both PNG groups after every successful build:
 2. Check Univer Screenshots for the same content, clipping, missing blocks, and conversion differences.
 3. Report remaining warnings. Visual verification stays pending if either image group cannot be read by an image-capable model.
 
-The bundled `univer-content` skill encodes this workflow. Install or remove its local symlink with:
+The bundled `doc-gen` skill encodes bundle creation, compilation, and review. Install or remove its
+local symlink with:
 
 ```bash
 pnpm skill:install

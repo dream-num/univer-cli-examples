@@ -7,7 +7,7 @@ interface CompileTypstOptions {
 }
 
 export function createProgram(): Command {
-  const program = new Command("univer-example-cli").description(
+  const program = new Command("doc-gen").description(
     "Author a local Univer Doc from a Typst Source Bundle",
   );
   program.addCommand(createCompileTypstCommand());
