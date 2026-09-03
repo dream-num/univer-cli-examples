@@ -5,20 +5,16 @@ English | [简体中文](./README.zh-CN.md)
 This repository contains runnable teaching examples for the Univer CLI SDK. Concepts and
 architecture live on the [Univer Office documentation site](https://office.univer.ai/cli/overview).
 
-| Example                                                               | Learn                                             | New concepts                            |
-| --------------------------------------------------------------------- | ------------------------------------------------- | --------------------------------------- |
-| [`01-content-operations`](./examples/01-content-operations/README.md) | Read, edit, and view Sheet, Doc, and Slide Units  | CLI, Server, Web, Collaboration Runtime |
-| [`02-file-exchange`](./examples/02-file-exchange/README.md)           | Import and export Office files                    | Exchange, UnitData, native binding      |
-| [`03-visual-inspection`](./examples/03-visual-inspection/README.md)   | Visually inspect all three Unit types             | Render Page, Screenshot, Layout Lint    |
-| [`04-worktree`](./examples/04-worktree/README.md)                     | Edit in a draft and hand it to a human for review | Worktree, Ready, Merge, Reopen, Discard |
+| Example                                                               | Learn                                                   | New concepts                               |
+| --------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------ |
+| [`01-content-operations`](./examples/01-content-operations/README.md) | Read, edit, and view Sheet, Doc, and Slide Units        | CLI, Server, Web, Collaboration Runtime    |
+| [`02-file-exchange`](./examples/02-file-exchange/README.md)           | Import and export Office files                          | Exchange, UnitData, native binding         |
+| [`03-visual-inspection`](./examples/03-visual-inspection/README.md)   | Visually inspect all three Unit types                   | Render Page, Screenshot, Layout Lint       |
+| [`04-worktree`](./examples/04-worktree/README.md)                     | Edit in a draft and hand it to a human for review       | Worktree, Ready, Merge, Reopen, Discard    |
+| [`slide-gen-cli`](./examples/slide-gen-cli/README.md)                 | Generate, review, export, and view Slides with an Agent | SVG Compile, Resource Library, Agent Skill |
 
 Read them in numbered order. Each directory has its own `package.json`, lockfile, and dependencies,
 so it can be copied and run independently.
-
-## Agent application
-
-[`slide-gen-cli`](./examples/slide-gen-cli/README.md) generates, reviews, exports, and displays a
-resource-backed Slide with an Agent.
 
 ## 01 Content Operations
 
