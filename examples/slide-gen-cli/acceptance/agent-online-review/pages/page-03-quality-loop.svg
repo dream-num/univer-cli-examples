@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#0B1020" />
+  <rect x="48" y="38" width="144" height="28" rx="14" fill="#15223E" />
+  <text x="66" y="57" fill="#A9B7D7" font-family="Arial, PingFang SC, sans-serif" font-size="12" font-weight="700">QUALITY LOOP</text>
+  <text x="48" y="116" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="36" font-weight="700">可评审，来自可重复的质量回路</text>
+  <text x="48" y="150" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="16">每次修改都替换原页，再对同一 Worktree revision 复验。</text>
+
+  <g transform="translate(48 194)">
+    <rect width="540" height="236" rx="20" fill="#10192D" stroke="#263558" />
+    <text x="24" y="35" fill="#7181A2" font-family="Arial, sans-serif" font-size="11" font-weight="700">ITERATE UNTIL CLEAN</text>
+    <line x1="76" y1="111" x2="462" y2="111" stroke="#31415F" stroke-width="2" />
+    <line x1="462" y1="111" x2="462" y2="176" stroke="#31415F" stroke-width="2" />
+    <line x1="462" y1="176" x2="76" y2="176" stroke="#31415F" stroke-width="2" />
+    <line x1="76" y1="176" x2="76" y2="135" stroke="#31415F" stroke-width="2" />
+
+    <circle cx="76" cy="111" r="30" fill="#173B3A" stroke="#4DE2C5" />
+    <text x="76" y="116" text-anchor="middle" fill="#4DE2C5" font-family="Arial, sans-serif" font-size="13" font-weight="700">SVG</text>
+    <circle cx="204" cy="111" r="30" fill="#172B4B" stroke="#5B8CFF" />
+    <text x="204" y="116" text-anchor="middle" fill="#5B8CFF" font-family="Arial, sans-serif" font-size="12" font-weight="700">COMPILE</text>
+    <circle cx="333" cy="111" r="30" fill="#30254B" stroke="#A77BFF" />
+    <text x="333" y="116" text-anchor="middle" fill="#A77BFF" font-family="Arial, sans-serif" font-size="12" font-weight="700">EXECUTE</text>
+    <circle cx="462" cy="111" r="30" fill="#493621" stroke="#FFB454" />
+    <text x="462" y="116" text-anchor="middle" fill="#FFB454" font-family="Arial, sans-serif" font-size="12" font-weight="700">CHECK</text>
+
+    <rect x="100" y="159" width="338" height="34" rx="17" fill="#17233C" />
+    <text x="269" y="181" text-anchor="middle" fill="#C7D1E8" font-family="Arial, PingFang SC, sans-serif" font-size="12">inspect · lint · screenshot · 人工阅读</text>
+    <text x="24" y="218" fill="#7181A2" font-family="Arial, PingFang SC, sans-serif" font-size="12">发现溢出、遮挡或缺失 → 修改 SVG → replace page → 重新检查</text>
+  </g>
+
+  <g transform="translate(614 194)">
+    <rect width="298" height="236" rx="20" fill="#10192D" stroke="#263558" />
+    <text x="24" y="35" fill="#7181A2" font-family="Arial, sans-serif" font-size="11" font-weight="700">ACCEPTANCE GATES</text>
+    <text x="24" y="76" fill="#4DE2C5" font-family="Arial, sans-serif" font-size="18" font-weight="700">01</text>
+    <text x="64" y="76" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="14">compiler lint 可解释</text>
+    <line x1="24" y1="96" x2="274" y2="96" stroke="#253451" />
+    <text x="24" y="130" fill="#5B8CFF" font-family="Arial, sans-serif" font-size="18" font-weight="700">02</text>
+    <text x="64" y="130" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="14">layout findings = 0</text>
+    <line x1="24" y1="150" x2="274" y2="150" stroke="#253451" />
+    <text x="24" y="184" fill="#A77BFF" font-family="Arial, sans-serif" font-size="18" font-weight="700">03</text>
+    <text x="64" y="184" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="14">commit = confirmed</text>
+    <rect x="24" y="202" width="250" height="20" rx="10" fill="#163A38" />
+    <text x="149" y="216" text-anchor="middle" fill="#4DE2C5" font-family="Arial, sans-serif" font-size="10" font-weight="700">READY FOR HUMAN REVIEW</text>
+  </g>
+
+  <g transform="translate(48 458)">
+    <rect width="260" height="42" rx="14" fill="#13243A" />
+    <text x="18" y="27" fill="#86E8D4" font-family="Arial, PingFang SC, sans-serif" font-size="13" font-weight="700">在线 URL · 同一修订现场</text>
+  </g>
+  <g transform="translate(324 458)">
+    <rect width="260" height="42" rx="14" fill="#17233C" />
+    <text x="18" y="27" fill="#8EB0FF" font-family="Arial, PingFang SC, sans-serif" font-size="13" font-weight="700">PPTX · 可下载交付</text>
+  </g>
+  <g transform="translate(600 458)">
+    <rect width="258" height="42" rx="14" fill="#2A2141" />
+    <text x="18" y="27" fill="#BDA3FF" font-family="Arial, PingFang SC, sans-serif" font-size="13" font-weight="700">证据 · 可复验过程</text>
+  </g>
+  <text x="912" y="501" text-anchor="end" fill="#607091" font-family="Arial, sans-serif" font-size="11">03 / 03</text>
+</svg>

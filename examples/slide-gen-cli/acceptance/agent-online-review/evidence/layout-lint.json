@@ -1,0 +1,10 @@
+{
+  "unitId": "6ac339c6",
+  "worktreeId": "2402e640",
+  "rules": ["text-off-page", "text-escapes-container", "text-overlaps-text"],
+  "pages": [
+    { "page": 1, "pageId": "FR2CXL", "findings": [] },
+    { "page": 2, "pageId": "4_DhMS", "findings": [] },
+    { "page": 3, "pageId": "LWLf19", "findings": [] }
+  ]
+}

@@ -14,7 +14,7 @@ application SHALL 允许 Agent 以 SVG visual 表达 chart/table，或以 Author
 
 - **WHEN** Agent 修改含有 native chart 或 table 的 page SVG 并重新执行 full-page replacement
 - **THEN** replacement SHALL 移除该 page 原有的 native elements
-- **AND** Agent workflow MUST 在 replacement commit confirmed 后从维护的 `authoring/enhancements/` source 重放该 page 的 Native Enhancement
+- **AND** Agent workflow MUST 在 replacement commit confirmed 后从维护的 `<task-dir>/enhancements/` source 重放该 page 的 Native Enhancement
 - **AND** inspection 与 screenshot MUST 再次证明 native elements 存在且位置正确
 
 #### Scenario: Web Viewer 显示 native chart 与 table
@@ -34,18 +34,19 @@ application SHALL 允许 Agent 以 SVG visual 表达 chart/table，或以 Author
 
 ### Requirement: 稳定资源进入 Authoring Source
 
-application MUST 把 Presentation Brief 或 deck specification、逐页 SVG、由 Resource Library stable handle 导出的本地视觉资源和可选 Native Enhancements 作为可维护的 deck-level Authoring Source；compiled Facade programs MUST 作为 disposable output。一个 Resource-backed Slide deck MUST 至少有一页引用 stable-handle asset，但 MUST NOT 要求每页都引用资源。
+application MUST 把 Presentation Brief 或 deck specification、逐页 SVG、由 Resource Library stable handle 导出的本地视觉资源和可选 Native Enhancements 作为可维护的 deck-level Authoring Source；compiled Facade programs MUST 作为 disposable output。Agent workflow MUST 为每个 deck 使用独立任务目录、允许调用方选择其位置，并把该任务的 Authoring Source、generated programs 与 Review Evidence 保持在该目录下。一个 Resource-backed Slide deck MUST 至少有一页引用 stable-handle asset，但 MUST NOT 要求每页都引用资源。
 
 #### Scenario: Agent 建立 deck-level Authoring Source
 
 - **WHEN** Agent 根据 Presentation Brief 规划一个 Slide deck
-- **THEN** Authoring Source MUST 记录 deck 叙事与逐页内容合同，并为每个 page 保留独立 SVG
-- **AND** exported stable-handle assets 与可选 Native Enhancements MUST 保留在 authoring tree 中
-- **AND** compiled programs MUST 写入 generated output location，而不是作为 Authoring Source
+- **THEN** Agent MUST 选择一个不与其他 deck job 共用的任务目录，其位置 MAY 由用户或 Agent 决定
+- **AND** Authoring Source MUST 在该任务目录下记录 deck 叙事与逐页内容合同，并为每个 page 保留独立 SVG
+- **AND** exported stable-handle assets 与可选 Native Enhancements MUST 保留在同一任务目录中
+- **AND** compiled programs MUST 写入该任务目录内的 generated output location，而不是作为 Authoring Source
 
 #### Scenario: 用户准备 Baseline Slide 资源
 
-- **WHEN** 用户查询 resource catalog 并把 canonical handle `example-tabler-outline/rocket` 导出到 `authoring/resources/`
+- **WHEN** 用户查询 resource catalog 并把 canonical handle `example-tabler-outline/rocket` 导出到 `<task-dir>/resources/`
 - **THEN** export result SHALL 标识同一 stable handle
 - **AND** Baseline Deck 中至少一个 page SVG 对 `example-tabler-outline--rocket.svg` 的本地引用可以被 compiler 解析
 - **AND** Baseline Deck 的其他 pages MAY 不引用 Resource Library asset
@@ -146,6 +147,8 @@ Agent workflow MUST 在 Ready handoff 前为每个 page 联合检查 compiler di
 ### Requirement: 专用 Agent skill 约束 deck authoring
 
 application SHALL 安装可自动发现的 `univer-slide-authoring` skill，指导 Agent 把 Presentation Brief 转成 deck specification，并在 `slide-gen-cli` 中完成资源选择、逐页 SVG authoring、连续首次生成、局部修订、可选 Native Enhancement、Review Evidence 和 Worktree handoff。
+
+skill SHALL 以 `<task-dir>` layout 作为示例，引导 Agent 把一个 deck job 的输入与产物建立在同一任务目录下，但 MUST NOT 规定该目录的文件系统位置。
 
 #### Scenario: Agent 接收单页 Slide 请求
 

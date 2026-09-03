@@ -92,8 +92,8 @@ it("applies page programs with replace, append, and gap rejection semantics", as
   await mkdir(generated, { recursive: true });
   const openResourceLibrary = () => createFixtureResourceLibrary(temporaryRoot!);
   const sources = [
-    join(root, "authoring/pages/page-01-status.svg"),
-    join(root, "authoring/pages/page-02-handoff.svg"),
+    join(root, "authoring/product-release/pages/page-01-status.svg"),
+    join(root, "authoring/product-release/pages/page-02-handoff.svg"),
   ];
   const unitId = (await run("create", "--name", "Page transitions")).trim();
   const worktreeId = (await run("worktree", "create", "--unit", unitId)).trim();
@@ -212,15 +212,19 @@ it("applies page programs with replace, append, and gap rejection semantics", as
 it("authors the Baseline Deck and collects per-page Review Evidence", async () => {
   server = await startServer(":memory:", 0);
   temporaryRoot = await mkdtemp(join(tmpdir(), "univer-slide-smoke-"));
-  const authoring = join(temporaryRoot, "authoring");
-  const pages = join(authoring, "pages");
-  const generated = join(temporaryRoot, ".generated");
-  const resources = join(authoring, "resources");
+  const taskDirectory = join(temporaryRoot, "product-release");
+  const pages = join(taskDirectory, "pages");
+  const generated = join(taskDirectory, ".generated");
+  const resources = join(taskDirectory, "resources");
+  const output = join(taskDirectory, "output");
   await Promise.all([mkdir(pages, { recursive: true }), mkdir(generated, { recursive: true })]);
   const pageFiles = ["page-01-status.svg", "page-02-handoff.svg"];
   await Promise.all(
     pageFiles.map(async (file) =>
-      writeFile(join(pages, file), await readFile(join(root, "authoring/pages", file), "utf8")),
+      writeFile(
+        join(pages, file),
+        await readFile(join(root, "authoring/product-release/pages", file), "utf8"),
+      ),
     ),
   );
 
@@ -335,7 +339,7 @@ it("authors the Baseline Deck and collects per-page Review Evidence", async () =
         "--pages",
         String(page),
         "--out",
-        resolve(root, "output/smoke"),
+        output,
         "--json",
       ),
     ) as { readonly outputs: readonly { readonly location: string }[] };

@@ -25,12 +25,13 @@ pnpm start-server
 保持 Server 运行。另开终端，编译仓库提交的两个 960 × 540 pages：
 
 ```bash
-mkdir -p .generated output
+TASK_DIR=authoring/product-release
+mkdir -p "$TASK_DIR/.generated" "$TASK_DIR/output"
 
-slide-gen-cli compile-svg authoring/pages/page-01-status.svg --page 1 \
-  --out .generated/page-01.js --estimate-text-size --json
-slide-gen-cli compile-svg authoring/pages/page-02-handoff.svg --page 2 \
-  --out .generated/page-02.js --estimate-text-size --json
+slide-gen-cli compile-svg "$TASK_DIR/pages/page-01-status.svg" --page 1 \
+  --out "$TASK_DIR/.generated/page-01.js" --estimate-text-size --json
+slide-gen-cli compile-svg "$TASK_DIR/pages/page-02-handoff.svg" --page 2 \
+  --out "$TASK_DIR/.generated/page-02.js" --estimate-text-size --json
 ```
 
 Page 1 使用仓库提交的 canonical rocket export；page 2 证明并非每一页都需要引用资源。
@@ -43,9 +44,9 @@ UNIT_ID=$(slide-gen-cli create --name "产品发布 deck")
 WORKTREE_ID=$(slide-gen-cli worktree create --unit "$UNIT_ID")
 
 slide-gen-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --file .generated/page-01.js
+  --file "$TASK_DIR/.generated/page-01.js"
 slide-gen-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --file .generated/page-02.js
+  --file "$TASK_DIR/.generated/page-02.js"
 ```
 
 每次 execution 都必须报告 `commit: "confirmed"`。重新执行已有页码会 replace 该页；
@@ -65,7 +66,7 @@ slide-gen-cli inspect slide index:2 \
 slide-gen-cli lint --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
   --pages 1,2 --json
 slide-gen-cli screenshot --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --pages 1,2 --out output --json
+  --pages 1,2 --out "$TASK_DIR/output" --json
 ```
 
 要求 layout findings 为零，或为每条保留明确证据。打开每张 PNG，再检查整个 deck 的叙事、
@@ -81,7 +82,8 @@ replace 该页时，需重放 enhancement。
 ```bash
 slide-gen-cli worktree ready "$WORKTREE_ID"
 slide-gen-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --no-launch
-slide-gen-cli export product-release.pptx --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
+slide-gen-cli export "$TASK_DIR/output/product-release.pptx" \
+  --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
 
 Review URL 仅属于当前 Server，并且只在 Server 运行时可用。PPTX export 是按需操作；应从
@@ -110,10 +112,11 @@ pnpm unlink-cli
 
 ## 文件与边界
 
-- `authoring/deck.md` 是提交到仓库的 Presentation Brief 和 deck spec。
-- `authoring/pages/page-NN-*.svg` 与 `authoring/resources/` 是提交到仓库的 Authoring Source。
-- `authoring/enhancements/` 保存可选、可重放的 native chart/table programs。
-- `.generated/`、`.data/`、`output/` 和 `dist/` 是可丢弃且被忽略的产物。
+- `authoring/product-release/` 是仓库提交的任务目录示例，不是固定位置。
+- 每个任务目录在其下集中保存 `deck.md`、`pages/`、`resources/` 和可选的 `enhancements/`。
+- 同一任务目录下的 `.generated/` 与 `output/` 是可丢弃且被忽略的产物。
+- 并行或需要恢复的 deck job 必须使用不同任务目录；`.data/` 与 `dist/` 仍是 application-level
+  的可丢弃产物。
 - `test/program.test.ts`、`test/smoke.test.ts` 与 `test/native.test.ts` 使用固定输入和本地
   assets，因此自动验证不会访问远程 asset host。
 

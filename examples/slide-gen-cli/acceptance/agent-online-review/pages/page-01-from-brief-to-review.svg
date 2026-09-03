@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#0B1020" />
+  <circle cx="850" cy="-20" r="180" fill="#111D3A" />
+  <circle cx="930" cy="90" r="90" fill="#19254A" />
+
+  <rect x="48" y="38" width="188" height="28" rx="14" fill="#15223E" />
+  <circle cx="66" cy="52" r="5" fill="#4DE2C5" />
+  <text x="80" y="57" fill="#A9B7D7" font-family="Arial, PingFang SC, sans-serif" font-size="12" font-weight="700">AGENT AUTHORING LOOP</text>
+  <text x="48" y="119" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="38" font-weight="700">从一句想法，到可在线评审的</text>
+  <text x="48" y="164" fill="#4DE2C5" font-family="Arial, PingFang SC, sans-serif" font-size="38" font-weight="700">Univer Slide deck</text>
+  <text x="48" y="198" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="16">skill 约束过程，CLI 提交结果，Server 承载同一 revision 的在线评审。</text>
+
+  <rect x="792" y="42" width="112" height="112" rx="28" fill="#4DE2C5" />
+  <image x="816" y="66" width="64" height="64" href="../resources/example-tabler-outline--ai-agent.svg" xlink:href="../resources/example-tabler-outline--ai-agent.svg" data-univer-embed="image" />
+
+  <line x1="161" y1="323" x2="799" y2="323" stroke="#263558" stroke-width="2" />
+  <line x1="161" y1="323" x2="799" y2="323" stroke="#4DE2C5" stroke-width="2" stroke-dasharray="5 8" />
+
+  <g transform="translate(48 264)">
+    <rect width="224" height="174" rx="18" fill="#121B31" stroke="#263558" />
+    <circle cx="34" cy="59" r="22" fill="#183C3A" />
+    <text x="34" y="66" text-anchor="middle" fill="#4DE2C5" font-family="Arial, sans-serif" font-size="20" font-weight="700">1</text>
+    <text x="24" y="111" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="20" font-weight="700">理解 Brief</text>
+    <text x="24" y="140" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="13">先写 deck.md，锁定受众、</text>
+    <text x="24" y="160" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="13">叙事、页面契约与视觉规范</text>
+  </g>
+  <g transform="translate(286 264)">
+    <rect width="198" height="174" rx="18" fill="#121B31" stroke="#263558" />
+    <circle cx="34" cy="59" r="22" fill="#172C4C" />
+    <text x="34" y="66" text-anchor="middle" fill="#5B8CFF" font-family="Arial, sans-serif" font-size="20" font-weight="700">2</text>
+    <text x="24" y="111" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="20" font-weight="700">编写 SVG</text>
+    <text x="24" y="140" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="13">每页 960 × 540，资源来自</text>
+    <text x="24" y="160" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="13">canonical stable handle</text>
+  </g>
+  <g transform="translate(498 264)">
+    <rect width="198" height="174" rx="18" fill="#121B31" stroke="#263558" />
+    <circle cx="34" cy="59" r="22" fill="#30254B" />
+    <text x="34" y="66" text-anchor="middle" fill="#A77BFF" font-family="Arial, sans-serif" font-size="20" font-weight="700">3</text>
+    <text x="24" y="111" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="20" font-weight="700">提交 Worktree</text>
+    <text x="24" y="140" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="13">连续 page、同一 Unit、</text>
+    <text x="24" y="160" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="13">每次 execute 都 confirmed</text>
+  </g>
+  <g transform="translate(710 264)">
+    <rect width="202" height="174" rx="18" fill="#121B31" stroke="#263558" />
+    <circle cx="34" cy="59" r="22" fill="#493621" />
+    <text x="34" y="66" text-anchor="middle" fill="#FFB454" font-family="Arial, sans-serif" font-size="20" font-weight="700">4</text>
+    <text x="24" y="111" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="20" font-weight="700">在线评审</text>
+    <text x="24" y="140" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="13">Ready URL 保留现场；按需</text>
+    <text x="24" y="160" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="13">导出同一 revision 的 PPTX</text>
+  </g>
+
+  <text x="48" y="501" fill="#607091" font-family="Arial, sans-serif" font-size="11">SLIDE-GEN-CLI · ACCEPTANCE DECK</text>
+  <text x="912" y="501" text-anchor="end" fill="#607091" font-family="Arial, sans-serif" font-size="11">01 / 03</text>
+</svg>

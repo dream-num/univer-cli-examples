@@ -1,0 +1,13 @@
+{
+  "unitId": "6ac339c6",
+  "worktreeId": "2402e640",
+  "baselineTrunkRevision": 1,
+  "draftHeadRevision": 4,
+  "readyDraftHeadRevision": 4,
+  "status": "ready",
+  "commit": "confirmed",
+  "pageCount": 3,
+  "pptx": "../output/agent-online-review.pptx",
+  "reviewUrl": "http://127.0.0.1:3010/?unit=6ac339c6&worktree=2402e640",
+  "serverCheck": "HTTP 200"
+}

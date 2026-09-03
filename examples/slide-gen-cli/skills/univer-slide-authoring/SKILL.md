@@ -8,10 +8,19 @@ description: Turn a Presentation Brief into a reviewable Univer Slide deck with 
 Use `slide-gen-cli <command>`. The user starts the Server separately with
 `pnpm start-server` from the current `slide-gen-cli` directory.
 
-Keep the Presentation Brief and deck spec in `authoring/deck.md`, editable pages in
-`authoring/pages/page-NN-*.svg`, stable-handle exports in `authoring/resources/`, and optional
-native programs in `authoring/enhancements/`. Generated code in `.generated/` and review files in
-`output/` are disposable.
+Choose one dedicated task directory for each deck. The user may supply its location; otherwise pick
+a writable location in the current workspace. Do not reuse a task directory across concurrent or
+resumable deck jobs. This layout is an example, not a required path:
+
+```text
+<task-dir>/
+  deck.md
+  pages/page-NN-*.svg
+  resources/<registry>--<resource>.svg
+  enhancements/page-NN-*.js  # optional native programs
+  .generated/page-NN.js       # disposable
+  output/                     # disposable review and export files
+```
 
 ## Workflow
 
@@ -21,7 +30,7 @@ native programs in `authoring/enhancements/`. Generated code in `.generated/` an
 2. Create a Slide with `slide-gen-cli create --name <name>`, then create a Worktree. Retain both IDs
    for every later command. Use `api find|show --unit slide` when you need Facade reference.
 3. Find resources by meaning with `resources find`, then export canonical handles with
-   `resources export ... --out authoring/resources`. At least one page in the deck must reference a
+   `resources export ... --out <task-dir>/resources`. At least one page in the deck must reference a
    stable-handle resource; other pages may omit resources. Reference an export by its
    `<registryId>--<resourceId>.svg` name. Do not copy path data, substitute Unicode glyphs, or invent
    placeholder icons.
@@ -33,8 +42,8 @@ native programs in `authoring/enhancements/`. Generated code in `.generated/` an
 5. Generate pages consecutively from 1 through N. Compile each source with:
 
    ```bash
-   slide-gen-cli compile-svg authoring/pages/page-01-title.svg --page 1 \
-     --out .generated/page-01.js --estimate-text-size --json
+   slide-gen-cli compile-svg <task-dir>/pages/page-01-title.svg --page 1 \
+     --out <task-dir>/.generated/page-01.js --estimate-text-size --json
    ```
 
    Stop on compiler errors or warnings. Review every lint; the deterministic text-estimation lint
@@ -48,8 +57,9 @@ native programs in `authoring/enhancements/`. Generated code in `.generated/` an
    program. Give each chart explicit category and value field mappings. Run enhancements only after
    the final SVG replacement for their page, and replay them whenever a later replacement removes
    those native elements. SVG charts and tables need no enhancement.
-8. For every page, save compiler diagnostics and structured inspection, run layout lint, capture a
-   PNG, and read it. Require zero unexplained layout findings. Check clipping, overflow, wrapping,
+8. For every page, save compiler diagnostics and structured inspection under the task directory,
+   run layout lint, capture a PNG under `<task-dir>/output`, and read it. Require zero unexplained
+   layout findings. Check clipping, overflow, wrapping,
    overlap, alignment, contrast, missing content, and stacking. Then review the whole deck for
    narrative continuity, font and color consistency, resource style, page size, and native-element
    placement.
@@ -58,7 +68,7 @@ native programs in `authoring/enhancements/`. Generated code in `.generated/` an
    elements under the replacements.
 10. Mark the Worktree Ready and print its Server-scoped review URL with `open --no-launch`. If the
     user requests a file, export the same Worktree revision with
-    `export <file.pptx> --unit <unitId> --worktree <worktreeId>`. For a PPTX with native charts or
+    `export <task-dir>/output/<file.pptx> --unit <unitId> --worktree <worktreeId>`. For a PPTX with native charts or
     tables, inspect exporter diagnostics and verify that the OOXML preserves chart category/value
     data, includes the embedded workbook, and contains the native table in slide XML. Return the
     Unit ID, Worktree ID, revision, authoring paths, evidence paths, accepted lints, review URL, and

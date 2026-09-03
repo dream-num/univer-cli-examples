@@ -1,0 +1,29 @@
+{
+  "pages": [
+    {
+      "page": 1,
+      "source": "pages/page-01-from-brief-to-review.svg",
+      "viewport": { "width": 960, "height": 540 },
+      "mode": "replace",
+      "warnings": [],
+      "lints": ["text boxes were sized by deterministic estimation (--estimate-text-size)"]
+    },
+    {
+      "page": 2,
+      "source": "pages/page-02-task-directory.svg",
+      "viewport": { "width": 960, "height": 540 },
+      "mode": "replace",
+      "warnings": [],
+      "lints": ["text boxes were sized by deterministic estimation (--estimate-text-size)"]
+    },
+    {
+      "page": 3,
+      "source": "pages/page-03-quality-loop.svg",
+      "viewport": { "width": 960, "height": 540 },
+      "mode": "replace",
+      "warnings": [],
+      "lints": ["text boxes were sized by deterministic estimation (--estimate-text-size)"]
+    }
+  ],
+  "acceptedLintReason": "The skill identifies deterministic text-estimation lint as expected; browser-rendered layout lint and PNG review verify the final positions."
+}

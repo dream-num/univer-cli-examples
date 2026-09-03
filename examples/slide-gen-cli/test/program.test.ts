@@ -75,7 +75,10 @@ it("finds and exports the canonical resource through an injected library", async
   const source = join(authoring, "pages/page-01-status.svg");
   const generated = join(temporaryRoot, "page.js");
   await mkdir(dirname(source), { recursive: true });
-  await writeFile(source, await readFile(join(root, "authoring/pages/page-01-status.svg"), "utf8"));
+  await writeFile(
+    source,
+    await readFile(join(root, "authoring/product-release/pages/page-01-status.svg"), "utf8"),
+  );
   const compiled = JSON.parse(
     await runInProcess(openResourceLibrary, [
       "compile-svg",

@@ -25,9 +25,9 @@
 
 ```text
 Presentation Brief / deck spec
-  ├─ authoring/pages/page-NN-*.svg ── compile-svg --page N ──┐
-  ├─ authoring/resources/<stable-handle>.svg                 ├─ execute → Slide Worktree
-  └─ authoring/enhancements/page-NN-*.js ─ after replacement┘
+  ├─ <task-dir>/pages/page-NN-*.svg ── compile-svg --page N ──┐
+  ├─ <task-dir>/resources/<stable-handle>.svg                 ├─ execute → Slide Worktree
+  └─ <task-dir>/enhancements/page-NN-*.js ─ after replacement┘
                                                                │
 每页 inspect + lint + screenshot ── deck consistency review ──┤
                                                                ↓
@@ -38,18 +38,19 @@ Presentation Brief / deck spec
 
 ### 1. Authoring Source 使用目录约定，不增加 manifest 或 deck compiler
 
-将迁移期 `authoring/page.svg` 整理为：
+Agent 为每个 deck 选择一个独立任务目录；目录名与位置由用户或 Agent 决定。仓库中的 Baseline Deck 使用 `authoring/product-release/` 作为示例，但 skill 不把该位置作为要求：
 
 ```text
-authoring/
+<task-dir>/
   deck.md
   pages/page-NN-*.svg
   resources/<registry>--<resource>.svg
   enhancements/page-NN-*.js  # optional
-.generated/page-NN.js         # disposable, ignored
+  .generated/page-NN.js       # disposable, ignored
+  output/                     # disposable, ignored
 ```
 
-`deck.md` 保存 Presentation Brief 或等价 deck specification、叙事顺序与逐页内容合同；pages、resources 和 enhancements 是维护输入。文件名的两位数字只提供可读排序，不构成页数上限。`slide-gen-cli` 不扫描或批量执行该目录；Agent 依照 skill 调用现有 commands，避免引入第二套 execution abstraction。Resource-backed 条件在 deck 级判断，只要求至少一个 page SVG 引用 stable-handle export。
+`deck.md` 保存 Presentation Brief 或等价 deck specification、叙事顺序与逐页内容合同；pages、resources 和 enhancements 是维护输入。generated programs、review evidence 和导出文件也留在同一任务目录下，避免并行或可恢复任务互相覆盖。文件名的两位数字只提供可读排序，不构成页数上限。`slide-gen-cli` 不扫描或批量执行该目录；Agent 依照 skill 调用现有 commands，避免引入第二套 execution abstraction。Resource-backed 条件在 deck 级判断，只要求至少一个 page SVG 引用 stable-handle export。
 
 ### 2. 多页生成直接采用既有 1-based page transition
 
@@ -57,7 +58,7 @@ authoring/
 
 ### 3. Native Enhancement 只补充 SVG compiler 无法表达的 editable semantics
 
-Chart/table 默认可以由 page SVG 的普通视觉 elements 表达。需要 editable native semantics 时，page SVG 先定义完整背景、普通内容和预留区域；目标 page 最后一次 replacement confirmed 后，再通过 `execute --file` 运行保存于 `authoring/enhancements/` 的 program。因为 full-page replacement 会删除该 page 的全部 elements，Agent 每次修改 SVG 后必须重放对应 enhancement，再重新 inspect、lint 和 screenshot。
+Chart/table 默认可以由 page SVG 的普通视觉 elements 表达。需要 editable native semantics 时，page SVG 先定义完整背景、普通内容和预留区域；目标 page 最后一次 replacement confirmed 后，再通过 `execute --file` 运行保存于 `<task-dir>/enhancements/` 的 program。因为 full-page replacement 会删除该 page 的全部 elements，Agent 每次修改 SVG 后必须重放对应 enhancement，再重新 inspect、lint 和 screenshot。
 
 Native chart program 通过当前 API reference 确认 Facade surface，并显式配置 category field 与 value fields mapping。一次性 shell snippet、普通 drawing calls 和 generated compiler program 不得冒充 Native Enhancement source。
 

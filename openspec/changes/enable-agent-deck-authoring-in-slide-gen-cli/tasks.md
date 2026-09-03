@@ -1,6 +1,6 @@
 ## 1. Deck-level Authoring Source 与 Baseline Deck
 
-- [x] 1.1 在 Change 1 已应用的 `examples/slide-gen-cli/` 中，将迁移期 `authoring/page.svg` 整理为包含 Presentation Brief/deck spec、`authoring/pages/page-NN-*.svg`、`authoring/resources/` 和 optional `authoring/enhancements/` 的 Authoring Source；提交至少两个连续 960 × 540 baseline pages，并让其中至少一页引用 canonical stable-handle rocket resource。验证：检查 committed source 与 ignore rules，逐页运行 `slide-gen-cli compile-svg ... --page N --json`，确认无需每页引用资源且 `.generated/` 仍是 disposable output。
+- [x] 1.1 在 Change 1 已应用的 `examples/slide-gen-cli/` 中，把 Authoring Source 设计为调用方可任选位置的独立 `<task-dir>`；以 `authoring/product-release/` 提交一个包含 Presentation Brief/deck spec、`pages/page-NN-*.svg`、`resources/` 和 optional `enhancements/` 的示例，并让 `.generated/` 与 `output/` 留在同一任务目录下；提交至少两个连续 960 × 540 baseline pages，并让其中至少一页引用 canonical stable-handle rocket resource。验证：检查 committed source 与 ignore rules，逐页运行 `slide-gen-cli compile-svg ... --page N --json`，确认无需每页引用资源且 task-local `.generated/` 仍是 disposable output。
 
 ## 2. Per-page generation contract
 
