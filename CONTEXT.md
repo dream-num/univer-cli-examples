@@ -35,3 +35,43 @@ _Avoid_: screenshot, inspection result
 **Review URL**:
 A Server-scoped URL for viewing a trunk or Worktree Slide deck while the example's Web Server is running.
 _Avoid_: public URL, permanent share link
+
+**Typst Source Bundle**:
+The author-owned manifest, ordered Typst page sources, optional prelude, and local assets used to create one Univer Doc.
+_Avoid_: generated program, output directory
+
+**Materialized Doc**:
+A Univer Doc created by executing the Facade program compiled from a Typst Source Bundle.
+_Avoid_: Typst document, preview
+
+**Local Doc Library**:
+A local collection of Generated Artifacts whose Materialized Docs can be discovered for human review.
+_Avoid_: Workspace, document database
+
+**Local Doc Viewer**:
+A read-only browser surface for choosing and viewing Materialized Docs from a Local Doc Library.
+_Avoid_: editor, Review URL, screenshot viewer
+
+**Local Doc Identity**:
+The `targetUnitId` shared by a Typst Source Bundle and its Materialized Doc inside one example build; it is not an external Workspace identity.
+_Avoid_: Workspace ID, remote Unit ID
+
+**Generated Artifact**:
+A replaceable output derived from a Typst Source Bundle, such as a Facade program, diagnostics, Doc UnitData, or PNG.
+_Avoid_: source, authored document
+
+**Typst Preview**:
+A PNG rendered directly from a Typst Source Bundle as evidence of the source-side layout.
+_Avoid_: Univer Screenshot, final preview
+
+**Univer Screenshot**:
+A PNG rendered from a Materialized Doc as evidence of the resulting Univer layout.
+_Avoid_: Typst Preview, source preview
+
+**Machine Result**:
+The single JSON document written to stdout when an example command succeeds in `--json` mode.
+_Avoid_: JSON log, success message
+
+**Machine Failure**:
+The single JSON document written to stderr when an example command fails in `--json` mode.
+_Avoid_: stdout error, human-readable stack trace

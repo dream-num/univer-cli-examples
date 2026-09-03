@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "targetUnitId": "univer-cli-sdk-release-brief",
+  "title": "Univer CLI SDK 发布简报",
+  "prelude": ["prelude.typ"],
+  "pages": [{ "id": "release-brief", "source": "pages/brief.typ" }]
+}

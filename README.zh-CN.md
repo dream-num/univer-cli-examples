@@ -12,8 +12,10 @@
 | [`03-visual-inspection`](./examples/03-visual-inspection/README.zh-CN.md)   | 视觉检查前三种 Unit                     | Render Page、Screenshot、Layout Lint       |
 | [`04-worktree`](./examples/04-worktree/README.zh-CN.md)                     | 在 draft 编辑并交给人审阅               | Worktree、Ready、Merge、Reopen、Discard    |
 | [`slide-gen-cli`](./examples/slide-gen-cli/README.zh-CN.md)                 | 借助 Agent 生成、审阅、导出和查看 Slide | SVG Compile、Resource Library、Agent Skill |
+| [`doc-gen`](./examples/doc-gen/README.zh-CN.md)                             | 使用 Typst 创作并视觉检查 Doc            | Typst Compile、Doc Materialization         |
 
-请按编号阅读。每个目录都有自己的 `package.json`、lockfile 和依赖，可以独立复制和运行。
+请按编号阅读 `01` 至 `04`；无编号 example 各自独立。每个目录都有自己的 `package.json`、lockfile
+和依赖，可以独立复制和运行。
 
 ## 01 Content Operations
 
