@@ -134,7 +134,7 @@ doc-gen screenshot <output-directory>/document.json \
 
 - Typst compile 支持已发布 native binding 的 macOS x64/arm64、Linux glibc x64/arm64 和 Windows x64；Linux musl 与 Windows arm64 不在本示例支持范围内。
 - Univer Screenshot 需要 Chrome、Chromium 或 Edge。自动发现失败时设置 `UNIVER_RENDER_BROWSER`。
-- compile/materialize/save 不强制要求 `UNIVER_LICENSE`。截图遵循 Pro render plugin 的 license 和 watermark 行为；空 license 可能产生水印。
+- 示例内置用于 headless 执行和截图的应用自有 90 天开发 License；请按 `src/shared/license.ts` 中注明的轮换周期及时替换。
 - `compile-typst` 只使用 package 自带的 Typst native binding，并只执行当前 compile 返回的 program；不会调用系统 Typst。
 - `execute` 运行 `--file` 指定的可信本地 JavaScript，且不提供 sandbox。不得运行下载、未知或此前生成的 `document.js`。
 - `screenshot` 通过 Render Runtime 直接读取 `document.json`，不创建 headless Univer、Server 或 Worktree。

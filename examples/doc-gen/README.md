@@ -139,7 +139,7 @@ automatic replay.
 
 - Typst compilation supports the native binding targets published for macOS x64/arm64, Linux glibc x64/arm64, and Windows x64. Linux musl and Windows arm64 are outside this example's supported matrix.
 - Univer Screenshots require Chrome, Chromium, or Edge. Set `UNIVER_RENDER_BROWSER` when automatic discovery cannot find the executable.
-- `UNIVER_LICENSE` is optional for compile/materialize/save. Screenshot output follows the Pro render plugin's license and watermark behavior; an empty license may produce a watermark.
+- The example includes its application-owned 90-day development license for headless execution and screenshots. Replace it on the stated rotation schedule in `src/shared/license.ts`.
 - `compile-typst` uses only the package's native Typst binding and executes only the program returned by its current compile. It does not use a system Typst executable.
 - `execute` runs trusted local JavaScript supplied with `--file`; it is not sandboxed. Do not run downloaded, unknown, or previously generated `document.js` files.
 - `screenshot` reads `document.json` directly through the Render Runtime and does not create a headless Univer, Server, or Worktree.
