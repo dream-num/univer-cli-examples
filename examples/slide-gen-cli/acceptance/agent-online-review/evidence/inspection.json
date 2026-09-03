@@ -1,0 +1,54 @@
+{
+  "unitId": "6ac339c6",
+  "worktreeId": "2402e640",
+  "revision": 4,
+  "commit": "confirmed",
+  "presentation": {
+    "size": { "width": 960, "height": 540 },
+    "pageCount": 3
+  },
+  "slides": [
+    {
+      "page": 1,
+      "id": "FR2CXL",
+      "name": "Slide 1",
+      "elementCounts": {
+        "total": 39,
+        "shapes": 38,
+        "images": 1,
+        "charts": 0,
+        "tables": 0,
+        "groups": 0
+      },
+      "textPreview": "AGENT AUTHORING LOOP | 从一句想法，到可在线评审的 | Univer Slide deck"
+    },
+    {
+      "page": 2,
+      "id": "4_DhMS",
+      "name": "Slide 2",
+      "elementCounts": {
+        "total": 42,
+        "shapes": 42,
+        "images": 0,
+        "charts": 0,
+        "tables": 0,
+        "groups": 0
+      },
+      "textPreview": "TASK DIRECTORY | 一个目录，收拢一次 deck 任务"
+    },
+    {
+      "page": 3,
+      "id": "LWLf19",
+      "name": "Slide 3",
+      "elementCounts": {
+        "total": 41,
+        "shapes": 41,
+        "images": 0,
+        "charts": 0,
+        "tables": 0,
+        "groups": 0
+      },
+      "textPreview": "QUALITY LOOP | 可评审，来自可重复的质量回路"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect x="0" y="0" width="960" height="540" fill="#0D1426" />
+  <rect x="54" y="42" width="120" height="28" rx="14" fill="#21304F" />
+  <text x="70" y="61" fill="#B4AAFF" font-family="Arial, sans-serif" font-size="12" font-weight="700">LAUNCH PLAN</text>
+  <text x="54" y="116" fill="#F7F9FF" font-family="Arial, sans-serif" font-size="40" font-weight="700">上线交付清单</text>
+  <text x="54" y="148" fill="#9AA7C2" font-family="Arial, sans-serif" font-size="16">周五 20:00 发布，所有门槛由明确负责人确认</text>
+
+  <g transform="translate(54 204)">
+    <rect width="852" height="86" rx="18" fill="#171F34" stroke="#2C3856" />
+    <text x="26" y="34" fill="#82E8EC" font-family="Arial, sans-serif" font-size="13" font-weight="700">01 · QUALITY</text>
+    <text x="26" y="63" fill="#F7F9FF" font-family="Arial, sans-serif" font-size="20" font-weight="700">回归结果归档</text>
+    <text x="350" y="52" fill="#9AA7C2" font-family="Arial, sans-serif" font-size="15">Owner · QA</text>
+    <text x="808" y="52" text-anchor="end" fill="#82E8EC" font-family="Arial, sans-serif" font-size="14" font-weight="700">DONE</text>
+  </g>
+  <g transform="translate(54 310)">
+    <rect width="852" height="86" rx="18" fill="#171F34" stroke="#2C3856" />
+    <text x="26" y="34" fill="#9FCBFF" font-family="Arial, sans-serif" font-size="13" font-weight="700">02 · APPROVAL</text>
+    <text x="26" y="63" fill="#F7F9FF" font-family="Arial, sans-serif" font-size="20" font-weight="700">发布负责人签核</text>
+    <text x="350" y="52" fill="#9AA7C2" font-family="Arial, sans-serif" font-size="15">Owner · Product</text>
+    <text x="808" y="52" text-anchor="end" fill="#9FCBFF" font-family="Arial, sans-serif" font-size="14" font-weight="700">TODAY</text>
+  </g>
+  <g transform="translate(54 416)">
+    <rect width="852" height="70" rx="18" fill="#171F34" stroke="#2C3856" />
+    <text x="26" y="29" fill="#B4AAFF" font-family="Arial, sans-serif" font-size="13" font-weight="700">03 · HANDOFF</text>
+    <text x="26" y="54" fill="#F7F9FF" font-family="Arial, sans-serif" font-size="20" font-weight="700">Ready Review URL + 按需 PPTX</text>
+    <text x="808" y="44" text-anchor="end" fill="#B4AAFF" font-family="Arial, sans-serif" font-size="14" font-weight="700">20:00</text>
+  </g>
+  <text x="906" y="510" text-anchor="end" fill="#66738F" font-family="Arial, sans-serif" font-size="12">PAGE 02 · 2026.09</text>
+</svg>

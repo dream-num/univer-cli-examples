@@ -5,12 +5,13 @@
 这个仓库只存放可运行的 Univer CLI SDK 教学 examples。概念和架构说明统一在
 [Univer Office 文档站](https://office.univer.ai/zh-CN/cli/overview)维护。
 
-| Example                                                                     | 学习目标                           | 新增概念                                |
-| --------------------------------------------------------------------------- | ---------------------------------- | --------------------------------------- |
-| [`01-content-operations`](./examples/01-content-operations/README.zh-CN.md) | 读取、修改并查看 Sheet、Doc、Slide | CLI、Server、Web、Collaboration Runtime |
-| [`02-file-exchange`](./examples/02-file-exchange/README.zh-CN.md)           | 导入和导出 Office 文件             | Exchange、UnitData、原生 binding        |
-| [`03-visual-inspection`](./examples/03-visual-inspection/README.zh-CN.md)   | 视觉检查前三种 Unit                | Render Page、Screenshot、Layout Lint    |
-| [`04-worktree`](./examples/04-worktree/README.zh-CN.md)                     | 在 draft 编辑并交给人审阅          | Worktree、Ready、Merge、Reopen、Discard |
+| Example                                                                     | 学习目标                                | 新增概念                                   |
+| --------------------------------------------------------------------------- | --------------------------------------- | ------------------------------------------ |
+| [`01-content-operations`](./examples/01-content-operations/README.zh-CN.md) | 读取、修改并查看 Sheet、Doc、Slide      | CLI、Server、Web、Collaboration Runtime    |
+| [`02-file-exchange`](./examples/02-file-exchange/README.zh-CN.md)           | 导入和导出 Office 文件                  | Exchange、UnitData、原生 binding           |
+| [`03-visual-inspection`](./examples/03-visual-inspection/README.zh-CN.md)   | 视觉检查前三种 Unit                     | Render Page、Screenshot、Layout Lint       |
+| [`04-worktree`](./examples/04-worktree/README.zh-CN.md)                     | 在 draft 编辑并交给人审阅               | Worktree、Ready、Merge、Reopen、Discard    |
+| [`slide-gen-cli`](./examples/slide-gen-cli/README.zh-CN.md)                 | 借助 Agent 生成、审阅、导出和查看 Slide | SVG Compile、Resource Library、Agent Skill |
 
 请按编号阅读。每个目录都有自己的 `package.json`、lockfile 和依赖，可以独立复制和运行。
 

@@ -1,0 +1,130 @@
+import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import { dirname, join, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import { afterEach, expect, it } from "vitest";
+import { UnitStore } from "../src/server/unit-store.js";
+import { createFixtureResourceLibrary, ROCKET_SVG } from "./resource-fixture.js";
+import { runInProcess } from "./run-program.js";
+
+const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+
+let temporaryRoot: string | undefined;
+
+afterEach(async () => {
+  if (temporaryRoot !== undefined) await rm(temporaryRoot, { force: true, recursive: true });
+  temporaryRoot = undefined;
+});
+
+it("lists newer Files first", () => {
+  const store = new UnitStore(":memory:");
+  store.add({ name: "Older", unitId: "older", unitType: "slide" });
+  store.add({ name: "Newer", unitId: "newer", unitType: "slide" });
+
+  expect(store.list().map((unit) => unit.unitId)).toEqual(["newer", "older"]);
+  store.close();
+});
+
+it("keeps slide navigation outside the review mutation lock", async () => {
+  const source = await readFile(join(root, "src/web/main.ts"), "utf8");
+  expect(source).not.toMatch(/\bapp\.inert\s*=/);
+  expect(source).toContain("lockEditorMutation(app");
+  expect(source).toContain("slide-thumbnail-item");
+  const animationFrameGuard = source.indexOf("await ensureAnimationFramesProgress()");
+  expect(animationFrameGuard).toBeGreaterThan(-1);
+  expect(animationFrameGuard).toBeLessThan(source.indexOf("createUniver({"));
+  expect(source).toContain("window.requestAnimationFrame = (callback)");
+});
+
+it("requires native PPTX acceptance evidence before handoff", async () => {
+  const guides = await Promise.all(
+    ["skills/univer-slide-authoring/SKILL.md", "README.md", "README.zh-CN.md"].map((path) =>
+      readFile(join(root, path), "utf8"),
+    ),
+  );
+  for (const guide of guides) {
+    expect(guide).toMatch(/exporter diagnostics/);
+    expect(guide).toMatch(/OOXML[\s\S]{0,40}chart\s+category\/value\s+data/);
+    expect(guide).toMatch(/embedded workbook/);
+    expect(guide).toMatch(/native table[\s\S]{0,40}slide XML|slide XML[\s\S]{0,40}native table/);
+    expect(guide).toMatch(/do not .*only the file path|不能只返回文件路径/);
+  }
+});
+
+it("finds and exports the canonical resource through an injected library", async () => {
+  temporaryRoot = await mkdtemp(join(tmpdir(), "univer-resource-test-"));
+  const downloads: string[] = [];
+  const library = createFixtureResourceLibrary(temporaryRoot, (url) => downloads.push(url));
+  const openResourceLibrary = () => library;
+
+  const found = await runInProcess(openResourceLibrary, ["resources", "find", "rocket", "--json"]);
+  expect(JSON.parse(found)).toMatchObject({
+    total: 1,
+    resources: [{ handle: "example-tabler-outline/rocket" }],
+  });
+
+  const authoring = join(temporaryRoot, "authoring");
+  const destination = join(authoring, "resources");
+  const exported = await runInProcess(openResourceLibrary, [
+    "resources",
+    "export",
+    "example-tabler-outline/rocket",
+    "--out",
+    destination,
+    "--json",
+  ]);
+  expect(JSON.parse(exported)).toMatchObject({
+    exported: [{ handle: "example-tabler-outline/rocket" }],
+    failed: [],
+  });
+  expect(await readFile(join(destination, "example-tabler-outline--rocket.svg"), "utf8")).toBe(
+    ROCKET_SVG,
+  );
+  expect(downloads).toEqual(["https://example.test/rocket.svg"]);
+
+  const source = join(authoring, "pages/page-01-status.svg");
+  const generated = join(temporaryRoot, "page.js");
+  await mkdir(dirname(source), { recursive: true });
+  await writeFile(
+    source,
+    await readFile(join(root, "authoring/product-release/pages/page-01-status.svg"), "utf8"),
+  );
+  const compiled = JSON.parse(
+    await runInProcess(openResourceLibrary, [
+      "compile-svg",
+      source,
+      "--page",
+      "1",
+      "--out",
+      generated,
+      "--estimate-text-size",
+      "--json",
+    ]),
+  ) as Record<string, unknown>;
+  expect(compiled).toMatchObject({
+    viewport: { width: 960, height: 540 },
+    textMeasure: "builtin-estimate",
+    warnings: [],
+    mode: "replace",
+    page: 1,
+    out: generated,
+  });
+  expect(compiled.lints).toEqual([
+    "text boxes were sized by estimation (--estimate-text-size), not by real font metrics: text can sit off-position, especially centred or right-aligned lines; recompile without the flag (with a browser) before you ship",
+  ]);
+  expect((await readFile(generated, "utf8")).length).toBeGreaterThan(100);
+
+  await rm(join(destination, "example-tabler-outline--rocket.svg"));
+  await expect(
+    runInProcess(openResourceLibrary, [
+      "compile-svg",
+      source,
+      "--page",
+      "1",
+      "--out",
+      generated,
+      "--estimate-text-size",
+      "--json",
+    ]),
+  ).rejects.toThrow(/example-tabler-outline--rocket\.svg/);
+});

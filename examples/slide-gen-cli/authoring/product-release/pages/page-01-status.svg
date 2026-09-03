@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="960" height="540" viewBox="0 0 960 540">
+  <defs>
+    <linearGradient id="progress" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5CE1E6" />
+      <stop offset="1" stop-color="#8B7CFF" />
+    </linearGradient>
+  </defs>
+
+  <rect x="0" y="0" width="960" height="540" fill="#0D1426" />
+  <rect x="54" y="42" width="104" height="28" rx="14" fill="#21304F" />
+  <text x="70" y="61" fill="#82E8EC" font-family="Arial, sans-serif" font-size="12" font-weight="700">RELEASE 06</text>
+  <text x="54" y="116" fill="#F7F9FF" font-family="Arial, sans-serif" font-size="40" font-weight="700">产品发布状态</text>
+  <text x="54" y="148" fill="#9AA7C2" font-family="Arial, sans-serif" font-size="16">三个关键阶段，一页掌握从验证到上线的进度</text>
+  <circle cx="871" cy="83" r="40" fill="#82E8EC" />
+  <image x="836" y="48" width="70" height="70" href="../resources/example-tabler-outline--rocket.svg" xlink:href="../resources/example-tabler-outline--rocket.svg" data-univer-embed="image" />
+
+  <line x1="187" y1="214" x2="773" y2="214" stroke="#2E3954" stroke-width="6" />
+  <line x1="187" y1="214" x2="773" y2="214" stroke="url(#progress)" stroke-width="3" />
+  <circle cx="187" cy="214" r="10" fill="#5CE1E6" />
+  <circle cx="480" cy="214" r="10" fill="#7AB6F5" />
+  <circle cx="773" cy="214" r="10" fill="#8B7CFF" />
+
+  <g transform="translate(54 246)">
+    <rect x="0" y="0" width="266" height="202" rx="18" fill="#171F34" stroke="#2C3856" stroke-width="1" />
+    <rect x="0" y="0" width="6" height="202" rx="3" fill="#5CE1E6" />
+    <text x="26" y="42" fill="#82E8EC" font-family="Arial, sans-serif" font-size="13" font-weight="700">01 · VALIDATE</text>
+    <text x="26" y="78" fill="#F7F9FF" font-family="Arial, sans-serif" font-size="24" font-weight="700">验证完成</text>
+    <text x="26" y="108" fill="#9AA7C2" font-family="Arial, sans-serif" font-size="14">核心路径与回归检查通过</text>
+    <rect x="26" y="132" width="214" height="8" rx="4" fill="#27314A" />
+    <rect x="26" y="132" width="214" height="8" rx="4" fill="#5CE1E6" />
+    <text x="26" y="174" fill="#C8D1E5" font-family="Arial, sans-serif" font-size="13">12 / 12 checks</text>
+    <text x="214" y="174" fill="#82E8EC" font-family="Arial, sans-serif" font-size="13" font-weight="700">100%</text>
+  </g>
+
+  <g transform="translate(347 246)">
+    <rect x="0" y="0" width="266" height="202" rx="18" fill="#171F34" stroke="#2C3856" stroke-width="1" />
+    <rect x="0" y="0" width="6" height="202" rx="3" fill="#7AB6F5" />
+    <text x="26" y="42" fill="#9FCBFF" font-family="Arial, sans-serif" font-size="13" font-weight="700">02 · REVIEW</text>
+    <text x="26" y="78" fill="#F7F9FF" font-family="Arial, sans-serif" font-size="24" font-weight="700">评审进行中</text>
+    <text x="26" y="108" fill="#9AA7C2" font-family="Arial, sans-serif" font-size="14">设计与发布负责人联合确认</text>
+    <rect x="26" y="132" width="214" height="8" rx="4" fill="#27314A" />
+    <rect x="26" y="132" width="154" height="8" rx="4" fill="#7AB6F5" />
+    <text x="26" y="174" fill="#C8D1E5" font-family="Arial, sans-serif" font-size="13">3 reviewers active</text>
+    <text x="218" y="174" fill="#9FCBFF" font-family="Arial, sans-serif" font-size="13" font-weight="700">72%</text>
+  </g>
+
+  <g transform="translate(640 246)">
+    <rect x="0" y="0" width="266" height="202" rx="18" fill="#171F34" stroke="#2C3856" stroke-width="1" />
+    <rect x="0" y="0" width="6" height="202" rx="3" fill="#8B7CFF" />
+    <text x="26" y="42" fill="#B4AAFF" font-family="Arial, sans-serif" font-size="13" font-weight="700">03 · LAUNCH</text>
+    <text x="26" y="78" fill="#F7F9FF" font-family="Arial, sans-serif" font-size="24" font-weight="700">准备上线</text>
+    <text x="26" y="108" fill="#9AA7C2" font-family="Arial, sans-serif" font-size="14">发布窗口：周五 20:00</text>
+    <rect x="26" y="132" width="214" height="8" rx="4" fill="#27314A" />
+    <rect x="26" y="132" width="94" height="8" rx="4" fill="#8B7CFF" />
+    <text x="26" y="174" fill="#C8D1E5" font-family="Arial, sans-serif" font-size="13">2 gates remaining</text>
+    <text x="218" y="174" fill="#B4AAFF" font-family="Arial, sans-serif" font-size="13" font-weight="700">44%</text>
+  </g>
+
+  <text x="54" y="496" fill="#66738F" font-family="Arial, sans-serif" font-size="12">UNIVER CLI SDK · RESOURCE-BACKED SVG AUTHORING</text>
+  <text x="906" y="496" text-anchor="end" fill="#66738F" font-family="Arial, sans-serif" font-size="12">2026.09</text>
+</svg>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slide Gen CLI</title>
+  </head>
+  <body>
+    <div id="shell">
+      <aside id="sidebar">
+        <header class="sidebar-brand">
+          <span class="brand-mark" aria-hidden="true">U</span>
+          <span>Slide Gen CLI</span>
+        </header>
+        <div class="sidebar-tabs" role="tablist" aria-label="Slide navigation">
+          <button
+            id="files-tab"
+            class="sidebar-tab"
+            type="button"
+            role="tab"
+            aria-controls="files-panel"
+          >
+            Files
+          </button>
+          <button
+            id="worktrees-tab"
+            class="sidebar-tab"
+            type="button"
+            role="tab"
+            aria-controls="worktrees-panel"
+          >
+            Worktrees
+          </button>
+        </div>
+        <section id="files-panel" class="sidebar-panel" role="tabpanel" aria-labelledby="files-tab">
+          <form id="create-form">
+            <button type="submit">New Slide</button>
+          </form>
+          <nav id="unit-list" aria-label="Files"></nav>
+        </section>
+        <section
+          id="worktrees-panel"
+          class="sidebar-panel"
+          role="tabpanel"
+          aria-labelledby="worktrees-tab"
+        >
+          <nav id="worktree-list" aria-label="Worktrees"></nav>
+        </section>
+      </aside>
+      <main id="workspace">
+        <div id="toolbar">
+          <span id="status">Select a file</span>
+          <div id="review-actions"></div>
+        </div>
+        <div id="empty">Select a file or create a new one.</div>
+        <div id="app"></div>
+      </main>
+    </div>
+    <script type="module" src="/main.ts"></script>
+  </body>
+</html>

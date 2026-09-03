@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="540" viewBox="0 0 960 540">
+  <rect width="960" height="540" fill="#0B1020" />
+  <rect x="48" y="38" width="155" height="28" rx="14" fill="#15223E" />
+  <text x="66" y="57" fill="#A9B7D7" font-family="Arial, PingFang SC, sans-serif" font-size="12" font-weight="700">TASK DIRECTORY</text>
+  <text x="48" y="116" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="36" font-weight="700">一个目录，收拢一次 deck 任务</text>
+  <text x="48" y="150" fill="#98A6C7" font-family="Arial, PingFang SC, sans-serif" font-size="16">位置由用户或 Agent 选择；任务彼此隔离，输入、生成物与证据可一起追溯。</text>
+
+  <g transform="translate(48 192)">
+    <rect width="394" height="268" rx="20" fill="#10192D" stroke="#263558" />
+    <rect x="0" y="0" width="394" height="44" rx="20" fill="#17233C" />
+    <circle cx="24" cy="22" r="5" fill="#FF6B7A" />
+    <circle cx="42" cy="22" r="5" fill="#FFB454" />
+    <circle cx="60" cy="22" r="5" fill="#4DE2C5" />
+    <text x="84" y="27" fill="#C7D1E8" font-family="Arial, sans-serif" font-size="12">agent-online-review/</text>
+
+    <line x1="54" y1="79" x2="54" y2="235" stroke="#30405F" stroke-width="2" />
+    <text x="30" y="84" fill="#4DE2C5" font-family="Arial, monospace" font-size="14">●</text>
+    <text x="72" y="84" fill="#F6F8FF" font-family="Arial, monospace" font-size="14">deck.md</text>
+    <text x="208" y="84" fill="#7181A2" font-family="Arial, PingFang SC, sans-serif" font-size="12">任务契约</text>
+    <text x="30" y="122" fill="#5B8CFF" font-family="Arial, monospace" font-size="14">●</text>
+    <text x="72" y="122" fill="#F6F8FF" font-family="Arial, monospace" font-size="14">pages/</text>
+    <text x="208" y="122" fill="#7181A2" font-family="Arial, PingFang SC, sans-serif" font-size="12">逐页 SVG 源码</text>
+    <text x="30" y="160" fill="#A77BFF" font-family="Arial, monospace" font-size="14">●</text>
+    <text x="72" y="160" fill="#F6F8FF" font-family="Arial, monospace" font-size="14">resources/</text>
+    <text x="208" y="160" fill="#7181A2" font-family="Arial, PingFang SC, sans-serif" font-size="12">稳定句柄资源</text>
+    <text x="30" y="198" fill="#FFB454" font-family="Arial, monospace" font-size="14">●</text>
+    <text x="72" y="198" fill="#F6F8FF" font-family="Arial, monospace" font-size="14">.generated/</text>
+    <text x="208" y="198" fill="#7181A2" font-family="Arial, PingFang SC, sans-serif" font-size="12">可丢弃程序</text>
+    <text x="30" y="236" fill="#4DE2C5" font-family="Arial, monospace" font-size="14">●</text>
+    <text x="72" y="236" fill="#F6F8FF" font-family="Arial, monospace" font-size="14">output/ + evidence/</text>
+    <text x="250" y="236" fill="#7181A2" font-family="Arial, PingFang SC, sans-serif" font-size="12">交付与验收</text>
+  </g>
+
+  <g transform="translate(476 192)">
+    <rect width="436" height="76" rx="16" fill="#121B31" stroke="#263558" />
+    <rect width="7" height="76" rx="3" fill="#4DE2C5" />
+    <text x="28" y="31" fill="#4DE2C5" font-family="Arial, sans-serif" font-size="12" font-weight="700">INPUT</text>
+    <text x="28" y="56" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="17" font-weight="700">一句需求 → deck.md 页面契约</text>
+  </g>
+  <g transform="translate(476 286)">
+    <rect width="436" height="76" rx="16" fill="#121B31" stroke="#263558" />
+    <rect width="7" height="76" rx="3" fill="#5B8CFF" />
+    <text x="28" y="31" fill="#5B8CFF" font-family="Arial, sans-serif" font-size="12" font-weight="700">BUILD</text>
+    <text x="28" y="56" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="17" font-weight="700">SVG + Resource → Facade program</text>
+  </g>
+  <g transform="translate(476 380)">
+    <rect width="436" height="80" rx="16" fill="#121B31" stroke="#263558" />
+    <rect width="7" height="80" rx="3" fill="#A77BFF" />
+    <text x="28" y="32" fill="#A77BFF" font-family="Arial, sans-serif" font-size="12" font-weight="700">EVIDENCE</text>
+    <text x="28" y="57" fill="#F6F8FF" font-family="Arial, PingFang SC, sans-serif" font-size="17" font-weight="700">inspect + lint + PNG + PPTX</text>
+  </g>
+
+  <rect x="48" y="483" width="620" height="28" rx="14" fill="#13243A" />
+  <text x="64" y="502" fill="#86E8D4" font-family="Arial, PingFang SC, sans-serif" font-size="12">并行任务使用不同目录；Unit / Worktree ID 则把目录内容绑定到同一次协作修订。</text>
+  <text x="912" y="502" text-anchor="end" fill="#607091" font-family="Arial, sans-serif" font-size="11">02 / 03</text>
+</svg>
