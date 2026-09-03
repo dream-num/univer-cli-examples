@@ -8,6 +8,15 @@ importers:
 
   .:
     dependencies:
+      '@univer-cli/api-reference':
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2
+      '@univer-cli/api-reference-command':
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2(commander@15.0.0)
+      '@univer-cli/content-execution':
+        specifier: 1.0.0-beta.2
+        version: 1.0.0-beta.2
       '@univer-cli/doc-typst-facade':
         specifier: 1.0.0-beta.2
         version: 1.0.0-beta.2
@@ -933,6 +942,17 @@ packages:
     engines: {node: '>=16.20.0'}
     cpu: [x64]
     os: [win32]
+
+  '@univer-cli/api-reference-command@1.0.0-beta.2':
+    resolution: {integrity: sha512-g9dlNMfjfotDqTi55xCaunGVBnzKRavAtCkHwo4bSs8h/fY3IasPRojXFQ3LbITMUEDvA+pGywpkFavfBSYMkg==}
+    peerDependencies:
+      commander: ^15.0.0
+
+  '@univer-cli/api-reference@1.0.0-beta.2':
+    resolution: {integrity: sha512-fwKOziQV4d3+b95EY8PP2LercK55H6q6z6yU+Dy7l/vZVsxHXXz9YAFI0WJQiDkZj7TJXjFYoRIQrb2tlyI93w==}
+
+  '@univer-cli/content-execution@1.0.0-beta.2':
+    resolution: {integrity: sha512-jL2koTK9BkkzTEGmvWnVyvikk6BsQP6tP9n8V6xf4nCfUXoGrAT+A5BsHoJURIFmVOMArdnJxz43liHEcARy8Q==}
 
   '@univer-cli/doc-typst-facade@1.0.0-beta.2':
     resolution: {integrity: sha512-PWPbtIn1PTwcttVbK83Bk14Bw9QEnOFzM71JG2ya6klIrK5epcs8Quf3bund5289qyOmc16yLayXwZCvq5/UPw==}
@@ -2806,6 +2826,15 @@ snapshots:
 
   '@typescript/typescript-win32-x64@7.0.2':
     optional: true
+
+  '@univer-cli/api-reference-command@1.0.0-beta.2(commander@15.0.0)':
+    dependencies:
+      '@univer-cli/api-reference': 1.0.0-beta.2
+      commander: 15.0.0
+
+  '@univer-cli/api-reference@1.0.0-beta.2': {}
+
+  '@univer-cli/content-execution@1.0.0-beta.2': {}
 
   '@univer-cli/doc-typst-facade@1.0.0-beta.2':
     dependencies:

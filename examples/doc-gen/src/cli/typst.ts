@@ -152,7 +152,11 @@ async function materialize(compiled: CompileDocTypstBundleResult): Promise<IDocu
   }
 }
 
-async function renderDocument(document: IDocumentData, directory: string): Promise<void> {
+export async function renderDocument(
+  document: IDocumentData,
+  directory: string,
+  replacePngs = false,
+): Promise<readonly string[]> {
   const runtime = await createUniverRenderRuntime({
     renderPageRoot: fileURLToPath(new URL("../render-page", import.meta.url)),
     license: process.env["UNIVER_LICENSE"] ?? "",
@@ -163,13 +167,25 @@ async function renderDocument(document: IDocumentData, directory: string): Promi
       unitData: document,
       target: { kind: "doc-pages" },
     });
-    await mkdir(directory, { recursive: true });
-    for (const image of result.images) {
+    if (result.images.length === 0) throw new Error("Screenshot returned no PNG images");
+    const images = result.images.map((image) => {
       if (basename(image.name) !== image.name || !image.name.endsWith(".png")) {
         throw new Error(`Screenshot returned unsafe image name: ${image.name}`);
       }
-      await writeFile(join(directory, image.name), image.bytes);
+      return { image, location: resolve(directory, image.name) };
+    });
+    await mkdir(directory, { recursive: true });
+    if (replacePngs) {
+      await Promise.all(
+        (await readDirectory(directory))
+          .filter((entry) => entry.isFile() && entry.name.endsWith(".png"))
+          .map((entry) => rm(join(directory, entry.name))),
+      );
     }
+    for (const { image, location } of images) {
+      await writeFile(location, image.bytes);
+    }
+    return images.map(({ location }) => location);
   } finally {
     await runtime.close();
   }

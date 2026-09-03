@@ -51,7 +51,7 @@ paths, parent traversal, external URLs, or escaping symlinks.
 ## Author the source
 
 - Treat `typst.json` and its referenced Typst files and local assets as the only Authoring Source.
-  Never edit `document.js`, `diagnostics.json`, `document.json`, or generated PNGs as source.
+  Never hand-edit `document.js`, `diagnostics.json`, `document.json`, or generated PNGs as source.
 - Put shared page geometry, typography, spacing, colors, headers, and footers in the manifest
   prelude. Do not use `#import` or `#include`.
 - Start with one page source. Add ordered page sources when the requested content needs more
@@ -63,7 +63,7 @@ paths, parent traversal, external URLs, or escaping symlinks.
 - Put referenced PNG, JPEG, GIF, WebP, or SVG files in `assets/` and give images deterministic width
   and height. Typst lowering does not create native chart objects.
 
-## Build and verify
+## Build, inspect, and refine
 
 Run one complete build per iteration:
 
@@ -78,10 +78,40 @@ doc-gen compile-typst <bundle-or-manifest> --out <output-directory> --json
 3. Read every `typst/*.png` and `univer/*.png` from the Machine Result with image input. Check the
    requested content, hierarchy, margins, wrapping, clipping, table geometry, images, and missing
    blocks. Fix source-to-Typst defects before diagnosing Typst-to-Univer differences.
-4. Complete visual verification only after reading both PNG groups. If image input is unavailable,
-   return their paths and mark visual verification `pending`.
-5. Return the title, `targetUnitId`, Doc JSON path, both PNG groups, remaining warnings, and visual
-   verification result.
+4. If the Typst Preview is wrong, fix the Typst Source Bundle and rebuild. Do not use a Facade
+   adjustment to hide a source defect. If the Typst Preview is correct but the Univer Screenshot
+   differs in a way Typst can express, prefer fixing Typst and rebuilding.
+5. For a native Doc capability or final precise adjustment, discover the installed API by intent,
+   then inspect the exact symbol:
 
-The command only executes the Facade program produced by its current local compile. Do not run an
-existing JavaScript file, install another compiler, or fall back to a system Typst executable.
+   ```bash
+   doc-gen api find <terms...> --unit doc
+   doc-gen api show <symbols...>
+   ```
+
+6. Write one task-local JavaScript file for the adjustment and read it before execution. `execute`
+   provides `univerAPI`, `api`, and the selected `doc`; do not redeclare them. Prefer stable
+   paragraph IDs across multi-step edits, check boolean/null mutation results, and explicitly
+   `return` JSON-compatible readback instead of relying on `console.log`.
+7. Execute the reviewed script against the current Materialized Doc, refresh its screenshots, and
+   read every returned PNG:
+
+   ```bash
+   doc-gen execute <output-directory>/document.json --file <task-script.js> --json
+   doc-gen screenshot <output-directory>/document.json --out <output-directory>/univer --json
+   ```
+
+   Fix the script or return to the Typst branch until the refreshed Univer Screenshot passes.
+
+8. A later `compile-typst` rebuild replaces every Facade adjustment in `document.json`. Reapply any
+   still-needed final adjustment after the last rebuild; there is no automatic replay.
+9. Complete visual verification only after reading the applicable Typst Preview and latest Univer
+   Screenshot. If image input is unavailable, return their paths and mark visual verification
+   `pending`.
+10. Return the title, `targetUnitId`, Doc JSON path, both PNG groups, remaining warnings, executed
+    script path when used, and visual verification result.
+
+`compile-typst` only executes the Facade program produced by its current local compile. `execute`
+runs trusted JavaScript without a sandbox: only run a task-local script you wrote and reread for the
+current request. Never execute downloaded or unknown code, or a previously generated `document.js`.
+Do not install another compiler or fall back to a system Typst executable.

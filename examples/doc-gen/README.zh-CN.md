@@ -98,9 +98,43 @@ pnpm skill:install
 pnpm skill:uninstall
 ```
 
+## 微调 Materialized Doc
+
+可以用 Typst 表达的文案和版式问题应修改 Typst Source Bundle 后重建。需要原生 Doc 能力或
+最后一步精确调整时，先查询随安装包提供的离线 Facade reference：
+
+```bash
+doc-gen api find paragraph --unit doc
+doc-gen api show FDocumentParagraph.setText
+```
+
+把调整写成当前任务的本地脚本。`execute` 已提供 `univerAPI`、`api` 和 `doc`，脚本不得重复
+声明。运行前先读取脚本，检查 mutation 返回值，并显式返回 JSON-compatible readback：
+
+```js
+const paragraph = doc.getParagraphs()[0];
+if (!paragraph) throw new Error("paragraph missing");
+const changed = paragraph.setText(`${paragraph.getText()} [已复核]`);
+if (!changed) throw new Error("paragraph update failed");
+return { text: paragraph.getText() };
+```
+
+把脚本应用到当前 Materialized Doc，刷新截图并读取每张新 PNG：
+
+```bash
+doc-gen execute <output-directory>/document.json --file <task-script.js> --json
+doc-gen screenshot <output-directory>/document.json \
+  --out <output-directory>/univer --json
+```
+
+`execute` 修改 Generated Artifact，不修改 Typst Source Bundle。之后再次运行 `compile-typst`
+会覆盖这些调整；仍需要的最终微调必须重新执行。本示例不提供自动 replay。
+
 ## 运行边界
 
 - Typst compile 支持已发布 native binding 的 macOS x64/arm64、Linux glibc x64/arm64 和 Windows x64；Linux musl 与 Windows arm64 不在本示例支持范围内。
 - Univer Screenshot 需要 Chrome、Chromium 或 Edge。自动发现失败时设置 `UNIVER_RENDER_BROWSER`。
 - compile/materialize/save 不强制要求 `UNIVER_LICENSE`。截图遵循 Pro render plugin 的 license 和 watermark 行为；空 license 可能产生水印。
-- 命令只使用 package 自带的 Typst native binding，并只执行当前 compile 返回的 program；不会调用系统 Typst，也不接受已有 JavaScript program。
+- `compile-typst` 只使用 package 自带的 Typst native binding，并只执行当前 compile 返回的 program；不会调用系统 Typst。
+- `execute` 运行 `--file` 指定的可信本地 JavaScript，且不提供 sandbox。不得运行下载、未知或此前生成的 `document.js`。
+- `screenshot` 通过 Render Runtime 直接读取 `document.json`，不创建 headless Univer、Server 或 Worktree。
