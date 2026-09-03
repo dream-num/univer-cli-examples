@@ -12,15 +12,38 @@
           <span class="brand-mark" aria-hidden="true">U</span>
           <span>Slide Gen CLI</span>
         </header>
-        <section class="sidebar-section">
-          <h2>Files</h2>
+        <div class="sidebar-tabs" role="tablist" aria-label="Slide navigation">
+          <button
+            id="files-tab"
+            class="sidebar-tab"
+            type="button"
+            role="tab"
+            aria-controls="files-panel"
+          >
+            Files
+          </button>
+          <button
+            id="worktrees-tab"
+            class="sidebar-tab"
+            type="button"
+            role="tab"
+            aria-controls="worktrees-panel"
+          >
+            Worktrees
+          </button>
+        </div>
+        <section id="files-panel" class="sidebar-panel" role="tabpanel" aria-labelledby="files-tab">
           <form id="create-form">
             <button type="submit">New Slide</button>
           </form>
           <nav id="unit-list" aria-label="Files"></nav>
         </section>
-        <section class="sidebar-section worktree-section">
-          <h2>Worktrees</h2>
+        <section
+          id="worktrees-panel"
+          class="sidebar-panel"
+          role="tabpanel"
+          aria-labelledby="worktrees-tab"
+        >
           <nav id="worktree-list" aria-label="Worktrees"></nav>
         </section>
       </aside>

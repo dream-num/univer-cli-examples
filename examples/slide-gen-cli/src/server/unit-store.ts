@@ -39,7 +39,7 @@ export class UnitStore {
 
   list(): readonly UnitSummary[] {
     const rows = this.database
-      .prepare("SELECT unit_id, unit_type, name FROM example_units")
+      .prepare("SELECT unit_id, unit_type, name FROM example_units ORDER BY rowid DESC")
       .all() as UnitRow[];
     return rows.map(toUnit);
   }

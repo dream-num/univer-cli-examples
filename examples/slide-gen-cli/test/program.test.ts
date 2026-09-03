@@ -3,6 +3,7 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { afterEach, expect, it } from "vitest";
+import { UnitStore } from "../src/server/unit-store.js";
 import { createFixtureResourceLibrary, ROCKET_SVG } from "./resource-fixture.js";
 import { runInProcess } from "./run-program.js";
 
@@ -13,6 +14,15 @@ let temporaryRoot: string | undefined;
 afterEach(async () => {
   if (temporaryRoot !== undefined) await rm(temporaryRoot, { force: true, recursive: true });
   temporaryRoot = undefined;
+});
+
+it("lists newer Files first", () => {
+  const store = new UnitStore(":memory:");
+  store.add({ name: "Older", unitId: "older", unitType: "slide" });
+  store.add({ name: "Newer", unitId: "newer", unitType: "slide" });
+
+  expect(store.list().map((unit) => unit.unitId)).toEqual(["newer", "older"]);
+  store.close();
 });
 
 it("keeps slide navigation outside the review mutation lock", async () => {

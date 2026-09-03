@@ -43,9 +43,23 @@ import { createUniver, defaultTheme, mergeLocales, type IPreset } from "@univerj
 import { UniverUIPlugin } from "@univerjs/ui";
 import "@univerjs/ui/lib/index.css";
 import UniverUIEnUS from "@univerjs/ui/locale/en-US";
+import { UNIVER_LICENSE } from "../shared/license.js";
 import { parseUnitType, unitTypeLabel, type UnitSummary } from "../shared/unit.js";
 import { createUnitUrl, viewerUrl, worktreesUrl } from "../shared/urls.js";
 import "./styles.css";
+
+type SidebarTab = "files" | "worktrees";
+type SelectView = (unitId: string, worktreeID: string | null) => Promise<void>;
+
+interface MountedEditor {
+  readonly unitId: string;
+  readonly worktreeID: string | null;
+  dispose(): void;
+  flush(): Promise<void>;
+}
+
+let mountedEditor: MountedEditor | undefined;
+let switchingEditor = false;
 
 const search = new URL(location.href).searchParams;
 const unitId = search.get("unit");
@@ -58,26 +72,114 @@ const [units, worktrees] = await Promise.all([
     async (response) => (await response.json()) as WorktreeData[],
   ),
 ]);
-renderUnits(units, worktreeID === null ? unitId : null);
-renderWorktrees(worktrees, units, unitId, worktreeID);
+installSidebarTabs(worktreeID === null ? "files" : "worktrees");
+renderUnits(units, worktreeID === null ? unitId : null, switchEditor);
+renderWorktrees(worktrees, units, unitId, worktreeID, switchEditor);
 installCreateButton();
 
 if (unitId !== null) {
-  const unit = units.find((item) => item.unitId === unitId);
-  if (unit === undefined) throw new Error(`Unknown Unit ${unitId}`);
-  parseUnitType(unit.unitType);
-  await mountEditor(unitId, worktreeID);
+  await switchEditor(unitId, worktreeID);
 }
 
-function renderUnits(units: readonly UnitSummary[], activeUnitId: string | null): void {
+async function switchEditor(targetUnitId: string, targetWorktreeID: string | null): Promise<void> {
+  if (
+    switchingEditor ||
+    (mountedEditor?.unitId === targetUnitId && mountedEditor.worktreeID === targetWorktreeID)
+  ) {
+    return;
+  }
+
+  const unit = units.find((item) => item.unitId === targetUnitId);
+  if (unit === undefined) throw new Error(`Unknown Unit ${targetUnitId}`);
+  parseUnitType(unit.unitType);
+
+  switchingEditor = true;
+  const sidebar = document.querySelector<HTMLElement>("#sidebar")!;
+  sidebar.inert = true;
+  try {
+    await mountedEditor?.flush();
+    mountedEditor?.dispose();
+    mountedEditor = undefined;
+    resetEditor();
+    history.replaceState(
+      null,
+      "",
+      viewerUrl(location.origin, targetUnitId, targetWorktreeID ?? undefined),
+    );
+    setActiveNavigation(targetUnitId, targetWorktreeID);
+    mountedEditor = await mountEditor(targetUnitId, targetWorktreeID);
+  } catch (error) {
+    document.querySelector("#status")!.textContent =
+      error instanceof Error ? error.message : "Unable to switch Slide";
+    console.error(error);
+  } finally {
+    sidebar.inert = false;
+    switchingEditor = false;
+  }
+}
+
+function resetEditor(): void {
+  const app = document.querySelector<HTMLElement>("#app")!;
+  app.replaceChildren();
+  delete app.dataset.editorLocked;
+  document.querySelector("#review-actions")!.replaceChildren();
+}
+
+function setActiveNavigation(activeUnitId: string, activeWorktreeID: string | null): void {
+  for (const button of document.querySelectorAll<HTMLButtonElement>(".unit-link")) {
+    button.classList.toggle(
+      "active",
+      activeWorktreeID === null && button.dataset.unitId === activeUnitId,
+    );
+  }
+  for (const button of document.querySelectorAll<HTMLButtonElement>(".worktree-link")) {
+    button.classList.toggle("active", button.dataset.worktreeId === activeWorktreeID);
+  }
+}
+
+function installSidebarTabs(initialTab: SidebarTab): void {
+  const tabs = (["files", "worktrees"] as const).map((name) => ({
+    button: document.querySelector<HTMLButtonElement>(`#${name}-tab`)!,
+    name,
+    panel: document.querySelector<HTMLElement>(`#${name}-panel`)!,
+  }));
+
+  const select = (selected: SidebarTab): void => {
+    for (const tab of tabs) {
+      const active = tab.name === selected;
+      tab.button.ariaSelected = String(active);
+      tab.button.tabIndex = active ? 0 : -1;
+      tab.panel.hidden = !active;
+    }
+  };
+
+  for (const [index, tab] of tabs.entries()) {
+    tab.button.addEventListener("click", () => select(tab.name));
+    tab.button.addEventListener("keydown", (event) => {
+      if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+      event.preventDefault();
+      const next =
+        tabs[(index + (event.key === "ArrowRight" ? 1 : -1) + tabs.length) % tabs.length]!;
+      select(next.name);
+      next.button.focus();
+    });
+  }
+
+  select(initialTab);
+}
+
+function renderUnits(
+  units: readonly UnitSummary[],
+  activeUnitId: string | null,
+  selectView: SelectView,
+): void {
   const list = document.querySelector("#unit-list")!;
   for (const unit of units) {
     const button = document.createElement("button");
     button.className = `unit-link${unit.unitId === activeUnitId ? " active" : ""}`;
+    button.dataset.unitId = unit.unitId;
     button.type = "button";
-    button.addEventListener("click", () =>
-      location.assign(viewerUrl(location.origin, unit.unitId)),
-    );
+    button.addEventListener("click", () => void selectView(unit.unitId, null));
 
     const type = document.createElement("span");
     type.className = "unit-type";
@@ -95,6 +197,7 @@ function renderWorktrees(
   units: readonly UnitSummary[],
   activeUnitId: string | null,
   activeWorktreeID: string | null,
+  selectView: SelectView,
 ): void {
   const list = document.querySelector("#worktree-list")!;
   if (worktrees.length === 0) {
@@ -112,11 +215,12 @@ function renderWorktrees(
     const targetUnit = units.find((unit) => unit.unitId === targetUnitID);
     const button = document.createElement("button");
     button.className = `worktree-link${worktree.worktreeID === activeWorktreeID ? " active" : ""}`;
+    button.dataset.worktreeId = worktree.worktreeID;
     button.type = "button";
     button.disabled = targetUnitID === undefined;
     button.addEventListener("click", () => {
       if (targetUnitID !== undefined) {
-        location.assign(viewerUrl(location.origin, targetUnitID, worktree.worktreeID));
+        void selectView(targetUnitID, worktree.worktreeID);
       }
     });
 
@@ -155,7 +259,7 @@ function installCreateButton(): void {
   });
 }
 
-async function mountEditor(unitId: string, worktreeID: string | null): Promise<void> {
+async function mountEditor(unitId: string, worktreeID: string | null): Promise<MountedEditor> {
   document.querySelector<HTMLElement>("#empty")!.style.display = "none";
   const app = document.querySelector<HTMLElement>("#app")!;
   app.style.display = "block";
@@ -181,7 +285,7 @@ async function mountEditor(unitId: string, worktreeID: string | null): Promise<v
         }
       : createWorktreeCollaborationConfig({ origin: location.origin, worktreeID });
   await ensureAnimationFramesProgress();
-  const { univerAPI } = createUniver({
+  const { univer, univerAPI } = createUniver({
     collaboration: true,
     locale: LocaleType.EN_US,
     locales: {
@@ -200,12 +304,7 @@ async function mountEditor(unitId: string, worktreeID: string | null): Promise<v
     },
     logLevel: LogLevel.WARN,
     theme: defaultTheme,
-    presets: [
-      {
-        plugins: [[UniverLicensePlugin, { license: import.meta.env.UNIVER_LICENSE || undefined }]],
-      },
-      editorPreset(),
-    ],
+    presets: [{ plugins: [[UniverLicensePlugin, { license: UNIVER_LICENSE }]] }, editorPreset()],
     plugins: [
       UniverCollaborationPlugin,
       [
@@ -220,12 +319,22 @@ async function mountEditor(unitId: string, worktreeID: string | null): Promise<v
     ],
   });
 
-  await univerAPI.getCollaboration().loadSlideAsync(unitId);
+  const collaboration = univerAPI.getCollaboration();
+  await collaboration.loadSlideAsync(unitId);
   lockEditorMutation(app, worktree !== undefined && worktree.status !== "draft");
   document.querySelector("#status")!.textContent =
     worktree === undefined
       ? `slide · ${unitId} · trunk · editable`
       : `slide · ${unitId} · worktree ${worktree.worktreeID} · ${worktree.status}`;
+  return {
+    unitId,
+    worktreeID,
+    dispose: () => univer.dispose(),
+    flush: () =>
+      worktree === undefined || worktree.status === "draft"
+        ? collaboration.flush(unitId)
+        : Promise.resolve(),
+  };
 }
 
 async function ensureAnimationFramesProgress(): Promise<void> {
