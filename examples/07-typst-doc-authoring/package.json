@@ -1,0 +1,43 @@
+{
+  "name": "@univer-cli-example/typst-doc-authoring",
+  "version": "0.0.0",
+  "private": true,
+  "bin": {
+    "univer-example-cli": "./dist/cli/main.js"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "vite build --config vite.render.config.ts && tsc -p tsconfig.json",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test",
+    "format": "oxfmt .",
+    "format:check": "oxfmt --check .",
+    "link-cli": "pnpm link --global",
+    "lint": "oxlint .",
+    "skill:install": "node scripts/skill.mjs install",
+    "skill:uninstall": "node scripts/skill.mjs uninstall",
+    "test": "pnpm build && vitest run --root . test",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "unlink-cli": "pnpm remove --global @univer-cli-example/typst-doc-authoring"
+  },
+  "dependencies": {
+    "@univer-cli/doc-typst-facade": "1.0.0-beta.2",
+    "@univer-cli/headless-univer": "1.0.0-beta.2",
+    "@univer-cli/unit-screenshot": "1.0.0-beta.2",
+    "@univer-cli/univer-render-page": "1.0.0-beta.2",
+    "@univer-cli/univer-render-runtime": "1.0.0-beta.2",
+    "@univerjs/core": "1.0.0-beta.2",
+    "commander": "^15.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.0",
+    "oxfmt": "0.64.0",
+    "oxlint": "1.79.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.0.0",
+    "vitest": "^4.1.10"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "packageManager": "pnpm@10.32.1"
+}
