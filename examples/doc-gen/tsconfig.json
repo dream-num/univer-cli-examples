@@ -12,6 +12,9 @@
     "experimentalDecorators": true,
     "declaration": false,
     "declarationMap": false,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "sourceMap": true,
     "skipLibCheck": true,
     "outDir": "dist",

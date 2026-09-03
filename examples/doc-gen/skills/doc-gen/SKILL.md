@@ -111,6 +111,13 @@ doc-gen compile-typst <bundle-or-manifest> --out <output-directory> --json
 10. Return the title, `targetUnitId`, Doc JSON path, both PNG groups, remaining warnings, executed
     script path when used, and visual verification result.
 
+After the applicable Typst Preview and latest Univer Screenshot pass, optionally tell the user to
+run `pnpm viewer` from this example for human inspection. The Local Doc Viewer automatically lists
+only `output/<slug>/document.json`, so prefer `output/<document-slug>` when the user wants this
+handoff. It is read-only and supports switching, scrolling, zooming, selection, and copying. It does
+not replace image-based Agent verification, and output paths outside that convention remain valid
+but are not listed.
+
 `compile-typst` only executes the Facade program produced by its current local compile. `execute`
 runs trusted JavaScript without a sandbox: only run a task-local script you wrote and reread for the
 current request. Never execute downloaded or unknown code, or a previously generated `document.js`.

@@ -44,6 +44,14 @@ _Avoid_: generated program, output directory
 A Univer Doc created by executing the Facade program compiled from a Typst Source Bundle.
 _Avoid_: Typst document, preview
 
+**Local Doc Library**:
+A local collection of Generated Artifacts whose Materialized Docs can be discovered for human review.
+_Avoid_: Workspace, document database
+
+**Local Doc Viewer**:
+A read-only browser surface for choosing and viewing Materialized Docs from a Local Doc Library.
+_Avoid_: editor, Review URL, screenshot viewer
+
 **Local Doc Identity**:
 The `targetUnitId` shared by a Typst Source Bundle and its Materialized Doc inside one example build; it is not an external Workspace identity.
 _Avoid_: Workspace ID, remote Unit ID

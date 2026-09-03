@@ -83,6 +83,28 @@ doc-gen compile-typst <bundle-or-manifest> --out <output-directory> --json
 
 在 `--json` 模式下，成功只向 stdout 写一个 Machine Result；失败只向 stderr 写一个 Machine Failure。error diagnostic 会在物化前停止；warning 允许成功，并保留在结果中供检查。
 
+## 查看生成的 Doc
+
+需要让生成结果出现在仓库内 Local Doc Library 时，把输出目录设为 `output/<slug>`：
+
+```bash
+doc-gen compile-typst authoring/customer-research \
+  --out output/customer-research --json
+pnpm viewer
+```
+
+命令会在浏览器中打开仅监听 loopback 的页面，并列出所有匹配的
+`output/<slug>/document.json`。通过侧栏可以切换 Doc。页面运行期间新增或删除 Doc 后，开发态
+更新或点击 **Refresh** 即可刷新列表，无需重启 Vite。
+
+Viewer 只加载禁用编辑的内存副本，并隐藏 Univer 编辑 ribbon 与浮动格式 UI；不支持键入、粘贴、删除、格式修改、
+保存或文件写回，滚动、缩放、文本选择和复制仍然可用。显式指定到 `output/<slug>` 之外的 `--out`
+路径仍可用于所有既有 CLI command，但不会出现在 Viewer 中。
+
+`pnpm build` 会把构建时可见的 Local Doc Library 保存为 `dist/viewer` 快照；后续内容变化需要
+重新构建。该目录不是发布服务，也不会持续同步磁盘。Viewer 只用于人工查看，不能替代 Agent 对
+Typst Preview 和最新 Univer Screenshot 的检查。
+
 ## 视觉检查
 
 每次成功构建后都要读取两组 PNG：

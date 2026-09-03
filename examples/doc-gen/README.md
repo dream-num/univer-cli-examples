@@ -85,6 +85,33 @@ The command replaces only these known artifacts. Other files in the output direc
 
 In `--json` mode, success writes one Machine Result to stdout. Failure writes one Machine Failure to stderr. Error diagnostics stop before materialization; warnings allow success and remain in the result for review.
 
+## View generated Docs
+
+Use `output/<slug>` when you want a generated Doc to appear in the repository-local Local Doc
+Library:
+
+```bash
+doc-gen compile-typst authoring/customer-research \
+  --out output/customer-research --json
+pnpm viewer
+```
+
+The loopback-only page opens in your browser and lists every matching
+`output/<slug>/document.json`. Select an entry in the sidebar to switch Docs. Add or remove a Doc
+while the page is running and use the automatic development update or **Refresh** to update the
+list without restarting Vite.
+
+The Viewer loads a disabled in-memory copy and hides Univer's editing ribbon and floating formatting UI. Typing, pasting,
+deleting, formatting, saving, and file write-back are unavailable; scrolling, zooming, text
+selection, and copying remain available. An
+explicit `--out` path outside `output/<slug>` still works with every CLI command but does not appear
+in the Viewer.
+
+`pnpm build` records the Local Doc Library visible at build time in `dist/viewer`; rebuild to include
+later changes. That directory is a local snapshot, not a published or continuously updated service.
+The Viewer supports human inspection only and does not replace Agent review of Typst Previews and
+the latest Univer Screenshots.
+
 ## Visual review
 
 Read both PNG groups after every successful build:

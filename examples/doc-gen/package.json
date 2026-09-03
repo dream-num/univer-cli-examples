@@ -7,7 +7,7 @@
   },
   "type": "module",
   "scripts": {
-    "build": "vite build --config vite.render.config.ts && tsc -p tsconfig.json",
+    "build": "vite build --config vite.render.config.ts && vite build --config vite.viewer.config.ts && tsc -p tsconfig.json",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
@@ -16,10 +16,13 @@
     "skill:install": "node scripts/skill.mjs install",
     "skill:uninstall": "node scripts/skill.mjs uninstall",
     "test": "pnpm build && vitest run --root . test",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "unlink-cli": "pnpm remove --global @univer-cli-example/doc-gen"
+    "typecheck": "tsc -p tsconfig.json --noEmit && tsc -p tsconfig.web.json --noEmit",
+    "unlink-cli": "pnpm remove --global @univer-cli-example/doc-gen",
+    "viewer": "vite --config vite.viewer.config.ts --host 127.0.0.1 --open /src/viewer/"
   },
   "dependencies": {
+    "@radix-ui/react-separator": "^1.1.8",
+    "@radix-ui/react-slot": "^1.2.4",
     "@univer-cli/api-reference": "1.0.0-beta.2",
     "@univer-cli/api-reference-command": "1.0.0-beta.2",
     "@univer-cli/content-execution": "1.0.0-beta.2",
@@ -29,12 +32,24 @@
     "@univer-cli/univer-render-page": "1.0.0-beta.2",
     "@univer-cli/univer-render-runtime": "1.0.0-beta.2",
     "@univerjs/core": "1.0.0-beta.2",
-    "commander": "^15.0.0"
+    "@univerjs/ui": "1.0.0-beta.2",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "commander": "^15.0.0",
+    "lucide-react": "^1.40.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.3.3",
     "@types/node": "^24.10.0",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
     "oxfmt": "0.64.0",
     "oxlint": "1.79.0",
+    "tailwindcss": "^4.3.3",
     "typescript": "^7.0.2",
     "vite": "^8.0.0",
     "vitest": "^4.1.10"
