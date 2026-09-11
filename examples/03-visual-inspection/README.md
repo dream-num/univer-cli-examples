@@ -10,6 +10,11 @@ writes PNG files.
 02 File Exchange + Render Page + Screenshot → PNG
 ```
 
+The Server uses `transport.attach(server)` to share its HTTP server with Express. Transport
+handles registered collaboration HTTP and WebSocket routes; Express handles business APIs and
+Web pages. Authentication for collaboration requests belongs in Transport middleware; Express
+middleware does not automatically apply to those requests.
+
 ## Run
 
 After entering this example, run every command from the current directory:
