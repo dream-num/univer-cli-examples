@@ -16,6 +16,13 @@ afterEach(async () => await server?.close());
 
 it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async () => {
   server = await startServer(":memory:");
+
+  const ticket = await fetch(`${server.origin}/universer-api/user/session-ticket`);
+  expect(ticket.status).toBe(200);
+  expect(await ticket.json()).toMatchObject({ ticket: expect.any(String) });
+  const fallback = await fetch(`${server.origin}/universer-api/not-an-endpoint`);
+  expect(fallback.status).toBe(200);
+  expect(await fallback.text()).toContain('id="sidebar"');
   const sheetId = (await run("create", "sheet", "--name", "Demo Sheet")).trim();
 
   const before = await run(

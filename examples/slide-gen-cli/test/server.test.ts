@@ -18,6 +18,13 @@ it("creates only empty Slide units and keeps unit and Worktree routes available"
   temporaryRoot = await mkdtemp(join(tmpdir(), "slide-gen-server-"));
   server = await startServer(join(temporaryRoot, "server.sqlite"), 0);
 
+  const ticket = await fetch(`${server.origin}/universer-api/user/session-ticket`);
+  expect(ticket.status).toBe(200);
+  expect(await ticket.json()).toMatchObject({ ticket: expect.any(String) });
+  const fallback = await fetch(`${server.origin}/universer-api/not-an-endpoint`);
+  expect(fallback.status).toBe(200);
+  expect(await fallback.text()).toContain('id="sidebar"');
+
   const unnamed = await create({});
   expect(unnamed).toMatchObject({ name: "Untitled Slide", unitType: "slide", revision: 1 });
 

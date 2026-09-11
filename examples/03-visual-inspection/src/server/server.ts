@@ -69,17 +69,13 @@ export async function startServer(
     }
     response.json(unit);
   });
-  app.use("/universer-api", (request, response) => {
-    request.url = request.originalUrl;
-    transport.handleRequest(request, response);
-  });
 
   const webRoot = fileURLToPath(new URL("../web", import.meta.url));
   app.use(express.static(webRoot));
   app.get("/{*path}", (_request, response) => response.sendFile("index.html", { root: webRoot }));
 
   const server = createServer(app);
-  server.on("upgrade", (request, socket, head) => transport.handleUpgrade(request, socket, head));
+  transport.attach(server);
   await listen(server, 3010);
   const address = server.address();
   if (address === null || typeof address === "string") throw new Error("Server did not start");
