@@ -10,11 +10,6 @@ Collaboration Server and can be opened directly in the Web editor.
 Office file ⇄ CLI Exchange ⇄ UnitData ⇄ Collaboration Server ⇄ Web
 ```
 
-The Server uses `transport.attach(server)` to share its HTTP server with Express. Transport
-handles registered collaboration HTTP and WebSocket routes; Express handles business APIs and
-Web pages. Authentication for collaboration requests belongs in Transport middleware; Express
-middleware does not automatically apply to those requests.
-
 ## Run
 
 Run every command from this example directory:

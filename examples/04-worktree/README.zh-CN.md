@@ -9,10 +9,6 @@ Ready 后由人通过 Web 审阅，再选择 Merge、Reopen 或 Discard。
 Trunk（Web 可编辑）→ Worktree draft（可编辑）→ Ready → Web 审阅 → Merge / Reopen / Discard
 ```
 
-Server 通过 `transport.attach(server)` 与 Express 共用 HTTP server。Transport 处理已注册的协同
-HTTP 和 WebSocket 路由，Express 处理业务 API 与 Web 页面。协同请求的鉴权应放在 Transport
-middleware 中，Express middleware 不会自动应用于这些请求。
-
 ## 运行
 
 进入本 example 后，所有命令都在当前目录执行：

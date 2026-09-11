@@ -10,11 +10,6 @@ Discard in the Web UI.
 Trunk (editable in Web) → Worktree draft (editable) → Ready → Web review → Merge / Reopen / Discard
 ```
 
-The Server uses `transport.attach(server)` to share its HTTP server with Express. Transport
-handles registered collaboration HTTP and WebSocket routes; Express handles business APIs and
-Web pages. Authentication for collaboration requests belongs in Transport middleware; Express
-middleware does not automatically apply to those requests.
-
 ## Run
 
 After entering this example, run every command from the current directory:

@@ -9,10 +9,6 @@ browser-backed Render Runtime，并写出 PNG。
 02 File Exchange + Render Page + Screenshot → PNG
 ```
 
-Server 通过 `transport.attach(server)` 与 Express 共用 HTTP server。Transport 处理已注册的协同
-HTTP 和 WebSocket 路由，Express 处理业务 API 与 Web 页面。协同请求的鉴权应放在 Transport
-middleware 中，Express middleware 不会自动应用于这些请求。
-
 ## 运行
 
 进入本 example 后，所有命令都在当前目录执行：
