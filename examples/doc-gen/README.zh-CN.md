@@ -2,6 +2,8 @@
 
 [English](./README.md) | 简体中文
 
+本示例使用 Univer CLI SDK 和 Univer SDK `1.0.0`。
+
 这个面向 agent 的示例使用 Typst 创作可编辑的本地 Univer Doc。Agent 为每个请求创建或修改独立的 Typst Source Bundle，编译源稿，在 headless Univer 中物化 Facade program，保存 Doc UnitData，并检查源侧和 Univer 侧两组 PNG。
 
 ## 设置示例

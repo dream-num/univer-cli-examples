@@ -2,6 +2,8 @@
 
 [English](./README.md) | 简体中文
 
+本示例使用 Univer CLI SDK 和 Univer SDK `1.0.0`。
+
 第一个 example 用最小装配展示完整内容操作闭环：启动 Server，创建 Sheet、Doc 或 Slide，通过 CLI 读取、修改和
 提交，最后用 Web 打开同一个协同 Unit。
 

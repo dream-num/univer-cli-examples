@@ -2,6 +2,8 @@
 
 English | [简体中文](./README.zh-CN.md)
 
+This example uses Univer CLI SDK and Univer SDK `1.0.0`.
+
 This example keeps the content operations and file exchange from 02, then adds visual inspection.
 It pulls the latest UnitData from the Server, passes it to a browser-backed Render Runtime, and
 writes PNG files.
