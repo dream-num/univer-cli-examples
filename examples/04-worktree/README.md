@@ -2,6 +2,8 @@
 
 English | [简体中文](./README.zh-CN.md)
 
+This example uses Univer CLI SDK and Univer SDK `1.0.0`.
+
 This example keeps file exchange and visual inspection from 03, then adds Worktree.
 An Agent edits an isolated draft, marks it Ready, and hands it to a human for Merge, Reopen, or
 Discard in the Web UI.

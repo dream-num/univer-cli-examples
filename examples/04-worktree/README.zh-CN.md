@@ -2,6 +2,8 @@
 
 [English](./README.md) | 简体中文
 
+本示例使用 Univer CLI SDK 和 Univer SDK `1.0.0`。
+
 这个 example 完整保留 03 的文件交换与视觉检查，只增加 Worktree：Agent 在隔离 draft 中修改，标记
 Ready 后由人通过 Web 审阅，再选择 Merge、Reopen 或 Discard。
 

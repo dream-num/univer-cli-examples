@@ -2,6 +2,8 @@
 
 English | [简体中文](./README.zh-CN.md)
 
+This example uses Univer CLI SDK and Univer SDK `1.0.0`.
+
 This agent-oriented example creates editable local Univer Docs from Typst. For each request, the
 agent creates or revises a task-specific Typst Source Bundle, compiles it, materializes the generated
 Facade program in headless Univer, saves Doc UnitData, and reviews source-side and Univer-side PNGs.

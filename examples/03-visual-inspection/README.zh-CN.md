@@ -2,6 +2,8 @@
 
 [English](./README.md) | 简体中文
 
+本示例使用 Univer CLI SDK 和 Univer SDK `1.0.0`。
+
 这个 example 完整保留 02 的内容操作与文件交换，只增加视觉检查：从 Server 拉取最新 UnitData，交给
 browser-backed Render Runtime，并写出 PNG。
 

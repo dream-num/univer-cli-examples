@@ -2,6 +2,8 @@
 
 [English](./README.md) | 简体中文
 
+本示例使用 Univer CLI SDK 和 Univer SDK `1.0.0`。
+
 这个 example 基于 01，在同一个 CLI、Web 和 Server 上增加 Office 文件导入导出。Exchange 在 CLI 进程中
 读取或写入本地文件，导入后的 Unit 仍由 Collaboration Server 保存，Web 可以直接打开。
 
