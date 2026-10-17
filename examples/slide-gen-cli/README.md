@@ -2,7 +2,7 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-This example uses Univer CLI SDK and Univer SDK `1.0.0`.
+This example uses Univer CLI SDK and Univer SDK `1.1.0`.
 
 This Slide-only example turns a Presentation Brief into a reviewable Univer deck. The committed
 Authoring Source contains a deck spec, consecutive SVG pages, stable-handle resources, and optional
