@@ -2,7 +2,7 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-This example uses Univer CLI SDK and Univer SDK `1.1.0`.
+This example uses Univer CLI SDK and Univer SDK `1.2.0`.
 
 This example builds on 01 by adding Office file import and export to the same CLI, Web, and Server.
 Exchange reads and writes local files in the CLI process. Imported Units are still persisted by the
