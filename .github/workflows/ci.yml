@@ -12,6 +12,32 @@ permissions:
   contents: read
 
 jobs:
+  merge-gate:
+    name: Merge gate - private registry
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Fail if a private registry is committed
+        run: |
+          status=0
+          while IFS= read -r file; do
+            while IFS= read -r line; do
+              url=${line#*=}
+              if [ "$url" != "https://registry.npmjs.org" ] && [[ "$url" != https://registry.npmjs.org/* ]]; then
+                echo "::error file=$file::Private npm registry is committed: $url"
+                status=1
+              fi
+            done < <(grep -E '^[^#]*registry[[:space:]]*=' "$file" || true)
+          done < <(git ls-files -- '*.npmrc')
+          if [ "$status" -ne 0 ]; then
+            echo "Before merging into main, all npm packages must be promoted to the public npm registry and the private registry config must be removed."
+            echo "合入主分支之前，必须把所有 NPM 包提升到公开 npm，并移除私有 registry 配置。"
+          fi
+          exit $status
+
   check:
     name: Check ${{ matrix.example }}
     runs-on: ubuntu-latest

@@ -1,0 +1,17 @@
+packages:
+  - examples/*
+
+# Each example keeps its own lockfile so its exact version combination stays
+# frozen and upgradeable independently (examples can also be copied out and
+# installed standalone).
+sharedWorkspaceLockfile: false
+
+# SDK releases are verified fresh from our registry before publication, so our
+# own scopes are exempt from pnpm's default minimum release age.
+minimumReleaseAgeExclude:
+  - "@univer-cli/*"
+  - "@univerjs/*"
+  - "@univerjs-pro/*"
+
+allowBuilds:
+  protobufjs: false

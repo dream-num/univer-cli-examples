@@ -17,6 +17,27 @@
 请按编号阅读 `01` 至 `04`；无编号 example 各自独立。每个目录都有自己的 `package.json`、lockfile
 和依赖，可以独立复制和运行。
 
+## 仓库结构
+
+本仓库是一个 pnpm **workspace**：工具链与供应链配置集中放在根目录（`.npmrc`、
+`pnpm-workspace.yaml`），每个 example 保留自己的 `package.json` 和 `pnpm-lock.yaml`
+（`sharedWorkspaceLockfile: false`）。
+
+两条保证 example 可分发性的规则——请不要回退：
+
+- **禁止使用 workspace 协议（`workspace:*`）。** example 只能依赖发布到 npm registry
+  的包，这样任何 `examples/*` 目录都能拷出仓库独立安装。monorepo 里破坏分发的是
+  workspace 协议，而不是 monorepo 本身。
+- **每个 example 一份 lockfile。** 每个 example 都精确固定一组版本组合，独立验证、
+  独立升级。
+
+### 私有 registry 策略
+
+`.npmrc` 允许在 SDK 发布前临时把 `@univer-cli`、`@univerjs`、`@univerjs-pro` 三个 scope
+指向 insider registry 做验证。CI 合入门禁会在私有 registry 被提交时报错：**合入主分支
+之前，必须把所有 NPM 包提升到公开 npm，并移除私有 registry 配置。** lockfile 只记录
+integrity 哈希，包提升后无需改动。
+
 ## 01 Content Operations
 
 ```bash
