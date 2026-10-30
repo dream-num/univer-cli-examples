@@ -23,16 +23,16 @@
   "dependencies": {
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
-    "@univer-cli/api-reference": "1.2.0",
-    "@univer-cli/api-reference-command": "1.2.0",
-    "@univer-cli/content-execution": "1.2.0",
-    "@univer-cli/doc-typst-facade": "1.2.0",
-    "@univer-cli/headless-univer": "1.2.0",
-    "@univer-cli/unit-screenshot": "1.2.0",
-    "@univer-cli/univer-render-page": "1.2.0",
-    "@univer-cli/univer-render-runtime": "1.2.0",
-    "@univerjs/core": "1.2.0",
-    "@univerjs/ui": "1.2.0",
+    "@univer-cli/api-reference": "1.3.1",
+    "@univer-cli/api-reference-command": "1.3.1",
+    "@univer-cli/content-execution": "1.3.1",
+    "@univer-cli/doc-typst-facade": "1.3.1",
+    "@univer-cli/headless-univer": "1.3.1",
+    "@univer-cli/unit-screenshot": "1.3.1",
+    "@univer-cli/univer-render-page": "1.3.1",
+    "@univer-cli/univer-render-runtime": "1.3.1",
+    "@univerjs/core": "1.3.1",
+    "@univerjs/ui": "1.3.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "commander": "^15.0.0",
@@ -57,5 +57,5 @@
   "engines": {
     "node": ">=22.12.0"
   },
-  "packageManager": "pnpm@10.32.1"
+  "packageManager": "pnpm@12.16.1"
 }

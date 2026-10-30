@@ -2,7 +2,7 @@
 
 [English](./README.md) | 简体中文
 
-本示例使用 Univer CLI SDK 和 Univer SDK `1.2.0`。
+本示例使用 Univer CLI SDK 和 Univer SDK `1.3.1`。
 
 本例只支持 Slide，把 Presentation Brief 转成可审阅的 Univer deck。仓库提交的 Authoring
 Source 包含 deck spec、连续 SVG pages、stable-handle resources，以及可选的 editable native

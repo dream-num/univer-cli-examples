@@ -2,7 +2,7 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-This example uses Univer CLI SDK and Univer SDK `1.2.0`.
+This example uses Univer CLI SDK and Univer SDK `1.3.1`.
 
 The first example shows the complete content-operation loop with the smallest assembly: start the
 Server, create a Sheet, Doc, or Slide, read, edit, and commit it through the CLI, then open the same

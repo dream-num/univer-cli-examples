@@ -2,7 +2,7 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-This example uses Univer CLI SDK and Univer SDK `1.2.0`.
+This example uses Univer CLI SDK and Univer SDK `1.3.1`.
 
 This agent-oriented example creates editable local Univer Docs from Typst. For each request, the
 agent creates or revises a task-specific Typst Source Bundle, compiles it, materializes the generated

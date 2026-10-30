@@ -1,0 +1,7 @@
+minimumReleaseAgeExclude:
+  - "@univer-cli/*"
+  - "@univerjs/*"
+  - "@univerjs-pro/*"
+
+allowBuilds:
+  protobufjs: false
