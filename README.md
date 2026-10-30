@@ -18,6 +18,31 @@ Read examples `01` through `04` in numbered order. Unnumbered examples are self-
 directory has its own `package.json`, lockfile, and dependencies, so it can be copied and run
 independently.
 
+## Repository layout
+
+This repository is a pnpm **workspace**: shared toolchain and supply-chain configuration lives at
+the root (`.npmrc`, `pnpm-workspace.yaml`), while every example keeps its own `package.json` and
+`pnpm-lock.yaml` (`sharedWorkspaceLockfile: false`).
+
+Two rules keep the examples distributable — do not revert them:
+
+- **Never use the workspace protocol (`workspace:*`).** Examples must depend only on packages
+  published to an npm registry, so any `examples/*` directory can be copied out of the repository
+  and installed on its own. In monorepos it is the workspace protocol that breaks distribution,
+  not the monorepo itself.
+- **Keep one lockfile per example.** Each example pins an exact version combination that is
+  verified and upgraded independently of the other examples.
+
+### Private registry policy
+
+`.npmrc` may temporarily point the `@univer-cli`, `@univerjs`, and `@univerjs-pro` scopes at the
+insider registry to verify an SDK release before it is published. The CI merge gate fails while a
+private registry is committed: **before merging into main, all npm packages must be promoted to
+the public npm registry and the private registry config must be removed.** Lockfiles record only
+integrity hashes, so they do not need to change when packages are promoted. The step-by-step
+procedure lives in [`docs/sdk-upgrade-guide.md`](./docs/sdk-upgrade-guide.md) (internal workflow
+documentation, not a learning example).
+
 ## 01 Content Operations
 
 ```bash
