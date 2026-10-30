@@ -39,7 +39,9 @@ Two rules keep the examples distributable — do not revert them:
 insider registry to verify an SDK release before it is published. The CI merge gate fails while a
 private registry is committed: **before merging into main, all npm packages must be promoted to
 the public npm registry and the private registry config must be removed.** Lockfiles record only
-integrity hashes, so they do not need to change when packages are promoted.
+integrity hashes, so they do not need to change when packages are promoted. The step-by-step
+procedure lives in [`docs/sdk-upgrade-guide.md`](./docs/sdk-upgrade-guide.md) (internal workflow
+documentation, not a learning example).
 
 ## 01 Content Operations
 

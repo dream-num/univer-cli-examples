@@ -36,7 +36,8 @@
 `.npmrc` 允许在 SDK 发布前临时把 `@univer-cli`、`@univerjs`、`@univerjs-pro` 三个 scope
 指向 insider registry 做验证。CI 合入门禁会在私有 registry 被提交时报错：**合入主分支
 之前，必须把所有 NPM 包提升到公开 npm，并移除私有 registry 配置。** lockfile 只记录
-integrity 哈希，包提升后无需改动。
+integrity 哈希，包提升后无需改动。完整操作步骤见
+[`docs/sdk-upgrade-guide.md`](./docs/sdk-upgrade-guide.md)（内部工作流文档，不是教学 example）。
 
 ## 01 Content Operations
 
