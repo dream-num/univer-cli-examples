@@ -31,12 +31,15 @@
 - **每个 example 一份 lockfile。** 每个 example 都精确固定一组版本组合，独立验证、
   独立升级。
 
-### 私有 registry 策略
+### 分支策略
 
-`.npmrc` 允许在 SDK 发布前临时把 `@univer-cli`、`@univerjs`、`@univerjs-pro` 三个 scope
-指向 insider registry 做验证。CI 合入门禁会在私有 registry 被提交时报错：**合入主分支
-之前，必须把所有 NPM 包提升到公开 npm，并移除私有 registry 配置。** lockfile 只记录
-integrity 哈希，包提升后无需改动。完整操作步骤见
+`main` 只依赖公开发布的 SDK 包，永不携带 `.npmrc`。能在已发布 SDK 上工作的改动（包括升级到
+已公开的 SDK 版本）PR 打到 `main`；需要尚未公开的 SDK 版本的改动 PR 打到 `<version>-next`
+分支，它以当前已发布的 SDK 版本命名（例如 1.3.1 已发布时为 `1.3.1-next`）。该分支提交一份把
+`@univer-cli`、`@univerjs`、`@univerjs-pro` 三个 scope 指向 insider registry 的根 `.npmrc`，
+在该版本公开后合入 `main` 并删除。CI 合入门禁在打到 `main` 的 PR 上运行，只要提交了私有
+registry 或预发布的 SDK 版本就报错：**合入主分支之前，必须把所有 NPM 包提升到公开 npm，
+并移除私有 registry 配置。** lockfile 只记录 integrity 哈希，包提升后无需改动。完整操作步骤见
 [`docs/sdk-upgrade-guide.md`](./docs/sdk-upgrade-guide.md)（内部工作流文档，不是教学 example）。
 
 ## 01 Content Operations
