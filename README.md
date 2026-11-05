@@ -33,12 +33,18 @@ Two rules keep the examples distributable — do not revert them:
 - **Keep one lockfile per example.** Each example pins an exact version combination that is
   verified and upgraded independently of the other examples.
 
-### Private registry policy
+### Branch policy
 
-`.npmrc` may temporarily point the `@univer-cli`, `@univerjs`, and `@univerjs-pro` scopes at the
-insider registry to verify an SDK release before it is published. The CI merge gate fails while a
-private registry is committed: **before merging into main, all npm packages must be promoted to
-the public npm registry and the private registry config must be removed.** Lockfiles record only
+`main` depends only on publicly released SDK packages and never carries an `.npmrc`. A change
+that works against the published SDK, including an upgrade to an SDK version that is already
+public, opens its pull request against `main`. A change that needs an SDK version that is not on
+the public registry yet opens its pull request against the `<version>-next` branch, named after
+the currently published SDK version (for example `1.3.1-next` while 1.3.1 is published). That
+branch commits a root `.npmrc` pointing the `@univer-cli`, `@univerjs`, and `@univerjs-pro` scopes
+at the insider registry, and is merged into `main` and deleted once the release is public. The CI
+merge gate runs on pull requests into `main` and fails while a private registry or a pre-release
+SDK version is committed: **before merging into main, all npm packages must be promoted to the
+public npm registry and the private registry config must be removed.** Lockfiles record only
 integrity hashes, so they do not need to change when packages are promoted. The step-by-step
 procedure lives in [`docs/sdk-upgrade-guide.md`](./docs/sdk-upgrade-guide.md) (internal workflow
 documentation, not a learning example).
