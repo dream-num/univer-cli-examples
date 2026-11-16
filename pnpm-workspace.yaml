@@ -36,6 +36,7 @@ minimumReleaseAgeExclude:
   - "@univerjs-pro/boards"
   - "@univerjs-pro/boards-chart"
   - "@univerjs-pro/boards-chart-ui"
+  - "@univerjs-pro/boards-latex-ui"
   - "@univerjs-pro/boards-mind"
   - "@univerjs-pro/boards-mind-ui"
   - "@univerjs-pro/boards-print"
