@@ -1,25 +1,42 @@
-import { execFile } from "node:child_process";
-import { readFile } from "node:fs/promises";
+import { execFile, spawn } from "node:child_process";
+import { once } from "node:events";
+import { mkdtemp, readFile, rm } from "node:fs/promises";
+import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
+import { createInterface } from "node:readline";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
-import { afterEach, expect, it } from "vitest";
-import { startServer, type DemoServer } from "../src/server/server.js";
+import { expect, it, onTestFinished } from "vitest";
+import { DEFAULT_SERVER_URL } from "../src/shared/urls.js";
 
 const execFileAsync = promisify(execFile);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const entrypoint = join(root, "dist/cli/main.js");
-let server: DemoServer | undefined;
 
-afterEach(async () => await server?.close());
+it("edits and captures Sheet, Doc, and Slide units", async () => {
+  const directory = await mkdtemp(join(tmpdir(), "univer-visual-inspection-"));
+  const server = spawn(process.execPath, [join(root, "dist/server/main.js")], {
+    cwd: directory,
+    stdio: ["ignore", "pipe", "inherit"],
+  });
+  const closed = once(server, "close");
+  onTestFinished(async () => {
+    server.kill("SIGTERM");
+    try {
+      await closed;
+    } finally {
+      await rm(directory, { recursive: true });
+    }
+  });
 
-it("keeps 01 and adds screenshots for Sheet, Doc, and Slide", async () => {
-  server = await startServer(":memory:");
+  const lines = createInterface({ input: server.stdout });
+  const { value: origin } = await lines[Symbol.asyncIterator]().next();
+  expect(origin).toBe(DEFAULT_SERVER_URL);
 
-  const ticket = await fetch(`${server.origin}/universer-api/user/session-ticket`);
+  const ticket = await fetch(`${origin}/universer-api/user/session-ticket`);
   expect(ticket.status).toBe(200);
   expect(await ticket.json()).toMatchObject({ ticket: expect.any(String) });
-  const fallback = await fetch(`${server.origin}/universer-api/not-an-endpoint`);
+  const fallback = await fetch(`${origin}/universer-api/not-an-endpoint`);
   expect(fallback.status).toBe(200);
   expect(await fallback.text()).toContain('id="sidebar"');
   const sheetId = (await run("create", "sheet", "--name", "Demo Sheet")).trim();
@@ -38,8 +55,8 @@ it("keeps 01 and adds screenshots for Sheet, Doc, and Slide", async () => {
     ranges: [
       {
         displayValues: [
-          ["Name", "Value"],
-          ["Initial", "1"],
+          ["", ""],
+          ["", ""],
         ],
       },
     ],
@@ -51,7 +68,7 @@ it("keeps 01 and adds screenshots for Sheet, Doc, and Slide", async () => {
       "--unit",
       sheetId,
       "--code",
-      'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]]); return "done";',
+      'workbook.getActiveSheet().getRange("A1:B2").setValues([["Item", "Quantity"], ["Apples", 2]]); return "done";',
     ),
   ) as Record<string, unknown>;
   expect(execution).toMatchObject({ commit: "confirmed", revision: 2, value: "done" });
@@ -97,7 +114,7 @@ it("keeps 01 and adds screenshots for Sheet, Doc, and Slide", async () => {
     expect(page).toContain('id="sidebar"');
     expect(page).toContain('id="app"');
   }
-  expect(await (await fetch(`${server.origin}/api/units`)).json()).toMatchObject([
+  expect(await (await fetch(`${origin}/api/units`)).json()).toMatchObject([
     { name: "Demo Sheet", unitId: sheetId, unitType: "sheet" },
     { name: "Demo Doc", unitId: documentId, unitType: "doc" },
     { name: "Demo Slide", unitId: presentationId, unitType: "slide" },
@@ -105,7 +122,7 @@ it("keeps 01 and adds screenshots for Sheet, Doc, and Slide", async () => {
   expect(await run("api", "find", "setValues", "--unit", "sheet")).toContain("FRange.setValues");
   expect(await run("api", "show", "FRange.setValues")).toContain("setValues");
 
-  const output = resolve(root, "dist/test-output");
+  const output = join(directory, "screenshots");
   const captures = [
     [sheetId, "--sheet", "Data", "--range", "A1:B2"],
     [documentId],

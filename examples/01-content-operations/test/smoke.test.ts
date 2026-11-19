@@ -1,38 +1,54 @@
-import { execFile } from "node:child_process";
+import { execFile, spawn } from "node:child_process";
+import { once } from "node:events";
 import { mkdtemp, rm } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
+import { createInterface } from "node:readline";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { beforeEach, expect, it } from "vitest";
-import { startServer, type DemoServer } from "../src/server/main.js";
+import { DEFAULT_SERVER_URL } from "../src/shared/urls.js";
 
 const execFileAsync = promisify(execFile);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const entrypoint = join(root, "dist/cli/main.js");
-let server: DemoServer | undefined;
-let databaseFile: string;
+let directory: string;
+let stopServer: (() => Promise<void>) | undefined;
 
 beforeEach(async () => {
-  const directory = await mkdtemp(join(tmpdir(), "univer-content-operations-"));
-  databaseFile = join(directory, "content.sqlite");
+  directory = await mkdtemp(join(tmpdir(), "univer-content-operations-"));
   return async () => {
     try {
-      await server?.close();
+      await stopServer?.();
     } finally {
-      server = undefined;
+      stopServer = undefined;
       await rm(directory, { recursive: true });
     }
   };
 });
 
-it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async () => {
-  server = await startServer(databaseFile);
+async function launchServer() {
+  const server = spawn(process.execPath, [join(root, "dist/server/main.js")], {
+    cwd: directory,
+    stdio: ["ignore", "pipe", "inherit"],
+  });
+  const closed = once(server, "close");
+  stopServer = async () => {
+    server.kill("SIGTERM");
+    await closed;
+  };
+  const lines = createInterface({ input: server.stdout });
+  const { value: origin } = await lines[Symbol.asyncIterator]().next();
+  expect(origin).toBe(DEFAULT_SERVER_URL);
+}
 
-  const ticket = await fetch(`${server.origin}/universer-api/user/session-ticket`);
+it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async () => {
+  await launchServer();
+
+  const ticket = await fetch(`${DEFAULT_SERVER_URL}/universer-api/user/session-ticket`);
   expect(ticket.status).toBe(200);
   expect(await ticket.json()).toMatchObject({ ticket: expect.any(String) });
-  const fallback = await fetch(`${server.origin}/universer-api/not-an-endpoint`);
+  const fallback = await fetch(`${DEFAULT_SERVER_URL}/universer-api/not-an-endpoint`);
   expect(fallback.status).toBe(200);
   expect(await fallback.text()).toContain('id="sidebar"');
   const sheetId = (await run("create", "sheet", "--name", "Demo Sheet")).trim();
@@ -110,7 +126,7 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
     expect(page).toContain('id="sidebar"');
     expect(page).toContain('id="app"');
   }
-  expect(await (await fetch(`${server.origin}/api/units`)).json()).toMatchObject([
+  expect(await (await fetch(`${DEFAULT_SERVER_URL}/api/units`)).json()).toMatchObject([
     { name: "Demo Sheet", unitId: sheetId, unitType: "sheet" },
     { name: "Demo Doc", unitId: documentId, unitType: "doc" },
     { name: "Demo Slide", unitId: presentationId, unitType: "slide" },
@@ -120,13 +136,12 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
 }, 90_000);
 
 it("restores the file list and Unit from SQLite", async () => {
-  server = await startServer(databaseFile);
+  await launchServer();
   const unitId = (await run("create", "sheet", "--name", "Persistent")).trim();
-  await server.close();
-  server = undefined;
+  await stopServer?.();
 
-  server = await startServer(databaseFile);
-  expect(await (await fetch(`${server.origin}/api/units`)).json()).toMatchObject([
+  await launchServer();
+  expect(await (await fetch(`${DEFAULT_SERVER_URL}/api/units`)).json()).toMatchObject([
     { name: "Persistent", unitId, unitType: "sheet" },
   ]);
   expect(JSON.parse(await run("inspect", "workbook", "--unit", unitId, "--json"))).toMatchObject({
