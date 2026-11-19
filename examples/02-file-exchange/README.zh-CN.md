@@ -1,19 +1,12 @@
-# 02 File Exchange
+# 02 File Exchange · 导入和导出 Office 文件
 
 [English](./README.md) | 简体中文
 
-本示例使用 Univer CLI SDK 和 Univer SDK `1.5.2`。
+这个示例在 01 的内容操作基础上增加了 `export` 和 `import`。你会把一张销售表导出为本地 Excel 文件，再将它导入为一份新的协同表格，用 CLI 和浏览器核对数据。Office 文件由 CLI 在本地转换，协同服务保存导入的内容。
 
-这个 example 基于 01，在同一个 CLI、Web 和 Server 上增加 Office 文件导入导出。Exchange 在 CLI 进程中
-读取或写入本地文件，导入后的 Unit 仍由 Collaboration Server 保存，Web 可以直接打开。
+## 启动示例
 
-```text
-Office 文件 ⇄ CLI Exchange ⇄ UnitData ⇄ Collaboration Server ⇄ Web
-```
-
-## 运行
-
-进入本 example 后，所有命令都在当前目录执行：
+使用 Node.js 22.12 或更高版本和 pnpm 12.16.1。如果 01 的服务还在运行，先按 Ctrl+C 释放端口 3010。然后在 `examples/02-file-exchange` 目录运行：
 
 ```bash
 pnpm install
@@ -22,53 +15,39 @@ pnpm link-cli
 pnpm start-server
 ```
 
-另开终端，仍在当前目录操作。下面的流程不需要提前准备 Office 文件：先创建一个 Sheet 并导出，再把导出的
-文件作为新的协同 Unit 导入。
+服务启动后会打印 `http://127.0.0.1:3010`。保持服务运行，在同一目录另开一个终端。
+
+## 将表格导出为 Excel
+
+创建一张空白表格，填入一月份的销售额，然后把已提交的内容导出到当前目录的 `sales.xlsx`：
 
 ```bash
-UNIT_ID=$(univer-example-cli create sheet --name "Exchange Demo")
+UNIT_ID=$(univer-example-cli create sheet --name "Sales")
+univer-example-cli execute --unit "$UNIT_ID" \
+  --code 'workbook.getActiveSheet().getRange("A1:B2").setValues([["Month", "Sales"], ["January", 120]])'
+univer-example-cli export sales.xlsx --unit "$UNIT_ID"
+```
 
-univer-example-cli export demo.xlsx --unit "$UNIT_ID"
+## 导入文件并核对数据
 
-IMPORTED_ID=$(univer-example-cli import demo.xlsx --name "Imported Demo")
-
-univer-example-cli inspect workbook --unit "$IMPORTED_ID" --json
+```bash
+IMPORTED_ID=$(univer-example-cli import sales.xlsx --name "Imported sales")
+univer-example-cli inspect range A1:B2 --worksheet index:1 --unit "$IMPORTED_ID" --json
 univer-example-cli open --unit "$IMPORTED_ID"
 ```
 
-Sheet 使用 `.xlsx`，Doc 使用 `.docx`，Slide 使用 `.pptx`。输入扩展名决定导入的 Unit 类型；导出文件扩展名
-必须与 Unit 类型匹配。
+导入会返回新的 Unit ID。检查输出的 `displayValues`，第二行应为 `["January", "120"]`。浏览器的文件列表中会同时出现原表 `Sales` 和导入的 `Imported sales`。两份表格独立保存，后续可以分别编辑。
 
-## 交给 Agent 使用
+同样的命令也支持 Doc（`.docx`）和 Slide（`.pptx`）。导入时由文件扩展名决定 Unit 类型，导出时使用与 Unit 类型对应的扩展名。
 
-保持 Server 运行，在另一个终端安装 skill：
+## 让 Agent 处理文件
 
-```bash
-pnpm skill:install
-```
-
-用 Agent 打开当前目录，然后输入：
+在示例目录运行 `pnpm skill:install`，然后用 Agent 打开该目录。可以接着使用上面生成的 Excel 文件：
 
 ```text
-使用 univer-content 导入 ./sales.xlsx，把第二行的销售额改成 1000，验证后导出为 ./updated-sales.xlsx。
+使用 univer-content 导入 ./sales.xlsx，把一月份的销售额改成 1000，读回确认后导出为 ./updated-sales.xlsx。
 ```
 
-体验结束后运行：
+完成后，在服务终端按 Ctrl+C。如果安装了 skill，运行 `pnpm skill:uninstall`。运行 `pnpm unlink-cli` 移除本示例注册的 CLI 命令。
 
-```bash
-pnpm skill:uninstall
-pnpm unlink-cli
-```
-
-## 相比 01 增加了什么
-
-- `src/cli/features/file.ts` 增加 `import` 和 `export` 两个 application command。
-- `import` 使用 `@univerjs-pro/exchange-node` 将 Office 文件转换为 UnitData，再通过现有 Server API 创建 Unit。
-- `export` 使用 Collaboration Runtime 取得最新 UnitData，再写成 Office 文件。
-- Server 的创建接口可以接收空白 Unit 参数或已经转换完成的 UnitData。
-- 增加 `@univerjs-pro/exchange-node-binding`，为当前平台提供原生文件转换实现。
-
-文件交换没有额外的 CLI SDK preset；`file.ts` 是业务 application 在 Commander 中组合 Exchange 与
-Collaboration Runtime 的最小 adapter。它没有上传服务、异步转换任务、远程 URL、进度、重试或文件管理。
-
-数据写入 `.data/file-exchange.sqlite`。运行 `pnpm check` 验证当前 example。
+本示例使用 Univer CLI SDK 和 Univer SDK 1.5.2。协同数据保存在 `.data/file-exchange.sqlite`。修改示例后，可运行 `pnpm check`。

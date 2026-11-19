@@ -4,18 +4,30 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
-import { afterEach, expect, it } from "vitest";
-import { startServer, type DemoServer } from "../src/server/server.js";
+import { beforeEach, expect, it } from "vitest";
+import { startServer, type DemoServer } from "../src/server/main.js";
 
 const execFileAsync = promisify(execFile);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const entrypoint = join(root, "dist/cli/main.js");
 let server: DemoServer | undefined;
+let databaseFile: string;
 
-afterEach(async () => await server?.close());
+beforeEach(async () => {
+  const directory = await mkdtemp(join(tmpdir(), "univer-file-exchange-"));
+  databaseFile = join(directory, "file-exchange.sqlite");
+  return async () => {
+    try {
+      await server?.close();
+    } finally {
+      server = undefined;
+      await rm(directory, { recursive: true });
+    }
+  };
+});
 
 it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async () => {
-  server = await startServer(":memory:");
+  server = await startServer(databaseFile);
 
   const ticket = await fetch(`${server.origin}/universer-api/user/session-ticket`);
   expect(ticket.status).toBe(200);
@@ -39,8 +51,8 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
     ranges: [
       {
         displayValues: [
-          ["Name", "Value"],
-          ["Initial", "1"],
+          ["", ""],
+          ["", ""],
         ],
       },
     ],
@@ -52,7 +64,7 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
       "--unit",
       sheetId,
       "--code",
-      'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]]); return "done";',
+      'workbook.getActiveSheet().getRange("A1:B2").setValues([["Item", "Quantity"], ["Apples", 2]]); return "done";',
     ),
   ) as Record<string, unknown>;
   expect(execution).toMatchObject({ commit: "confirmed", revision: 2, value: "done" });
@@ -107,28 +119,35 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
   expect(await run("api", "show", "FRange.setValues")).toContain("setValues");
 }, 90_000);
 
-it("restores the file list and Unit from SQLite", async () => {
-  const directory = await mkdtemp(join(tmpdir(), "univer-content-operations-"));
-  const databaseFile = join(directory, "content.sqlite");
-  try {
-    server = await startServer(databaseFile);
-    const unitId = (await run("create", "sheet", "--name", "Persistent")).trim();
-    await server.close();
-    server = undefined;
+it("restores an imported workbook and its directory name after a restart", async () => {
+  server = await startServer(databaseFile);
+  const sourceId = (await run("create", "sheet", "--name", "Source")).trim();
+  await run(
+    "execute",
+    "--unit",
+    sourceId,
+    "--code",
+    'workbook.getActiveSheet().getRange("B2").setValue(120)',
+  );
+  const file = join(dirname(databaseFile), "sales.xlsx");
+  await run("export", file, "--unit", sourceId);
+  const unitId = (await run("import", file, "--name", "Imported sales")).trim();
+  expect(unitId).not.toBe(sourceId);
+  await server.close();
+  server = undefined;
 
-    server = await startServer(databaseFile);
-    expect(await (await fetch(`${server.origin}/api/units`)).json()).toMatchObject([
-      { name: "Persistent", unitId, unitType: "sheet" },
-    ]);
-    expect(JSON.parse(await run("inspect", "workbook", "--unit", unitId, "--json"))).toMatchObject({
-      name: "Persistent",
-      unitId,
-    });
-  } finally {
-    await server?.close();
-    server = undefined;
-    await rm(directory, { recursive: true });
-  }
+  server = await startServer(databaseFile);
+  expect(await (await fetch(`${server.origin}/api/units`)).json()).toMatchObject([
+    { name: "Source", unitId: sourceId, unitType: "sheet" },
+    { name: "Imported sales", unitId, unitType: "sheet" },
+  ]);
+  expect(
+    JSON.parse(
+      await run("inspect", "range", "B2", "--worksheet", "index:1", "--unit", unitId, "--json"),
+    ),
+  ).toMatchObject({
+    ranges: [{ displayValues: [["120"]] }],
+  });
 }, 30_000);
 
 async function run(...args: readonly string[]): Promise<string> {
