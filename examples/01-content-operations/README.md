@@ -1,25 +1,12 @@
-# 01 Content Operations
+# 01 Content Operations · Edit a collaborative document from the CLI
 
 English | [简体中文](./README.zh-CN.md)
 
-This example uses Univer CLI SDK and Univer SDK `1.5.2`.
+In this first Univer CLI SDK example, you'll create a spreadsheet in the terminal, read and edit its cells, then open the same spreadsheet in a browser to see the change. The CLI and the web editor connect to one local collaboration server and use the same Unit ID to open the file. The CLI also supports documents (Doc) and presentations (Slide).
 
-The first example shows the complete content-operation loop with the smallest assembly: start the
-Server, create a Sheet, Doc, or Slide, read, edit, and commit it through the CLI, then open the same
-collaborative Unit in the Web editor.
+## Start the example
 
-The Web page has a small file sidebar for listing, creating, and switching between the persisted
-Units.
-
-```text
-CLI ──┐
-      ├── Collaboration Server ── SQLite Adapter
-Web ──┘
-```
-
-## Run
-
-After entering this example, run every command from the current directory:
+Use Node.js 22.12 or later and pnpm 12.16.1. From `examples/01-content-operations`, run:
 
 ```bash
 pnpm install
@@ -28,54 +15,51 @@ pnpm link-cli
 pnpm start-server
 ```
 
-Use another terminal in the same directory. `create` prints the new short Unit ID, so the remaining
-commands can capture and reuse it directly:
+`link-cli` registers the example's `univer-example-cli` command. The server prints `http://127.0.0.1:3010` when it starts. Leave it running and open a second terminal in the same directory.
+
+## Edit a row in a spreadsheet
+
+Create a Sheet named Demo, capture its Unit ID, and read the first two rows of its first worksheet:
 
 ```bash
 UNIT_ID=$(univer-example-cli create sheet --name "Demo")
+univer-example-cli inspect range A1:B2 --worksheet index:1 --unit "$UNIT_ID" --json
+```
 
-univer-example-cli inspect range A1:B2 --worksheet index:1 \
-  --unit "$UNIT_ID" --json
+In the output, `displayValues` shows the headers `Name` and `Value` followed by the row `Initial` and `1`. Use `execute` to run Univer Facade code that changes the second row to `Updated` and `2`:
 
+```bash
 univer-example-cli execute --unit "$UNIT_ID" \
   --code 'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]])'
+```
 
+The CLI uses the Collaboration Runtime to load the workbook, apply the edit, and commit it. Once the output shows `"commit": "confirmed"`, open the spreadsheet in your browser:
+
+```bash
 univer-example-cli open --unit "$UNIT_ID"
+```
 
-# Simulate an Agent querying the Facade API before generating execution code
+On the `Data` worksheet, A2 should now show `Updated` and B2 should show `2`. You can switch Units in the file sidebar. The server stores the data in `.data/content-operations.sqlite`, so the same ID works after a restart.
+
+When writing your own edits, use the CLI to look up a Facade method and see how to call it:
+
+```bash
 univer-example-cli api find setValues --unit sheet
 univer-example-cli api show FRange.setValues
 ```
 
-## Use it with an Agent
+## Use the same CLI with an agent
 
-Keep the Server running and install the skill from the other terminal:
-
-```bash
-pnpm skill:install
-```
-
-Open the current directory with an Agent and enter:
+With the server running, run `pnpm skill:install` in the example directory. Open that directory with your agent and enter:
 
 ```text
 Use univer-content to create a sales spreadsheet with 10 sample records.
 ```
 
-The Agent creates, populates, commits, and verifies the Unit, then returns a Web URL. The skill
-source is `skills/univer-content/SKILL.md`; it is not part of the application build. When
-finished, run:
+The bundled `univer-content` skill guides the agent through creating the Sheet, writing the data, and reading it back with `inspect`. Open the link the agent returns to review the ten records in the web editor.
 
-```bash
-pnpm skill:uninstall
-pnpm unlink-cli
-```
+## Finish
 
-## Development
+Press Ctrl+C in the server terminal. If you installed the skill, run `pnpm skill:uninstall`. Run `pnpm unlink-cli` to remove the example's CLI command.
 
-Start with `src/server/main.ts` to see how the collaboration SDK is wired into Express.
-
-Run `pnpm check` to verify this example.
-
-This example supports Sheet, Doc, and Slide with SQLite persistence and one demo user. Data is
-stored in `.data/content-operations.sqlite`.
-Login, authorization, conflict retries, and Worktree are outside this example.
+This example uses Univer CLI SDK and Univer SDK 1.5.2. After changing the example, run `pnpm check` from this directory.

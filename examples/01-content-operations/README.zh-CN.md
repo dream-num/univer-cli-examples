@@ -1,23 +1,12 @@
-# 01 Content Operations
+# 01 Content Operations · 用 CLI 编辑协同文档
 
 [English](./README.md) | 简体中文
 
-本示例使用 Univer CLI SDK 和 Univer SDK `1.5.2`。
+这是 Univer CLI SDK 的第一个示例。你会在终端里创建一个表格，读取并修改其中的单元格，再用浏览器打开同一个表格，看到刚才提交的结果。CLI 和 Web 编辑器连接同一个本地协同服务，通过 Unit ID 打开同一份内容。除了表格（Sheet），这个 CLI 也支持文档（Doc）和演示文稿（Slide）。
 
-第一个 example 用最小装配展示完整内容操作闭环：启动 Server，创建 Sheet、Doc 或 Slide，通过 CLI 读取、修改和
-提交，最后用 Web 打开同一个协同 Unit。
+## 启动示例
 
-Web 页面左侧提供一个简单的文件列表，可以新建和切换已经持久化的 Units。
-
-```text
-CLI ──┐
-      ├── Collaboration Server ── SQLite Adapter
-Web ──┘
-```
-
-## 运行
-
-进入本 example 后，所有命令都在当前目录执行：
+使用 Node.js 22.12 或更高版本和 pnpm 12.16.1。在 `examples/01-content-operations` 目录运行：
 
 ```bash
 pnpm install
@@ -26,52 +15,51 @@ pnpm link-cli
 pnpm start-server
 ```
 
-另开终端，仍在当前目录操作。`create` 会输出新建 Unit 的短 ID，后续命令可以直接保存并复用：
+`link-cli` 注册本示例的 `univer-example-cli` 命令。服务启动后会打印 `http://127.0.0.1:3010`。保持该终端运行，在同一目录另开一个终端执行下面的命令。
+
+## 修改表格中的一行
+
+创建一个名为 Demo 的表格，把输出的 Unit ID 存入变量，然后读取第一个工作表的前两行：
 
 ```bash
 UNIT_ID=$(univer-example-cli create sheet --name "Demo")
+univer-example-cli inspect range A1:B2 --worksheet index:1 --unit "$UNIT_ID" --json
+```
 
-univer-example-cli inspect range A1:B2 --worksheet index:1 \
-  --unit "$UNIT_ID" --json
+在输出的 `displayValues` 中，第一行是表头 `Name` 和 `Value`，第二行是 `Initial` 和 `1`。用 `execute` 执行一段 Univer Facade 代码，把第二行改为 `Updated` 和 `2`：
 
+```bash
 univer-example-cli execute --unit "$UNIT_ID" \
   --code 'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]])'
+```
 
+CLI 通过 Collaboration Runtime 加载表格、执行修改并提交。看到 `"commit": "confirmed"` 后，在浏览器中打开刚才的表格：
+
+```bash
 univer-example-cli open --unit "$UNIT_ID"
+```
 
-# 模拟 Agent 在生成执行代码前查询 Facade API
+在 `Data` 工作表中应能看到 A2 为 `Updated`、B2 为 `2`。左侧文件列表可以切换到其他 Unit。服务把数据保存在 `.data/content-operations.sqlite`，重启后仍可用原来的 ID 打开。
+
+编写自己的修改命令时，可以用 CLI 查找 Facade 方法并查看用法：
+
+```bash
 univer-example-cli api find setValues --unit sheet
 univer-example-cli api show FRange.setValues
 ```
 
-## 交给 Agent 使用
+## 让 Agent 使用同一个 CLI
 
-保持 Server 运行，在另一个终端安装 skill：
-
-```bash
-pnpm skill:install
-```
-
-用 Agent 打开当前目录，然后输入：
+保持服务运行，在示例目录执行 `pnpm skill:install`，再用 Agent 打开该目录，输入：
 
 ```text
 使用 univer-content 帮我创建一个销售表格，包含 10 条示例数据。
 ```
 
-Agent 会创建、填充、提交和校验 Unit，并返回 Web 地址。Skill 源码位于
-`skills/univer-content/SKILL.md`，不参与 application 构建。体验结束后运行：
+随示例提供的 `univer-content` skill 指导 Agent 创建表格、写入数据，再用 `inspect` 读回结果。打开 Agent 返回的链接，就能在 Web 编辑器中查看这 10 条记录。
 
-```bash
-pnpm skill:uninstall
-pnpm unlink-cli
-```
+## 结束运行
 
-## 开发
+在服务终端按 Ctrl+C。如果安装了 skill，运行 `pnpm skill:uninstall`。运行 `pnpm unlink-cli` 移除本示例注册的 CLI 命令。
 
-从 `src/server/main.ts` 可以看到如何把协同 SDK 接入 Express。
-
-运行 `pnpm check` 验证当前 example。
-
-这个 example 支持 Sheet、Doc、Slide，使用 SQLite 持久化和一个 demo user。数据写入
-`.data/content-operations.sqlite`。
-登录、权限、冲突重试和 Worktree 超出本示例范围。
+本示例使用 Univer CLI SDK 和 Univer SDK 1.5.2。修改示例后，可在该目录运行 `pnpm check`。
