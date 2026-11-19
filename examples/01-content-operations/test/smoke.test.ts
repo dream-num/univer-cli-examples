@@ -4,18 +4,30 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
-import { afterEach, expect, it } from "vitest";
-import { startServer, type DemoServer } from "../src/server/server.js";
+import { beforeEach, expect, it } from "vitest";
+import { startServer, type DemoServer } from "../src/server/main.js";
 
 const execFileAsync = promisify(execFile);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const entrypoint = join(root, "dist/cli/main.js");
 let server: DemoServer | undefined;
+let databaseFile: string;
 
-afterEach(async () => await server?.close());
+beforeEach(async () => {
+  const directory = await mkdtemp(join(tmpdir(), "univer-content-operations-"));
+  databaseFile = join(directory, "content.sqlite");
+  return async () => {
+    try {
+      await server?.close();
+    } finally {
+      server = undefined;
+      await rm(directory, { recursive: true });
+    }
+  };
+});
 
 it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async () => {
-  server = await startServer(":memory:");
+  server = await startServer(databaseFile);
 
   const ticket = await fetch(`${server.origin}/universer-api/user/session-ticket`);
   expect(ticket.status).toBe(200);
@@ -39,8 +51,8 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
     ranges: [
       {
         displayValues: [
-          ["Name", "Value"],
-          ["Initial", "1"],
+          ["", ""],
+          ["", ""],
         ],
       },
     ],
@@ -52,7 +64,7 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
       "--unit",
       sheetId,
       "--code",
-      'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]]); return "done";',
+      'workbook.getActiveSheet().getRange("A1:B2").setValues([["Item", "Quantity"], ["Apples", 2]]); return "done";',
     ),
   ) as Record<string, unknown>;
   expect(execution).toMatchObject({ commit: "confirmed", revision: 2, value: "done" });
@@ -108,27 +120,19 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
 }, 90_000);
 
 it("restores the file list and Unit from SQLite", async () => {
-  const directory = await mkdtemp(join(tmpdir(), "univer-content-operations-"));
-  const databaseFile = join(directory, "content.sqlite");
-  try {
-    server = await startServer(databaseFile);
-    const unitId = (await run("create", "sheet", "--name", "Persistent")).trim();
-    await server.close();
-    server = undefined;
+  server = await startServer(databaseFile);
+  const unitId = (await run("create", "sheet", "--name", "Persistent")).trim();
+  await server.close();
+  server = undefined;
 
-    server = await startServer(databaseFile);
-    expect(await (await fetch(`${server.origin}/api/units`)).json()).toMatchObject([
-      { name: "Persistent", unitId, unitType: "sheet" },
-    ]);
-    expect(JSON.parse(await run("inspect", "workbook", "--unit", unitId, "--json"))).toMatchObject({
-      name: "Persistent",
-      unitId,
-    });
-  } finally {
-    await server?.close();
-    server = undefined;
-    await rm(directory, { recursive: true });
-  }
+  server = await startServer(databaseFile);
+  expect(await (await fetch(`${server.origin}/api/units`)).json()).toMatchObject([
+    { name: "Persistent", unitId, unitType: "sheet" },
+  ]);
+  expect(JSON.parse(await run("inspect", "workbook", "--unit", unitId, "--json"))).toMatchObject({
+    name: "Persistent",
+    unitId,
+  });
 }, 30_000);
 
 async function run(...args: readonly string[]): Promise<string> {
