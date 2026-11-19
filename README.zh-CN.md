@@ -17,9 +17,9 @@
 请按编号阅读 `01` 至 `04`；无编号 example 各自独立。每个目录都有自己的 `package.json`、lockfile
 和依赖，可以独立复制和运行。
 
-## 配置 License
+## 配置 License（可选）
 
-构建和运行示例前，将下面的路径替换为本机 License 文件路径，在同一终端设置两个环境变量。
+示例可以在未配置 License 的情况下运行。如需使用自己的 License，将下方路径替换为本机文件路径，在构建和运行示例的终端中设置这两个环境变量。
 
 ```bash
 export UNIVER_LICENSE="$(cat /path/to/license.txt)"
@@ -131,10 +131,5 @@ univer-example-cli worktree ready "$WORKTREE_ID"
 univer-example-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
 
-完整命令和验证方式见各 example 的 README。
-
-示例 01–04 和 Slide Gen 的 Web 编辑器向本地服务查询权限。
-服务端的 `batch_allowed` 接口对单一演示用户请求的每个操作返回允许。
-
-这些 examples 是最小教学装配，不是生产应用；没有加入完整权限、
+完整命令和验证方式见各 example 的 README。这些 examples 是最小教学装配，不是生产应用；没有加入完整权限、
 上传任务、Daemon 等产品机制。
