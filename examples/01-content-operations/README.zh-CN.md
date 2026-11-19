@@ -68,7 +68,8 @@ pnpm unlink-cli
 
 ## 源码顺序
 
-先读 `src/server/main.ts`、`src/server/server.ts` 和 `src/server/unit-store.ts`，再阅读 features：
+先看 `src/server/main.ts` 如何组装服务。同目录的 `unit-routes.ts` 将 HTTP 请求交给
+`unit-service.ts`，后者使用 `unit-data.ts` 的初始数据创建 Unit，通过 `unit-repository.ts` 从 SQLite 读取 Unit 摘要。接下来阅读 CLI features：
 `unit.ts` 放 `create/open`，`unit-content.ts` 放 `inspect/execute` 及其 collaboration runtime，`api.ts`
 放 Facade API commands。最后阅读 `src/cli/program.ts` 和 `src/web/`。`inspect` 与 `api` 直接使用 CLI SDK
 的 Commander preset；其他 command 是 application 自己的薄封装。
@@ -76,4 +77,5 @@ pnpm unlink-cli
 运行 `pnpm check` 验证当前 example。
 
 这个 example 支持 Sheet、Doc、Slide，使用 SQLite 持久化和一个 demo user。数据写入
-`.data/content-operations.sqlite`。它不处理登录、权限、冲突重试、备份、migration 或 Worktree。
+`.data/content-operations.sqlite`。
+登录、权限、冲突重试和 Worktree 超出本示例范围。

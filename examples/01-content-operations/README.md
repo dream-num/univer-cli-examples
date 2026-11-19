@@ -72,7 +72,9 @@ pnpm unlink-cli
 
 ## Source order
 
-Read `src/server/main.ts`, `src/server/server.ts`, and `src/server/unit-store.ts`, then the features:
+Start with `src/server/main.ts` for server setup. In the same directory, `unit-routes.ts` maps HTTP
+requests to `unit-service.ts`, which creates Units using the initial data from `unit-data.ts`.
+`unit-repository.ts` reads Unit summaries from SQLite. Then read the CLI features:
 `unit.ts` contains `create/open`, `unit-content.ts` contains `inspect/execute` and their collaboration
 runtime, and `api.ts` contains the Facade API commands. Finish with `src/cli/program.ts` and
 `src/web/`. `inspect` and `api` use CLI SDK Commander presets; the other commands are thin
@@ -81,5 +83,5 @@ application adapters.
 Run `pnpm check` to verify this example.
 
 This example supports Sheet, Doc, and Slide with SQLite persistence and one demo user. Data is
-stored in `.data/content-operations.sqlite`. It does not cover login, authorization, conflict
-retries, backups, migrations, or Worktree.
+stored in `.data/content-operations.sqlite`.
+Login, authorization, conflict retries, and Worktree are outside this example.
