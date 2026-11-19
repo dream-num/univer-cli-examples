@@ -70,15 +70,9 @@ pnpm skill:uninstall
 pnpm unlink-cli
 ```
 
-## Source order
+## Development
 
-Start with `src/server/main.ts` for server setup. In the same directory, `unit-routes.ts` maps HTTP
-requests to `unit-service.ts`, which creates Units using the initial data from `unit-data.ts`.
-`unit-repository.ts` reads Unit summaries from SQLite. Then read the CLI features:
-`unit.ts` contains `create/open`, `unit-content.ts` contains `inspect/execute` and their collaboration
-runtime, and `api.ts` contains the Facade API commands. Finish with `src/cli/program.ts` and
-`src/web/`. `inspect` and `api` use CLI SDK Commander presets; the other commands are thin
-application adapters.
+Start with `src/server/main.ts` to see how the collaboration SDK is wired into Express.
 
 Run `pnpm check` to verify this example.
 
