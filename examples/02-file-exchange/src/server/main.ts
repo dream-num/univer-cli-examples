@@ -17,7 +17,7 @@ import { UnitService } from "./unit-service.js";
 
 const DEMO_USER_ID = "file-exchange-user";
 
-const databaseFile = ".data/file-exchange-v2.sqlite";
+const databaseFile = ".data/file-exchange-demo.sqlite";
 await mkdir(".data", { recursive: true });
 const database = new SQLiteDatabaseAdapter({ filename: databaseFile });
 const directory = new Database(databaseFile);

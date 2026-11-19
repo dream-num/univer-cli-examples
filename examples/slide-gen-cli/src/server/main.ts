@@ -25,7 +25,7 @@ import { createWorktreeRouter } from "./worktree-routes.js";
 
 const DEMO_USER_ID = "worktree-user";
 
-const databaseFile = ".data/worktree-v2.sqlite";
+const databaseFile = ".data/worktree-demo.sqlite";
 await mkdir(".data", { recursive: true });
 const database = new SQLiteDatabaseAdapter({ filename: databaseFile });
 const worktreeDatabase = new SQLiteWorktreeDatabaseAdapter({ filename: databaseFile });

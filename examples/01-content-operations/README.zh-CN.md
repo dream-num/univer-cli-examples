@@ -39,7 +39,7 @@ CLI 通过 Collaboration Runtime 加载表格、执行修改并提交。看到 `
 univer-example-cli open --unit "$UNIT_ID"
 ```
 
-在 `Data` 工作表中应能看到 A2 为 `Apples`、B2 为 `2`。左侧文件列表可以切换到其他 Unit。服务把数据保存在 `.data/content-operations-v2.sqlite`，重启后仍可用原来的 ID 打开。
+在 `Data` 工作表中应能看到 A2 为 `Apples`、B2 为 `2`。左侧文件列表可以切换到其他 Unit。服务把数据保存在 `.data/content-operations-demo.sqlite`，重启后仍可用原来的 ID 打开。
 
 编写自己的修改命令时，可以用 CLI 查找 Facade 方法并查看用法：
 
