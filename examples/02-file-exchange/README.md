@@ -1,20 +1,12 @@
-# 02 File Exchange
+# 02 File Exchange · Import and export Office files
 
 English | [简体中文](./README.zh-CN.md)
 
-This example uses Univer CLI SDK and Univer SDK `1.5.2`.
+This example adds `export` and `import` to the content commands from example 01. You'll export a sales spreadsheet to a local Excel file, import it as a new collaborative Sheet, and check its contents in the CLI and browser. The CLI converts Office files locally, and the collaboration server stores the imported content.
 
-This example builds on 01 by adding Office file import and export to the same CLI, Web, and Server.
-Exchange reads and writes local files in the CLI process. Imported Units are still persisted by the
-Collaboration Server and can be opened directly in the Web editor.
+## Start the example
 
-```text
-Office file ⇄ CLI Exchange ⇄ UnitData ⇄ Collaboration Server ⇄ Web
-```
-
-## Run
-
-Run every command from this example directory:
+Use Node.js 22.12 or later and pnpm 12.16.1. If the server from example 01 is running, stop it with Ctrl+C to free port 3010. From `examples/02-file-exchange`, run:
 
 ```bash
 pnpm install
@@ -23,56 +15,39 @@ pnpm link-cli
 pnpm start-server
 ```
 
-Use another terminal in the same directory. This flow needs no prepared Office file: create a Sheet,
-export it, then import the exported file as a new collaborative Unit.
+The server prints `http://127.0.0.1:3010` when it starts. Leave it running and open a second terminal in the same directory.
+
+## Export a spreadsheet to Excel
+
+Create a blank Sheet, enter the sales figure for January, and export the committed data to `sales.xlsx` in the current directory:
 
 ```bash
-UNIT_ID=$(univer-example-cli create sheet --name "Exchange Demo")
+UNIT_ID=$(univer-example-cli create sheet --name "Sales")
+univer-example-cli execute --unit "$UNIT_ID" \
+  --code 'workbook.getActiveSheet().getRange("A1:B2").setValues([["Month", "Sales"], ["January", 120]])'
+univer-example-cli export sales.xlsx --unit "$UNIT_ID"
+```
 
-univer-example-cli export demo.xlsx --unit "$UNIT_ID"
+## Import the file and check its contents
 
-IMPORTED_ID=$(univer-example-cli import demo.xlsx --name "Imported Demo")
-
-univer-example-cli inspect workbook --unit "$IMPORTED_ID" --json
+```bash
+IMPORTED_ID=$(univer-example-cli import sales.xlsx --name "Imported sales")
+univer-example-cli inspect range A1:B2 --worksheet index:1 --unit "$IMPORTED_ID" --json
 univer-example-cli open --unit "$IMPORTED_ID"
 ```
 
-Use `.xlsx` for Sheet, `.docx` for Doc, and `.pptx` for Slide. The input suffix selects the imported
-Unit type; an export suffix must match the Unit type.
+The import returns a new Unit ID. In the inspection output, the second row of `displayValues` should be `["January", "120"]`. The browser sidebar lists both the original `Sales` and the imported `Imported sales`. You can edit each Sheet independently.
 
-## Use it with an Agent
+The same commands support Doc (`.docx`) and Slide (`.pptx`). The input file extension determines the Unit type on import. On export, use the extension that matches the Unit's type.
 
-Keep the Server running and install the skill from another terminal:
+## Work with an agent
 
-```bash
-pnpm skill:install
-```
-
-Open this directory with an Agent and enter:
+Run `pnpm skill:install` in the example directory, then open that directory with your agent. Try this with the Excel file you just exported:
 
 ```text
-Use univer-content to import ./sales.xlsx, change the second-row sales amount to 1000, verify it, and export ./updated-sales.xlsx.
+Use univer-content to import ./sales.xlsx, change January sales to 1000, read the value back, and export the result to ./updated-sales.xlsx.
 ```
 
-When finished, run:
+When finished, press Ctrl+C in the server terminal. If you installed the skill, run `pnpm skill:uninstall`. Run `pnpm unlink-cli` to remove this example's CLI command.
 
-```bash
-pnpm skill:uninstall
-pnpm unlink-cli
-```
-
-## What changed from 01
-
-- `src/cli/features/file.ts` adds the application-level `import` and `export` commands.
-- `import` uses `@univerjs-pro/exchange-node` to convert an Office file to UnitData, then creates the
-  Unit through the existing Server API.
-- `export` obtains the latest UnitData through Collaboration Runtime, then writes an Office file.
-- The Server creation endpoint now accepts either blank-Unit parameters or converted UnitData.
-- `@univerjs-pro/exchange-node-binding` provides the native conversion implementation for the current
-  platform.
-
-File exchange has no separate CLI SDK preset. `file.ts` is the smallest application adapter that
-composes Exchange and Collaboration Runtime with Commander. It does not add uploads, asynchronous
-conversion tasks, remote URLs, progress, retries, or file management.
-
-Data is stored in `.data/file-exchange.sqlite`. Run `pnpm check` to verify this example.
+This example uses Univer CLI SDK and Univer SDK 1.5.2. The server stores collaborative data in `.data/file-exchange.sqlite`. After changing the example, run `pnpm check`.
