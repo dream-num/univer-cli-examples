@@ -43,7 +43,6 @@ import { createUniver, defaultTheme, mergeLocales, type IPreset } from "@univerj
 import { UniverUIPlugin } from "@univerjs/ui";
 import "@univerjs/ui/lib/index.css";
 import UniverUIEnUS from "@univerjs/ui/locale/en-US";
-import { UNIVER_LICENSE } from "../shared/license.js";
 import { parseUnitType, unitTypeLabel, type UnitSummary } from "../shared/unit.js";
 import { createUnitUrl, viewerUrl, worktreesUrl } from "../shared/urls.js";
 import type { WorktreeSummary } from "../shared/worktree.js";
@@ -305,7 +304,12 @@ async function mountEditor(unitId: string, worktreeID: string | null): Promise<M
     },
     logLevel: LogLevel.WARN,
     theme: defaultTheme,
-    presets: [{ plugins: [[UniverLicensePlugin, { license: UNIVER_LICENSE }]] }, editorPreset()],
+    presets: [
+      {
+        plugins: [[UniverLicensePlugin, { license: import.meta.env.UNIVER_LICENSE || undefined }]],
+      },
+      editorPreset(),
+    ],
     plugins: [
       UniverCollaborationPlugin,
       [

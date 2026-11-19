@@ -10,6 +10,7 @@ import { SQLiteDatabaseAdapter } from "@univerjs-pro/collaboration-database-sqli
 import { UniverCollabEndpoint } from "@univerjs-pro/collaboration-endpoint";
 import { UniverCollabService } from "@univerjs-pro/collaboration-service";
 import { createNodeTransport } from "@univerjs-pro/collaboration-transport-node";
+import { ErrorCode, type IAllowedRequest } from "@univerjs/protocol";
 import { DEFAULT_SERVER_URL } from "../shared/urls.js";
 import { UnitRepository } from "./unit-repository.js";
 import { createUnitRouter } from "./unit-routes.js";
@@ -36,6 +37,19 @@ endpoint.use("connect", async (context, next) => {
 transport.register(endpoint);
 
 const app = express();
+// The example has one demo user with access to every requested action.
+app.post("/universer-api/authz/-/object/-/batch_allowed", express.json(), (request, response) => {
+  const { requests } = request.body as { requests: IAllowedRequest[] };
+  response.json({
+    error: { code: ErrorCode.OK, message: "" },
+    objectActions: requests.map(({ unitID, objectID, actions }) => ({
+      unitID,
+      objectID,
+      actions: actions.map((action) => ({ action, allowed: true })),
+    })),
+  });
+});
+
 const repository = new UnitRepository(directory);
 const units = new UnitService(collabService, repository, DEMO_USER_ID);
 app.use("/api/units", createUnitRouter(units));

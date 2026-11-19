@@ -18,6 +18,15 @@ Read examples `01` through `04` in numbered order. Unnumbered examples are self-
 directory has its own `package.json`, lockfile, and dependencies, so it can be copied and run
 independently.
 
+## Configure the License
+
+Before building and running an example, replace the paths below with your local license file paths and set both variables in the same shell.
+
+```bash
+export UNIVER_LICENSE="$(cat /path/to/license.txt)"
+export UNIVER_LICENSE_KEY="$(cat /path/to/licenseKey.txt)"
+```
+
 ## Repository layout
 
 This repository is a pnpm **workspace**: shared toolchain and supply-chain configuration lives at
@@ -129,6 +138,11 @@ univer-example-cli worktree ready "$WORKTREE_ID"
 univer-example-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
 
-See each example README for its complete command sequence and verification steps. These are minimal
+See each example README for its complete command sequence and verification steps.
+
+The Web editors in examples 01–04 and Slide Gen query the local server for permissions. Its
+`batch_allowed` endpoint allows every requested action for the single demo user.
+
+These are minimal
 teaching assemblies, not production applications; they do not add production authorization, upload
 tasks, Daemon, or similar product mechanisms.

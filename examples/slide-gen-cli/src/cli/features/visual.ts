@@ -15,7 +15,6 @@ import {
 } from "@univer-cli/univer-render-runtime";
 import type { ISlideData } from "@univerjs-pro/slides";
 import { Option, type Command } from "commander";
-import { UNIVER_LICENSE } from "../../shared/license.js";
 import { fromInstanceType } from "../../shared/unit.js";
 import { DEFAULT_SERVER_URL } from "../../shared/urls.js";
 import { loadRuntime } from "./unit-content.js";
@@ -75,7 +74,7 @@ function lazyScreenshot(): UnitScreenshot {
     async capture(input) {
       const runtime = await createUniverRenderRuntime({
         renderPageRoot: fileURLToPath(new URL("../../render-page", import.meta.url)),
-        license: UNIVER_LICENSE,
+        license: process.env["UNIVER_LICENSE"] ?? "",
       });
       try {
         return await createUnitScreenshot({ runtime }).capture(input);
@@ -91,7 +90,7 @@ function lazyLayoutLint(): UnitLayoutLint {
     async lint(input) {
       const runtime = await createUniverRenderRuntime({
         renderPageRoot: fileURLToPath(new URL("../../render-page", import.meta.url)),
-        license: UNIVER_LICENSE,
+        license: process.env["UNIVER_LICENSE"] ?? "",
       });
       try {
         return await createUnitLayoutLint({ runtime }).lint(input);

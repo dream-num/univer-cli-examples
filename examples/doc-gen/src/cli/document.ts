@@ -7,7 +7,6 @@ import { randomUUID } from "node:crypto";
 import { readFile, rename, rm, writeFile } from "node:fs/promises";
 import { basename, dirname, join, resolve } from "node:path";
 import { UniverInstanceType, type IDocumentData } from "@univerjs/core";
-import { UNIVER_LICENSE } from "../shared/license.js";
 
 export interface LoadedDocument {
   readonly data: IDocumentData;
@@ -66,7 +65,7 @@ export async function executeDocument(
       unitType: "doc",
     });
     const createUniver = createStandardHeadlessUniverFactory({
-      license: UNIVER_LICENSE,
+      license: process.env["UNIVER_LICENSE"] ?? "",
     });
     const univer = await createUniver({
       unitId: loaded.data.id,

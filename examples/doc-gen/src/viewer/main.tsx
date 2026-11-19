@@ -6,7 +6,6 @@ import { BookOpenText, Library, LockKeyhole, RefreshCw } from "lucide-react";
 import { flushSync } from "react-dom";
 import { createRoot } from "react-dom/client";
 
-import { UNIVER_LICENSE } from "../shared/license";
 import { Badge } from "./components/ui/badge";
 import { Button } from "./components/ui/button";
 import { Separator } from "./components/ui/separator";
@@ -158,7 +157,10 @@ async function selectDocument(entry: LibraryEntry): Promise<void> {
     const document = toReadOnlyDocument(await entry.load());
     disposeMountedUniver();
 
-    nextUniver = await createPresetRenderUniver({ container: app, license: UNIVER_LICENSE });
+    nextUniver = await createPresetRenderUniver({
+      container: app,
+      license: import.meta.env.UNIVER_LICENSE || undefined,
+    });
     const univerAPI = FUniver.newAPI(nextUniver);
     univerAPI.setUIVisible(univerAPI.Enum.BuiltInUIPart.TOOLBAR, false);
     univerAPI.setUIVisible(univerAPI.Enum.BuiltInUIPart.FLOATING, false);
