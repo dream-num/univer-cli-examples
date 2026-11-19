@@ -13,7 +13,6 @@ import { mkdir, readdir, rm, stat, writeFile } from "node:fs/promises";
 import { basename, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { UniverInstanceType, type IDocumentData } from "@univerjs/core";
-import { UNIVER_LICENSE } from "../shared/license.js";
 
 export type FailureCode =
   | "ARGUMENT_ERROR"
@@ -128,7 +127,7 @@ export async function buildTypstDocument(
 
 async function materialize(compiled: CompileDocTypstBundleResult): Promise<IDocumentData> {
   const createUniver = createStandardHeadlessUniverFactory({
-    license: UNIVER_LICENSE,
+    license: process.env["UNIVER_LICENSE"] ?? "",
   });
   const univer = await createUniver({
     unitId: compiled.targetUnitId,
@@ -160,7 +159,7 @@ export async function renderDocument(
 ): Promise<readonly string[]> {
   const runtime = await createUniverRenderRuntime({
     renderPageRoot: fileURLToPath(new URL("../render-page", import.meta.url)),
-    license: UNIVER_LICENSE,
+    license: process.env["UNIVER_LICENSE"] ?? "",
   });
   try {
     const result = await createUnitScreenshot({ runtime }).capture({

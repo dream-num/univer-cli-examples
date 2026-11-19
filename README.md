@@ -18,6 +18,15 @@ Read examples `01` through `04` in numbered order. Unnumbered examples are self-
 directory has its own `package.json`, lockfile, and dependencies, so it can be copied and run
 independently.
 
+## Configure the License
+
+Without a License, the examples run in the Freemium edition. To use your License, set both variables in the shell where you build and run the example, using the paths to your license files.
+
+```bash
+export UNIVER_LICENSE="$(cat /path/to/license.txt)"
+export UNIVER_LICENSE_KEY="$(cat /path/to/licenseKey.txt)"
+```
+
 ## Repository layout
 
 This repository is a pnpm **workspace**: shared toolchain and supply-chain configuration lives at

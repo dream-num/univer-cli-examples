@@ -4,6 +4,9 @@ import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
 
 export default defineConfig({
+  define: {
+    "import.meta.env.UNIVER_LICENSE": JSON.stringify(process.env["UNIVER_LICENSE"] ?? ""),
+  },
   root: import.meta.dirname,
   plugins: [react(), tailwindcss()],
   resolve: {

@@ -12,7 +12,6 @@ import {
 } from "@univer-cli/univer-collaboration-runtime";
 import { createWorktreeCollaborationConfig } from "@univerjs-pro/collaboration-worktree-client";
 import { Command } from "commander";
-import { UNIVER_LICENSE } from "../../shared/license.js";
 import { fromInstanceType, parseUnitType, toInstanceType } from "../../shared/unit.js";
 import { collaborationUrls, DEFAULT_SERVER_URL, unitUrl } from "../../shared/urls.js";
 
@@ -89,7 +88,7 @@ export async function loadRuntime(
       wsSessionTicketUrl: urls.wsSessionTicketUrl!,
     }),
     createUniver: createStandardHeadlessUniverFactory({
-      license: UNIVER_LICENSE,
+      license: process.env["UNIVER_LICENSE"] ?? "",
     }),
   });
   parseUnitType(unitType);

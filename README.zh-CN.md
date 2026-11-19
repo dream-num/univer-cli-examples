@@ -17,6 +17,15 @@
 请按编号阅读 `01` 至 `04`；无编号 example 各自独立。每个目录都有自己的 `package.json`、lockfile
 和依赖，可以独立复制和运行。
 
+## 配置 License
+
+未配置 License 时，示例按免费版（Freemium）运行。如需使用自己的 License，将下方路径替换为本机文件路径，在构建和运行示例的终端中设置这两个环境变量。
+
+```bash
+export UNIVER_LICENSE="$(cat /path/to/license.txt)"
+export UNIVER_LICENSE_KEY="$(cat /path/to/licenseKey.txt)"
+```
+
 ## 仓库结构
 
 本仓库是一个 pnpm **workspace**：工具链与供应链配置集中放在根目录（`.npmrc`、

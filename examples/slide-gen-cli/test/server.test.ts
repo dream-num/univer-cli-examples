@@ -1,3 +1,6 @@
+import { resolveUniverRenderBrowser } from "@univer-cli/univer-render-runtime";
+import puppeteer from "puppeteer-core";
+import { ErrorCode, type IAllowedRequest } from "@univerjs/protocol";
 import { WorktreeClient } from "@univerjs-pro/collaboration-worktree-client";
 import { beforeEach, expect, it } from "vitest";
 import { startTestServer } from "./start-test-server.js";
@@ -54,6 +57,56 @@ it("creates only empty Slide units and keeps unit and Worktree routes available"
     { worktreeID: "z-draft", status: "ready", units: [{ unitID: "named-slide" }] },
   ]);
 });
+
+it("loads server permissions for the trunk and Ready draft", async () => {
+  await create({ unitId: "review-slide" });
+  const client = new WorktreeClient({ origin });
+  await client.createWorktree({ worktreeID: "review-draft", units: ["review-slide"] });
+  await client.markReady("review-draft");
+
+  const resolution = await resolveUniverRenderBrowser();
+  if (resolution.status === "missing") throw new Error("A render browser is required");
+  const browser = await puppeteer.launch({
+    executablePath: resolution.executablePath,
+    args: ["--no-sandbox"],
+  });
+  try {
+    const page = await browser.newPage();
+    for (const [query, status] of [
+      ["?unit=review-slide", "trunk · editable"],
+      ["?unit=review-slide&worktree=review-draft", "worktree review-draft · ready"],
+    ] as const) {
+      const [permissions] = await Promise.all([
+        page.waitForResponse(
+          (response) =>
+            response.url() === origin + "/universer-api/authz/-/object/-/batch_allowed" &&
+            response.request().method() === "POST",
+        ),
+        page.goto(origin + "/" + query),
+      ]);
+      expect(permissions.status()).toBe(200);
+      const { requests } = JSON.parse(permissions.request().postData()!) as {
+        requests: IAllowedRequest[];
+      };
+      expect(requests.length).toBeGreaterThan(0);
+      expect(await permissions.json()).toEqual({
+        error: { code: ErrorCode.OK, message: "" },
+        objectActions: requests.map(({ unitID, objectID, actions }) => ({
+          unitID,
+          objectID,
+          actions: actions.map((action) => ({ action, allowed: true })),
+        })),
+      });
+      await page.waitForFunction(
+        (expected) => document.querySelector("#status")?.textContent?.endsWith(expected),
+        {},
+        status,
+      );
+    }
+  } finally {
+    await browser.close();
+  }
+}, 60_000);
 
 async function create(body: object): Promise<Record<string, unknown>> {
   const response = await fetch(`${origin}/api/units`, {
