@@ -20,7 +20,7 @@ independently.
 
 ## Configure the License (optional)
 
-The examples can run without a License. To use your License, set both variables in the shell where you build and run the example, using the paths to your license files.
+Without a License, the examples run in the Freemium edition. To use your License, set both variables in the shell where you build and run the example, using the paths to your license files.
 
 ```bash
 export UNIVER_LICENSE="$(cat /path/to/license.txt)"

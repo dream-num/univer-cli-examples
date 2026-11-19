@@ -19,7 +19,7 @@
 
 ## 配置 License（可选）
 
-示例可以在未配置 License 的情况下运行。如需使用自己的 License，将下方路径替换为本机文件路径，在构建和运行示例的终端中设置这两个环境变量。
+未配置 License 时，示例按免费版（Freemium）运行。如需使用自己的 License，将下方路径替换为本机文件路径，在构建和运行示例的终端中设置这两个环境变量。
 
 ```bash
 export UNIVER_LICENSE="$(cat /path/to/license.txt)"
