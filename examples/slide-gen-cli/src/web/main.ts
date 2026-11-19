@@ -46,6 +46,7 @@ import UniverUIEnUS from "@univerjs/ui/locale/en-US";
 import { UNIVER_LICENSE } from "../shared/license.js";
 import { parseUnitType, unitTypeLabel, type UnitSummary } from "../shared/unit.js";
 import { createUnitUrl, viewerUrl, worktreesUrl } from "../shared/urls.js";
+import type { WorktreeSummary } from "../shared/worktree.js";
 import "./styles.css";
 
 type SidebarTab = "files" | "worktrees";
@@ -69,7 +70,7 @@ const [units, worktrees] = await Promise.all([
     async (response) => (await response.json()) as UnitSummary[],
   ),
   fetch(worktreesUrl(location.origin)).then(
-    async (response) => (await response.json()) as WorktreeData[],
+    async (response) => (await response.json()) as WorktreeSummary[],
   ),
 ]);
 installSidebarTabs(worktreeID === null ? "files" : "worktrees");
@@ -193,7 +194,7 @@ function renderUnits(
 }
 
 function renderWorktrees(
-  worktrees: readonly WorktreeData[],
+  worktrees: readonly WorktreeSummary[],
   units: readonly UnitSummary[],
   activeUnitId: string | null,
   activeWorktreeID: string | null,
