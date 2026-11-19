@@ -116,6 +116,9 @@ pnpm start-server
 ```bash
 UNIT_ID=$(univer-example-cli create sheet --name "Worktree Demo")
 WORKTREE_ID=$(univer-example-cli worktree create --unit "$UNIT_ID")
+univer-example-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
+  --code 'workbook.getActiveSheet().getRange("A1:B2").setValues([["Month", "Sales"], ["January", 120]])'
+univer-example-cli worktree ready "$WORKTREE_ID"
 univer-example-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
 

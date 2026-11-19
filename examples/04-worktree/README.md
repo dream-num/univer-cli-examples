@@ -1,20 +1,12 @@
-# 04 Worktree
+# 04 Worktree · Review draft edits before merging
 
 English | [简体中文](./README.zh-CN.md)
 
-This example uses Univer CLI SDK and Univer SDK `1.5.2`.
+Example 03 lets you inspect committed content. Here you can edit a Worktree, compare its contents with trunk, and hand the draft to someone else to review in the web editor. The walkthrough starts with an empty spreadsheet so you can see exactly when the changes reach trunk.
 
-This example keeps file exchange and visual inspection from 03, then adds Worktree.
-An Agent edits an isolated draft, marks it Ready, and hands it to a human for Merge, Reopen, or
-Discard in the Web UI.
+## Start the example
 
-```text
-Trunk (editable in Web) → Worktree draft (editable) → Ready → Web review → Merge / Reopen / Discard
-```
-
-## Run
-
-After entering this example, run every command from the current directory:
+Use Node.js 22.12 or later and pnpm 12.16.1. If another example is using port 3010, stop it first. From `examples/04-worktree`, run:
 
 ```bash
 pnpm install
@@ -23,91 +15,56 @@ pnpm link-cli
 pnpm start-server
 ```
 
-Use another terminal to create a trunk Unit and its Worktree:
+Leave the server running. In a second terminal in the same directory, create a blank sales spreadsheet and a Worktree for it:
 
 ```bash
-UNIT_ID=$(univer-example-cli create sheet --name "Worktree Demo")
+UNIT_ID=$(univer-example-cli create sheet --name "Sales")
 WORKTREE_ID=$(univer-example-cli worktree create --unit "$UNIT_ID")
 ```
 
-CLI reads can target trunk or Worktree. CLI content execution edits a Worktree:
+## Edit the draft and compare it with trunk
+
+Write two rows to the draft, then read the same range from both targets:
 
 ```bash
-univer-example-cli inspect workbook --unit "$UNIT_ID" --trunk
-univer-example-cli inspect workbook --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
-
 univer-example-cli execute --unit "$UNIT_ID" --worktree "$WORKTREE_ID" \
-  --code 'workbook.getActiveSheet().getRange("A2:B2").setValues([["Draft", 2]])'
+  --code 'workbook.getActiveSheet().getRange("A1:B2").setValues([["Month", "Sales"], ["January", 120]])'
 
-univer-example-cli inspect range A1:B2 --worksheet index:1 \
-  --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
+univer-example-cli inspect range A1:B2 --worksheet index:1 --unit "$UNIT_ID" --worktree "$WORKTREE_ID" --json
+univer-example-cli inspect range A1:B2 --worksheet index:1 --unit "$UNIT_ID" --trunk --json
 ```
 
-After the Agent checks the draft, mark it Ready and open the Web UI:
+The draft shows January sales of 120. The same cells on trunk are still empty. In this example, CLI edits require a Worktree. Reads, screenshots, and exports can target either version. To export the draft for review:
+
+```bash
+univer-example-cli export review.xlsx --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
+```
+
+## Review and merge
+
+Mark the draft Ready and open it in the web editor:
 
 ```bash
 univer-example-cli worktree ready "$WORKTREE_ID"
 univer-example-cli open --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
 ```
 
-The Web UI allows direct trunk editing. A Worktree remains editable only in draft; Ready offers
-Discard, Reopen, and Merge. After Merge, open the trunk:
+A Ready draft is read-only. Choose **Merge** to apply the edits to trunk, **Reopen** to continue editing the draft, or **Discard** to abandon it. After merging, open trunk to see the two rows:
 
 ```bash
 univer-example-cli open --unit "$UNIT_ID" --trunk
 ```
 
-Export is also a read operation, so it must explicitly target trunk or Worktree:
+The web editor also allows direct trunk edits. Applications can enforce their own write policy through server middleware and access controls.
 
-```bash
-univer-example-cli export review.xlsx --unit "$UNIT_ID" --worktree "$WORKTREE_ID"
-```
+## Try it with an agent
 
-## Example policy
-
-The CLI keeps Agent content execution on a Worktree, while the Web UI intentionally permits direct
-trunk editing. This policy belongs to the application; it is not imposed by the Collaboration SDK or
-CLI SDK. Production applications should enforce their own trunk write policy with Server middleware
-and ACLs.
-
-## Use it with an Agent
-
-Keep the Server running and install the skill from another terminal:
-
-```bash
-pnpm skill:install
-```
-
-Open this directory with an Agent and enter:
+Run `pnpm skill:install`, open the example directory with an agent, and ask:
 
 ```text
-Use univer-content to create a sales spreadsheet with 10 sample records in a Worktree, then hand it to me for review.
+Create a sales spreadsheet with 10 records in a Worktree. Check the values and give me the Ready draft to review.
 ```
 
-When finished, run:
+When finished, press Ctrl+C in the server terminal. If you installed the skill, run `pnpm skill:uninstall`. Run `pnpm unlink-cli` to remove this example's CLI command.
 
-```bash
-pnpm skill:uninstall
-pnpm unlink-cli
-```
-
-## What changed from 03
-
-Added file:
-
-- `src/cli/features/worktree.ts` creates a Worktree and marks its draft Ready.
-
-Changed files:
-
-- `src/server/server.ts` adds the Worktree Service, Endpoint, and SQLite Adapter.
-- `src/cli/features/unit-content.ts` gives reads an explicit target and limits execute to Worktree.
-- `src/cli/features/unit.ts`, `file.ts`, and `visual.ts` let open, export, screenshot, and lint read
-  trunk or Worktree.
-- `src/shared/urls.ts` lets a Web URL target trunk or Worktree.
-- `src/web/` keeps trunk and draft editable, and adds Ready, Discard, Reopen, and Merge.
-- `package.json` adds the Worktree Client, Service, Endpoint, and SQLite Adapter.
-- `skills/univer-content/SKILL.md` moves the Agent edit and verification flow into a Worktree.
-- `test/smoke.test.ts` moves the inherited smoke path onto Worktree targets.
-
-Everything else is inherited from 03. This example does not add a runtime pool, worker, or daemon.
-Screenshot and layout lint remain available when the user explicitly requests visual verification.
+This example uses Univer CLI SDK and Univer SDK 1.5.2. Trunk and Worktree data are stored in `.data/worktree.sqlite`.
