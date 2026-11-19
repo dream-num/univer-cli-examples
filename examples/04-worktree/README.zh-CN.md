@@ -6,7 +6,7 @@
 
 ## 启动示例
 
-使用 Node.js 22.12 或更高版本和 pnpm 12.16.1。如果上一个示例正在占用 3010 端口，先按 Ctrl+C 停止它。在 `examples/04-worktree` 目录运行：
+使用 Node.js 22.12 或更高版本和 pnpm 12.16.1。在 `examples/04-worktree` 目录运行：
 
 ```bash
 pnpm install

@@ -6,7 +6,7 @@ Example 03 lets you inspect committed content. Here you can edit a Worktree, com
 
 ## Start the example
 
-Use Node.js 22.12 or later and pnpm 12.16.1. If another example is using port 3010, stop it first. From `examples/04-worktree`, run:
+Use Node.js 22.12 or later and pnpm 12.16.1. From `examples/04-worktree`, run:
 
 ```bash
 pnpm install
