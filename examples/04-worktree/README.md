@@ -73,4 +73,4 @@ Create a sales spreadsheet with 10 records in a Worktree. Check the values and g
 
 When finished, press Ctrl+C in the server terminal. If you installed the skill, run `pnpm skill:uninstall`. Run `pnpm unlink-cli` to remove this example's CLI command.
 
-This example uses Univer CLI SDK and Univer SDK 1.5.2. Trunk and Worktree data are stored in `.data/worktree.sqlite`.
+This example uses Univer CLI SDK and Univer SDK 1.5.2. Trunk and Worktree data are stored in `.data/worktree-v2.sqlite`.

@@ -39,7 +39,7 @@ The CLI uses the Collaboration Runtime to load the workbook, apply the edit, and
 univer-example-cli open --unit "$UNIT_ID"
 ```
 
-On the `Data` worksheet, A2 should now show `Apples` and B2 should show `2`. You can switch Units in the file sidebar. The server stores the data in `.data/content-operations.sqlite`, so the same ID works after a restart.
+On the `Data` worksheet, A2 should now show `Apples` and B2 should show `2`. You can switch Units in the file sidebar. The server stores the data in `.data/content-operations-v2.sqlite`, so the same ID works after a restart.
 
 When writing your own edits, use the CLI to look up a Facade method and see how to call it:
 

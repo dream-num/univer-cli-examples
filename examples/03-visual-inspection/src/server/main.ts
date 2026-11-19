@@ -17,7 +17,7 @@ import { UnitService } from "./unit-service.js";
 
 const DEMO_USER_ID = "visual-inspection-user";
 
-const databaseFile = ".data/visual-inspection.sqlite";
+const databaseFile = ".data/visual-inspection-v2.sqlite";
 await mkdir(".data", { recursive: true });
 const database = new SQLiteDatabaseAdapter({ filename: databaseFile });
 const directory = new Database(databaseFile);

@@ -50,4 +50,4 @@ univer-example-cli open --unit "$IMPORTED_ID"
 
 完成后，在服务终端按 Ctrl+C。如果安装了 skill，运行 `pnpm skill:uninstall`。运行 `pnpm unlink-cli` 移除本示例注册的 CLI 命令。
 
-本示例使用 Univer CLI SDK 和 Univer SDK 1.5.2。协同数据保存在 `.data/file-exchange.sqlite`。修改示例后，可运行 `pnpm check`。
+本示例使用 Univer CLI SDK 和 Univer SDK 1.5.2。协同数据保存在 `.data/file-exchange-v2.sqlite`。修改示例后，可运行 `pnpm check`。

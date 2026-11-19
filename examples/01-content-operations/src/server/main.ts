@@ -17,7 +17,7 @@ import { UnitService } from "./unit-service.js";
 
 const DEMO_USER_ID = "content-operations-user";
 
-const databaseFile = ".data/content-operations.sqlite";
+const databaseFile = ".data/content-operations-v2.sqlite";
 await mkdir(".data", { recursive: true });
 const database = new SQLiteDatabaseAdapter({ filename: databaseFile });
 const directory = new Database(databaseFile);
