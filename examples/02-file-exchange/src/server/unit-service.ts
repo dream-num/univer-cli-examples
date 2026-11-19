@@ -14,6 +14,13 @@ import { UniverType } from "@univerjs/protocol";
 import { unitTypeLabel, type UnitType } from "../shared/unit.js";
 import type { UnitRepository } from "./unit-repository.js";
 
+interface CreateUnitOptions {
+  unitType: UnitType;
+  name?: string;
+  unitId?: string;
+  data?: unknown;
+}
+
 export class UnitService {
   constructor(
     private readonly collabService: UniverCollabService,
@@ -21,17 +28,10 @@ export class UnitService {
     private readonly userID: string,
   ) {}
 
-  async create({
-    unitType,
-    name = `Untitled ${unitTypeLabel(unitType)}`,
-    unitId = randomUUID().slice(0, 8),
-    data,
-  }: {
-    unitType: UnitType;
-    name?: string;
-    unitId?: string;
-    data?: unknown;
-  }) {
+  async create(options: CreateUnitOptions) {
+    const { unitType, data } = options;
+    const name = options.name ?? `Untitled ${unitTypeLabel(unitType)}`;
+    const unitId = options.unitId ?? randomUUID().slice(0, 8);
     const input =
       data === undefined
         ? createUnitInput(unitType, unitId, name)
