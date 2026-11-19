@@ -6,7 +6,7 @@
 
 ## 启动示例
 
-使用 Node.js 22.12 或更高版本和 pnpm 12.16.1。如果 01 的服务还在运行，先按 Ctrl+C 释放端口 3010。然后在 `examples/02-file-exchange` 目录运行：
+使用 Node.js 22.12 或更高版本和 pnpm 12.16.1。在 `examples/02-file-exchange` 目录运行：
 
 ```bash
 pnpm install

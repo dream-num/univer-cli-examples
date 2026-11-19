@@ -6,7 +6,7 @@
 
 ## 启动示例
 
-使用 Node.js 22.12 或更高版本、pnpm 12.16.1，以及本机可用的 Chrome、Chromium 或 Edge。如果还在运行前一个示例，先按 Ctrl+C 释放端口 3010。然后在 `examples/03-visual-inspection` 目录运行：
+使用 Node.js 22.12 或更高版本、pnpm 12.16.1，以及本机可用的 Chrome、Chromium 或 Edge。在 `examples/03-visual-inspection` 目录运行：
 
 ```bash
 pnpm install

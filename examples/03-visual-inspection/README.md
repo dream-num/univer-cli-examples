@@ -6,7 +6,7 @@ This example adds visual inspection to the file exchange workflow from example 0
 
 ## Start the example
 
-Use Node.js 22.12 or later, pnpm 12.16.1, and a local installation of Chrome, Chromium, or Edge. If the previous example is running, stop it with Ctrl+C to free port 3010. From `examples/03-visual-inspection`, run:
+Use Node.js 22.12 or later, pnpm 12.16.1, and a local installation of Chrome, Chromium, or Edge. From `examples/03-visual-inspection`, run:
 
 ```bash
 pnpm install

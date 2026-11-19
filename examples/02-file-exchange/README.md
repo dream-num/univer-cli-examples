@@ -6,7 +6,7 @@ This example adds `export` and `import` to the content commands from example 01.
 
 ## Start the example
 
-Use Node.js 22.12 or later and pnpm 12.16.1. If the server from example 01 is running, stop it with Ctrl+C to free port 3010. From `examples/02-file-exchange`, run:
+Use Node.js 22.12 or later and pnpm 12.16.1. From `examples/02-file-exchange`, run:
 
 ```bash
 pnpm install
