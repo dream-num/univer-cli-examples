@@ -2,7 +2,13 @@
 
 English | [简体中文](./README.zh-CN.md)
 
-Example 03 lets you inspect committed content. Here you can edit a Worktree, compare its contents with trunk, and hand the draft to someone else to review in the web editor. The walkthrough starts with an empty spreadsheet so you can see exactly when the changes reach trunk.
+This example keeps file exchange and visual inspection from 03, then adds Worktree.
+An Agent edits an isolated draft, marks it Ready, and hands it to a human for Merge, Reopen, or
+Discard in the Web UI.
+
+```text
+Trunk (editable in Web) → Worktree draft (editable) → Ready → Web review → Merge / Reopen / Discard
+```
 
 ## Start the example
 

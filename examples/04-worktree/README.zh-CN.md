@@ -2,7 +2,12 @@
 
 [English](./README.md) | 简体中文
 
-示例 03 演示了如何检查已提交的内容。这个示例把编辑放在独立的 Worktree 中，再交给其他人在网页中审阅。从一张空白表格开始，你可以对比草稿和主线（trunk），看到修改何时进入主线。
+这个 example 完整保留 03 的文件交换与视觉检查，只增加 Worktree：Agent 在隔离 draft 中修改，标记
+Ready 后由人通过 Web 审阅，再选择 Merge、Reopen 或 Discard。
+
+```text
+Trunk（Web 可编辑）→ Worktree draft（可编辑）→ Ready → Web 审阅 → Merge / Reopen / Discard
+```
 
 ## 启动示例
 
