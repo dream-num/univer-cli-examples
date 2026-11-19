@@ -1,20 +1,12 @@
-# 03 Visual Inspection
+# 03 Visual Inspection · Review rendered documents
 
 English | [简体中文](./README.zh-CN.md)
 
-This example uses Univer CLI SDK and Univer SDK `1.5.2`.
+This example adds visual inspection to the file exchange workflow from example 02. You'll write two rows to a blank spreadsheet, read the cell values back, and capture the same range to see how the text and numbers appear on the worksheet. The `screenshot` command reads the committed content from the collaboration server, renders it in a local browser, and saves a PNG.
 
-This example keeps the content operations and file exchange from 02, then adds visual inspection.
-It pulls the latest UnitData from the Server, passes it to a browser-backed Render Runtime, and
-writes PNG files.
+## Start the example
 
-```text
-02 File Exchange + Render Page + Screenshot → PNG
-```
-
-## Run
-
-After entering this example, run every command from the current directory:
+Use Node.js 22.12 or later, pnpm 12.16.1, and a local installation of Chrome, Chromium, or Edge. If the previous example is running, stop it with Ctrl+C to free port 3010. From `examples/03-visual-inspection`, run:
 
 ```bash
 pnpm install
@@ -23,77 +15,50 @@ pnpm link-cli
 pnpm start-server
 ```
 
-Use another terminal in the same directory to create and capture a Unit:
+The server prints `http://127.0.0.1:3010` when it starts. Leave it running and open a second terminal in the same directory.
+
+## Capture a spreadsheet range
+
+Create a sales spreadsheet and write the headers and January sales figure to its `Data` worksheet:
 
 ```bash
-SHEET_ID=$(univer-example-cli create sheet --name "Visual Demo")
-univer-example-cli screenshot --unit "$SHEET_ID" --sheet Data --range A1:B2 --out output
+SHEET_ID=$(univer-example-cli create sheet --name "Sales")
+univer-example-cli execute --unit "$SHEET_ID" \
+  --code 'workbook.getActiveSheet().getRange("A1:B2").setValues([["Month", "Sales"], ["January", 120]])'
 ```
 
-For a Doc, omit the Sheet selectors. For a Slide, optionally select pages:
+Once the output shows `"commit": "confirmed"`, inspect the range you wrote and capture it as an image:
 
 ```bash
-DOC_ID=$(univer-example-cli create doc --name "Visual Doc")
-univer-example-cli screenshot --unit "$DOC_ID" --out output
-
-SLIDE_ID=$(univer-example-cli create slide --name "Visual Slide")
-univer-example-cli screenshot --unit "$SLIDE_ID" --pages 1 --out output
+univer-example-cli inspect range A1:B2 --worksheet index:1 --unit "$SHEET_ID" --json
+univer-example-cli screenshot --unit "$SHEET_ID" --sheet Data --range A1:B2 --out output/sheet
 ```
 
-Slide can also report text overflow and overlap. This is a small addition to the same visual flow:
+The second row of `displayValues` should be `["January", "120"]`. Open the PNG at the path printed by `screenshot` and check that both rows are visible and the text fits. To make adjustments in the web editor, run `univer-example-cli open --unit "$SHEET_ID"`.
+
+## Review Docs and Slides
+
+If you have a Word document or PowerPoint presentation, you can import it and review its pages. Replace the filenames below with paths to your local files:
 
 ```bash
+DOC_ID=$(univer-example-cli import report.docx)
+univer-example-cli screenshot --unit "$DOC_ID" --out output/doc
+
+SLIDE_ID=$(univer-example-cli import slides.pptx)
+univer-example-cli screenshot --unit "$SLIDE_ID" --pages 1 --out output/slide
 univer-example-cli lint --unit "$SLIDE_ID" --pages 1
 ```
 
-When finished, run `pnpm unlink-cli`.
+Doc screenshots are captured by page. For a Slide, `--pages` selects the pages to review. The example captures page 1 and runs `lint` on that page to find text overflow and overlapping elements. Use the image to decide which findings need attention.
 
-The `create`, `import`, `export`, `inspect`, `execute`, `open`, and `api` commands from 02 remain
-unchanged.
+## Review screenshots with an agent
 
-## Use it with an Agent
-
-Keep the Server running and install the skill from another terminal:
-
-```bash
-pnpm skill:install
-```
-
-Open this directory with an image-capable Agent and enter:
+Run `pnpm skill:install` in the example directory, then open it with an agent that supports image input and enter:
 
 ```text
-Use univer-content to create a sales spreadsheet with 10 sample records and visually verify it.
+Use univer-content to create a sales spreadsheet with 10 records. Read the data back, capture the headers and all 10 records, and open the PNG to check for clipped text.
 ```
 
-The Agent must read the generated PNG before reporting visual verification as complete. When
-finished, run:
+When finished, press Ctrl+C in the server terminal. If you installed the skill, run `pnpm skill:uninstall`. Run `pnpm unlink-cli` to remove this example's CLI command.
 
-```bash
-pnpm skill:uninstall
-pnpm unlink-cli
-```
-
-## What changed from 02
-
-Added files:
-
-- `src/cli/features/visual.ts` assembles the screenshot and layout lint presets, loads the latest
-  UnitData, and writes PNG files.
-- `src/render-page/index.html` and `src/render-page/main.ts` provide the minimal page loaded by the
-  Render Runtime.
-- `vite.render.config.ts` builds the Render Page separately.
-
-Changed files:
-
-- `src/cli/program.ts` adds `screenshot` and `lint` after the commands from 02.
-- `package.json` adds the visual inspection and rendering dependencies and builds the second page.
-- `skills/univer-content/SKILL.md` adds visual confirmation after content verification.
-- `test/smoke.test.ts` keeps the preceding three-Unit smoke path and verifies generated PNGs.
-
-The remaining `src/cli/features/`, `src/server/`, `src/shared/`, and `src/web/` retain the capabilities
-from 02.
-
-Run `pnpm check` to verify this example.
-
-Layout lint currently applies only to Slide. Its findings are review evidence, not errors that must
-always be reduced to zero.
+This example uses Univer CLI SDK and Univer SDK 1.5.2. Collaborative data is stored in `.data/visual-inspection.sqlite`. After changing the example, run `pnpm check`.

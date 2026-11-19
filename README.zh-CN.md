@@ -96,6 +96,8 @@ pnpm start-server
 
 ```bash
 UNIT_ID=$(univer-example-cli create sheet --name "Visual Demo")
+univer-example-cli execute --unit "$UNIT_ID" \
+  --code 'workbook.getActiveSheet().getRange("A1:B2").setValues([["Month", "Sales"], ["January", 120]])'
 univer-example-cli screenshot --unit "$UNIT_ID" --sheet Data --range A1:B2 --out output
 ```
 
