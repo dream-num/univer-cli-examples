@@ -43,6 +43,7 @@ import "@univerjs/ui/lib/index.css";
 import UniverUIEnUS from "@univerjs/ui/locale/en-US";
 import { parseUnitType, unitTypeLabel, type UnitSummary, type UnitType } from "../shared/unit.js";
 import { createUnitUrl, viewerUrl, worktreesUrl } from "../shared/urls.js";
+import type { WorktreeSummary } from "../shared/worktree.js";
 import "./styles.css";
 
 const search = new URL(location.href).searchParams;
@@ -53,7 +54,7 @@ const [units, worktrees] = await Promise.all([
     async (response) => (await response.json()) as UnitSummary[],
   ),
   fetch(worktreesUrl(location.origin)).then(
-    async (response) => (await response.json()) as WorktreeData[],
+    async (response) => (await response.json()) as WorktreeSummary[],
   ),
 ]);
 renderUnits(units, worktreeID === null ? unitId : null);
@@ -88,7 +89,7 @@ function renderUnits(units: readonly UnitSummary[], activeUnitId: string | null)
 }
 
 function renderWorktrees(
-  worktrees: readonly WorktreeData[],
+  worktrees: readonly WorktreeSummary[],
   units: readonly UnitSummary[],
   activeUnitId: string | null,
   activeWorktreeID: string | null,

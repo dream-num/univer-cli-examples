@@ -1,39 +1,33 @@
-import type { WorktreeData } from "@univerjs-pro/collaboration-worktree-service";
 import type Database from "libsql";
+import type { WorktreeSummary } from "../shared/worktree.js";
 
 interface WorktreeRow {
-  readonly data_json: string;
+  worktreeID: string;
+  status: WorktreeSummary["status"];
+  units: string;
 }
 
-/** Example-owned projection used to build the browser's Worktree navigation. */
 export class WorktreeRepository {
-  private readonly saveWorktree;
   private readonly listWorktrees;
 
   constructor(directory: Database.Database) {
-    directory.exec(`
-      CREATE TABLE IF NOT EXISTS example_worktrees (
-        worktree_id TEXT PRIMARY KEY,
-        data_json TEXT NOT NULL,
-        updated_at INTEGER NOT NULL
-      )
+    this.listWorktrees = directory.prepare(`
+      SELECT w.worktree_id AS worktreeID, w.status,
+        json_group_array(json_object('unitID', u.unit_id) ORDER BY u.unit_order)
+          FILTER (WHERE u.unit_id IS NOT NULL) AS units
+      FROM collaboration_worktrees AS w
+      LEFT JOIN collaboration_worktree_units AS u ON u.worktree_id = w.worktree_id
+      GROUP BY w.worktree_id
+      ORDER BY w.worktree_id
     `);
-    this.saveWorktree = directory.prepare(`
-      INSERT INTO example_worktrees (worktree_id, data_json, updated_at) VALUES (?, ?, ?)
-      ON CONFLICT(worktree_id) DO UPDATE SET
-        data_json = excluded.data_json, updated_at = excluded.updated_at
-    `);
-    this.listWorktrees = directory.prepare(
-      "SELECT data_json FROM example_worktrees ORDER BY updated_at DESC",
-    );
   }
 
-  upsert(worktree: WorktreeData): void {
-    this.saveWorktree.run(worktree.worktreeID, JSON.stringify(worktree), Date.now());
-  }
-
-  list(): WorktreeData[] {
+  list(): WorktreeSummary[] {
     const rows = this.listWorktrees.all() as WorktreeRow[];
-    return rows.map((row) => JSON.parse(row.data_json) as WorktreeData);
+    return rows.map(({ worktreeID, status, units }) => ({
+      worktreeID,
+      status,
+      units: JSON.parse(units) as WorktreeSummary["units"],
+    }));
   }
 }

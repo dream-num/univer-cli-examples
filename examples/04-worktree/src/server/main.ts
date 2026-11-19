@@ -58,15 +58,6 @@ const units = new UnitService(collabService, repository, DEMO_USER_ID);
 app.use("/api/units", createUnitRouter(units));
 
 const worktrees = new WorktreeRepository(directory);
-for (const event of [
-  "worktreeCreated",
-  "worktreeUnitAdded",
-  "worktreeUnitCreated",
-  "worktreeStatusChanged",
-  "worktreeUnitMergeResultRecorded",
-] as const) {
-  worktreeService.on(event, ({ worktree }) => worktrees.upsert(worktree));
-}
 app.use("/api/worktrees", createWorktreeRouter(worktrees));
 
 const webRoot = fileURLToPath(new URL("../web", import.meta.url));

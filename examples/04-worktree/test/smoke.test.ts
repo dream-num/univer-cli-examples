@@ -160,11 +160,11 @@ it("edits and captures Sheet, Doc, and Slide drafts in Worktrees", async () => {
     { name: "Demo Slide", unitId: presentationId, unitType: "slide" },
   ]);
   expect(await (await fetch(`${origin}/api/worktrees`)).json()).toEqual(
-    expect.arrayContaining([
-      expect.objectContaining({ worktreeID: sheetWorktree, status: "draft" }),
-      expect.objectContaining({ worktreeID: documentWorktree, status: "draft" }),
-      expect.objectContaining({ worktreeID: presentationWorktree, status: "draft" }),
-    ]),
+    [
+      { worktreeID: sheetWorktree, status: "draft", units: [{ unitID: sheetId }] },
+      { worktreeID: documentWorktree, status: "draft", units: [{ unitID: documentId }] },
+      { worktreeID: presentationWorktree, status: "draft", units: [{ unitID: presentationId }] },
+    ].sort((a, b) => a.worktreeID.localeCompare(b.worktreeID)),
   );
   expect(await run("api", "find", "setValues", "--unit", "sheet")).toContain("FRange.setValues");
   expect(await run("api", "show", "FRange.setValues")).toContain("setValues");
