@@ -1,27 +1,23 @@
 import { execFile } from "node:child_process";
-import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
-import { tmpdir } from "node:os";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
 import { WorktreeClient } from "@univerjs-pro/collaboration-worktree-client";
 import { unzipSync } from "fflate";
-import { afterEach, expect, it } from "vitest";
-import { startServer, type DemoServer } from "../src/server/server.js";
+import { beforeEach, expect, it } from "vitest";
+import { startTestServer } from "./start-test-server.js";
 import { createFixtureResourceLibrary } from "./resource-fixture.js";
 import { runInProcess } from "./run-program.js";
 
 const execFileAsync = promisify(execFile);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const entrypoint = join(root, "dist/cli/main.js");
-let server: DemoServer | undefined;
-let temporaryRoot: string | undefined;
+let origin: string;
+let temporaryRoot: string;
 
-afterEach(async () => {
-  await server?.close();
-  server = undefined;
-  if (temporaryRoot !== undefined) await rm(temporaryRoot, { force: true, recursive: true });
-  temporaryRoot = undefined;
+beforeEach(async () => {
+  ({ origin, directory: temporaryRoot } = await startTestServer());
 });
 
 it("exposes a Slide-only CLI and exports trunk and Worktree revisions as PPTX", async () => {
@@ -36,8 +32,6 @@ it("exposes a Slide-only CLI and exports trunk and Worktree revisions as PPTX", 
     stderr: expect.stringContaining("unknown command 'import'"),
   });
 
-  server = await startServer(":memory:", 0);
-  temporaryRoot = await mkdtemp(join(tmpdir(), "slide-gen-export-"));
   const unitId = (await run("create", "--name", "Export Slide")).trim();
   const worktreeId = (await run("worktree", "create", "--unit", unitId)).trim();
   await run(
@@ -75,7 +69,7 @@ it("exposes a Slide-only CLI and exports trunk and Worktree revisions as PPTX", 
   ).toMatchObject({ name: "Worktree Slide" });
   expect(await readFile(trunk)).not.toEqual(await readFile(worktree));
 
-  const client = new WorktreeClient({ origin: server.origin });
+  const client = new WorktreeClient({ origin });
   expect(JSON.parse(await run("worktree", "ready", worktreeId))).toMatchObject({ status: "ready" });
   expect(await client.reopenWorktree(worktreeId)).toMatchObject({ status: "draft" });
   await client.markReady(worktreeId);
@@ -86,11 +80,9 @@ it("exposes a Slide-only CLI and exports trunk and Worktree revisions as PPTX", 
 }, 180_000);
 
 it("applies page programs with replace, append, and gap rejection semantics", async () => {
-  server = await startServer(":memory:", 0);
-  temporaryRoot = await mkdtemp(join(tmpdir(), "slide-gen-pages-"));
   const generated = join(temporaryRoot, ".generated");
   await mkdir(generated, { recursive: true });
-  const openResourceLibrary = () => createFixtureResourceLibrary(temporaryRoot!);
+  const openResourceLibrary = () => createFixtureResourceLibrary(temporaryRoot);
   const sources = [
     join(root, "authoring/product-release/pages/page-01-status.svg"),
     join(root, "authoring/product-release/pages/page-02-handoff.svg"),
@@ -210,8 +202,6 @@ it("applies page programs with replace, append, and gap rejection semantics", as
 }, 180_000);
 
 it("authors the Baseline Deck and collects per-page Review Evidence", async () => {
-  server = await startServer(":memory:", 0);
-  temporaryRoot = await mkdtemp(join(tmpdir(), "univer-slide-smoke-"));
   const taskDirectory = join(temporaryRoot, "product-release");
   const pages = join(taskDirectory, "pages");
   const generated = join(taskDirectory, ".generated");
@@ -404,7 +394,7 @@ async function runResult(...args: readonly string[]) {
   return await execFileAsync(process.execPath, [entrypoint, ...args], {
     env: {
       ...process.env,
-      SLIDE_GEN_SERVER_URL: server?.origin,
+      SLIDE_GEN_SERVER_URL: origin,
       UNIVER_LICENSE: process.env["UNIVER_LICENSE"] ?? "",
     },
   });

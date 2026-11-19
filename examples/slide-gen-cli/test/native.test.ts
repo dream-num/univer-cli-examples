@@ -1,11 +1,10 @@
 import { execFile } from "node:child_process";
-import { mkdir, mkdtemp, readFile, rm } from "node:fs/promises";
-import { tmpdir } from "node:os";
+import { mkdir, readFile } from "node:fs/promises";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { promisify } from "node:util";
-import { afterEach, expect, it } from "vitest";
-import { startServer, type DemoServer } from "../src/server/server.js";
+import { beforeEach, expect, it } from "vitest";
+import { startTestServer } from "./start-test-server.js";
 import { createUniverRenderRuntime } from "@univer-cli/univer-render-runtime";
 import type { ISlideData } from "@univerjs-pro/slides";
 import { strFromU8, strToU8, unzipSync, zipSync } from "fflate";
@@ -15,19 +14,14 @@ const execFileAsync = promisify(execFile);
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const entrypoint = join(root, "dist/cli/main.js");
 const fixture = join(root, "test/fixtures/native");
-let server: DemoServer | undefined;
-let temporaryRoot: string | undefined;
+let origin: string;
+let temporaryRoot: string;
 
-afterEach(async () => {
-  await server?.close();
-  if (temporaryRoot !== undefined) await rm(temporaryRoot, { force: true, recursive: true });
-  server = undefined;
-  temporaryRoot = undefined;
+beforeEach(async () => {
+  ({ origin, directory: temporaryRoot } = await startTestServer());
 });
 
 it("replays native chart and table after full-page replacement", async () => {
-  server = await startServer(":memory:", 0);
-  temporaryRoot = await mkdtemp(join(tmpdir(), "slide-native-"));
   const program = join(temporaryRoot, "page.js");
   await mkdir(dirname(program), { recursive: true });
   expect(await readFile(join(fixture, "page.svg"), "utf8")).not.toMatch(
@@ -80,7 +74,7 @@ it("replays native chart and table after full-page replacement", async () => {
   const enhancementSource = await readFile(join(fixture, "enhancement.js"), "utf8");
   expect(enhancementSource).toMatch(/setCategoryField\(0\)[\s\S]*setValueFields\(\[1\]\)/);
 
-  const contentRuntime = await loadRuntime(server.origin, unitId, worktreeId);
+  const contentRuntime = await loadRuntime(origin, unitId, worktreeId);
   const unitData = (await contentRuntime.exportUnitData()) as ISlideData;
   await contentRuntime.close();
   const renderRuntime = await createUniverRenderRuntime({
@@ -188,7 +182,7 @@ async function runResult(...args: readonly string[]) {
   return await execFileAsync(process.execPath, [entrypoint, ...args], {
     env: {
       ...process.env,
-      SLIDE_GEN_SERVER_URL: server?.origin,
+      SLIDE_GEN_SERVER_URL: origin,
       UNIVER_LICENSE: process.env["UNIVER_LICENSE"] ?? "",
     },
   });

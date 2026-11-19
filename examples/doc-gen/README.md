@@ -10,7 +10,7 @@ Facade program in headless Univer, saves Doc UnitData, and reviews source-side a
 
 ## Set up the example
 
-Requires Node.js 22.12 or later and pnpm 10.32.1.
+Requires Node.js 22.12 or later and pnpm 12.16.1.
 
 ```bash
 pnpm install --frozen-lockfile

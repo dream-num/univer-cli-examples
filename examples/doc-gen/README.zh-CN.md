@@ -8,7 +8,7 @@
 
 ## 设置示例
 
-需要 Node.js 22.12 或更高版本，以及 pnpm 10.32.1。
+需要 Node.js 22.12 或更高版本，以及 pnpm 12.16.1。
 
 ```bash
 pnpm install --frozen-lockfile

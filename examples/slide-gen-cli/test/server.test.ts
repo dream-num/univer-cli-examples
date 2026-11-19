@@ -1,27 +1,18 @@
-import { mkdtemp, rm } from "node:fs/promises";
-import { tmpdir } from "node:os";
-import { join } from "node:path";
-import { afterEach, expect, it } from "vitest";
-import { startServer, type DemoServer } from "../src/server/server.js";
+import { WorktreeClient } from "@univerjs-pro/collaboration-worktree-client";
+import { beforeEach, expect, it } from "vitest";
+import { startTestServer } from "./start-test-server.js";
 
-let server: DemoServer | undefined;
-let temporaryRoot: string | undefined;
+let origin: string;
 
-afterEach(async () => {
-  await server?.close();
-  server = undefined;
-  if (temporaryRoot !== undefined) await rm(temporaryRoot, { force: true, recursive: true });
-  temporaryRoot = undefined;
+beforeEach(async () => {
+  ({ origin } = await startTestServer());
 });
 
 it("creates only empty Slide units and keeps unit and Worktree routes available", async () => {
-  temporaryRoot = await mkdtemp(join(tmpdir(), "slide-gen-server-"));
-  server = await startServer(join(temporaryRoot, "server.sqlite"), 0);
-
-  const ticket = await fetch(`${server.origin}/universer-api/user/session-ticket`);
+  const ticket = await fetch(`${origin}/universer-api/user/session-ticket`);
   expect(ticket.status).toBe(200);
   expect(await ticket.json()).toMatchObject({ ticket: expect.any(String) });
-  const fallback = await fetch(`${server.origin}/universer-api/not-an-endpoint`);
+  const fallback = await fetch(`${origin}/universer-api/not-an-endpoint`);
   expect(fallback.status).toBe(200);
   expect(await fallback.text()).toContain('id="sidebar"');
 
@@ -49,15 +40,23 @@ it("creates only empty Slide units and keeps unit and Worktree routes available"
     unitType: "slide",
   });
   expect(await getJson("/api/units")).toEqual([
-    expect.objectContaining({ unitType: "slide" }),
-    expect.objectContaining({ unitType: "slide" }),
-    expect.objectContaining({ unitType: "slide" }),
+    { unitId: legacy.unitId, name: legacy.name, unitType: "slide" },
+    { unitId: named.unitId, name: named.name, unitType: "slide" },
+    { unitId: unnamed.unitId, name: unnamed.name, unitType: "slide" },
   ]);
   expect(await getJson("/api/worktrees")).toEqual([]);
+  const client = new WorktreeClient({ origin });
+  await client.createWorktree({ worktreeID: "z-draft", units: ["named-slide"] });
+  await client.createWorktree({ worktreeID: "a-empty" });
+  await client.markReady("z-draft");
+  expect(await getJson("/api/worktrees")).toEqual([
+    { worktreeID: "a-empty", status: "draft", units: [] },
+    { worktreeID: "z-draft", status: "ready", units: [{ unitID: "named-slide" }] },
+  ]);
 });
 
 async function create(body: object): Promise<Record<string, unknown>> {
-  const response = await fetch(`${server!.origin}/api/units`, {
+  const response = await fetch(`${origin}/api/units`, {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify(body),
@@ -67,7 +66,7 @@ async function create(body: object): Promise<Record<string, unknown>> {
 }
 
 async function getJson(path: string): Promise<unknown> {
-  const response = await fetch(`${server!.origin}${path}`);
+  const response = await fetch(`${origin}${path}`);
   expect(response.status).toBe(200);
   return await response.json();
 }
