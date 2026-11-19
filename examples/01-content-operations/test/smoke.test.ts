@@ -51,8 +51,8 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
     ranges: [
       {
         displayValues: [
-          ["Name", "Value"],
-          ["Initial", "1"],
+          ["", ""],
+          ["", ""],
         ],
       },
     ],
@@ -64,7 +64,7 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
       "--unit",
       sheetId,
       "--code",
-      'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]]); return "done";',
+      'workbook.getActiveSheet().getRange("A1:B2").setValues([["Item", "Quantity"], ["Apples", 2]]); return "done";',
     ),
   ) as Record<string, unknown>;
   expect(execution).toMatchObject({ commit: "confirmed", revision: 2, value: "done" });

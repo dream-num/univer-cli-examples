@@ -74,10 +74,7 @@ function createWorkbook(unitId: string, name: string): IWorkbookData {
         name: "Data",
         rowCount: 100,
         columnCount: 20,
-        cellData: {
-          0: { 0: { v: "Name" }, 1: { v: "Value" } },
-          1: { 0: { v: "Initial" }, 1: { v: 1 } },
-        },
+        cellData: {},
       },
     },
     styles: {},

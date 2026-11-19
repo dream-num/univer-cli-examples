@@ -17,20 +17,20 @@ pnpm start-server
 
 `link-cli` 注册本示例的 `univer-example-cli` 命令。服务启动后会打印 `http://127.0.0.1:3010`。保持该终端运行，在同一目录另开一个终端执行下面的命令。
 
-## 修改表格中的一行
+## 向空白表格写入数据
 
-创建一个名为 Demo 的表格，把输出的 Unit ID 存入变量，然后读取第一个工作表的前两行：
+创建一个名为 Demo 的空白表格，把输出的 Unit ID 存入变量，然后读取第一个工作表的前两行：
 
 ```bash
 UNIT_ID=$(univer-example-cli create sheet --name "Demo")
 univer-example-cli inspect range A1:B2 --worksheet index:1 --unit "$UNIT_ID" --json
 ```
 
-在输出的 `displayValues` 中，第一行是表头 `Name` 和 `Value`，第二行是 `Initial` 和 `1`。用 `execute` 执行一段 Univer Facade 代码，把第二行改为 `Updated` 和 `2`：
+此时 `A1:B2` 的四个单元格都是空的。用 `execute` 一次写入库存表的表头和第一条记录：
 
 ```bash
 univer-example-cli execute --unit "$UNIT_ID" \
-  --code 'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]])'
+  --code 'workbook.getActiveSheet().getRange("A1:B2").setValues([["Item", "Quantity"], ["Apples", 2]])'
 ```
 
 CLI 通过 Collaboration Runtime 加载表格、执行修改并提交。看到 `"commit": "confirmed"` 后，在浏览器中打开刚才的表格：
@@ -39,7 +39,7 @@ CLI 通过 Collaboration Runtime 加载表格、执行修改并提交。看到 `
 univer-example-cli open --unit "$UNIT_ID"
 ```
 
-在 `Data` 工作表中应能看到 A2 为 `Updated`、B2 为 `2`。左侧文件列表可以切换到其他 Unit。服务把数据保存在 `.data/content-operations.sqlite`，重启后仍可用原来的 ID 打开。
+在 `Data` 工作表中应能看到 A2 为 `Apples`、B2 为 `2`。左侧文件列表可以切换到其他 Unit。服务把数据保存在 `.data/content-operations.sqlite`，重启后仍可用原来的 ID 打开。
 
 编写自己的修改命令时，可以用 CLI 查找 Facade 方法并查看用法：
 

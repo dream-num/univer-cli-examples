@@ -17,20 +17,20 @@ pnpm start-server
 
 `link-cli` registers the example's `univer-example-cli` command. The server prints `http://127.0.0.1:3010` when it starts. Leave it running and open a second terminal in the same directory.
 
-## Edit a row in a spreadsheet
+## Write to a blank spreadsheet
 
-Create a Sheet named Demo, capture its Unit ID, and read the first two rows of its first worksheet:
+Create a blank Sheet named Demo, capture its Unit ID, and read the first two rows of its first worksheet:
 
 ```bash
 UNIT_ID=$(univer-example-cli create sheet --name "Demo")
 univer-example-cli inspect range A1:B2 --worksheet index:1 --unit "$UNIT_ID" --json
 ```
 
-In the output, `displayValues` shows the headers `Name` and `Value` followed by the row `Initial` and `1`. Use `execute` to run Univer Facade code that changes the second row to `Updated` and `2`:
+The four cells in `A1:B2` are empty. Use `execute` to write the column headers and the first inventory item in a single edit:
 
 ```bash
 univer-example-cli execute --unit "$UNIT_ID" \
-  --code 'workbook.getActiveSheet().getRange("A2:B2").setValues([["Updated", 2]])'
+  --code 'workbook.getActiveSheet().getRange("A1:B2").setValues([["Item", "Quantity"], ["Apples", 2]])'
 ```
 
 The CLI uses the Collaboration Runtime to load the workbook, apply the edit, and commit it. Once the output shows `"commit": "confirmed"`, open the spreadsheet in your browser:
@@ -39,7 +39,7 @@ The CLI uses the Collaboration Runtime to load the workbook, apply the edit, and
 univer-example-cli open --unit "$UNIT_ID"
 ```
 
-On the `Data` worksheet, A2 should now show `Updated` and B2 should show `2`. You can switch Units in the file sidebar. The server stores the data in `.data/content-operations.sqlite`, so the same ID works after a restart.
+On the `Data` worksheet, A2 should now show `Apples` and B2 should show `2`. You can switch Units in the file sidebar. The server stores the data in `.data/content-operations.sqlite`, so the same ID works after a restart.
 
 When writing your own edits, use the CLI to look up a Facade method and see how to call it:
 
