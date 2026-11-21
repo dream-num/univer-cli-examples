@@ -50,4 +50,4 @@ Use univer-content to import ./sales.xlsx, change January sales to 1000, read th
 
 When finished, press Ctrl+C in the server terminal. If you installed the skill, run `pnpm skill:uninstall`. Run `pnpm unlink-cli` to remove this example's CLI command.
 
-This example uses Univer CLI SDK and Univer SDK 1.5.2. The server stores collaborative data in `.data/file-exchange-demo.sqlite`. After changing the example, run `pnpm check`.
+This example uses Univer CLI SDK and Univer SDK 1.6.0. The server stores collaborative data in `.data/file-exchange-demo.sqlite`. After changing the example, run `pnpm check`.
