@@ -4,11 +4,29 @@ English | [简体中文](./README.zh-CN.md)
 
 This example uses Univer CLI SDK and Univer SDK `1.6.1`.
 
-This agent-oriented example creates editable local Univer Docs from Typst. For each request, the
+Use Markdown for new paginated reports or compile an existing Typst Source Bundle into an editable local Univer Doc.
+
+In the Typst workflow, the
 agent creates or revises a task-specific Typst Source Bundle, compiles it, materializes the generated
 Facade program in headless Univer, saves Doc UnitData, and reviews source-side and Univer-side PNGs.
 
-## Set up the example
+## Generate a paginated report with Markdown
+
+Use the Univer CLI with Traditional Markdown support to compile [the report source](./traditional-report.md) into an editable Doc. Run the commands from this example directory and replace `<worktree-id>` with the `worktreeId` returned by `worktree add`.
+
+```bash
+univer new review.univer
+univer worktree add review.univer --name "Quarterly review" --json
+univer compile-markdown ./traditional-report.md --unit quarterly-review \
+  --apply review.univer --worktree <worktree-id>
+univer screenshot setup
+univer screenshot review.univer --worktree <worktree-id> \
+  --unit quarterly-review --pages all --out ./output/quarterly-review
+```
+
+The cover and results use portrait A4. The explicit page break starts the results on page 2 in the same section. The section break starts the appendix on landscape A4 on page 3. Edit the generated Doc in the native editor or through the Facade.
+
+## Set up the Typst example
 
 Requires Node.js 22.12 or later and pnpm 12.16.1.
 

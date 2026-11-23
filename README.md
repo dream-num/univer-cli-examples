@@ -12,7 +12,7 @@ architecture live on the [Univer Office documentation site](https://office.unive
 | [`03-visual-inspection`](./examples/03-visual-inspection/README.md)   | Visually inspect all three Unit types                   | Render Page, Screenshot, Layout Lint       |
 | [`04-worktree`](./examples/04-worktree/README.md)                     | Edit in a draft and hand it to a human for review       | Worktree, Ready, Merge, Reopen, Discard    |
 | [`slide-gen-cli`](./examples/slide-gen-cli/README.md)                 | Generate, review, export, and view Slides with an Agent | SVG Compile, Resource Library, Agent Skill |
-| [`doc-gen`](./examples/doc-gen/README.md)                             | Author and visually verify a Doc with Typst             | Typst Compile, Doc Materialization         |
+| [`doc-gen`](./examples/doc-gen/README.md)                             | Author and visually verify a Doc with Markdown or Typst             | Typst Compile, Doc Materialization         |
 
 Read examples `01` through `04` in numbered order. Unnumbered examples are self-contained. Each
 directory has its own `package.json`, lockfile, and dependencies, so it can be copied and run
