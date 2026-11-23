@@ -62,4 +62,4 @@ univer-example-cli api show FRange.setValues
 
 在服务终端按 Ctrl+C。如果安装了 skill，运行 `pnpm skill:uninstall`。运行 `pnpm unlink-cli` 移除本示例注册的 CLI 命令。
 
-本示例使用 Univer CLI SDK 和 Univer SDK 1.6.0。修改示例后，可在该目录运行 `pnpm check`。
+本示例使用 Univer CLI SDK 和 Univer SDK 1.6.1。修改示例后，可在该目录运行 `pnpm check`。
