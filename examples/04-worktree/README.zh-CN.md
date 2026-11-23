@@ -72,4 +72,4 @@ univer-example-cli open --unit "$UNIT_ID" --trunk
 
 体验结束后，在服务终端按 Ctrl+C。若安装了 skill，运行 `pnpm skill:uninstall`。运行 `pnpm unlink-cli` 移除本例的 CLI 命令。
 
-本示例使用 Univer CLI SDK 和 Univer SDK 1.6.0。主线和 Worktree 数据保存在 `.data/worktree-demo.sqlite`。
+本示例使用 Univer CLI SDK 和 Univer SDK 1.6.1。主线和 Worktree 数据保存在 `.data/worktree-demo.sqlite`。
