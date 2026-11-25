@@ -106,7 +106,7 @@ they are canonical public URLs and stay valid after promotion.
 
 ### 5. Merge
 
-Open the pull request against `main`. All CI checks must be green (the four
+Open the pull request against `main`. All CI checks must be green (the six
 `Check` jobs and `merge-gate`), then squash-merge it and delete the branch.
 The next `-next` branch is created only when the first change that needs an
 unreleased SDK is ready. To turn the `merge-gate` check into a hard block, a

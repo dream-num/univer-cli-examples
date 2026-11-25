@@ -64,6 +64,8 @@ jobs:
           - examples/02-file-exchange
           - examples/03-visual-inspection
           - examples/04-worktree
+          - examples/doc-gen
+          - examples/slide-gen-cli
 
     steps:
       - name: Checkout

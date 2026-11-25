@@ -61,4 +61,4 @@ Use univer-content to create a sales spreadsheet with 10 records. Read the data 
 
 When finished, press Ctrl+C in the server terminal. If you installed the skill, run `pnpm skill:uninstall`. Run `pnpm unlink-cli` to remove this example's CLI command.
 
-This example uses Univer CLI SDK and Univer SDK 1.6.1. Collaborative data is stored in `.data/visual-inspection-demo.sqlite`. After changing the example, run `pnpm check`.
+This example uses Univer CLI SDK and Univer SDK 1.6.2. Collaborative data is stored in `.data/visual-inspection-demo.sqlite`. After changing the example, run `pnpm check`.

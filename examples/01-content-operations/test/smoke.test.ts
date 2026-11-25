@@ -85,6 +85,21 @@ it("creates, inspects, executes, and opens Sheet, Doc, and Slide units", async (
   ) as Record<string, unknown>;
   expect(execution).toMatchObject({ commit: "confirmed", revision: 2, value: "done" });
 
+  const formatted = JSON.parse(
+    await run(
+      "execute",
+      "--unit",
+      sheetId,
+      "--code",
+      [
+        'const cell = workbook.getActiveSheet().getRange("B2");',
+        'cell.setNumberFormat("0.00");',
+        "return [cell.getValue(), cell.getValues(), cell.getDisplayValue()];",
+      ].join(" "),
+    ),
+  ) as Record<string, unknown>;
+  expect(formatted.value).toEqual([2, [[2]], expect.stringMatching(/^2[.,]00$/)]);
+
   const documentId = (await run("create", "doc", "--name", "Demo Doc")).trim();
   expect(
     JSON.parse(await run("inspect", "document", "--unit", documentId, "--json")),
