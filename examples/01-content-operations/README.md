@@ -62,4 +62,4 @@ The bundled `univer-content` skill guides the agent through creating the Sheet, 
 
 Press Ctrl+C in the server terminal. If you installed the skill, run `pnpm skill:uninstall`. Run `pnpm unlink-cli` to remove the example's CLI command.
 
-This example uses Univer CLI SDK and Univer SDK 1.6.1. After changing the example, run `pnpm check` from this directory.
+This example uses Univer CLI SDK and Univer SDK 1.6.2. After changing the example, run `pnpm check` from this directory.
