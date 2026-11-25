@@ -4,9 +4,27 @@
 
 本示例使用 Univer CLI SDK 和 Univer SDK `1.6.2`。
 
-这个面向 agent 的示例使用 Typst 创作可编辑的本地 Univer Doc。Agent 为每个请求创建或修改独立的 Typst Source Bundle，编译源稿，在 headless Univer 中物化 Facade program，保存 Doc UnitData，并检查源侧和 Univer 侧两组 PNG。
+使用 Markdown 从零创建可编辑的分页 Univer Doc，也可以继续编译现有的 Typst Source Bundle。
 
-## 设置示例
+在 Typst 工作流中，Agent 创建或修改独立的 Typst Source Bundle，编译源稿，在 headless Univer 中物化 Facade program，保存 Doc UnitData，并检查源侧和 Univer 侧两组 PNG。
+
+## 从 Markdown 生成分页报告
+
+使用支持 Traditional Markdown 的 Univer CLI，把[报告源码](./traditional-report.md)编译成可编辑的 Doc。在此示例目录运行命令，将 `<worktree-id>` 替换为 `worktree add` 返回的 `worktreeId`。
+
+```bash
+univer new review.univer
+univer worktree add review.univer --name "Quarterly review" --json
+univer compile-markdown ./traditional-report.md --unit quarterly-review \
+  --apply review.univer --worktree <worktree-id>
+univer screenshot setup
+univer screenshot review.univer --worktree <worktree-id> \
+  --unit quarterly-review --pages all --out ./output/quarterly-review
+```
+
+封面和结果使用纵向 A4。显式分页让结果在同一节的第 2 页开始，分节让附录在第 3 页以横向 A4 开始。生成后可在原生编辑器中或通过 Facade 修改。
+
+## 设置 Typst 示例
 
 需要 Node.js 22.12 或更高版本，以及 pnpm 12.16.1。
 
